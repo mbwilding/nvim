@@ -1,15 +1,15 @@
 local toggleterm = require("toggleterm")
 
 toggleterm.setup {
-	-- open_mapping = [[<c-\>]],
-	start_in_insert = true,
-	terminal_mappings = true,
-	-- direction = 'float',
-	shell = "pwsh.exe -NoLogo",
-	auto_scroll = true,
-	-- persist_mode = true,
-	persist_size = true,
-	close_on_exit = true,
+    -- open_mapping = [[<c-\>]],
+    start_in_insert = true,
+    terminal_mappings = true,
+    -- direction = 'float',
+    -- shell = "pwsh.exe -NoLogo", -- Windows only
+    auto_scroll = true,
+    -- persist_mode = true,
+    persist_size = true,
+    close_on_exit = true,
 }
 
 -- function _G.set_terminal_keymaps()
@@ -21,43 +21,41 @@ toggleterm.setup {
 -- vim.cmd('autocmd! TermOpen term://* ')
 -- vim.cmd('autocmd! term://* <Esc>')
 
-
-
 local terminal1 = require('toggleterm.terminal').Terminal
 
 terminal1:new {
-	open_mapping = [[<M-1>]],
-	-- start_in_insert = true,
-	-- terminal_mappings = true,
-	direction = 'float',
-	shell = "pwsh.exe -NoLogo",
-	auto_scroll = true,
+    open_mapping = [[<M-1>]],
+    -- start_in_insert = true,
+    -- terminal_mappings = true,
+    direction = 'float',
+    shell = "pwsh.exe -NoLogo",
+    auto_scroll = true,
 }
 
 function _toggleTerminal1()
-	terminal1:toggle()
+    terminal1:toggle()
 end
 
 local terminal2 = require('toggleterm.terminal').Terminal
 
 terminal2:new {
-	cmd = "lazygit",
-	direction = "top",
-	float_opts = {
-		border = "double"
-	},
-	hiddern = true
+    cmd = "lazygit",
+    direction = "top",
+    float_opts = {
+        border = "double"
+    },
+    hidden = true
 }
 
 function _lazygitToggle()
-	terminal2:toggle()
+    terminal2:toggle()
 end
 
 local Terminal = require('toggleterm.terminal').Terminal
 local lazygit = Terminal:new({ cmd = 'lazygit', hidden = true, direction = 'float' })
 
 function _lazygit_toggle()
-	lazygit:toggle()
+    lazygit:toggle()
 end
 
 vim.keymap.set({ 'n', 'i', 't' }, '<leader>tt', '<cmd>:1ToggleTerm direction=float<CR>')
