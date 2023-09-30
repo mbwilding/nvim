@@ -7,21 +7,21 @@ local colors = {
     string = "#c9a26d",
     number = "#ed94c0",
     comment = "#85c46c",
-    comment_alt = "#487D34",
+    comment_alt = "#487d34",
     keyword = "#6c95eb",
     class = "#c191ff",
     enum = "#e1bfff",
     interface = "#9591ff",
     method = "#39cc8f",
     constant = "#66c3cc",
-    field = "#66C3CC",
+    field = "#66c3cc",
     todo = "#66c3cc",
     macro = "#4eade5",
     error = "#ff0000",
 
     -- Rust
     crate = "#ffb083",
-    module = "#ffd3B3",
+    module = "#ffd3b3",
 }
 
 local syntax_map = {
@@ -45,9 +45,9 @@ local syntax_map = {
     ["@punctuation.delimiter"] = {fg = colors.fg},
     ["Comment"] = {fg = colors.comment},
     ["@lsp.type.interface"] = {fg = colors.interface},
-    ["@type.builtin"] = {fg = colors.keyword},
     ["TodoFgtodo"] = {fg = colors.todo},
     ["TodoBgTODO"] = {fg = colors.todo, bg = colors.none},
+    ["@type.builtin"] = {fg = colors.class},
     ["DiagnosticUnderlineError"] = {fg = colors.error},
 
     -- C# (Omnisharp)
@@ -87,6 +87,10 @@ local syntax_map = {
     ["@lsp.typemod.decorator.defaultLibrary.rust"] = {fg = colors.class},
     ["@lsp.typemod.decorator.library.rust"] = {fg = colors.method},
     ["@lsp.typemod.derive.attribute.rust"] = {fg = colors.interface},
+    ["@lsp.typemod.enum.library.rust"] = {fg = colors.enum},
+    ["@lsp.typemod.generic.attribute.rust"] = {fg = colors.module},
+    ["@lsp.typemod.function.attribute.rust"] = {fg = colors.method},
+    ["@lsp.typemod.deriveHelper.attribute.rust"] = {fg = colors.crate},
 }
 
 -- Apply the colors to each syntax group.
