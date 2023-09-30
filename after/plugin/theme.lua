@@ -3,8 +3,6 @@ vim.cmd[[colorscheme tokyonight-night]]
 
 -- Overrides
 local colors = {
-    -- bg = "#1e1f22",
-    none = "NONE",
     fg = "#bdbdbd",
     string = "#c9a26d",
     number = "#ed94c0",
@@ -18,26 +16,8 @@ local colors = {
     constant = "#66c3cc",
     field = "#66C3CC",
     todo = "#66c3cc",
-    valid_string_escape = "#d688d4",
-    selection = "#08335e",
-    labels = "#f0f0f0",
-    unreachable = "#808080",
     macro = "#4eade5",
-
-    -- Rider Dark
-    added_lines = "#29421f",
-    annotations = "#909090",
-    bookmark_icon_bg = "#d9b72b",
-    caret = "#f0f0f0",
-    caret_row = "#202424",
-    deleted_lines = "#bf3428",
-    diff_separators_bg = "#686868",
-    documentation = "#303030",
     error = "#ff0000",
-    folded_text_border = "#404040",
-    gutter_bg = "#282828",
-    indent_guide = "#404040",
-    information_hint = "#303030",
 
     -- Rust
     crate = "#ffb083",
@@ -53,6 +33,7 @@ local syntax_map = {
     ["Number"] = {fg = colors.number},
     ["Statement"] = {fg = colors.keyword},
     ["Type"] = {fg = colors.class},
+    ["@field"] = {fg = colors.field},
     ["Function"] = {fg = colors.method},
     ["PreProc"] = {fg = colors.keyword},
     ["@keyword"] = {fg = colors.keyword},

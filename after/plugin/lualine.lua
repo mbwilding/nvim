@@ -40,7 +40,7 @@ end
 lualine.setup {
 	options = {
 		-- component_separators = { left = '|', right = "|" },
-		theme = 'tokionight',
+		theme = 'tokyonight',
 		icon_enabled = true,
 	},
 	sections = {
