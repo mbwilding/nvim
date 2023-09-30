@@ -71,3 +71,5 @@ vim.api.nvim_set_keymap('n', 'x', '"_x', { noremap = true })
 vim.api.nvim_set_keymap('n', 'X', '"_X', { noremap = true })
 vim.api.nvim_set_keymap('n', 's', '"_s', { noremap = true })
 vim.api.nvim_set_keymap('x', 'd', '"_d', { noremap = true })
+
+vim.g.OmniSharp_server_use_net6 = 1

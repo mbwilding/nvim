@@ -140,3 +140,6 @@ require 'nvim-treesitter.configs'.setup {
         -- },
     },
 }
+
+vim.keymap.set('n', '<leader>dt', ':Inspect<CR>', { desc = 'TreeSitter debug under cursor', silent = true })
+vim.keymap.set('n', '<leader>dT', ':InspectTree<CR>', { desc = 'TreeSitter debug tree', silent = true })
