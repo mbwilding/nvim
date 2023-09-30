@@ -1,5 +1,7 @@
 -- Set main base theme
-vim.cmd [[colorscheme tokyonight-night]]
+
+-- vim.cmd.colorscheme "catppuccin-mocha"
+vim.cmd.colorscheme "tokyonight-night"
 
 -- Overrides
 local colors = {
