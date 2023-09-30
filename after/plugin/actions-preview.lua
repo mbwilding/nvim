@@ -2,4 +2,4 @@ require('actions-preview').setup {
 
 }
 
-vim.keymap.set({ 'n', 'v' }, '<leader>la', require('actions-preview').code_actions)
+vim.keymap.set({ 'n', 'v' }, '<leader>ap', require('actions-preview').code_actions)
