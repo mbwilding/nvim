@@ -78,7 +78,7 @@
   "palenightfall.nvim": { "branch": "main", "commit": "f33b64d0099867deb4a7aa6024d4c55f628253f2" },
   "playground": { "branch": "master", "commit": "ba48c6a62a280eefb7c85725b0915e021a1a0749" },
   "plenary.nvim": { "branch": "master", "commit": "9ce85b0f7dcfe5358c0be937ad23e456907d410b" },
-  "riderdark.nvim": { "branch": "main", "commit": "e59d7696d08959659c968237216789f48c5c4934" },
+  "riderdark.nvim": { "branch": "main", "commit": "4978182fe54b9908634628ec78f5a2b5fac9ed9f" },
   "schemastore.nvim": { "branch": "main", "commit": "daf2f4397e97c0f12b89068eec35078c61069ceb" },
   "structlog.nvim": { "branch": "main", "commit": "45b26a2b1036bb93c0e83f4225e85ab3cee8f476" },
   "telescope-dap.nvim": { "branch": "master", "commit": "4e2d5efb92062f0b865fe59b200b5ed7793833bf" },

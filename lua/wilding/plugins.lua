@@ -96,7 +96,7 @@ return {
 	{ 'numToStr/Comment.nvim',               lazy = true },
 	{ "windwp/nvim-autopairs",               lazy = true },
 	{ 'karb94/neoscroll.nvim',               lazy = true },
-	{ 'norcalli/nvim-colorizer.lua',         lazy = true },
+	{ 'norcalli/nvim-colorizer.lua',         lazy = false },
 	{ 'HiPhish/nvim-ts-rainbow2',            lazy = true },
 	{ 'nvim-telescope/telescope.nvim',       dependencies = { 'nvim-lua/plenary.nvim' }, lazy = true },
 	{ "Shatur/neovim-session-manager",       dependencies = { "nvim-lua/plenary.nvim" }, lazy = true },
@@ -208,8 +208,6 @@ return {
 	{ 'Mofiqul/vscode.nvim',              priority = 1000,    lazy = false },
 	{ 'JoosepAlviste/palenightfall.nvim', lazy = false },
 
-	
-	{ 'mbwilding/riderdark.nvim', lazy = false },
 	{ 'm4xshen/autoclose.nvim', lazy = false },
 	{ "EdenEast/nightfox.nvim" },
 	{
