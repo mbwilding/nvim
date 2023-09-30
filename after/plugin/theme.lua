@@ -33,19 +33,15 @@ local colors = {
     deleted_lines = "#bf3428",
     diff_separators_bg = "#686868",
     documentation = "#303030",
-    error_hint = "#4a2421",
+    error = "#ff0000",
     folded_text_border = "#404040",
     gutter_bg = "#282828",
     indent_guide = "#404040",
     information_hint = "#303030",
-    line_numbers = "#808080",
-    line_numbers_on_caret_row = "#808080",
-    method_separators = "#404040",
-    modified_lines = "#293a5f",
 
     -- Rust
     crate = "#ffb083",
-    module = "#ffd3B3", -- unused
+    module = "#ffd3B3",
 }
 
 local syntax_map = {
@@ -71,6 +67,7 @@ local syntax_map = {
     ["@type.builtin"] = {fg = colors.keyword},
     ["TodoFgtodo"] = {fg = colors.todo},
     ["TodoBgTODO"] = {fg = colors.todo, bg = colors.none},
+    ["DiagnosticUnderlineError"] = {fg = colors.error},
 
     -- C# (Omnisharp)
     ["@lsp.type.namespace.cs"] = {fg = colors.class},
@@ -79,7 +76,7 @@ local syntax_map = {
     ["@lsp.type.xmlDocCommentName.cs"] = {fg = colors.comment_alt},
     ["@lsp.type.xmlDocCommentAttributeName.cs"] = {fg = colors.comment_alt},
 
-    -- Rust (rust_analyser)
+    -- Rust (rust_analyzer)
     ["@namespace.rust"] = {fg = colors.crate},
     ["@lsp.typemod.namespace.crateRoot.rust"] = {fg = colors.crate},
     ["@lsp.mod.library.rust"] = {fg = colors.module},
