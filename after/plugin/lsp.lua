@@ -137,7 +137,6 @@ lspconfig.omnisharp.setup({
 
 lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
 
-
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
@@ -173,8 +172,6 @@ lsp.set_sign_icons({
 	hint = '⚑',
 	info = '»'
 })
-
-
 
 vim.diagnostic.config({
 	virtual_lines = false,
@@ -404,6 +401,47 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		})
 
 		require('mason').setup()
+		require("mason-lspconfig").setup {
+			ensure_installed = {
+				"ansiblels",
+				"arduino_language_server",
+				"asm_lsp",
+				"astro",
+				"azure_pipelines_ls",
+				"bashls",
+				"pkgbuild_language_server",
+				"clangd",
+				"omnisharp",
+				"neocmake",
+				"cssls",
+				"dockerls",
+				"docker_compose_language_service",
+				"fsautocomplete",
+				"golangci_lint_ls",
+				"gopls",
+				"grammarly",
+				"graphql",
+				"groovyls",
+				"html",
+				"helm_ls",
+				"jsonls",
+				"java_language_server",
+				"quick_lint_js",
+				"tsserver",
+				"jqls",
+				"kotlin_language_server",
+				"lua_ls",
+				"marksman",
+				"powershell_es",
+				"pylsp",
+				"rust_analyzer",
+				"sqlls",
+				"taplo",
+				"tailwindcss",
+				"lemminx",
+				"yamlls"
+			}
+		}
 		require('mason-null-ls').setup({
 			automatic_setup = true,
 		})

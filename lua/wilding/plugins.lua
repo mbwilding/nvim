@@ -10,7 +10,6 @@ return {
 		branch = 'v2.x',
 		dependencies = {
 			-- LSP Support
-			{ 'neovim/nvim-lspconfig',            event = { "BufReadPre", "BufNewFile" }, lazy = true }, -- Required
 			{
 				-- Optional
 				'williamboman/mason.nvim',
@@ -19,7 +18,7 @@ return {
 				end,
 			},
 			{ 'williamboman/mason-lspconfig.nvim' }, -- Optional
-
+			{ 'neovim/nvim-lspconfig',            event = { "BufReadPre", "BufNewFile" }, lazy = true }, -- Required
 			-- Autocompletion
 			{ 'hrsh7th/nvim-cmp',                 lazy = true }, -- Required
 			{ 'hrsh7th/cmp-nvim-lsp',             lazy = true }, -- Required

@@ -40,14 +40,14 @@ end
 lualine.setup {
 	options = {
 		-- component_separators = { left = '|', right = "|" },
-		theme = 'riderdark',
+		theme = 'tokionight',
 		icon_enabled = true,
 	},
 	sections = {
 		lualine_x = {
 			{ get_lsp_name },
 			'selectioncount',
-			'filetype'
+			-- 'filetype'
 		},
 		-- lualine_c = {
 		-- 	'filetype'
