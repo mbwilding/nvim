@@ -28,6 +28,13 @@ local colors = {
 }
 
 local syntax_map = {
+    -- Transparent background
+    ["Normal"] = {},
+    ["NormalNC"] = {},
+    -- ["VertSplit"] = {},
+    -- ["StatusLine"] = {},
+    -- ["StatusLineNC"] = {},
+
     -- Standard Highlight Groups
     ["@variable"] = { fg = colors.fg },
     ["@variable.builtin"] = { fg = colors.keyword },
