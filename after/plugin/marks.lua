@@ -1,5 +1,3 @@
-local marks = require('marks')
+local marks = require("marks")
 
-marks.setup {
-
-}
+marks.setup()

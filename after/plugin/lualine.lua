@@ -1,5 +1,4 @@
-local lualine = require('lualine')
-
+local lualine = require("lualine")
 
 local function get_lsp_name()
 	local msg = "LS Inactive"
@@ -39,26 +38,26 @@ end
 
 lualine.setup {
 	options = {
-		-- component_separators = { left = '|', right = "|" },
-		theme = 'tokyonight',
+		-- component_separators = { left = "|", right = "|" },
+		theme = "tokyonight",
 		icon_enabled = true,
 	},
 	sections = {
 		lualine_x = {
 			{ get_lsp_name },
-			'selectioncount',
-			-- 'filetype'
+			"selectioncount",
+			-- "filetype"
 		},
 		-- lualine_c = {
-		-- 	'filetype'
+		-- 	"filetype"
 		-- }
 		-- lualine_b = {
-		-- 'diagnostics'
-		-- 'diff',
-		-- 'diagnostics',
+		-- "diagnostics"
+		-- "diff",
+		-- "diagnostics",
 
-		-- sources = { 'nvim_diagnostic', 'nvim_lsp' },
-		-- sections = { 'error', 'warn', 'info', 'hint' },
+		-- sources = { "nvim_diagnostic", "nvim_lsp" },
+		-- sections = { "error", "warn", "info", "hint" },
 		-- }
 	}
 }

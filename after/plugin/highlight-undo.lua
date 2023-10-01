@@ -1,4 +1,3 @@
-undo = require('highlight-undo')
-
-undo.setup({
-})
+local highlight_undo = require("highlight-undo")
+        
+highlight_undo.setup()

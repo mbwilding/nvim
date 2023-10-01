@@ -1,3 +1,3 @@
-require('dressing').setup {
+local dressing = require("dressing")
 
-}
+dressing.setup()

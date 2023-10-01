@@ -1,5 +1,3 @@
-local neoscroll = require('neoscroll')
+local neoscroll = require("neoscroll")
 
-neoscroll.setup({
-
-})
+neoscroll.setup()

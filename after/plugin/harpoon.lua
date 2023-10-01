@@ -1,12 +1,14 @@
-local harpoon = require('harpoon').setup(
+local harpoon = require("harpoon")
+local mark = require("harpoon.mark")
+local ui = require("harpoon.ui")
+
+harpoon.setup(
 	{
 		global_settings = {
 			enter_on_sendcmd = true
 		}
 	}
 )
-local mark = require("harpoon.mark")
-local ui = require("harpoon.ui")
 
 vim.keymap.set("n", "<leader>a", mark.add_file)
 vim.keymap.set("n", "<leader>h", ui.toggle_quick_menu)

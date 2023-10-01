@@ -1,5 +1,3 @@
-local barbecue = require('barbecue')
+local barbecue = require("barbecue")
 
-barbecue.setup {
-
-}
+barbecue.setup()

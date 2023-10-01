@@ -61,15 +61,15 @@ vim.opt.grepprg = "rg --vimgrep"
 
 vim.g.markdown_recommended_style = 0
 
-vim.opt.formatoptions:remove { 'c', 'r', 'o' }
+vim.opt.formatoptions:remove { "c", "r", "o" }
 
 -- Remap delete commands to use black-hole register
-vim.api.nvim_set_keymap('n', 'd', '"_d', { noremap = true })
-vim.api.nvim_set_keymap('n', 'dd', '"_dd', { noremap = true })
-vim.api.nvim_set_keymap('n', 'D', '"_D', { noremap = true })
-vim.api.nvim_set_keymap('n', 'x', '"_x', { noremap = true })
-vim.api.nvim_set_keymap('n', 'X', '"_X', { noremap = true })
-vim.api.nvim_set_keymap('n', 's', '"_s', { noremap = true })
-vim.api.nvim_set_keymap('x', 'd', '"_d', { noremap = true })
+vim.api.nvim_set_keymap("n", "d", '"_d', { noremap = true })
+vim.api.nvim_set_keymap("n", "dd", '"_dd', { noremap = true })
+vim.api.nvim_set_keymap("n", "D", '"_D', { noremap = true })
+vim.api.nvim_set_keymap("n", "x", '"_x', { noremap = true })
+vim.api.nvim_set_keymap("n", "X", '"_X', { noremap = true })
+vim.api.nvim_set_keymap("n", "s", '"_s', { noremap = true })
+vim.api.nvim_set_keymap("x", "d", '"_d', { noremap = true })
 
 vim.g.OmniSharp_server_use_net6 = 1

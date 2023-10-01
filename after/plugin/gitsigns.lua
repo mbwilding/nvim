@@ -1,3 +1,3 @@
-local git = require('gitsigns')
+local git = require("gitsigns")
 
 git.setup()

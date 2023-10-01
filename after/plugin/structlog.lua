@@ -1,4 +1,4 @@
-local log = require('structlog')
+local log = require("structlog")
 
 log.configure({
   wilding_vim = {

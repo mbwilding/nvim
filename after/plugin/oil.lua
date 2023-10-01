@@ -1,8 +1,5 @@
-local oil = require('oil')
+local oil = require("oil")
 
-oil.setup {
+oil.setup()
 
-}
-
-
-vim.keymap.set('n', '<leader>mF', require('oil').open, { desc = "Edit File System", silent = true })
+vim.keymap.set("n", "<leader>mF", require("oil").open, { desc = "Edit File System", silent = true })

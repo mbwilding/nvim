@@ -20,6 +20,7 @@ local colors = {
     todo = "#66c3cc",
     macro = "#4eade5",
     error = "#ff0000",
+    redundant = "#787878",
 
     -- Rust
     crate = "#ffb083",
@@ -51,6 +52,7 @@ local syntax_map = {
     ["TodoBgTODO"] = { fg = colors.todo, bg = colors.none },
     ["@type.builtin"] = { fg = colors.keyword },
     ["DiagnosticUnderlineError"] = { fg = colors.error },
+    ["DiagnosticUnnecessary"] = { fg = colors.redundant },
 
     -- C# (Omnisharp)
     ["@lsp.type.namespace.cs"] = { fg = colors.class },
