@@ -62,6 +62,7 @@ local syntax_map = {
     ["DiagnosticUnnecessary"] = { fg = colors.redundant },
 
     -- C# (Omnisharp)
+    ["@namespace.c_sharp"] = { fg = colors.class },
     ["@lsp.type.namespace.cs"] = { fg = colors.class },
     ["@lsp.type.fieldName.cs"] = { fg = colors.field },
     ["@lsp.type.enum.cs"] = { fg = colors.enum },
