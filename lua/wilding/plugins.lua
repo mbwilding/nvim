@@ -216,4 +216,5 @@ return {
 		version = "*",
 		lazy = false
 	},
+	{ "mbwilding/rider-dark.nvim", lazy = false },
 }
