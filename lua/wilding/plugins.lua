@@ -55,12 +55,12 @@ return {
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		lazy = false,
 	},
-	--{
-	--	"akinsho/bufferline.nvim",
-	--	dependencies = { "nvim-tree/nvim-web-devicons" },
-	--	version = "*",
-	--	lazy = true
-	--},
+	{
+		"akinsho/bufferline.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		version = "*",
+		lazy = true
+	},
 	{
 		"nvim-neotest/neotest",
 		dependencies = {
