@@ -19,7 +19,7 @@ telescope.setup {
 
 			},
 			file_browser = {
-				theme = "ivy",
+				theme = "tokyonight-night",
 				hijack_newtrw = true,
 			},
 			project = {
