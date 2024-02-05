@@ -6,11 +6,11 @@ vim.g.maplocalleader = " "
 vim.api.nvim_set_keymap("n", ";", ":", { noremap = true, silent = true })
 
 -- Save
-vim.keymap.set({ "n", "i", "v" }, "<C-s>", ":w<CR>", { desc = "Save Buffer", silent = true })
-vim.keymap.set({ "n", "i", "v" }, "<C-S>", ":wa<CR>", { desc = "Save All Buffers", silent = true })
+vim.keymap.set("n", "<C-s>", ":w<CR>", { desc = "Save Buffer", silent = true })
+vim.keymap.set("n", "<C-S>", ":wa<CR>", { desc = "Save All Buffers", silent = true })
 
 -- Quit
-vim.keymap.set({ "n", "i", "v" }, "<C-q>", ":q<CR>", { desc = "Quit", silent = true })
+vim.keymap.set("n", "<C-q>", ":q<CR>", { desc = "Quit", silent = true })
 
 -- Delete text
 vim.keymap.set("i", "<C-Del>", "<Esc>lce")
