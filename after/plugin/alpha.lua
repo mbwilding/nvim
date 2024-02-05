@@ -37,5 +37,3 @@ dashboard.section.buttons.val = {
 dashboard.section.footer.val = " Matt Wilding"
 
 alpha.setup(dashboard.config)
-
-vim.keymap.set("n", "<leader>;", ":Alpha<CR>", { desc = "Toggle Alpha", silent = true })

@@ -1,18 +1,16 @@
+-- Leader key
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
+-- Map ; to :
 vim.api.nvim_set_keymap("n", ";", ":", { noremap = true, silent = true })
 
--- save document
-vim.keymap.set("n", "<C-s>", vim.cmd.w, { desc = "Save Buffer", silent = true })
-vim.keymap.set("i", "<C-s>", vim.cmd.w, { desc = "Save Buffer", silent = true })
-vim.keymap.set("v", "<C-s>", vim.cmd.w, { desc = "Save Buffer", silent = true })
+-- Save
+vim.keymap.set({ "n", "i", "v" }, "<C-s>", ":w<CR>", { desc = "Save Buffer", silent = true })
+vim.keymap.set({ "n", "i", "v" }, "<C-S>", ":wa<CR>", { desc = "Save All Buffers", silent = true })
 
--- save all documents
--- vim.keymap.set("n", "<C-S-s>", vim.cmd.wall, { silent = true })
--- vim.keymap.set("i", "<cs-s>", vim.cmd.wall, { silent = true })
--- vim.keymap.set("v", "<cs-R>", vim.cmd.wall, { silent = true })
-
--- vim.keymap.set("n", "<leader>mq", ":wa<CR>", { desc = "Save All Buffers", })
+-- Quit
+vim.keymap.set({ "n", "i", "v" }, "<C-q>", ":q<CR>", { desc = "Quit", silent = true })
 
 -- Delete text
 vim.keymap.set("i", "<C-Del>", "<Esc>lce")
@@ -110,3 +108,81 @@ vim.keymap.set("n", "<S-Down>", "j")
 vim.keymap.set("v", "<S-Down>", "j")
 vim.keymap.set("n", "<S-Up>", "k")
 vim.keymap.set("v", "<S-Up>", "k")
+
+-- Alpha
+vim.keymap.set("n", "<leader>;", ":Alpha<CR>", { desc = "Toggle Alpha", silent = true })
+
+-- Action Preview
+vim.keymap.set({ "n", "v" }, "<leader>ap", require("actions-preview").code_actions)
+
+-- Cellular Automaton
+vim.keymap.set("n", "<leader>car", "<cmd>CellularAutomaton make_it_rain<CR>")
+vim.keymap.set("n", "<leader>cag", "<cmd>CellularAutomaton game_of_life<CR>")
+vim.keymap.set("n", "<leader>cas", "<cmd>CellularAutomaton scramble<CR>")
+
+-- Undo Tree
+vim.keymap.set("n", "<leader><F5>", vim.cmd.UndotreeToggle)
+
+-- Trouble
+vim.keymap.set("n", "<leader>lq", ":TroubleToggle document_diagnostics<CR>", { desc = "Toggle Document Diagnostics" })
+vim.keymap.set("n", "<leader>ld", ":TroubleToggle document_diagnostics<CR>", { desc = "Toggle Document Diagnostics" })
+-- vim.keymap.set("n", "<leader>la", ":TroubleToggle quickfix<CR>")
+vim.keymap.set("n", "<leader>ll", ":TroubleToggle loclist<CR>", { desc = "Toggle Local List" })
+vim.keymap.set("n", "<leader>lw", ":TroubleToggle workspace_diagnostics<CR>", { desc = "Toggle Workspace Diagnostics" })
+vim.keymap.set("n", "<leader>lr", ":TroubleToggle lsp_references<CR>", { desc = "Toggle LSP References" })
+
+-- Toggle Term
+vim.keymap.set({ "n", "t" }, "<leader>th", "<cmd>:2ToggleTerm direction=horizontal size=20<CR>")
+vim.keymap.set({ "n", "t" }, "<leader>tv", "<cmd>:3ToggleTerm direction=vertical size=100<CR>")
+vim.keymap.set({ "n", "t" }, "<leader>tf", "<cmd>:4ToggleTerm direction=float<CR>")
+vim.keymap.set({ "n", "t" }, "<leader>gl", "<cmd>lua _lazygit_toggle()<CR>")
+
+-- Tree-Sitter
+vim.keymap.set("n", "<leader>dt", ":Inspect<CR>", { desc = "TreeSitter debug under cursor", silent = true })
+vim.keymap.set("n", "<leader>dT", ":InspectTree<CR>", { desc = "TreeSitter debug tree", silent = true })
+
+-- Oil
+vim.keymap.set("n", "<leader>mF", require("oil").open, { desc = "Edit File System", silent = true })
+
+-- Nvim Tree
+vim.keymap.set("n", "<leader>e", vim.cmd.NvimTreeToggle)
+vim.keymap.set("n", "<leader>tc", vim.cmd.NvimTreeCollapse)
+vim.keymap.set("n", "<leader>tf", vim.cmd.NvimTreeFindFile)
+
+-- LazyGit
+vim.keymap.set("n", "<leader>gg", "<cmd>:LazyGit<CR>", { desc = "Open LazyGit" })
+
+-- Goto Preview
+vim.api.nvim_set_keymap("n", "<leader>pd", "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", { noremap = true, silent = true, desc = "Preview Definition" })
+vim.api.nvim_set_keymap("n", "<leader>pD", "<cmd>lua require('goto-preview').goto_preview_declaration()<CR>", { noremap = true, silent = true, desc = "Preview Declaration" })
+vim.api.nvim_set_keymap("n", "<leader>pt", "<cmd>lua require('goto-preview').goto_preview_type_definition()<CR>", { noremap = true, silent = true, desc = "Preview Type Definition" })
+vim.api.nvim_set_keymap("n", "<leader>pi", "<cmd>lua require('goto-preview').goto_preview_implementation()<CR>", { noremap = true, silent = true, desc = "Preview Implementation" })
+vim.api.nvim_set_keymap("n", "<leader>pr", "<cmd>lua require('goto-preview').goto_preview_references()<CR>", { noremap = true, silent = true, desc = "Preview References" })
+vim.api.nvim_set_keymap("n", "<leader>pc", "<cmd>lua require('goto-preview').close_all_win()<CR>", { noremap = true, silent = true, desc = "Close Previews" })
+
+-- Glow
+vim.keymap.set("n", "<leader>mg", ":Glow<CR>")
+
+-- Fugitive
+vim.keymap.set("n", "<leader>zs", vim.cmd.Git, { desc = "Git Status" })
+vim.keymap.set("n", "<leader>za", "<cmd>:Git add .<CR>", { desc = "Git Add All" })
+vim.keymap.set("n", "<leader>zp", "<cmd>:Git push<CR>", { desc = "Git Push" })
+-- vim.keymap.set("n", "<leader>zc", "<cmd>:Git commit -m", { desc = "Git Add All" })
+
+-- DiffView
+vim.keymap.set("n", "<leader>gm", "<cmd>DiffviewOpen<CR>", { desc = "Open Diff View", silent = true })
+vim.keymap.set("n", "<leader>gM", "<cmd>DiffviewClose<CR>", { desc = "Close Diff View", silent = true })
+vim.keymap.set("n", "<leader>gh", "<cmd>DiffviewFileHistory<CR>", { desc = "Open Diff View", silent = true })
+
+-- Debugging
+vim.keymap.set("n", "<leader>dt", "<cmd>:lua require('dap').toggle_breakpoint()<CR>")
+vim.keymap.set("n", "<F9>", "<cmd>:lua require('dap').toggle_breakpoint()<CR>")
+vim.keymap.set("n", "<leader>ds", "<cmd>:lua require('dap').continue()<CR>")
+vim.keymap.set("n", "<F5>", "<cmd>:lua require('dap').continue()<CR>")
+vim.keymap.set("n", "<leader>di", "<cmd>:lua require('dap').step_into()<CR>")
+vim.keymap.set("n", "<F11>", "<cmd>:lua require('dap').step_into()<CR>")
+vim.keymap.set("n", "<leader>dO", "<cmd>:lua require('dap').step_out()<CR>")
+vim.keymap.set("n", "<S-F11>", "<cmd>:lua require('dap').step_out()<CR>")
+vim.keymap.set("n", "<leader>do", "<cmd>:lua require('dap').step_over()<CR>")
+vim.keymap.set("n", "<F10>", "<cmd>:lua require('dap').step_over()<CR>")
+vim.keymap.set("n", "<leader>du", "<cmd>:lua require('dapui').toggle()<CR>")

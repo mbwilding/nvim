@@ -34,7 +34,7 @@ return {
 		},
 	},
 	-- { "ErichDonGubler/lsp_lines.nvim",       lazy = true },
-	{ "https://git.sr.ht/~whynothugo/lsp_lines.nvim", lazy = true },
+	{ "ryoppippi/lsp_lines.nvim", lazy = true },
 	{ "kosayoda/nvim-lightbulb",                      lazy = true },
 	--
 	{ "onsails/lspkind.nvim",                         lazy = true },
@@ -55,12 +55,12 @@ return {
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		lazy = false,
 	},
-	{
-		"akinsho/bufferline.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		version = "*",
-		lazy = true
-	},
+	--{
+	--	"akinsho/bufferline.nvim",
+	--	dependencies = { "nvim-tree/nvim-web-devicons" },
+	--	version = "*",
+	--	lazy = true
+	--},
 	{
 		"nvim-neotest/neotest",
 		dependencies = {
@@ -75,7 +75,6 @@ return {
 	{ "rmagatti/goto-preview",               lazy = false },
 	{ "aznhe21/actions-preview.nvim",        lazy = true },
 	{ "folke/neodev.nvim",                   lazy = true },
-	{ "ThePrimeagen/harpoon",                lazy = true },
 	{ "mbbill/undotree",                     lazy = false },
 	{ "github/copilot.vim",                  lazy = false },
 	{ "tpope/vim-fugitive",                  lazy = false },
@@ -194,27 +193,7 @@ return {
 		lazy = false,
 	},
 	{ "tzachar/highlight-undo.nvim",      lazy = false },
-	-- { "zaldih/themery.nvim",              lazy = true },
-	--themes
-	{ "catppuccin/nvim",                  lazy = false },
-	{ "rose-pine/neovim",                 lazy = false },
-	{ "LunarVim/lunar.nvim",              lazy = false },
-	{ "lunarvim/Onedarker.nvim",          lazy = false },
-	{ "navarasu/onedark.nvim",            lazy = false },
-	{ "rebelot/kanagawa.nvim",            lazy = false },
 	{ "folke/tokyonight.nvim",            lazy = false },
-	{ "Everblush/nvim",                   name = "everblush", lazy = false },
-	{ "sainnhe/edge",                     lazy = false },
-	{ "Mofiqul/vscode.nvim",              priority = 1000,    lazy = false },
-	{ "JoosepAlviste/palenightfall.nvim", lazy = false },
-
 	{ "m4xshen/autoclose.nvim", lazy = false },
-	{ "EdenEast/nightfox.nvim" },
-	{
-		"kdheepak/lazygit.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		version = "*",
-		lazy = false
-	},
 	{ "mbwilding/rider-dark.nvim", lazy = false },
 }

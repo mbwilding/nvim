@@ -34,6 +34,9 @@ vim.opt.updatetime = 50
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Map ; to :
+vim.api.nvim_set_keymap("n", ";", ":", { noremap = true, silent = true })
+
 vim.opt.autowrite = true          -- Enable auto write
 vim.opt.completeopt = "menu,menuone,noselect"
 vim.opt.clipboard = "unnamedplus" -- Sync with system clipboard
@@ -51,8 +54,8 @@ vim.opt.pumblend = 10          -- Popup blend
 vim.opt.pumheight = 20         -- Maximum number of entries in a popup
 vim.opt.inccommand = "nosplit" -- preview incremental substitute
 vim.opt.laststatus = 0
---vim.opt.list = true            -- Show some invisible characters (tabs...
---vim.opt.listchars.trail = "·"
+vim.opt.list = true            -- Show some invisible characters (tabs...
+vim.opt.listchars.trail = "·"
 vim.opt.mouse = "a"                -- Enable mouse mode
 vim.opt.number = true              -- Print line number
 vim.opt.formatoptions = "jcroqlnt" -- tcqj

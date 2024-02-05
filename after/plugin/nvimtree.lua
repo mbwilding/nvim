@@ -39,7 +39,3 @@ tree.setup {
 		}
 	}
 }
-
-vim.keymap.set("n", "<leader>e", vim.cmd.NvimTreeToggle)
-vim.keymap.set("n", "<leader>tc", vim.cmd.NvimTreeCollapse)
-vim.keymap.set("n", "<leader>tf", vim.cmd.NvimTreeFindFile)

@@ -18,9 +18,3 @@ toggle_term.setup {
     persist_size = true,
     close_on_exit = true,
 }
-
-
-vim.keymap.set({ "n", "t" }, "<leader>th", "<cmd>:2ToggleTerm direction=horizontal size=20<CR>")
-vim.keymap.set({ "n", "t" }, "<leader>tv", "<cmd>:3ToggleTerm direction=vertical size=100<CR>")
-vim.keymap.set({ "n", "t" }, "<leader>tf", "<cmd>:4ToggleTerm direction=float<CR>")
-vim.keymap.set({ "n", "t" }, "<leader>gl", "<cmd>lua _lazygit_toggle()<CR>")

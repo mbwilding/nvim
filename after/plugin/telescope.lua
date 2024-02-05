@@ -49,6 +49,8 @@ telescope.load_extension("file_browser")
 telescope.load_extension("project")
 telescope.load_extension("dap")
 
+-- Bindings
+
 -- vim.keymap.set("n", "<leader>sF", function() builtin.find_files({ no_ignore = true }) end, { desc = "Find Files" })
 vim.keymap.set("n", "<leader>sF", "<cmd>Telescope find_files hidden=true no_ignore=true<CR>", { desc = "Find All Files" })
 vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "Find Files" })
