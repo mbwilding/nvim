@@ -423,3 +423,37 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		}
 	end,
 })
+
+require('cmp-nuget').setup(
+	{
+		filetypes = {},                  -- on which filetypes cmp-nuget is active
+		file_extensions = { "csproj" },  -- on which file extensions cmp-nuget is active
+		nuget = {
+		  packages = {                   -- configuration for searching packages
+			limit = 100,                 -- limit package serach to first 100 packages
+			prerelease = false,          -- include prerelase (preview, rc, etc.) packages
+			sem_ver_level = "2.0.0",     -- semantic version level (*
+			package_type = "",           -- package type to use to filter packages (*
+		  },
+		  versions = {
+			prerelease = true,           -- include prerelase (preview, rc, etc.) versions
+			sem_ver_level = "2.0.0",     -- semantic version level (*
+		  },
+		},
+	}
+)
+require('cmp').setup({
+  ...,
+  sources = {
+    {
+      name = "nuget",
+      keyword_length = 0,
+    },
+    ...
+  },
+  formatting = {
+    source_names = {
+      nuget = "(NuGet)",
+    },
+  },
+})
