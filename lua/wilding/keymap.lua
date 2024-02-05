@@ -12,6 +12,11 @@ vim.keymap.set("n", "<C-S>", ":wa<CR>", { desc = "Save All Buffers", silent = tr
 -- Quit
 vim.keymap.set("n", "<C-q>", ":q<CR>", { desc = "Quit", silent = true })
 
+-- Inc Renamer
+vim.keymap.set("n", "<leader>rn", function()
+    return ":IncRename " .. vim.fn.expand("<cword>")
+end, { expr = true })
+
 -- Delete text
 vim.keymap.set("i", "<C-Del>", "<Esc>lce")
 vim.keymap.set("n", "<C-Del>", "ce")

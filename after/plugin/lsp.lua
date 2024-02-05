@@ -109,6 +109,10 @@ local lspconfig = require("lspconfig")
 
 local schemas = require("schemastore")
 
+lspconfig.rust_analyzer.setup({
+    cmd = {'rustup', 'run', 'stable', 'rust-analyzer'}
+})
+
 lspconfig.jsonls.setup {
 	settings = {
 		json = {
@@ -404,5 +408,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		require("mason-null-ls").setup({
 			automatic_setup = true,
 		})
+		require("mason-lspconfig").setup {
+			ensure_installed = {
+				"lua_ls",
+				"rust_analyzer",
+				"omnisharp",
+				"taplo",
+			},
+		}
+		require("mason-nvim-dap").setup {
+			ensure_installed = {
+				"coreclr", -- netcoredbg
+			},
+		}
 	end,
 })

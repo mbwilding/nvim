@@ -11,13 +11,13 @@ return {
 		dependencies = {
 			-- LSP Support
 			{
-				-- Optional
 				"williamboman/mason.nvim",
 				build = function()
 					pcall(vim.cmd, "MasonUpdate")
 				end,
 			},
-			{ "williamboman/mason-lspconfig.nvim" }, -- Optional
+			{ "williamboman/mason-lspconfig.nvim" },
+			{ "williamboman/mason-nvim-dap.nvim" },
 			{ "neovim/nvim-lspconfig",            event = { "BufReadPre", "BufNewFile" }, lazy = true }, -- Required
 			-- Autocompletion
 			{ "hrsh7th/nvim-cmp",                 lazy = true }, -- Required
@@ -196,4 +196,10 @@ return {
 	{ "folke/tokyonight.nvim",            lazy = false },
 	{ "m4xshen/autoclose.nvim", lazy = false },
 	{ "mbwilding/rider-dark.nvim", lazy = false },
+	{
+		"smjonas/inc-rename.nvim",
+		config = function()
+		  require("inc_rename").setup()
+		end,
+	}
 }
