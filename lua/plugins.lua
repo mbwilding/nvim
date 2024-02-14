@@ -321,12 +321,6 @@
         end,
     },
     
-    -- Cellular Automaton
-    {
-        "eandrju/cellular-automaton.nvim",
-        lazy = false
-    },
-    
     -- Load plugins in the lua/custom/plugins directory
     {
         import = 'custom.plugins'
