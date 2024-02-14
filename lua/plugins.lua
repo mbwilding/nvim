@@ -233,7 +233,6 @@
                 colors = {
                     -- Base
                     fg = "#bdbdbd",
-                    gray = "#b5b3b3",
                     -- gray = "#6e6e6e";
                     string = "#c9a26d",
                     number = "#ed94c0",
@@ -255,16 +254,19 @@
                     -- Rust
                     crate = "#ffb083",
                     module = "#ffd3b3",
+                    lifetime = "#ff9e64",
                 },
                 highlights = {
                     -- Base
-                    ["@punctuation.delimiter"] = { fg = '$gray' },
-                    ["@punctuation.bracket"] = { fg = '$gray' },
+                    ["@variable"] = { fg = '$fg' },
+                    ["@punctuation.delimiter"] = { fg = '$fg' },
+                    ["@punctuation.bracket"] = { fg = '$fg' },
+                    ["@punctuation.special"] = { fg = '$macro' },
                     ["@constant"] = { fg = '$constant' },
                     ["@comment"] = { fg = '$comment' },
                     ["@string"] = { fg = '$string' },
                     ["@boolean"] = { fg = '$keyword' },
-                    ["@operator"] = { fg = '$gray' },
+                    ["@operator"] = { fg = '$fg' },
                     ["@type"] = { fg = '$class' },
                     ["@function"] = { fg = '$method' },
                     ["Function"] = { fg = '$method' },
@@ -293,6 +295,8 @@
                     ["@lsp.type.method"] = { fg = '$method' },
                     ["@constant.builtin"] = { fg = '$constant' },
                     ["@lsp.type.enumMember"] = { fg = '$constant' },
+                    ["@lsp.type.typeParameter"] = { fg = '$class' },
+                    ["@lsp.type.generic"] = { fg = '$class' },
 
                     -- Rust
                     ["@module.rust"] = { fg = '$module' },
@@ -301,6 +305,9 @@
                     ["@type.qualifier.rust"] = { fg = '$keyword' },
                     ["@lsp.typemod.variable.constant.rust"] = { fg = '$constant' },
                     ["@lsp.type.formatSpecifier.rust"] = { fg = '$format' },
+                    ["@lsp.type.decorator.rust"] = { fg = '$macro' },
+                    ["@lsp.type.derive.rust"] = { fg = '$interface' },
+                    ["@lsp.type.lifetime.rust"] = { fg = '$lifetime' },
                 },
 
                 -- Plugins Config --
@@ -313,7 +320,13 @@
             require('onedark').load()
         end,
     },
-   
+    
+    -- Cellular Automaton
+    {
+        "eandrju/cellular-automaton.nvim",
+        lazy = false
+    },
+    
     -- Load plugins in the lua/custom/plugins directory
     {
         import = 'custom.plugins'
