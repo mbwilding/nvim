@@ -1,5 +1,0 @@
-﻿return {
-    {
-        import = 'plugins'
-    },
-}
