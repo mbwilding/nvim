@@ -1,7 +1,6 @@
 ﻿return {
     'navarasu/onedark.nvim',
     priority = 1000,
-    lazy = false,
     config = function()
         require('onedark').setup {
             -- Main options --
@@ -72,6 +71,7 @@
                 ["@type"] = { fg = '$class' },
                 ["@function"] = { fg = '$method' },
                 ["Function"] = { fg = '$method' },
+                ["@string.escape"] = { fg = '$number' },
                 ["@lsp.typemod.method.defaultLibrary"] = { fg = '$method' },
                 ["@keyword.repeat"] = { fg = '$keyword' },
                 ["@type.builtin"] = { fg = '$keyword' },
