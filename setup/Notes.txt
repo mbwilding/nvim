@@ -1,0 +1,1 @@
+You will need to install a font from the `extras` folder and set your terminal to use it.
