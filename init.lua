@@ -76,6 +76,12 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnos
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
+-- Buffer focus
+vim.api.nvim_set_keymap('n', '<S-Left>', '<C-w>h', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<S-Down>', '<C-w>j', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<S-Up>', '<C-w>k', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<S-Right>', '<C-w>l', {noremap = true, silent = true})
+
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
