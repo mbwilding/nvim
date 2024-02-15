@@ -4,16 +4,21 @@
     branch = '0.1.x',
     dependencies = {
         'nvim-lua/plenary.nvim',
-        -- Fuzzy Finder Algorithm which requires local dependencies to be built.
-        -- Only load if `make` is available. Make sure you have the system
-        -- requirements installed.
         {
             'nvim-telescope/telescope-fzf-native.nvim',
-            -- NOTE: If you are having trouble with this installation,
-            --       refer to the README for telescope-fzf-native for more instructions.
-            build = 'make',
+            -- Build command adjusted to use 'make' if available, otherwise 'cmake'
+            build = function()
+                if vim.fn.executable('make') == 1 then
+                    return 'make'
+                elseif vim.fn.executable('cmake') == 1 then
+                    return 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
+                else
+                    error("Neither 'make' nor 'cmake' are available for building telescope-fzf-native.nvim")
+                end
+            end,
+            -- This plugin is conditionally loaded if either 'make' or 'cmake' is available
             cond = function()
-                return vim.fn.executable 'make' == 1
+                return vim.fn.executable('make') == 1 or vim.fn.executable('cmake') == 1
             end,
         },
     },
