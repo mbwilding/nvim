@@ -60,6 +60,24 @@ vim.o.completeopt = 'menuone,noselect'
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
+-- TODO: Order these
+vim.opt.smartindent = true
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.wrap = true
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.undolevels = 30000
+vim.opt.scrolloff = 15
+vim.opt.updatetime = 50
+vim.opt.autowrite = false
+vim.opt.cursorline = true
+vim.opt.confirm = true
+vim.opt.spelllang = "en"
+vim.opt.clipboard = "unnamedplus" -- Sync with system clipboard
+
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience

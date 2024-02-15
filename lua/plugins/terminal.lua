@@ -4,7 +4,7 @@
         local toggle_term = require("toggleterm")
 
         local shell_command
-        if IsWindows then
+        if vim.fn.has 'win32' == 1 then
             shell_command = "pwsh.exe -NoLogo"
         else
             shell_command = nil
