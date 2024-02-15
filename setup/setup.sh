@@ -3,7 +3,7 @@
 # Install NeoVim and dependencies
 cd ~
 sudo apt update -y
-sudo apt install -y build-essential wget jq fuse make grep ripgrep cmake nodejs clangd 
+sudo apt install -y build-essential wget jq fuse make grep ripgrep cmake nodejs clangd unzip 
 API_URL="https://api.github.com/repos/neovim/neovim/releases/latest"
 APPIMAGE_URL=$(wget -qO- "$API_URL" | jq -r '.assets[] | select(.name | endswith("nvim.appimage")) | .browser_download_url')
 wget --quiet "$APPIMAGE_URL" --output-document nvim
@@ -25,4 +25,7 @@ if uname -a | grep -qi 'microsoft'; then
         echo "Windows Neovim configuration directory not found for user $WIN_USER."
     fi
 fi
+
+# Install Rustup
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
