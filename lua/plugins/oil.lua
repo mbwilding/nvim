@@ -12,9 +12,13 @@
             -- See :help oil-columns
             columns = {
               "icon",
-              -- "permissions",
-              -- "size",
-              -- "mtime",
+              --"birthtime",
+              --"mtime",
+              "ctime",
+              --"atime",
+              --"type",
+              "size",
+              "permissions",
             },
             -- Buffer-local options to use for oil buffers
             buf_options = {
@@ -35,7 +39,7 @@
             -- Send deleted files to the trash instead of permanently deleting them (:help oil-trash)
             delete_to_trash = false,
             -- Skip the confirmation popup for simple operations (:help oil.skip_confirm_for_simple_edits)
-            skip_confirm_for_simple_edits = false,
+            skip_confirm_for_simple_edits = true,
             -- Selecting a new/moved/renamed file or directory will prompt you to save changes first
             -- (:help prompt_save_on_select_new_entry)
             prompt_save_on_select_new_entry = true,
@@ -45,10 +49,10 @@
             cleanup_delay_ms = 2000,
             -- Set to true to autosave buffers that are updated with LSP willRenameFiles
             -- Set to "unmodified" to only save unmodified buffers
-            lsp_rename_autosave = false,
+            lsp_rename_autosave = true,
             -- Constrain the cursor to the editable parts of the oil buffer
             -- Set to `false` to disable, or "name" to keep it on the file names
-            constrain_cursor = "editable",
+            constrain_cursor = "name",
             -- Keymaps in oil buffer. Can be any value that `vim.keymap.set` accepts OR a table of keymap
             -- options with a `callback` (e.g. { callback = function() ... end, desc = "", mode = "n" })
             -- Additionally, if it is a string that matches "actions.<name>",
@@ -62,15 +66,15 @@
               ["<C-h>"] = "actions.select_split",
               ["<C-t>"] = "actions.select_tab",
               ["<C-p>"] = "actions.preview",
-              ["<C-c>"] = "actions.close",
-              ["<C-l>"] = "actions.refresh",
+              ["<C-q>"] = "actions.close",
+              ["<C-r>"] = "actions.refresh",
               ["-"] = "actions.parent",
               ["_"] = "actions.open_cwd",
               ["`"] = "actions.cd",
               ["~"] = "actions.tcd",
               ["gs"] = "actions.change_sort",
               ["gx"] = "actions.open_external",
-              ["g."] = "actions.toggle_hidden",
+              ["gh"] = "actions.toggle_hidden",
               ["g\\"] = "actions.toggle_trash",
             },
             -- Set to false to disable all of the above keymaps
