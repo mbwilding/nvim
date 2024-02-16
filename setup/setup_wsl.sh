@@ -10,7 +10,6 @@ wget --quiet "$APPIMAGE_URL" --output-document nvim
 chmod +x nvim
 sudo chown root:root nvim
 sudo mv nvim /usr/bin
-mkdir -p .config/nvim
 
 # Check if WSL and map config
 if uname -a | grep -qi 'microsoft'; then
@@ -19,7 +18,7 @@ if uname -a | grep -qi 'microsoft'; then
     mkdir -p ~/.config
     WIN_USER=$(cmd.exe /C "echo %USERNAME%" | tr -d '\r')
     if [ -d "/mnt/c/Users/$WIN_USER/AppData/Local/nvim" ]; then
-        ln -s "/mnt/c/Users/$WIN_USER/AppData/Local/nvim" ~/.config/nvim
+        ln -s "/mnt/c/Users/$WIN_USER/AppData/Local/nvim/" ~/.config/nvim
         echo "Neovim configuration linked to Windows user $WIN_USER."
     else
         echo "Windows Neovim configuration directory not found for user $WIN_USER."
