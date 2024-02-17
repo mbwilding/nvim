@@ -2,8 +2,7 @@
 vim.keymap.set('n', '<CR>', ':noh<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<ESC>', ':noh<ESC>', { noremap = true, silent = true })
 
--- Keymaps for better default experience
--- See `:help vim.keymap.set()`
+-- Space do nothing 
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- Remap for dealing with word wrap
