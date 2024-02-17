@@ -4,8 +4,6 @@ vim.g.maplocalleader = ' '
 
 -- Set highlight on search
 vim.o.hlsearch = true
--- Disables highlight on enter
-vim.api.nvim_set_keymap('n', '<CR>', ':noh<CR>', { noremap = true, silent = true })
 
 -- Make line numbers default
 vim.wo.number = true
