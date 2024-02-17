@@ -271,13 +271,11 @@ require('mason-lspconfig').setup()
 --  define the property 'filetypes' to the map in question.
 local servers = {
   clangd = {},
-  -- gopls = {},
   pyright = {},
   rust_analyzer = {},
   omnisharp = {},
   tsserver = {},
   html = { filetypes = { 'html', 'twig', 'hbs'}},
-
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -286,6 +284,9 @@ local servers = {
       -- diagnostics = { disable = { 'missing-fields' } },
     },
   },
+  yamlls = {},
+  dockerls = {},
+  sqlls = {},
 }
 
 -- Setup neovim lua configuration
