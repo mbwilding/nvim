@@ -9,6 +9,8 @@
             -- A list of parser names, or "all" (the five listed parsers should always be installed)
             ensure_installed = { "javascript", "typescript", "c", "lua", "vim", "vimdoc", "query", "c_sharp", "bicep", "yaml",
                                  "python", "http", "json", "html", "go" },
+            modules = {},
+            ignore_install = {},
             -- Install parsers synchronously (only applied to `ensure_installed`
             sync_install = false,
             -- Automatically install missing parsers when entering buffer
@@ -149,5 +151,5 @@
             }
         }
     end,
-    build = ':TSUpdate', 
+    build = ':TSUpdate',
 }

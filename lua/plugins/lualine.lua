@@ -19,23 +19,16 @@
 			-- end
 			local buf_client_names = {}
 			local copilot_active = false
-		
-		
 			for _, client in pairs(buf_clients) do
 				table.insert(buf_client_names, client.name)
-		
 				if client.name == "copilot" then
 					copilot_active = true
 				end
 			end
-		
 			local unique_client_names = vim.fn.uniq(buf_client_names)
-		
 			local language_servers = "[" .. table.concat(unique_client_names, ", ") .. "]"
-		
 			-- return language_servers;
 			-- end
-		
 			-- if copilot_active then
 			-- 	language_servers = language_servers .. "#SLCopilot#" .. "" --.. "%*"
 			-- end
@@ -58,9 +51,9 @@
 					"filesize",
 					"diagnostics",
 				},
-				lualine_c = {
-					"lsp_progress"
-				},
+				--lualine_c = {
+				--	"lsp_progress"
+				--},
 				lualine_x = {
 					{ get_lsp_name },
 					"encoding",
