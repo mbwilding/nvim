@@ -41,7 +41,7 @@
                 icons_enabled = true,
                 theme = "auto",
                 component_separators = "|",
-                section_separators = {left = "", right = ""},
+                section_separators = { left = "", right = "" },
                 globalstatus = true,
             },
             sections = {
@@ -56,7 +56,7 @@
                     --"lsp_progress"
                 },
                 lualine_x = {
-                    {get_lsp_name},
+                    { get_lsp_name },
                     "encoding",
                     "fileformat",
                     "filetype",
@@ -76,4 +76,3 @@
         }
     end
 }
-

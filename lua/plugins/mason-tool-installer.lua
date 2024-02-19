@@ -4,7 +4,7 @@ return {
         "williamboman/mason.nvim",
     },
     config = function()
-        require('mason-tool-installer').setup ({
+        require('mason-tool-installer').setup({
             -- a list of all tools you want to ensure are installed upon
             -- start
             ensure_installed = {

@@ -5,7 +5,7 @@ vim.keymap.set('n', ';', ':', { noremap = true, silent = true })
 vim.keymap.set('n', '<CR>', ':noh<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<ESC>', ':noh<ESC>', { noremap = true, silent = true })
 
--- Space do nothing 
+-- Space do nothing
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- Remap for dealing with word wrap
@@ -19,8 +19,7 @@ vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open float
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- Buffer focus
-vim.keymap.set('n', '<S-Left>', '<C-w>h', {noremap = true, silent = true})
-vim.keymap.set('n', '<S-Down>', '<C-w>j', {noremap = true, silent = true})
-vim.keymap.set('n', '<S-Up>', '<C-w>k', {noremap = true, silent = true})
-vim.keymap.set('n', '<S-Right>', '<C-w>l', {noremap = true, silent = true})
-
+vim.keymap.set('n', '<S-Left>', '<C-w>h', { noremap = true, silent = true })
+vim.keymap.set('n', '<S-Down>', '<C-w>j', { noremap = true, silent = true })
+vim.keymap.set('n', '<S-Up>', '<C-w>k', { noremap = true, silent = true })
+vim.keymap.set('n', '<S-Right>', '<C-w>l', { noremap = true, silent = true })

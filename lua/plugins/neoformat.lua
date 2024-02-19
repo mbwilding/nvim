@@ -9,6 +9,6 @@ return {
         -- Use formatprg when available
         vim.g.neoformat_try_formatprg = 1
 
-        vim.keymap.set("n", "<leader>f", "<cmd>:Neoformat<CR>")
+        --vim.keymap.set("n", "<leader>f", "<cmd>:Neoformat<CR>")
     end
 }
