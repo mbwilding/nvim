@@ -62,7 +62,18 @@
                     "filetype",
                     "selectioncount"
                 }
-            }
+            },
+            --extensions = {
+            --    "mason",
+            --    "fugitive",
+            --    "fzf",
+            --    "lazy",
+            --    "nvim-dap-ui",
+            --    "oil",
+            --    "toggleterm",
+            --    "trouble"
+            --}
         }
     end
 }
+
