@@ -1,5 +1,8 @@
 # Install software packages using winget
-winget install Neovim.Neovim Kitware.CMake zig.zig BurntSushi.ripgrep.MSVC OpenJS.NodeJS JesseDuffield.lazygit JanDeDobbeleer.OhMyPosh Golang.Go JernejSimoncic.Wget GnuWin32.UnZip GnuWin32.Zip 7zip.7zip Python.Python.3.12
+winget install Neovim.Neovim Kitware.CMake zig.zig BurntSushi.ripgrep.MSVC OpenJS.NodeJS JesseDuffield.lazygit JanDeDobbeleer.OhMyPosh Golang.Go JernejSimoncic.Wget GnuWin32.UnZip GnuWin32.Zip 7zip.7zip Python.Python.3.12 RubyInstallerTeam.RubyWithDevKit.3.2
+
+pip install cfn-lint
+gem install cfn-nag
 
 # Define the path for the PowerShell profile
 $PowerShellDir = "$env:UserProfile\Documents\PowerShell"

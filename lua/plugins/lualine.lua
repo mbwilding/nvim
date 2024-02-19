@@ -36,6 +36,14 @@
             return language_servers
         end
 
+        local lint_progress = function()
+            local linters = require("lint").get_running()
+            if #linters == 0 then
+                return "󰦕"
+            end
+            return "󱉶 " .. table.concat(linters, ", ")
+        end
+
         lualine.setup {
             options = {
                 icons_enabled = true,
@@ -54,6 +62,7 @@
                 },
                 lualine_c = {
                     --"lsp_progress"
+                    "lint_progress"
                 },
                 lualine_x = {
                     { get_lsp_name },

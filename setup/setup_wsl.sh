@@ -4,7 +4,11 @@
 cd ~
 sudo apt update -y
 sudo curl -fsSL https://deb.nodesource.com/setup_20.x | bash
-sudo apt-get install -y build-essential nodejs wget jq fuse make grep ripgrep cmake nodejs clangd unzip golang-go python3 python3.10-venv
+sudo apt-get install -y build-essential nodejs wget jq fuse make grep ripgrep cmake nodejs clangd unzip golang-go python3 python3.10-venv ruby
+
+sudo pip install cfn-lint
+sudo gem install cfn-nag
+
 API_URL="https://api.github.com/repos/neovim/neovim/releases/latest"
 APPIMAGE_URL=$(wget -qO- "$API_URL" | jq -r '.assets[] | select(.name | endswith("nvim.appimage")) | .browser_download_url')
 wget --quiet "$APPIMAGE_URL" --output-document nvim
