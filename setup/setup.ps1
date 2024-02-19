@@ -1,9 +1,16 @@
 # Install software packages using winget
-winget install Neovim.Neovim Kitware.CMake zig.zig BurntSushi.ripgrep.MSVC OpenJS.NodeJS JesseDuffield.lazygit JanDeDobbeleer.OhMyPosh
+winget install Neovim.Neovim Kitware.CMake zig.zig BurntSushi.ripgrep.MSVC OpenJS.NodeJS JesseDuffield.lazygit JanDeDobbeleer.OhMyPosh Golang.Go JernejSimoncic.Wget GnuWin32.UnZip GnuWin32.Zip 7zip.7zip Python.Python.3.12
 
 # Define the path for the PowerShell profile
-$PowerShellProfile = "$env:UserProfile\Documents\PowerShell\Microsoft.PowerShell_profile.ps1"
+$PowerShellDir = "$env:UserProfile\Documents\PowerShell"
+$PowerShellProfile = "$PowerShellDir\Microsoft.PowerShell_profile.ps1"
 $OMPLine = "oh-my-posh init pwsh | Invoke-Expression"
+
+# Ensure the PowerShell directory exists
+if (-not (Test-Path $PowerShellDir)) {
+    Write-Host "Creating PowerShell Directory..."
+    New-Item -Path $PowerShellDir -ItemType Directory
+}
 
 # Create PowerShell profile if it does not exist
 if (-not (Test-Path $PowerShellProfile)) {
@@ -13,7 +20,10 @@ if (-not (Test-Path $PowerShellProfile)) {
 
 # Check if oh-my-posh is already initialized in the profile
 Write-Host "Checking if oh-my-posh is already initialized in the profile..."
-$profileContent = Get-Content $PowerShellProfile
+$profileContent = @()
+if (Test-Path $PowerShellProfile) {
+    $profileContent = Get-Content $PowerShellProfile
+}
 
 if ($profileContent -notcontains $OMPLine) {
     Write-Host "Adding oh-my-posh init to the profile..."

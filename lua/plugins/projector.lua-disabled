@@ -1,0 +1,14 @@
+return {
+    "kndndrj/nvim-projector",
+    dependencies = {
+        -- required:
+        "MunifTanjim/nui.nvim",
+        -- optional extensions:
+        "kndndrj/projector-neotest",
+        -- dependencies of extensions:
+        "nvim-neotest/neotest",
+    },
+    config = function()
+        require("projector").setup(--[[optional config]])
+    end,
+}
