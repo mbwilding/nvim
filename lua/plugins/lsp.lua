@@ -8,6 +8,7 @@ return {
         require("mason").setup()
         require("mason-lspconfig").setup({
             automatic_installation = true,
+            -- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
             ensure_installed = {
                 --"bashls",
                 "lua_ls",
@@ -23,6 +24,7 @@ return {
                 "pylsp",
                 "jqls",
                 "jsonls",
+                "eslint",
             }
         })
 
