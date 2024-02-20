@@ -52,6 +52,44 @@ return {
             },
         }
 
+        require('lspconfig')['yamlls'].setup {
+            settings = {
+                yaml = {
+                    -- Specify AWS CloudFormation specific settings
+                    customTags = {
+                        "!Ref",
+                        "!If sequence",
+                        "!GetAtt",
+                        "!GetAZs",
+                        "!ImportValue",
+                        "!ImportValue mapping",
+                        "!Join sequence",
+                        "!Sub",
+                        "!Sub sequence",
+                        "!FindInMap sequence",
+                        "!Select sequence",
+                        "!Split sequence",
+                        "!Not sequence",
+                        "!Equals sequence",
+                        "!And sequence",
+                        "!Or sequence",
+                        "!Condition",
+                        "!Base64",
+                        "!Cidr",
+                        "!Ref sequence",
+                        "!If mapping",
+                        "!Join mapping",
+                        "!Select mapping",
+                        "!Split mapping",
+                        "!Not mapping",
+                        "!Equals mapping",
+                        "!And mapping",
+                        "!Or mapping"
+                    }
+                }
+            }
+        }
+
         -- Global mappings.
         -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 
@@ -70,17 +108,26 @@ return {
 
                 -- Buffer local mappings.
                 -- See `:help vim.lsp.*` for documentation on any of the below functions
-                vim.keymap.set({ 'n', 'v' }, '<leader>aa', vim.lsp.buf.code_action, { buffer = ev.buf, desc = "LSP: Code actions" })
-                vim.keymap.set('n', '<leader>aD', vim.lsp.buf.declaration, { buffer = ev.buf, desc = "LSP: Goto declaration" })
-                vim.keymap.set('n', '<leader>ad', vim.lsp.buf.definition, { buffer = ev.buf, desc = "LSP: Goto definition" })
+                vim.keymap.set({ 'n', 'v' }, '<leader>aa', vim.lsp.buf.code_action,
+                    { buffer = ev.buf, desc = "LSP: Code actions" })
+                vim.keymap.set('n', '<leader>aD', vim.lsp.buf.declaration,
+                    { buffer = ev.buf, desc = "LSP: Goto declaration" })
+                vim.keymap.set('n', '<leader>ad', vim.lsp.buf.definition,
+                    { buffer = ev.buf, desc = "LSP: Goto definition" })
                 vim.keymap.set('n', '<leader>ah', vim.lsp.buf.hover, { buffer = ev.buf, desc = "LSP: Hover info" })
-                vim.keymap.set('n', '<leader>ai', vim.lsp.buf.implementation, { buffer = ev.buf, desc = "LSP: Goto implementation" })
-                vim.keymap.set('n', '<leader>as', vim.lsp.buf.signature_help, { buffer = ev.buf, desc = "LSP: Signature help" })
-                vim.keymap.set('n', '<leader>ar', vim.lsp.buf.references, { buffer = ev.buf, desc = "LSP: Show references" })
-                vim.keymap.set('n', '<leader>ad', vim.lsp.buf.type_definition, { buffer = ev.buf, desc = "LSP: Type definition" })
+                vim.keymap.set('n', '<leader>ai', vim.lsp.buf.implementation,
+                    { buffer = ev.buf, desc = "LSP: Goto implementation" })
+                vim.keymap.set('n', '<leader>as', vim.lsp.buf.signature_help,
+                    { buffer = ev.buf, desc = "LSP: Signature help" })
+                vim.keymap.set('n', '<leader>ar', vim.lsp.buf.references,
+                    { buffer = ev.buf, desc = "LSP: Show references" })
+                vim.keymap.set('n', '<leader>ad', vim.lsp.buf.type_definition,
+                    { buffer = ev.buf, desc = "LSP: Type definition" })
 
-                vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, { buffer = ev.buf, desc = "LSP: Add workspace folder" })
-                vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, { buffer = ev.buf, desc = "LSP: Remove workspace folder" })
+                vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder,
+                    { buffer = ev.buf, desc = "LSP: Add workspace folder" })
+                vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder,
+                    { buffer = ev.buf, desc = "LSP: Remove workspace folder" })
                 vim.keymap.set('n', '<leader>wl', function()
                     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
                 end, { buffer = ev.buf, desc = "LSP: List workspace folders" })
