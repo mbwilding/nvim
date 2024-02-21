@@ -4,7 +4,7 @@
 cd ~
 sudo apt update -y
 sudo curl -fsSL https://deb.nodesource.com/setup_20.x | bash
-sudo apt-get install -y build-essential nodejs wget jq fuse make grep ripgrep cmake nodejs clangd unzip golang-go python3 python3.10-venv ruby
+sudo apt-get install -y build-essential nodejs wget jq fuse make grep ripgrep cmake nodejs clangd unzip golang-go python3 python3.10-venv ruby libssl-dev
 
 sudo pip install cfn-lint
 sudo gem install cfn-nag

@@ -3,6 +3,7 @@ return {
     dependencies = {
         "williamboman/mason.nvim",
         "neovim/nvim-lspconfig",
+        "b0o/schemastore.nvim",
     },
     config = function()
         require("mason").setup()
@@ -85,7 +86,9 @@ return {
                         "!Equals mapping",
                         "!And mapping",
                         "!Or mapping"
-                    }
+                    },
+                    schemas = require("schemastore").json.schemas(),
+                    validate = { enable = true },
                 }
             }
         }
