@@ -21,7 +21,7 @@ sudo gem install cfn-nag
 sudo npm install -g aws-azure-login
 
 # Install Neovim
-API_URL="https://api.github.com/repos/neovim/neovim/releases/latest"
+API_URL="https://api.github.com/repos/neovim/neovim/releases"
 APPIMAGE_URL=$(wget -qO- "$API_URL" | jq -r '.assets[] | select(.name | endswith("nvim.appimage")) | .browser_download_url')
 wget --quiet "$APPIMAGE_URL" --output-document nvim
 chmod +x nvim
