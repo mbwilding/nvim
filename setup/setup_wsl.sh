@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-cd
+cd ~
 
 # Install dependencies
 sudo apt update -y
