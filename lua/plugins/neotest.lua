@@ -60,5 +60,17 @@ return {
         vim.keymap.set("n", "<leader>nta", function()
             require("neotest").run.attach()
         end, { desc = "Neotest: Attach nearest test" })
+
+        vim.keymap.set("n", "<leader>ntw", function()
+            require("neotest").watch.watch()
+        end, { desc = "Neotest: Watch" })
+
+        vim.keymap.set("n", "<leader>ntt", function()
+            require("neotest").watch.toggle()
+        end, { desc = "Neotest: Watch Toggle" })
+
+        vim.keymap.set("n", "<leader>ntW", function()
+            require("neotest").watch.toggle(vim.fn.expand("%"))
+        end, { desc = "Neotest: Watch File" })
     end
 }
