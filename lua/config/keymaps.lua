@@ -1,6 +1,9 @@
 -- Map ; to :
 vim.keymap.set('n', ';', ':', { noremap = true, silent = true })
 
+-- Tab close
+vim.keymap.set('n', 'q', ':tabclose<CR>', { noremap = true, silent = true })
+
 -- Disables search highlight
 vim.keymap.set('n', '<CR>', ':noh<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<ESC>', ':noh<ESC>', { noremap = true, silent = true })
