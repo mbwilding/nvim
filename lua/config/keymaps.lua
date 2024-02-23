@@ -1,6 +1,12 @@
 -- Map ; to :
 vim.keymap.set('n', ';', ':', { noremap = true, silent = true })
 
+-- Window resize via Alt + arrows
+vim.keymap.set('n', '<A-Up>', '<cmd>horizontal resize -1<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<A-Down>', '<cmd>horizontal resize +1<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<A-Left>', '<cmd>vertical resize -1<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<A-Right>', '<cmd>vertical resize +1<CR>', { noremap = true, silent = true })
+
 -- Tab close
 vim.keymap.set('n', 'q', ':tabclose<CR>', { noremap = true, silent = true })
 
