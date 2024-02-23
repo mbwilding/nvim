@@ -140,15 +140,6 @@ return {
                 vim.keymap.set('n', '<leader>f', function()
                     vim.lsp.buf.format { async = true }
                 end, { buffer = ev.buf, desc = "LSP: Format buffer" })
-
-                if vim.lsp.inlay_hint then
-                    vim.keymap.set(
-                        "n",
-                        "<leader>ih",
-                        function() vim.lsp.inlay_hint(0, nil) end,
-                        { desc = "LSP: Toggle Inlay Hints"}
-                    )
-                end
             end
         })
     end
