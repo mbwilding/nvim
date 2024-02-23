@@ -3,21 +3,35 @@ return {
   config = function()
     local SymbolKind = vim.lsp.protocol.SymbolKind
 
+    local function formatCount(count, label, showIfOne)
+      if count == nil or (count == 1 and not showIfOne) then
+        return nil
+      elseif count == 1 then
+        return count .. " " .. label:sub(1, -2) -- Removes the last character for singular form
+      else
+        return count .. " " .. label
+      end
+    end
+
     require("lsp-lens").setup({
       enable = true,
-      include_declaration = false, -- Reference include declaration
-      sections = {                 -- Enable / Disable specific request, formatter example looks 'Format Requests'
-        definition = false,
-        references = true,
-        implements = true,
+      include_declaration = false,
+      sections = {
+        definition = function(count)
+          return formatCount(count, "definitions", false)
+        end,
+        references = function(count)
+          return formatCount(count, "usages", true)
+        end,
+        implements = function(count)
+          return formatCount(count, "implementations", true)
+        end,
         git_authors = false,
       },
       ignore_filetype = {
         "prisma",
       },
-      -- Target Symbol Kinds to show lens information
       target_symbol_kinds = { SymbolKind.Function, SymbolKind.Method, SymbolKind.Interface },
-      -- Symbol Kinds that may have target symbol kinds as children
       wrapper_symbol_kinds = { SymbolKind.Class, SymbolKind.Struct },
     })
 
