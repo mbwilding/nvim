@@ -117,7 +117,7 @@ return {
                     { buffer = ev.buf, desc = "LSP: Goto declaration" })
                 vim.keymap.set('n', '<leader>ad', vim.lsp.buf.definition,
                     { buffer = ev.buf, desc = "LSP: Goto definition" })
-                vim.keymap.set('n', '<leader>ah', vim.lsp.buf.hover, { buffer = ev.buf, desc = "LSP: Hover info" })
+                vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = ev.buf, desc = "LSP: Hover info" })
                 vim.keymap.set('n', '<leader>ai', vim.lsp.buf.implementation,
                     { buffer = ev.buf, desc = "LSP: Goto implementation" })
                 vim.keymap.set('n', '<leader>as', vim.lsp.buf.signature_help,
