@@ -3,7 +3,7 @@
 # Install dependencies
 sudo apt update -y
 sudo curl -fsSL https://deb.nodesource.com/setup_20.x | bash
-sudo apt-get install -y build-essential nodejs wget jq fuse make grep ripgrep cmake nodejs clangd unzip golang-go python3 python3.10-venv python3-pip ruby libssl-dev dotnet-sdk-6.0 dotnet-sdk-7.0 dotnet-sdk-8.0
+sudo apt-get install -y build-essential pkg-config libudev-dev nodejs wget jq fuse make grep ripgrep cmake nodejs clangd unzip golang-go python3 python3.10-venv python3-pip ruby libssl-dev dotnet-sdk-6.0 dotnet-sdk-7.0 dotnet-sdk-8.0
 
 # NPM global
 mkdir ~/.npm-global
