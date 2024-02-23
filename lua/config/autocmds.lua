@@ -1,6 +1,6 @@
 -- Helper func
 local function augroup(name)
-	return vim.api.nvim_create_augroup("augroup_" .. name, { clear = true })
+	return vim.api.nvim_create_augroup(name, { clear = true })
 end
 
 -- Highlight on yank
@@ -41,7 +41,8 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
--- wrap and check for spell in text filetypes
+
+-- Wrap and check for spell in text filetypes
 vim.api.nvim_create_autocmd("FileType", {
 	group = augroup("wrap_spell"),
 	pattern = { "gitcommit", "markdown" },
@@ -62,3 +63,33 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 		vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
 	end,
 })
+
+-- Relative numbers group
+augroup("NumberToggle")
+
+-- Enabling relative numbers
+vim.api.nvim_create_autocmd(
+	{ "BufEnter", "FocusGained", "InsertLeave", "WinEnter" },
+	{
+		group = "NumberToggle",
+		pattern = "*",
+		callback = function()
+			if vim.wo.number and vim.fn.mode() ~= "i" then
+				vim.wo.relativenumber = true
+			end
+		end
+	}
+)
+
+-- Disabling relative numbers
+vim.api.nvim_create_autocmd(
+	{ "BufLeave", "FocusLost", "InsertEnter", "WinLeave" },
+	{
+		group = "NumberToggle",
+		pattern = "*",
+		callback = function()
+			if vim.wo.number then
+				vim.wo.relativenumber = false
+			end
+		end,
+	})
