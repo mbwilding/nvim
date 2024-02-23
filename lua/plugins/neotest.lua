@@ -40,5 +40,25 @@ return {
                 })
             }
         })
+
+        vim.keymap.set("n", "<leader>ntr", function()
+            require("neotest").run.run()
+        end, { desc = "Neotest: Run nearest test" })
+
+        vim.keymap.set("n", "<leader>ntf", function()
+            require("neotest").run.run(vim.fn.expand("%"))
+        end, { desc = "Neotest: Run current file" })
+
+        vim.keymap.set("n", "<leader>ntd", function()
+            require("neotest").run.run({ strategy = "dap" })
+        end, { desc = "Neotest: Debug nearest test" })
+
+        vim.keymap.set("n", "<leader>nts", function()
+            require("neotest").run.stop()
+        end, { desc = "Neotest: Stop nearest test" })
+
+        vim.keymap.set("n", "<leader>nta", function()
+            require("neotest").run.attach()
+        end, { desc = "Neotest: Attach nearest test" })
     end
 }
