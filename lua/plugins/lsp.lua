@@ -169,6 +169,10 @@ return {
                 -- Show the signature of the function you're currently completing.
                 map('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
+                -- Navigation
+                vim.api.nvim_set_keymap('n', '<C-p>', '<C-t>', { noremap = true, silent = true })
+                vim.api.nvim_set_keymap('n', '<C-n>', ':tag<CR>', { noremap = true, silent = true })
+
                 -- The following two autocommands are used to highlight references of the
                 -- word under your cursor when your cursor rests there for a little while.
                 --    See `:help CursorHold` for information about when this is executed
