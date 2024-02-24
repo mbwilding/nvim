@@ -1,5 +1,6 @@
 return {
-    "andweeb/presence.nvim",
+    "jiriks74/presence.nvim",
+    event = "UIEnter",
     opts = {
         -- General options
         auto_update         = true,                 -- Update activity based on autocmd events (if `false`, map or manually execute `:lua package.loaded.presence:update()`)
