@@ -8,7 +8,7 @@ return {
         leap.add_default_mappings()
         leap.opts.special_keys.prev_target = '<bs>'
         leap.opts.special_keys.prev_group = '<bs>'
-        leap.opts.labels = "aoeuidhtnspyfgcrlqjkxbmwvz"
+        leap.opts.labels = "asonetuhidplyrfcgqzjvkwxmb"
         --leap.opts.safe_labels = {}
         require('leap.user').set_repeat_keys('<cr>', '<bs>')
     end
