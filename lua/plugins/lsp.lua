@@ -188,6 +188,8 @@ return {
                 --    buffer = event.buf,
                 --    callback = vim.lsp.buf.clear_references,
                 --})
+
+                vim.lsp.inlay_hint.enable(event.buf, true)
             end,
         })
     end
