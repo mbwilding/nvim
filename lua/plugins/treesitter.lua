@@ -1,12 +1,13 @@
 ﻿return {
     'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
     dependencies = {
         'nvim-treesitter/nvim-treesitter-textobjects',
         "windwp/nvim-ts-autotag",
     },
     config = function()
         require("nvim-treesitter.configs").setup {
-            -- A list of parser names, or "all" (the five listed parsers should always be installed)
+            -- A list of parser names, or "all".
             ensure_installed = { "javascript", "typescript", "c", "lua", "vim", "vimdoc", "query", "c_sharp", "bicep", "yaml",
                 "python", "http", "json", "html", "go" },
             modules = {},
@@ -151,5 +152,4 @@
             }
         }
     end,
-    build = ':TSUpdate',
 }

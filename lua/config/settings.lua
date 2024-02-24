@@ -39,10 +39,6 @@ vim.o.termguicolors = true
 
 -- TODO: Order these
 vim.opt.smartindent = true
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
 vim.opt.wrap = true
 vim.opt.swapfile = false
 vim.opt.backup = false
@@ -53,6 +49,12 @@ vim.opt.autowrite = false
 vim.opt.cursorline = false
 vim.opt.confirm = true
 vim.opt.spelllang = "en"
+
+-- Sluth auto detects
+--vim.opt.softtabstop = 4
+--vim.opt.shiftwidth = 4
+--vim.opt.expandtab = true
+--vim.opt.tabstop = 4
 
 -- Sync with system clipboard
 vim.opt.clipboard = "unnamedplus"

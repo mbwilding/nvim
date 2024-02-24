@@ -3,6 +3,7 @@
     branch = '0.1.x',
     dependencies = {
         'nvim-lua/plenary.nvim',
+        'nvim-telescope/telescope-ui-select.nvim',
         {
             'nvim-telescope/telescope-fzf-native.nvim',
             -- Build command adjusted to use 'make' if available, otherwise 'cmake'
@@ -53,7 +54,7 @@
 
             -- Find the Git root directory from the current file's path
             local git_root = vim.fn.systemlist('git -C ' ..
-            vim.fn.escape(current_dir, ' ') .. ' rev-parse --show-toplevel')[1]
+                vim.fn.escape(current_dir, ' ') .. ' rev-parse --show-toplevel')[1]
             if vim.v.shell_error ~= 0 then
                 print 'Not a git repository. Searching on current working directory'
                 return cwd
