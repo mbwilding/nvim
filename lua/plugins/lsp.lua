@@ -7,25 +7,23 @@ return {
         "nvim-telescope/telescope.nvim"
     },
     config = function()
-        local capabilities = vim.lsp.protocol.make_client_capabilities()
-        capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
-
+        -- These can have more fields like cmd, settings and filetypes
         local servers = {
             --"bashls",
-            "lua_ls",
-            "clangd",
-            "rust_analyzer",
-            "omnisharp",
-            "powershell_es",
-            "yamlls",
-            "tsserver",
-            "tailwindcss",
-            "taplo",
-            --"sqls",
-            "pylsp",
-            "jqls",
-            "jsonls",
-            "eslint",
+            lua_ls = {},
+            clangd = {},
+            rust_analyzer = {},
+            omnisharp = {},
+            powershell_es = {},
+            yamlls = {},
+            tsserver = {},
+            tailwindcss = {},
+            taplo = {},
+            --sqls = {},
+            pylsp = {},
+            jqls = {},
+            jsonls = {},
+            eslint = {},
         }
 
         require("mason").setup()
@@ -43,7 +41,7 @@ return {
                         -- This handles overriding only values explicitly passed
                         -- by the server configuration above. Useful when disabling
                         -- certain features of an LSP (for example, turning off formatting for tsserver)
-                        capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {}),
+                        capabilities = vim.tbl_deep_extend('force', vim.lsp.protocol.make_client_capabilities(), require('cmp_nvim_lsp').default_capabilities()),
                     }
                 end,
             },
