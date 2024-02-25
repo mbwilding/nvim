@@ -35,6 +35,6 @@ return {
       wrapper_symbol_kinds = { SymbolKind.Class, SymbolKind.Struct },
     })
 
-    vim.keymap.set("n", "<leader>ll", "<cmd>LspLensToggle<CR>", { desc = "LSP Lens: Toggle" })
+    vim.keymap.set("n", "<leader>hu", "<cmd>LspLensToggle<CR>", { desc = "LSP Lens: Toggle" })
   end
 }
