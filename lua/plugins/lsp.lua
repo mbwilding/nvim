@@ -141,49 +141,50 @@ return {
                 -- Jump to the definition of the word under your cursor.
                 --  This is where a variable was first declared, or where a function is defined, etc.
                 --  To jump back, press <C-T>.
-                map('gd', require('telescope.builtin').lsp_definitions, 'Goto Definition')
+                map('gd', require('telescope.builtin').lsp_definitions, 'Goto definition')
 
                 -- WARN: This is not Goto Definition, this is Goto Declaration.
                 --  For example, in C this would take you to the header
-                map('gD', vim.lsp.buf.declaration, 'Goto Declaration')
+                map('gD', vim.lsp.buf.declaration, 'Goto declaration')
 
                 -- Jump to the type of the word under your cursor.
                 --  Useful when you're not sure what type a variable is and you want to see
                 --  the definition of its *type*, not where it was *defined*.
-                map('gt', require('telescope.builtin').lsp_type_definitions, 'Type Definition')
+                map('gt', require('telescope.builtin').lsp_type_definitions, 'Type definition')
 
                 -- Find references for the word under your cursor.
-                map('gr', require('telescope.builtin').lsp_references, 'Goto References')
+                map('gr', require('telescope.builtin').lsp_references, 'Goto references')
 
                 -- Jump to the implementation of the word under your cursor.
                 --  Useful when your language has ways of declaring types without an actual implementation.
-                map('gi', require('telescope.builtin').lsp_implementations, 'Goto Implementation')
+                map('gi', require('telescope.builtin').lsp_implementations, 'Goto implementation')
 
                 -- Fuzzy find all the symbols in your current document.
                 --  Symbols are things like variables, functions, types, etc.
                 map('gs', require('telescope.builtin').lsp_document_symbols,
-                    'Document Symbols')
+                    'Document symbols')
 
                 -- Fuzzy find all the symbols in your current workspace
                 --  Similar to document symbols, except searches over your whole project.
                 map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols,
-                    'Workspace Symbols')
+                    'Workspace symbols')
 
                 -- Rename the variable under your cursor [Disabled due to inc-rename]
                 --map('<leader>rn', vim.lsp.buf.rename, 'Rename')
 
                 -- Execute a code action, usually your cursor needs to be on top of an error
                 -- or a suggestion from your LSP for this to activate.
-                map('<leader>a', function()
-                    vim.lsp.buf.code_action { context = { only = { 'quickfix', 'refactor', 'source' } } }
-                end, 'Code Action')
+
+                --map('<leader>a', function()
+                --    vim.lsp.buf.code_action { context = { only = { 'quickfix', 'refactor', 'source' } } }
+                --end, 'Code action')
 
                 -- Opens a popup that displays documentation about the word under your cursor
                 --  See `:help K` for why this keymap
-                map('K', vim.lsp.buf.hover, 'Hover Documentation')
+                map('K', vim.lsp.buf.hover, 'Hover documentation')
 
                 -- Show the signature of the function you're currently completing.
-                map('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+                map('<C-k>', vim.lsp.buf.signature_help, 'Signature documentation')
 
                 -- Navigation
                 vim.api.nvim_set_keymap('n', '<C-p>', '<C-t>', { noremap = true, silent = true })
