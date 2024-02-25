@@ -206,7 +206,7 @@ return {
                 --    callback = vim.lsp.buf.clear_references,
                 --})
 
-                vim.lsp.inlay_hint.enable(event.buf, false)
+                vim.lsp.inlay_hint.enable(event.buf, true)
 
                 vim.keymap.set('n', '<leader>hi', function()
                     local bufnr = vim.api.nvim_get_current_buf()
