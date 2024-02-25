@@ -38,5 +38,10 @@
         })
 
         vim.cmd [[colorscheme tokyonight-night]]
+
+        require("rider_dark").setup()
     end,
+    dependencies = {
+        "mbwilding/rider-dark.nvim"
+    }
 }
