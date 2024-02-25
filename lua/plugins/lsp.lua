@@ -7,27 +7,46 @@ return {
         "nvim-telescope/telescope.nvim"
     },
     config = function()
+        local capabilities = vim.lsp.protocol.make_client_capabilities()
+        capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+
+        local servers = {
+            --"bashls",
+            "lua_ls",
+            "clangd",
+            "rust_analyzer",
+            "omnisharp",
+            "powershell_es",
+            "yamlls",
+            "tsserver",
+            "tailwindcss",
+            "taplo",
+            --"sqls",
+            "pylsp",
+            "jqls",
+            "jsonls",
+            "eslint",
+        }
+
         require("mason").setup()
         require("mason-lspconfig").setup({
             automatic_installation = true,
             -- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
-            ensure_installed = {
-                --"bashls",
-                "lua_ls",
-                "clangd",
-                "rust_analyzer",
-                "omnisharp",
-                "powershell_es",
-                "yamlls",
-                "tsserver",
-                "tailwindcss",
-                "taplo",
-                --"sqls",
-                "pylsp",
-                "jqls",
-                "jsonls",
-                "eslint",
-            }
+            ensure_installed = servers,
+            handlers = {
+                function(server_name)
+                    local server = servers[server_name] or {}
+                    require('lspconfig')[server_name].setup {
+                        cmd = server.cmd,
+                        settings = server.settings,
+                        filetypes = server.filetypes,
+                        -- This handles overriding only values explicitly passed
+                        -- by the server configuration above. Useful when disabling
+                        -- certain features of an LSP (for example, turning off formatting for tsserver)
+                        capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {}),
+                    }
+                end,
+            },
         })
 
         require("mason-lspconfig").setup_handlers {
