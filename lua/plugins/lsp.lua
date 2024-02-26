@@ -79,6 +79,16 @@ return {
         }
 
         require("mason").setup()
+        require("mason-lspconfig").setup_handlers {
+            -- The first entry (without a key) will be the default handler
+            -- and will be called for each installed server that doesn't have
+            -- a dedicated handler.
+            function(server_name) -- default handler
+                if not servers[server_name] then
+                    require("lspconfig")[server_name].setup {}
+                end
+            end,
+        }
         require("mason-lspconfig").setup({
             automatic_installation = true,
             -- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
@@ -98,15 +108,6 @@ return {
                 end,
             },
         })
-
-        require("mason-lspconfig").setup_handlers {
-            -- The first entry (without a key) will be the default handler
-            -- and will be called for each installed server that doesn't have
-            -- a dedicated handler.
-            function(server_name) -- default handler (optional)
-                require("lspconfig")[server_name].setup {}
-            end,
-        }
 
         -- Global mappings.
         -- See `:help vim.diagnostic.*` for documentation on any of the below functions
