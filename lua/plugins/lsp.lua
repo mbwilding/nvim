@@ -10,12 +10,10 @@ return {
         -- These can have more fields like cmd, settings and filetypes
         local servers = {
             --"bashls",
-            lua_ls = {},
             clangd = {},
             rust_analyzer = {},
             omnisharp = {},
             powershell_es = {},
-            yamlls = {},
             tsserver = {},
             tailwindcss = {},
             taplo = {},
@@ -24,13 +22,67 @@ return {
             jqls = {},
             jsonls = {},
             eslint = {},
+            yamlls = {
+                settings = {
+                    yaml = {
+                        -- Specify AWS CloudFormation specific settings
+                        customTags = {
+                            "!Ref",
+                            "!If sequence",
+                            "!GetAtt",
+                            "!GetAZs",
+                            "!ImportValue",
+                            "!ImportValue mapping",
+                            "!Join sequence",
+                            "!Sub",
+                            "!Sub sequence",
+                            "!FindInMap sequence",
+                            "!Select sequence",
+                            "!Split sequence",
+                            "!Not sequence",
+                            "!Equals sequence",
+                            "!And sequence",
+                            "!Or sequence",
+                            "!Condition",
+                            "!Base64",
+                            "!Cidr",
+                            "!Ref sequence",
+                            "!If mapping",
+                            "!Join mapping",
+                            "!Select mapping",
+                            "!Split mapping",
+                            "!Not mapping",
+                            "!Equals mapping",
+                            "!And mapping",
+                            "!Or mapping"
+                        },
+                        schemas = require("schemastore").json.schemas(),
+                        validate = { enable = true },
+                    }
+                }
+            },
+            lua_ls = {
+                settings = {
+                    Lua = {
+                        diagnostics = {
+                            -- Recognize the `vim` global
+                            globals = { 'vim' },
+                        },
+                        workspace = {
+                            -- Make the server aware of Neovim runtime files
+                            library = vim.api.nvim_get_runtime_file("", true),
+                        },
+                        hint = { enable = true }
+                    },
+                },
+            },
         }
 
         require("mason").setup()
         require("mason-lspconfig").setup({
             automatic_installation = true,
             -- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
-            ensure_installed = servers,
+            ensure_installed = vim.tbl_keys(servers),
             handlers = {
                 function(server_name)
                     local server = servers[server_name] or {}
@@ -54,62 +106,6 @@ return {
             function(server_name) -- default handler (optional)
                 require("lspconfig")[server_name].setup {}
             end,
-        }
-
-        require('lspconfig')['lua_ls'].setup {
-            settings = {
-                Lua = {
-                    diagnostics = {
-                        -- Recognize the `vim` global
-                        globals = { 'vim' },
-                    },
-                    workspace = {
-                        -- Make the server aware of Neovim runtime files
-                        library = vim.api.nvim_get_runtime_file("", true),
-                    },
-                    hint = { enable = true }
-                },
-            },
-        }
-
-        require('lspconfig')['yamlls'].setup {
-            settings = {
-                yaml = {
-                    -- Specify AWS CloudFormation specific settings
-                    customTags = {
-                        "!Ref",
-                        "!If sequence",
-                        "!GetAtt",
-                        "!GetAZs",
-                        "!ImportValue",
-                        "!ImportValue mapping",
-                        "!Join sequence",
-                        "!Sub",
-                        "!Sub sequence",
-                        "!FindInMap sequence",
-                        "!Select sequence",
-                        "!Split sequence",
-                        "!Not sequence",
-                        "!Equals sequence",
-                        "!And sequence",
-                        "!Or sequence",
-                        "!Condition",
-                        "!Base64",
-                        "!Cidr",
-                        "!Ref sequence",
-                        "!If mapping",
-                        "!Join mapping",
-                        "!Select mapping",
-                        "!Split mapping",
-                        "!Not mapping",
-                        "!Equals mapping",
-                        "!And mapping",
-                        "!Or mapping"
-                    },
-                    schemas = require("schemastore").json.schemas(),
-                    validate = { enable = true },
-                }
-            }
         }
 
         -- Global mappings.

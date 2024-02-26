@@ -26,7 +26,9 @@ return {
         implements = function(count)
           return formatCount(count, "implementations", true)
         end,
-        git_authors = false,
+        git_authors = function(latest_author, count)
+          return " " .. latest_author .. (count - 1 == 0 and "" or (" + " .. count - 1))
+        end,
       },
       ignore_filetype = {
         "prisma",
