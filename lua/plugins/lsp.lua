@@ -19,7 +19,7 @@ return {
             tsserver = {},
             tailwindcss = {},
             taplo = {},
-            --sqls = {},
+            sqls = {},
             pylsp = {},
             jqls = {},
             jsonls = {},
