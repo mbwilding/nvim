@@ -1,5 +1,5 @@
 return {
-    "andweeb/presence.nvim",
+    "pwnxpl0it/presence.nvim",
     event = "UIEnter",
     opts = {
         -- General options
@@ -23,5 +23,10 @@ return {
         reading_text        = "Reading %s",         -- Format string rendered when a read-only or unmodifiable file is loaded in the buffer (either string or function(filename: string): string)
         workspace_text      = "Working on %s",      -- Format string rendered when in a git repository (either string or function(project_name: string|nil, filename: string): string)
         line_number_text    = "Line %s out of %s",  -- Format string rendered when `enable_line_number` is set to true (either string or function(line_number: number, line_count: number): string)
-    }
+    },
+    config = function()
+        vim.keymap.set("n", "<leader>dpt", "<cmd>PresenceToggle<CR>", { desc = "Discord Presence: Toggle" })
+        vim.keymap.set("n", "<leader>dpe", "<cmd>PresenceEnable<CR>", { desc = "Discord Presence: Enable" })
+        vim.keymap.set("n", "<leader>dpd", "<cmd>PresenceDisable<CR>", { desc = "Discord Presence: Disable" })
+    end
 }
