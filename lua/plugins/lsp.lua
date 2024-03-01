@@ -11,7 +11,7 @@ return {
         local servers = {
             --"bashls",
             clangd = {},
-            rust_analyzer = {},
+            --rust_analyzer = {}, -- rustaceanvim
             omnisharp = {},
             powershell_es = {},
             tsserver = {},
@@ -90,7 +90,7 @@ return {
             end,
         }
         require("mason-lspconfig").setup({
-            automatic_installation = true,
+            automatic_installation = false,
             -- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
             ensure_installed = vim.tbl_keys(servers),
             handlers = {

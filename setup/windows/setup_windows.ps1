@@ -1,4 +1,5 @@
-function Get-GitHub-Release-Url-ByTag {
+function Get-GitHub-Release-Url-ByTag
+{
     param(
         [string]$GitHubRepository,
         [string]$FilenamePattern,
@@ -10,11 +11,12 @@ function Get-GitHub-Release-Url-ByTag {
     $assets = $response.assets;
     $specificReleases = $assets | Where-Object name -Match $FilenamePattern;
 
-    if ($specificReleases.Count -eq 0) {
+    if ($specificReleases.Count -eq 0)
+    {
         Write-Error "No releases found matching the pattern.";
         return;
-    }
-    elseif ($specificReleases.Count -gt 1) {
+    } elseif ($specificReleases.Count -gt 1)
+    {
         Write-Warning "Multiple releases found. Using the first one.";
     }
 
@@ -23,20 +25,23 @@ function Get-GitHub-Release-Url-ByTag {
     $outputPath = "$env:TEMP\" + $specificRelease.name;
     Invoke-WebRequest -Uri $downloadUrl -OutFile $outputPath;
 
-    if (!(Test-Path $outputPath)) {
+    if (!(Test-Path $outputPath))
+    {
         Write-Error "Failed to download the file.";
         return;
     }
 
     # Install the release silently and wait for the installation to complete
-    try {
+    try
+    {
         $arguments = "/i `"$outputPath`" /quiet /norestart";
         $process = Start-Process "msiexec.exe" -ArgumentList $arguments -Wait -PassThru;
-        if ($process.ExitCode -ne 0) {
+        if ($process.ExitCode -ne 0)
+        {
             Write-Error "Installation failed with exit code $($process.ExitCode).";
         }
-    }
-    catch {
+    } catch
+    {
         Write-Error "An error occurred during installation: $_";
     }
 }
@@ -55,13 +60,15 @@ $PowerShellProfile = "$PowerShellDir\Microsoft.PowerShell_profile.ps1"
 $OMPLine = "oh-my-posh init pwsh | Invoke-Expression"
 
 # Ensure the PowerShell directory exists
-if (-not (Test-Path $PowerShellDir)) {
+if (-not (Test-Path $PowerShellDir))
+{
     Write-Host "Creating PowerShell Directory..."
     New-Item -Path $PowerShellDir -ItemType Directory
 }
 
 # Create PowerShell profile if it does not exist
-if (-not (Test-Path $PowerShellProfile)) {
+if (-not (Test-Path $PowerShellProfile))
+{
     Write-Host "Creating PowerShell Profile..."
     New-Item -Path $PowerShellProfile -ItemType File
 }
@@ -69,15 +76,20 @@ if (-not (Test-Path $PowerShellProfile)) {
 # Check if oh-my-posh is already initialized in the profile
 Write-Host "Checking if oh-my-posh is already initialized in the profile..."
 $profileContent = @()
-if (Test-Path $PowerShellProfile) {
+if (Test-Path $PowerShellProfile)
+{
     $profileContent = Get-Content $PowerShellProfile
 }
 
-if ($profileContent -notcontains $OMPLine) {
+if ($profileContent -notcontains $OMPLine)
+{
     Write-Host "Adding oh-my-posh init to the profile..."
     Add-Content -Path $PowerShellProfile -Value $OMPLine
-} else {
+} else
+{
     Write-Host "oh-my-posh is already initialized in the profile."
 }
+
+rustup component add rust-analyzer
 
 Write-Host "Done."

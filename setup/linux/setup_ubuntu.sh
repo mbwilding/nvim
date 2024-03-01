@@ -20,4 +20,5 @@ sudo npm install -g aws-azure-login
 
 # Install Rustup
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+rustup component add rust-analyzer
 
