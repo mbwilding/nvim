@@ -146,6 +146,7 @@
                 hl["@lsp.typemod.string.attribute.rust"] = { fg = colors.string }
                 hl["@lsp.typemod.struct.defaultLibrary.rust"] = { fg = colors.class }
                 hl["@lsp.typemod.enumMember.library.rust"] = { fg = colors.constant }
+                hl["@lsp.mod.mutable.rust"] = { underline = true }
             end,
         })
 
