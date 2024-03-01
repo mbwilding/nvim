@@ -3,30 +3,33 @@ return {
   config = function()
     local SymbolKind = vim.lsp.protocol.SymbolKind
 
-    local function formatCount(count, label, showIfOne)
-      if count == nil or (count == 1 and not showIfOne) then
-        return nil
-      elseif count == 1 then
-        return count .. " " .. label:sub(1, -2) -- Removes the last character for singular form
-      else
-        return count .. " " .. label
-      end
-    end
-
     require("lsp-lens").setup({
       enable = true,
       include_declaration = false,
       sections = {
         definition = function(count)
-          return formatCount(count, "definitions", false)
+          if count > 1 then
+            return count .. " " .. "definitions"
+          end
         end,
         references = function(count)
-          return formatCount(count, "usages", true)
+          if count == 1 then
+            return count .. " usage"
+          elseif count > 1 then
+            return count .. " usages"
+          end
         end,
         implements = function(count)
-          return formatCount(count, "implementations", true)
+          if count == 1 then
+            return count .. " implementation"
+          else
+            return count .. " implementations"
+          end
         end,
         git_authors = function(latest_author, count)
+          if latest_author == "Not Committed Yet" then
+            latest_author = "uncommitted"
+          end
           return "  " .. latest_author .. (count - 1 == 0 and "" or (" + " .. count - 1))
         end,
       },
