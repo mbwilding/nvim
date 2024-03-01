@@ -1,0 +1,21 @@
+return {
+    "mrcjkb/rustaceanvim",
+    version = "^4",
+    ft = { "rust" },
+    config = function()
+        vim.g.rustaceanvim = {
+            server = {
+                on_attach = function(client, bufnr)
+                    vim.keymap.set(
+                        "n",
+                        "<leader>a",
+                        function()
+                            vim.cmd.RustLsp('codeAction')
+                        end,
+                        { silent = true, buffer = bufnr, desc = "Rustacean: Code action" }
+                    )
+                end,
+            },
+        }
+    end
+}

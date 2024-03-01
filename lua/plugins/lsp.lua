@@ -11,7 +11,7 @@ return {
         local servers = {
             --"bashls",
             clangd = {},
-            --rust_analyzer = {}, -- rustaceanvim
+            rust_analyzer = {},
             omnisharp = {},
             powershell_es = {},
             tsserver = {},
