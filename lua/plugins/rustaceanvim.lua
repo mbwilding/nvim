@@ -1,12 +1,11 @@
 return {
-    'mrcjkb/rustaceanvim',
-    version = '^4',
-    ft = { 'rust' },
-    config = function()
+    "mrcjkb/rustaceanvim",
+    version = "^4",
+    ft = { "rust" },
+    init = function()
         vim.g.rustaceanvim = {
             -- Plugin configuration
-            tools = {
-            },
+            --tools = {},
             -- LSP configuration
             server = {
                 on_attach = function(client, bufnr)
@@ -22,11 +21,11 @@ return {
                 end,
                 default_settings = {
                     -- rust-analyzer language server configuration
-                    ['rust-analyzer'] = {},
+                    ["rust-analyzer"] = {},
                 },
             },
             -- DAP configuration
-            dap = {},
+            --dap = {},
         }
     end
 }
