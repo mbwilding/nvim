@@ -32,7 +32,7 @@ local colorSets = {
 		namespace = "#ffb083",
 		module = "#ffd3b3",
 	},
-	rider_modified = {
+	wilding = {
 		transparent = "NONE",
 		fg = "#bdbdbd",
 		bg = "#000000",
@@ -96,12 +96,7 @@ local colorSets = {
 		namespace = "#c678dd", -- Purple, tying back to keywords and TODOs for namespaces
 		module = "#e5c07b", -- Bold yellow, echoing structs and macros for modules
 	}
-
-
 }
-
-local theme = colorSets.rider_modified
-local transparent = true
 
 local function highlight(group, opts)
 	if opts.link then
@@ -143,24 +138,25 @@ local function highlight(group, opts)
 	end
 end
 
-local function set_highlights()
+local function set_highlights(colors, transparent)
+	local theme = colorSets[colors]
+
 	if transparent then
 		-- Transparent
 		highlight("Normal", { fg = theme.fg, bg = theme.transparent }) -- Current window
 		highlight("NormalNC", { fg = theme.fg, bg = theme.transparent }) -- Non-current window
 		highlight("ColorColumn", { fg = theme.fg, bg = theme.transparent }) -- Columns set with `colorcolumn`
-		highlight("LineNr", { fg = theme.fg, bg = theme.transparent }) -- Line numbers
 	else
 		-- Normal
 		highlight("Normal", { fg = theme.fg, bg = theme.bg }) -- Current window
 		highlight("NormalNC", { fg = theme.fg, bg = theme.bg }) -- Non-current window
 		highlight("ColorColumn", { fg = theme.fg, bg = theme.bg_window }) -- Columns set with `colorcolumn`
-		highlight("LineNr", { fg = theme.fg, bg = theme.bg_window }) -- Line numbers
 	end
 
 	-- Theme
 	highlight("NormalSB", { fg = theme.fg, bg = theme.error })  -- Normal text in sidebar
 	highlight("NormalFloat", { fg = theme.fg, bg = theme.bg_window }) -- Normal text in floating windows
+	highlight("LineNr", { fg = theme.fg, bg = theme.transparent }) -- Line numbers
 	highlight("CursorLineNr", { fg = theme.fg, bg = theme.bg_window }) -- Line numbers
 	highlight("MatchParen", { fg = theme.bg, bg = theme.hl_main }) -- Matching pair highlight
 	highlight("ErrorMsg", { fg = theme.error })                 -- Error messages on the commandline
@@ -171,62 +167,63 @@ local function set_highlights()
 	highlight("IncSearch", { fg = theme.bg, bg = theme.hl_main }) -- Yank highlight
 
 	-- Lazy
-	highlight("LazyComment", { fg = theme.comment })              -- Lazy comment
-	highlight("LazyReasonPlugin", { fg = theme.comment })         -- Lazy status
-	highlight("LazySpecial", { fg = theme.hl_alt })               -- Lazy icons
-	highlight("LazyH1", { fg = theme.bg, bg = theme.hl_main })    -- Lazy header
-	highlight("LazyButton", { fg = theme.fg, bg = theme.bg_button }) -- Lazy button
-	highlight("LazyButtonActive", { fg = theme.bg, bg = theme.hl_main }) -- Lazy button
+	highlight("LazyComment", { fg = theme.comment })
+	highlight("LazyReasonPlugin", { fg = theme.comment })
+	highlight("LazySpecial", { fg = theme.hl_alt })
+	highlight("LazyH1", { fg = theme.bg, bg = theme.hl_main })
+	highlight("LazyButton", { fg = theme.fg, bg = theme.bg_button })
+	highlight("LazyButtonActive", { fg = theme.bg, bg = theme.hl_main })
 
 	-- Mason
-	highlight("MasonHeader", { fg = theme.bg, bg = theme.hl_main })             -- Mason header
-	highlight("MasonHighlight", { fg = theme.hl_main, bg = theme.transparent }) -- Mason highlight
-	highlight("MasonHighlightBlockBold", { fg = theme.bg_button, bg = theme.hl_main }) -- Mason highlight block bold
-	highlight("MasonMuted", { fg = theme.redundant, bg = theme.transparent })   -- Mason muted
-	highlight("MasonMutedBlock", { fg = theme.fg, bg = theme.bg_button })       -- Mason muted blocked
-	highlight("MasonHighlightBlock", { fg = theme.hl_main, bg = theme.bg_button }) -- Mason muted blocked
+	highlight("MasonHeader", { fg = theme.bg, bg = theme.hl_main })
+	highlight("MasonHighlight", { fg = theme.hl_main, bg = theme.transparent })
+	highlight("MasonHighlightBlockBold", { fg = theme.bg_button, bg = theme.hl_main })
+	highlight("MasonMuted", { fg = theme.redundant, bg = theme.transparent })
+	highlight("MasonMutedBlock", { fg = theme.fg, bg = theme.bg_button })
+	highlight("MasonHighlightBlock", { fg = theme.hl_main, bg = theme.bg_button })
+
+	-- Oil
+	highlight("Directory", { fg = theme.comment })
+	highlight("OilFile", { fg = theme.hl_main })
 
 	-- Code
-	highlight("@variable", { fg = theme.variable })
-	highlight("String", { fg = theme.string })
-	highlight("Number", { fg = theme.number })
-	highlight("Type", { fg = theme.struct })
-	highlight("Comment", { fg = theme.comment })
-	highlight("Special", { fg = theme.keyword })
-	highlight("Statement", { fg = theme.keyword })
-	highlight("Function", { fg = theme.method })
-	highlight("Operator", { fg = theme.operator })
-	highlight("Delimiter", { fg = theme.delimiter })
-	highlight("@function.macro", { fg = theme.macro })
-	highlight("@module", { fg = theme.namespace })
+	highlight("@boolean", { fg = theme.keyword })
+	highlight("@constant.macro", { fg = theme.macro })
 	highlight("@constant", { fg = theme.constant })
-	highlight("@lsp.mod.library", { fg = theme.module })
-	highlight("@lsp.typemod.method", { fg = theme.method })
-	highlight("@lsp.typemod.macro", { fg = theme.macro })
-	highlight("@variable.member", { fg = theme.member })
-	highlight("@lsp.type.keyword", { fg = theme.keyword })
-	highlight("@lsp.typemod.interface.library", { fg = theme.interface })
-	highlight("@lsp.typemod.typeAlias.library", { link = "Type" })
+	highlight("@function.macro", { fg = theme.macro })
 	highlight("@lsp.mod.declaration", { fg = theme.module })
-	highlight("@lsp.typemod.enum", { fg = theme.enum })
+	highlight("@lsp.mod.library", { fg = theme.module })
+	highlight("@lsp.mod.static", { fg = theme.constant })
+	highlight("@lsp.type.invalidEscapeSequence", { fg = theme.error })
+	highlight("@lsp.type.keyword", { fg = theme.keyword })
 	highlight("@lsp.typemod.decorator.attribute", { fg = theme.attribute })
 	highlight("@lsp.typemod.derive", { fg = theme.interface })
+	highlight("@lsp.typemod.enum", { fg = theme.enum })
 	highlight("@lsp.typemod.enumMember", { fg = theme.constant })
 	highlight("@lsp.typemod.function", { fg = theme.method })
-	highlight("@lsp.typemod.variable", { fg = theme.variable })
-	highlight("@lsp.typemod.property.declaration", { fg = theme.member })
-	highlight("@lsp.typemod.struct", { fg = theme.struct })
-	highlight("@boolean", { fg = theme.keyword })
-	highlight("@lsp.typemod.property", { fg = theme.member })
-	highlight("Identifier", { fg = theme.member })
-	highlight("@string.escape", { fg = theme.escape })
-	highlight("@lsp.type.invalidEscapeSequence", { fg = theme.error })
-	highlight("@constant.macro", { fg = theme.macro })
+	highlight("@lsp.typemod.interface.library", { fg = theme.interface })
+	highlight("@lsp.typemod.macro", { fg = theme.macro })
+	highlight("@lsp.typemod.method", { fg = theme.method })
 	highlight("@lsp.typemod.operator.controlFlow", { fg = theme.keyword })
-	highlight("@lsp.mod.static", { fg = theme.constant })
-
-	-- Statuses
-	highlight("@WarningMsg", { fg = theme.hint })
+	highlight("@lsp.typemod.property.declaration", { fg = theme.member })
+	highlight("@lsp.typemod.property", { fg = theme.member })
+	highlight("@lsp.typemod.struct", { fg = theme.struct })
+	highlight("@lsp.typemod.typeAlias.library", { link = "Type" })
+	highlight("@lsp.typemod.variable", { fg = theme.variable })
+	highlight("@module", { fg = theme.namespace })
+	highlight("@string.escape", { fg = theme.escape })
+	highlight("@variable", { fg = theme.variable })
+	highlight("@variable.member", { fg = theme.member })
+	highlight("Comment", { fg = theme.comment })
+	highlight("Delimiter", { fg = theme.delimiter })
+	highlight("Function", { fg = theme.method })
+	highlight("Identifier", { fg = theme.member })
+	highlight("Number", { fg = theme.number })
+	highlight("Operator", { fg = theme.operator })
+	highlight("Special", { fg = theme.keyword })
+	highlight("Statement", { fg = theme.keyword })
+	highlight("String", { fg = theme.string })
+	highlight("Type", { fg = theme.struct })
 
 	-- Diagnostics
 	highlight("DiagnosticUnnecessary", { fg = theme.redundant })
@@ -250,4 +247,4 @@ local function set_highlights()
 	highlight("@lsp.type.stringEscapeCharacter.cs", { fg = theme.escape })
 end
 
-set_highlights()
+set_highlights("wilding", true)

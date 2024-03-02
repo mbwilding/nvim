@@ -7,7 +7,7 @@
     config = function()
         local lualine = require("lualine")
 
-        local function get_lsp_name()
+        local function lsp()
             local msg = "LS Inactive"
             local buf_clients = vim.lsp.get_active_clients()
             -- local buf_clients = vim.lsp.buf_get_clients()
@@ -26,7 +26,7 @@
                 end
             end
             local unique_client_names = vim.fn.uniq(buf_client_names)
-            local language_servers = "[" .. table.concat(unique_client_names, ", ") .. "]"
+            local language_servers = table.concat(unique_client_names, ", ")
             -- return language_servers;
             -- end
             -- if copilot_active then
@@ -36,7 +36,7 @@
             return language_servers
         end
 
-        local lint_progress = function()
+        local function lint()
             local linters = require("lint").get_running()
             if #linters == 0 then
                 return "󰦕"
@@ -47,7 +47,7 @@
         lualine.setup {
             options = {
                 icons_enabled = true,
-                theme = "auto",
+                theme = "wilding", -- auto
                 component_separators = "|",
                 section_separators = { left = "", right = "" },
                 globalstatus = true,
@@ -57,15 +57,14 @@
                     "branch",
                     "diff",
                     "filename",
-                    "filesize",
                     "diagnostics"
                 },
                 lualine_c = {
-                    --"lsp_progress"
-                    "lint_progress"
+                    { lsp },
                 },
                 lualine_x = {
-                    { get_lsp_name },
+                    { lint },
+                    "filesize",
                     "encoding",
                     "fileformat",
                     "filetype",
