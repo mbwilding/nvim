@@ -98,7 +98,28 @@ local colorSets = {
 	}
 }
 
-local function highlight(group, opts)
+local function invertHexColor(hex)
+	hex = hex:gsub("#", "")
+	local r = tonumber(hex:sub(1, 2), 16)
+	local g = tonumber(hex:sub(3, 4), 16)
+	local b = tonumber(hex:sub(5, 6), 16)
+	r = 255 - r
+	g = 255 - g
+	b = 255 - b
+	local invertedHex = string.format("#%02X%02X%02X", r, g, b)
+	return invertedHex
+end
+
+local function highlight(group, opts, invert)
+	if invert then
+		if opts.fg and opts.fg ~= "NONE" then
+			opts.fg = invertHexColor(opts.fg)
+		end
+		if opts.bg and opts.bg ~= "NONE" then
+			opts.bg = invertHexColor(opts.bg)
+		end
+	end
+
 	if opts.link then
 		local cmd = string.format("highlight! link %s %s", group, opts.link)
 		vim.cmd(cmd)
@@ -138,7 +159,7 @@ local function highlight(group, opts)
 	end
 end
 
-local function set_highlights(colors, transparent)
+local function set_highlights(colors, transparent, invert)
 	local theme = colorSets[colors]
 
 	if transparent then
@@ -154,76 +175,76 @@ local function set_highlights(colors, transparent)
 	end
 
 	-- Theme
-	highlight("NormalSB", { fg = theme.fg, bg = theme.error })  -- Normal text in sidebar
-	highlight("NormalFloat", { fg = theme.fg, bg = theme.bg_window }) -- Normal text in floating windows
-	highlight("LineNr", { fg = theme.fg, bg = theme.transparent }) -- Line numbers
-	highlight("CursorLineNr", { fg = theme.fg, bg = theme.bg_window }) -- Line numbers
-	highlight("MatchParen", { fg = theme.bg, bg = theme.hl_main }) -- Matching pair highlight
-	highlight("ErrorMsg", { fg = theme.error })                 -- Error messages on the commandline
-	highlight("Cursor", { fg = theme.fg, bg = theme.bg })       -- Character under the cursor
-	highlight("lCursor", { fg = theme.fg, bg = theme.bg })      -- Character under the cursor when `language-mapping`
-	highlight("CursorIM", { fg = theme.fg, bg = theme.bg })     -- Character under the cursor in IME mode
-	highlight("CursorLine", { fg = theme.fg, bg = theme.bg_button }) -- Screen line at the cursor
-	highlight("IncSearch", { fg = theme.bg, bg = theme.hl_main }) -- Yank highlight
+	highlight("NormalSB", { fg = theme.fg, bg = theme.error }, invert)  -- Normal text in sidebar
+	highlight("NormalFloat", { fg = theme.fg, bg = theme.bg_window }, invert) -- Normal text in floating windows
+	highlight("LineNr", { fg = theme.fg, bg = theme.transparent }, invert) -- Line numbers
+	highlight("CursorLineNr", { fg = theme.fg, bg = theme.bg_window }, invert) -- Line numbers
+	highlight("MatchParen", { fg = theme.bg, bg = theme.hl_main }, invert) -- Matching pair highlight
+	highlight("ErrorMsg", { fg = theme.error }, invert)                 -- Error messages on the commandline
+	highlight("Cursor", { fg = theme.fg, bg = theme.bg }, invert)       -- Character under the cursor
+	highlight("lCursor", { fg = theme.fg, bg = theme.bg }, invert)      -- Character under the cursor when `language-mapping`
+	highlight("CursorIM", { fg = theme.fg, bg = theme.bg }, invert)     -- Character under the cursor in IME mode
+	highlight("CursorLine", { fg = theme.fg, bg = theme.bg_button }, invert) -- Screen line at the cursor
+	highlight("IncSearch", { fg = theme.bg, bg = theme.hl_main }, invert) -- Yank highlight
 
 	-- Lazy
-	highlight("LazyComment", { fg = theme.comment })
-	highlight("LazyReasonPlugin", { fg = theme.comment })
-	highlight("LazySpecial", { fg = theme.hl_alt })
-	highlight("LazyH1", { fg = theme.bg, bg = theme.hl_main })
-	highlight("LazyButton", { fg = theme.fg, bg = theme.bg_button })
-	highlight("LazyButtonActive", { fg = theme.bg, bg = theme.hl_main })
+	highlight("LazyComment", { fg = theme.comment }, invert)
+	highlight("LazyReasonPlugin", { fg = theme.comment }, invert)
+	highlight("LazySpecial", { fg = theme.hl_alt }, invert)
+	highlight("LazyH1", { fg = theme.bg, bg = theme.hl_main }, invert)
+	highlight("LazyButton", { fg = theme.fg, bg = theme.bg_button }, invert)
+	highlight("LazyButtonActive", { fg = theme.bg, bg = theme.hl_main }, invert)
 
 	-- Mason
-	highlight("MasonHeader", { fg = theme.bg, bg = theme.hl_main })
-	highlight("MasonHighlight", { fg = theme.hl_main, bg = theme.transparent })
-	highlight("MasonHighlightBlockBold", { fg = theme.bg_button, bg = theme.hl_main })
-	highlight("MasonMuted", { fg = theme.redundant, bg = theme.transparent })
-	highlight("MasonMutedBlock", { fg = theme.fg, bg = theme.bg_button })
-	highlight("MasonHighlightBlock", { fg = theme.hl_main, bg = theme.bg_button })
+	highlight("MasonHeader", { fg = theme.bg, bg = theme.hl_main }, invert)
+	highlight("MasonHighlight", { fg = theme.hl_main, bg = theme.transparent }, invert)
+	highlight("MasonHighlightBlockBold", { fg = theme.bg_button, bg = theme.hl_main }, invert)
+	highlight("MasonMuted", { fg = theme.redundant, bg = theme.transparent }, invert)
+	highlight("MasonMutedBlock", { fg = theme.fg, bg = theme.bg_button }, invert)
+	highlight("MasonHighlightBlock", { fg = theme.hl_main, bg = theme.bg_button }, invert)
 
 	-- Oil
-	highlight("Directory", { fg = theme.comment })
-	highlight("OilFile", { fg = theme.hl_main })
+	highlight("Directory", { fg = theme.comment }, invert)
+	highlight("OilFile", { fg = theme.hl_main }, invert)
 
 	-- Code
-	highlight("@boolean", { fg = theme.keyword })
-	highlight("@constant.macro", { fg = theme.macro })
-	highlight("@constant", { fg = theme.constant })
-	highlight("@function.macro", { fg = theme.macro })
-	highlight("@lsp.mod.declaration", { fg = theme.module })
-	highlight("@lsp.mod.library", { fg = theme.module })
-	highlight("@lsp.mod.static", { fg = theme.constant })
+	highlight("@boolean", { fg = theme.keyword }, invert)
+	highlight("@constant.macro", { fg = theme.macro }, invert)
+	highlight("@constant", { fg = theme.constant }, invert)
+	highlight("@function.macro", { fg = theme.macro }, invert)
+	highlight("@lsp.mod.declaration", { fg = theme.module }, invert)
+	highlight("@lsp.mod.library", { fg = theme.module }, invert)
+	highlight("@lsp.mod.static", { fg = theme.constant }, invert)
 	highlight("@lsp.type.invalidEscapeSequence", { fg = theme.error })
-	highlight("@lsp.type.keyword", { fg = theme.keyword })
-	highlight("@lsp.typemod.decorator.attribute", { fg = theme.attribute })
-	highlight("@lsp.typemod.derive", { fg = theme.interface })
-	highlight("@lsp.typemod.enum", { fg = theme.enum })
-	highlight("@lsp.typemod.enumMember", { fg = theme.constant })
-	highlight("@lsp.typemod.function", { fg = theme.method })
-	highlight("@lsp.typemod.interface.library", { fg = theme.interface })
-	highlight("@lsp.typemod.macro", { fg = theme.macro })
-	highlight("@lsp.typemod.method", { fg = theme.method })
-	highlight("@lsp.typemod.operator.controlFlow", { fg = theme.keyword })
-	highlight("@lsp.typemod.property.declaration", { fg = theme.member })
-	highlight("@lsp.typemod.property", { fg = theme.member })
-	highlight("@lsp.typemod.struct", { fg = theme.struct })
-	highlight("@lsp.typemod.typeAlias.library", { link = "Type" })
-	highlight("@lsp.typemod.variable", { fg = theme.variable })
-	highlight("@module", { fg = theme.namespace })
-	highlight("@string.escape", { fg = theme.escape })
-	highlight("@variable", { fg = theme.variable })
-	highlight("@variable.member", { fg = theme.member })
-	highlight("Comment", { fg = theme.comment })
-	highlight("Delimiter", { fg = theme.delimiter })
-	highlight("Function", { fg = theme.method })
-	highlight("Identifier", { fg = theme.member })
-	highlight("Number", { fg = theme.number })
-	highlight("Operator", { fg = theme.operator })
-	highlight("Special", { fg = theme.keyword })
-	highlight("Statement", { fg = theme.keyword })
-	highlight("String", { fg = theme.string })
-	highlight("Type", { fg = theme.struct })
+	highlight("@lsp.type.keyword", { fg = theme.keyword }, invert)
+	highlight("@lsp.typemod.decorator.attribute", { fg = theme.attribute }, invert)
+	highlight("@lsp.typemod.derive", { fg = theme.interface }, invert)
+	highlight("@lsp.typemod.enum", { fg = theme.enum }, invert)
+	highlight("@lsp.typemod.enumMember", { fg = theme.constant }, invert)
+	highlight("@lsp.typemod.function", { fg = theme.method }, invert)
+	highlight("@lsp.typemod.interface.library", { fg = theme.interface }, invert)
+	highlight("@lsp.typemod.macro", { fg = theme.macro }, invert)
+	highlight("@lsp.typemod.method", { fg = theme.method }, invert)
+	highlight("@lsp.typemod.operator.controlFlow", { fg = theme.keyword }, invert)
+	highlight("@lsp.typemod.property.declaration", { fg = theme.member }, invert)
+	highlight("@lsp.typemod.property", { fg = theme.member }, invert)
+	highlight("@lsp.typemod.struct", { fg = theme.struct }, invert)
+	highlight("@lsp.typemod.typeAlias.library", { link = "Type" }, invert)
+	highlight("@lsp.typemod.variable", { fg = theme.variable }, invert)
+	highlight("@module", { fg = theme.namespace }, invert)
+	highlight("@string.escape", { fg = theme.escape }, invert)
+	highlight("@variable", { fg = theme.variable }, invert)
+	highlight("@variable.member", { fg = theme.member }, invert)
+	highlight("Comment", { fg = theme.comment }, invert)
+	highlight("Delimiter", { fg = theme.delimiter }, invert)
+	highlight("Function", { fg = theme.method }, invert)
+	highlight("Identifier", { fg = theme.member }, invert)
+	highlight("Number", { fg = theme.number }, invert)
+	highlight("Operator", { fg = theme.operator }, invert)
+	highlight("Special", { fg = theme.keyword }, invert)
+	highlight("Statement", { fg = theme.keyword }, invert)
+	highlight("String", { fg = theme.string }, invert)
+	highlight("Type", { fg = theme.struct }, invert)
 
 	-- Diagnostics
 	highlight("DiagnosticUnnecessary", { fg = theme.redundant })
@@ -247,4 +268,4 @@ local function set_highlights(colors, transparent)
 	highlight("@lsp.type.stringEscapeCharacter.cs", { fg = theme.escape })
 end
 
-set_highlights("wilding", true)
+set_highlights("wilding", true, false)
