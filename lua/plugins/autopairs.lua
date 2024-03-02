@@ -14,5 +14,19 @@ return {
                 -- java = false, -- Don't check treesitter on Java
             }
         })
+
+        local npairs = require("nvim-autopairs")
+        local Rule = require("nvim-autopairs.rule")
+        local cond = require("nvim-autopairs.conds")
+
+        -- https://github.com/windwp/nvim-autopairs/wiki/Rules-API/
+
+        npairs.add_rules({
+            -- Angle brackets
+            npairs.add_rule(
+                Rule("<", ">")
+                :with_pair(cond.not_before_regex(" ", 1))
+            ),
+        })
     end,
 }
