@@ -1,36 +1,80 @@
-local c = {
-	transparent = "NONE",
-	fg = "#bdbdbd", -- variable
-	bg = "#000000",
-	bg_window = "#090909",
-	bg_button = "#1f1f1f",
-	hl_main = "#4eade5", -- macro
-	hl_alt = "#6c95eb", -- keyword
+local colorSets = {
+	rider = {
+		transparent = "NONE",
+		fg = "#bdbdbd", -- variable
+		bg = "#000000",
+		bg_window = "#090909",
+		bg_button = "#1f1f1f",
+		hl_main = "#4eade5", -- macro
+		hl_alt = "#6c95eb", -- keyword
 
-	variable = "#bdbdbd",
-	operator = "#bdbdbd",
-	string = "#c9a26d",
-	number = "#ed94c0",
-	escape = "#ed94c0",
-	comment = "#85c46c",
-	comment_alt = "#487d34",
-	keyword = "#6c95eb",
-	struct = "#c191ff",
-	enum = "#e1bfff",
-	interface = "#9591ff",
-	method = "#39cc8f",
-	constant = "#66c3cc",
-	member = "#66c3cc",
-	todo = "#66c3cc",
-	macro = "#4eade5",
-	attribute = "#c191ff",
-	error = "#ff0000",
-	hint = "#555555",
-	redundant = "#787878",
-	delimiter = "#cccccc",
-	namespace = "#ffb083",
-	module = "#ffd3b3",
+		variable = "#bdbdbd",
+		operator = "#bdbdbd",
+		string = "#c9a26d",
+		number = "#ed94c0",
+		escape = "#ed94c0",
+		comment = "#85c46c",
+		comment_alt = "#487d34",
+		keyword = "#6c95eb",
+		struct = "#c191ff",
+		enum = "#e1bfff",
+		interface = "#9591ff",
+		method = "#39cc8f",
+		constant = "#66c3cc",
+		member = "#66c3cc",
+		todo = "#66c3cc",
+		macro = "#4eade5",
+		attribute = "#c191ff",
+		error = "#ff0000",
+		hint = "#555555",
+		redundant = "#787878",
+		delimiter = "#cccccc",
+		namespace = "#ffb083",
+		module = "#ffd3b3",
+	},
+
+
+
+
+
+
+
+
+	wilding = {
+		transparent = "NONE",
+		fg = "#bdbdbd", -- variable
+		bg = "#000000",
+		bg_window = "#090909",
+		bg_button = "#1f1f1f",
+		hl_main = "#4eade5",
+		hl_alt = "#f3c2f1",
+
+		variable = "#bdbdbd",
+		operator = "#bdbdbd",
+		string = "#bdbdbd",
+		number = "#bdbdbd",
+		escape = "#bdbdbd",
+		comment = "#4eade5",
+		keyword = "#bdbdbd",
+		struct = "#bdbdbd",
+		enum = "#bdbdbd",
+		interface = "#bdbdbd",
+		method = "#bdbdbd",
+		constant = "#bdbdbd",
+		member = "#bdbdbd",
+		todo = "#bdbdbd",
+		macro = "#bdbdbd",
+		attribute = "#bdbdbd",
+		error = "#bdbdbd",
+		hint = "#bdbdbd",
+		redundant = "#bdbdbd",
+		delimiter = "#bdbdbd",
+		namespace = "#bdbdbd",
+		module = "#bdbdbd",
+	}
 }
+
+local theme = colorSets.rider
 
 local function highlight(group, opts)
 	if opts.link then
@@ -74,9 +118,9 @@ end
 
 local function set_highlights()
 	-- Normal
-	highlight("Normal", { fg = c.fg, bg = c.bg })      -- Current window
-	highlight("NormalNC", { fg = c.fg, bg = c.bg })    -- Non-current window
-	highlight("ColorColumn", { fg = c.fg, bg = c.bg_window }) -- Columns set with `colorcolumn`
+	highlight("Normal", { fg = theme.fg, bg = theme.bg })      -- Current window
+	highlight("NormalNC", { fg = theme.fg, bg = theme.bg })    -- Non-current window
+	highlight("ColorColumn", { fg = theme.fg, bg = theme.bg_window }) -- Columns set with `colorcolumn`
 
 	-- Transparent
 	--highlight("Normal", { fg = c.fg, bg = c.transparent }) -- Current window
@@ -84,94 +128,94 @@ local function set_highlights()
 	--highlight("ColorColumn", { fg = c.fg, bg = c.transparent }) -- Columns set with `colorcolumn`
 
 	-- Theme
-	highlight("NormalSB", { fg = c.fg, bg = c.error })  -- Normal text in sidebar
-	highlight("NormalFloat", { fg = c.fg, bg = c.bg_window }) -- Normal text in floating windows
-	highlight("CursorLineNr", { fg = c.fg, bg = c.bg_window }) -- Line numbers
-	highlight("MatchParen", { fg = c.bg, bg = c.hl_main }) -- Matching pair highlight
-	highlight("ErrorMsg", { fg = c.error })             -- Error messages on the commandline
-	highlight("LineNr", { fg = c.fg, bg = c.bg_window }) -- Line numbers
-	highlight("Cursor", { fg = c.fg, bg = c.bg })       -- Character under the cursor
-	highlight("lCursor", { fg = c.fg, bg = c.bg })      -- Character under the cursor when `language-mapping`
-	highlight("CursorIM", { fg = c.fg, bg = c.bg })     -- Character under the cursor in IME mode
-	highlight("CursorLine", { fg = c.fg, bg = c.bg_button }) -- Screen line at the cursor
-	highlight("IncSearch", { fg = c.bg, bg = c.hl_main }) -- Yank highlight
+	highlight("NormalSB", { fg = theme.fg, bg = theme.error })  -- Normal text in sidebar
+	highlight("NormalFloat", { fg = theme.fg, bg = theme.bg_window }) -- Normal text in floating windows
+	highlight("CursorLineNr", { fg = theme.fg, bg = theme.bg_window }) -- Line numbers
+	highlight("MatchParen", { fg = theme.bg, bg = theme.hl_main }) -- Matching pair highlight
+	highlight("ErrorMsg", { fg = theme.error })                 -- Error messages on the commandline
+	highlight("LineNr", { fg = theme.fg, bg = theme.bg_window }) -- Line numbers
+	highlight("Cursor", { fg = theme.fg, bg = theme.bg })       -- Character under the cursor
+	highlight("lCursor", { fg = theme.fg, bg = theme.bg })      -- Character under the cursor when `language-mapping`
+	highlight("CursorIM", { fg = theme.fg, bg = theme.bg })     -- Character under the cursor in IME mode
+	highlight("CursorLine", { fg = theme.fg, bg = theme.bg_button }) -- Screen line at the cursor
+	highlight("IncSearch", { fg = theme.bg, bg = theme.hl_main }) -- Yank highlight
 
 	-- Lazy
-	highlight("LazyComment", { fg = c.hl_main })          -- Lazy comment
-	highlight("LazyReasonPlugin", { fg = c.hl_alt })      -- Lazy status
-	highlight("LazySpecial", { fg = c.hl_alt })           -- Lazy icons
-	highlight("LazyH1", { fg = c.bg, bg = c.hl_main })    -- Lazy header
-	highlight("LazyButtonActive", { fg = c.bg, bg = c.hl_main }) -- Lazy button
+	highlight("LazyComment", { fg = theme.hl_main })              -- Lazy comment
+	highlight("LazyReasonPlugin", { fg = theme.hl_alt })          -- Lazy status
+	highlight("LazySpecial", { fg = theme.hl_alt })               -- Lazy icons
+	highlight("LazyH1", { fg = theme.bg, bg = theme.hl_main })    -- Lazy header
+	highlight("LazyButtonActive", { fg = theme.bg, bg = theme.hl_main }) -- Lazy button
 
 	-- Mason
-	highlight("MasonHeader", { fg = c.bg, bg = c.hl_main })             -- Mason header
-	highlight("MasonHighlight", { fg = c.hl_main, bg = c.transparent }) -- Mason highlight
-	highlight("MasonHighlightBlockBold", { fg = c.bg_button, bg = c.hl_main }) -- Mason highlight block bold
-	highlight("MasonMuted", { fg = c.redundant, bg = c.transparent })   -- Mason muted
-	highlight("MasonMutedBlock", { fg = c.fg, bg = c.bg_button })       -- Mason muted blocked
-	highlight("MasonHighlightBlock", { fg = c.hl_main, bg = c.bg_button }) -- Mason muted blocked
+	highlight("MasonHeader", { fg = theme.bg, bg = theme.hl_main })             -- Mason header
+	highlight("MasonHighlight", { fg = theme.hl_main, bg = theme.transparent }) -- Mason highlight
+	highlight("MasonHighlightBlockBold", { fg = theme.bg_button, bg = theme.hl_main }) -- Mason highlight block bold
+	highlight("MasonMuted", { fg = theme.redundant, bg = theme.transparent })   -- Mason muted
+	highlight("MasonMutedBlock", { fg = theme.fg, bg = theme.bg_button })       -- Mason muted blocked
+	highlight("MasonHighlightBlock", { fg = theme.hl_main, bg = theme.bg_button }) -- Mason muted blocked
 
 	-- Code
-	highlight("@variable", { fg = c.variable })
-	highlight("String", { fg = c.string })
-	highlight("Number", { fg = c.number })
-	highlight("Type", { fg = c.struct })
-	highlight("Comment", { fg = c.comment })
-	highlight("Special", { fg = c.keyword })
-	highlight("Statement", { fg = c.keyword })
-	highlight("Function", { fg = c.method })
-	highlight("Operator", { fg = c.operator })
-	highlight("Delimiter", { fg = c.delimiter })
-	highlight("@function.macro", { fg = c.macro })
-	highlight("@module", { fg = c.namespace })
-	highlight("@constant", { fg = c.constant })
-	highlight("@lsp.mod.library", { fg = c.module })
-	highlight("@lsp.typemod.method", { fg = c.method })
-	highlight("@lsp.typemod.macro", { fg = c.macro })
-	highlight("@variable.member", { fg = c.member })
-	highlight("@lsp.type.keyword", { fg = c.keyword })
-	highlight("@lsp.typemod.interface.library", { fg = c.interface })
+	highlight("@variable", { fg = theme.variable })
+	highlight("String", { fg = theme.string })
+	highlight("Number", { fg = theme.number })
+	highlight("Type", { fg = theme.struct })
+	highlight("Comment", { fg = theme.comment })
+	highlight("Special", { fg = theme.keyword })
+	highlight("Statement", { fg = theme.keyword })
+	highlight("Function", { fg = theme.method })
+	highlight("Operator", { fg = theme.operator })
+	highlight("Delimiter", { fg = theme.delimiter })
+	highlight("@function.macro", { fg = theme.macro })
+	highlight("@module", { fg = theme.namespace })
+	highlight("@constant", { fg = theme.constant })
+	highlight("@lsp.mod.library", { fg = theme.module })
+	highlight("@lsp.typemod.method", { fg = theme.method })
+	highlight("@lsp.typemod.macro", { fg = theme.macro })
+	highlight("@variable.member", { fg = theme.member })
+	highlight("@lsp.type.keyword", { fg = theme.keyword })
+	highlight("@lsp.typemod.interface.library", { fg = theme.interface })
 	highlight("@lsp.typemod.typeAlias.library", { link = "Type" })
-	highlight("@lsp.mod.declaration", { fg = c.module })
-	highlight("@lsp.typemod.enum", { fg = c.enum })
-	highlight("@lsp.typemod.decorator.attribute", { fg = c.attribute })
-	highlight("@lsp.typemod.derive", { fg = c.interface })
-	highlight("@lsp.typemod.enumMember", { fg = c.constant })
-	highlight("@lsp.typemod.function", { fg = c.method })
-	highlight("@lsp.typemod.variable", { fg = c.variable })
-	highlight("@lsp.typemod.property.declaration", { fg = c.member })
-	highlight("@lsp.typemod.struct", { fg = c.struct })
-	highlight("@boolean", { fg = c.keyword })
-	highlight("@lsp.typemod.property", { fg = c.member })
-	highlight("Identifier", { fg = c.member })
-	highlight("@string.escape", { fg = c.escape })
-	highlight("@lsp.type.invalidEscapeSequence", { fg = c.error })
-	highlight("@constant.macro", { fg = c.macro })
-	highlight("@lsp.typemod.operator.controlFlow", { fg = c.keyword })
+	highlight("@lsp.mod.declaration", { fg = theme.module })
+	highlight("@lsp.typemod.enum", { fg = theme.enum })
+	highlight("@lsp.typemod.decorator.attribute", { fg = theme.attribute })
+	highlight("@lsp.typemod.derive", { fg = theme.interface })
+	highlight("@lsp.typemod.enumMember", { fg = theme.constant })
+	highlight("@lsp.typemod.function", { fg = theme.method })
+	highlight("@lsp.typemod.variable", { fg = theme.variable })
+	highlight("@lsp.typemod.property.declaration", { fg = theme.member })
+	highlight("@lsp.typemod.struct", { fg = theme.struct })
+	highlight("@boolean", { fg = theme.keyword })
+	highlight("@lsp.typemod.property", { fg = theme.member })
+	highlight("Identifier", { fg = theme.member })
+	highlight("@string.escape", { fg = theme.escape })
+	highlight("@lsp.type.invalidEscapeSequence", { fg = theme.error })
+	highlight("@constant.macro", { fg = theme.macro })
+	highlight("@lsp.typemod.operator.controlFlow", { fg = theme.keyword })
 
 	-- Statuses
-	highlight("@WarningMsg", { fg = c.hint })
+	highlight("@WarningMsg", { fg = theme.hint })
 
 	-- Diagnostics
-	highlight("DiagnosticUnnecessary", { fg = c.redundant })
+	highlight("DiagnosticUnnecessary", { fg = theme.redundant })
 
 	-- nvim-notify
-	highlight("NotifyBackground", { bg = c.bg })
-	highlight("NotifyINFOBody", { fg = c.fg })
-	highlight("NoiceAttr", { fg = c.fg })
+	highlight("NotifyBackground", { bg = theme.bg })
+	highlight("NotifyINFOBody", { fg = theme.fg })
+	highlight("NoiceAttr", { fg = theme.fg })
 
 	-- Hints
-	highlight("LspInlayHint", { fg = c.hint })
-	highlight("LspLens", { fg = c.redundant })
+	highlight("LspInlayHint", { fg = theme.hint })
+	highlight("LspLens", { fg = theme.redundant })
 
 	-- Rust
-	highlight("@type.qualifier.rust", { fg = c.keyword, style = "underline" })
+	highlight("@type.qualifier.rust", { fg = theme.keyword, style = "underline" })
 	highlight("@lsp.mod.mutable", { style = "underline" })
 	highlight("@lsp.typemod.namespace.crateRoot", { link = "@module" })
-	highlight("@lsp.typemod.interface.declaration", { fg = c.interface })
+	highlight("@lsp.typemod.interface.declaration", { fg = theme.interface })
 
 	-- CSharp
-	highlight("@lsp.type.stringEscapeCharacter.cs", { fg = c.escape })
+	highlight("@lsp.type.stringEscapeCharacter.cs", { fg = theme.escape })
 end
 
 set_highlights()
