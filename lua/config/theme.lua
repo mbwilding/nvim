@@ -1,12 +1,12 @@
 local colorSets = {
 	rider = {
 		transparent = "NONE",
-		fg = "#bdbdbd", -- variable
+		fg = "#bdbdbd",
 		bg = "#000000",
 		bg_window = "#090909",
 		bg_button = "#1f1f1f",
-		hl_main = "#4eade5", -- macro
-		hl_alt = "#6c95eb", -- keyword
+		hl_main = "#4eade5",
+		hl_alt = "#6c95eb",
 
 		variable = "#bdbdbd",
 		operator = "#bdbdbd",
@@ -14,7 +14,7 @@ local colorSets = {
 		number = "#ed94c0",
 		escape = "#ed94c0",
 		comment = "#85c46c",
-		comment_alt = "#487d34",
+		--comment_alt = "#487d34",
 		keyword = "#6c95eb",
 		struct = "#c191ff",
 		enum = "#e1bfff",
@@ -28,53 +28,80 @@ local colorSets = {
 		error = "#ff0000",
 		hint = "#555555",
 		redundant = "#787878",
-		delimiter = "#cccccc",
+		delimiter = "#bdbdbd",
 		namespace = "#ffb083",
 		module = "#ffd3b3",
 	},
-
-
-
-
-
-
-
-
-	wilding = {
+	rider_modified = {
 		transparent = "NONE",
-		fg = "#bdbdbd", -- variable
+		fg = "#bdbdbd",
 		bg = "#000000",
 		bg_window = "#090909",
 		bg_button = "#1f1f1f",
 		hl_main = "#4eade5",
-		hl_alt = "#f3c2f1",
+		hl_alt = "#4eade5",
 
 		variable = "#bdbdbd",
 		operator = "#bdbdbd",
-		string = "#bdbdbd",
-		number = "#bdbdbd",
-		escape = "#bdbdbd",
-		comment = "#4eade5",
-		keyword = "#bdbdbd",
-		struct = "#bdbdbd",
-		enum = "#bdbdbd",
-		interface = "#bdbdbd",
-		method = "#bdbdbd",
-		constant = "#bdbdbd",
-		member = "#bdbdbd",
-		todo = "#bdbdbd",
-		macro = "#bdbdbd",
-		attribute = "#bdbdbd",
-		error = "#bdbdbd",
-		hint = "#bdbdbd",
-		redundant = "#bdbdbd",
-		delimiter = "#bdbdbd",
-		namespace = "#bdbdbd",
-		module = "#bdbdbd",
+		string = "#c9a26d",
+		number = "#ed94c0",
+		escape = "#ed94c0",
+		comment = "#85c46c",
+		keyword = "#6c95eb",
+		struct = "#c191ff",
+		enum = "#e1bfff",
+		interface = "#9591ff",
+		method = "#39cc8f",
+		constant = "#66c3cc",
+		member = "#66c3cc",
+		todo = "#66c3cc",
+		macro = "#4eade5",
+		attribute = "#c191ff",
+		error = "#ff0000",
+		hint = "#555555",
+		redundant = "#787878",
+		delimiter = "#999999",
+		namespace = "#ffb083",
+		module = "#ffd3b3",
+	},
+	wilding_gpt = {
+		transparent = "NONE",
+		fg = "#e0e0e0", -- Light gray for general foreground text
+		bg = "#000000",
+		bg_window = "#2c313c", -- Slightly lighter blue-gray for window backgrounds
+		bg_button = "#333842", -- Dark gray for buttons, ensuring readability
+		hl_main = "#61afef", -- Bright blue for main highlights, eye-catching
+		hl_alt = "#98c379", -- Green for alternate highlights, offering visual variety
+
+		variable = "#e06c75", -- Bold red for variables, stands out
+		operator = "#56b6c2", -- Cyan for operators, distinct and clear
+		string = "#98c379", -- Green for strings, natural and easy to identify
+		number = "#d19a66", -- Orange for numbers, warm and noticeable
+		escape = "#c678dd", -- Purple for escapes, visually distinct
+		comment = "#7f848e", -- Darker gray for comments, readable but subdued
+		keyword = "#c678dd", -- Purple for keywords, highlighting control structures
+		struct = "#e5c07b", -- Bold yellow for structs, bright and eye-catching
+		enum = "#56b6c2", -- Cyan, similar to operators for enums, for consistency
+		interface = "#e06c75", -- Bold red, similar to variables for interfaces, maintaining theme
+		method = "#61afef", -- Bright blue, similar to highlights for methods, cohesive
+		constant = "#d19a66", -- Orange, similar to numbers for constants, thematic consistency
+		member = "#98c379", -- Green, similar to strings for members, harmonious
+		todo = "#c678dd", -- Purple, eye-catching for TODOs, ensuring they stand out
+		macro = "#e5c07b", -- Bold yellow, unique for macros, drawing attention
+		attribute = "#56b6c2", -- Cyan, creating a link to operators and enums for attributes
+		error = "#e06c75", -- Bold red for errors, ensuring they are highly visible
+		hint = "#61afef", -- Bright blue for hints, consistent with methods and main highlights
+		redundant = "#7f848e", -- Darker gray, similar to comments for redundancies, subtly blending
+		delimiter = "#e0e0e0", -- Light gray, matching the foreground for coherence
+		namespace = "#c678dd", -- Purple, tying back to keywords and TODOs for namespaces
+		module = "#e5c07b", -- Bold yellow, echoing structs and macros for modules
 	}
+
+
 }
 
-local theme = colorSets.rider
+local theme = colorSets.rider_modified
+local transparent = true
 
 local function highlight(group, opts)
 	if opts.link then
@@ -117,15 +144,19 @@ local function highlight(group, opts)
 end
 
 local function set_highlights()
-	-- Normal
-	highlight("Normal", { fg = theme.fg, bg = theme.bg })      -- Current window
-	highlight("NormalNC", { fg = theme.fg, bg = theme.bg })    -- Non-current window
-	highlight("ColorColumn", { fg = theme.fg, bg = theme.bg_window }) -- Columns set with `colorcolumn`
-
-	-- Transparent
-	--highlight("Normal", { fg = c.fg, bg = c.transparent }) -- Current window
-	--highlight("NormalNC", { fg = c.fg, bg = c.transparent }) -- Non-current window
-	--highlight("ColorColumn", { fg = c.fg, bg = c.transparent }) -- Columns set with `colorcolumn`
+	if transparent then
+		-- Transparent
+		highlight("Normal", { fg = theme.fg, bg = theme.transparent }) -- Current window
+		highlight("NormalNC", { fg = theme.fg, bg = theme.transparent }) -- Non-current window
+		highlight("ColorColumn", { fg = theme.fg, bg = theme.transparent }) -- Columns set with `colorcolumn`
+		highlight("LineNr", { fg = theme.fg, bg = theme.transparent }) -- Line numbers
+	else
+		-- Normal
+		highlight("Normal", { fg = theme.fg, bg = theme.bg }) -- Current window
+		highlight("NormalNC", { fg = theme.fg, bg = theme.bg }) -- Non-current window
+		highlight("ColorColumn", { fg = theme.fg, bg = theme.bg_window }) -- Columns set with `colorcolumn`
+		highlight("LineNr", { fg = theme.fg, bg = theme.bg_window }) -- Line numbers
+	end
 
 	-- Theme
 	highlight("NormalSB", { fg = theme.fg, bg = theme.error })  -- Normal text in sidebar
@@ -133,7 +164,6 @@ local function set_highlights()
 	highlight("CursorLineNr", { fg = theme.fg, bg = theme.bg_window }) -- Line numbers
 	highlight("MatchParen", { fg = theme.bg, bg = theme.hl_main }) -- Matching pair highlight
 	highlight("ErrorMsg", { fg = theme.error })                 -- Error messages on the commandline
-	highlight("LineNr", { fg = theme.fg, bg = theme.bg_window }) -- Line numbers
 	highlight("Cursor", { fg = theme.fg, bg = theme.bg })       -- Character under the cursor
 	highlight("lCursor", { fg = theme.fg, bg = theme.bg })      -- Character under the cursor when `language-mapping`
 	highlight("CursorIM", { fg = theme.fg, bg = theme.bg })     -- Character under the cursor in IME mode
@@ -141,10 +171,11 @@ local function set_highlights()
 	highlight("IncSearch", { fg = theme.bg, bg = theme.hl_main }) -- Yank highlight
 
 	-- Lazy
-	highlight("LazyComment", { fg = theme.hl_main })              -- Lazy comment
-	highlight("LazyReasonPlugin", { fg = theme.hl_alt })          -- Lazy status
+	highlight("LazyComment", { fg = theme.comment })              -- Lazy comment
+	highlight("LazyReasonPlugin", { fg = theme.comment })         -- Lazy status
 	highlight("LazySpecial", { fg = theme.hl_alt })               -- Lazy icons
 	highlight("LazyH1", { fg = theme.bg, bg = theme.hl_main })    -- Lazy header
+	highlight("LazyButton", { fg = theme.fg, bg = theme.bg_button }) -- Lazy button
 	highlight("LazyButtonActive", { fg = theme.bg, bg = theme.hl_main }) -- Lazy button
 
 	-- Mason
@@ -192,6 +223,7 @@ local function set_highlights()
 	highlight("@lsp.type.invalidEscapeSequence", { fg = theme.error })
 	highlight("@constant.macro", { fg = theme.macro })
 	highlight("@lsp.typemod.operator.controlFlow", { fg = theme.keyword })
+	highlight("@lsp.mod.static", { fg = theme.constant })
 
 	-- Statuses
 	highlight("@WarningMsg", { fg = theme.hint })
