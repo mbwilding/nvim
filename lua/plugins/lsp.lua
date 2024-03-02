@@ -133,7 +133,7 @@ return {
                 end
 
                 -- Formats the current buffer
-                map('<leader>f', function()
+                map('<leader>ff', function()
                     vim.lsp.buf.format { async = true }
                 end, 'Format')
 
