@@ -30,7 +30,7 @@ return {
           if latest_author == "Not Committed Yet" then
             latest_author = "uncommitted"
           end
-          return "  " .. latest_author .. (count - 1 == 0 and "" or (" + " .. count - 1))
+          return " " .. latest_author .. (count - 1 == 0 and "" or (" + " .. count - 1))
         end,
       },
       ignore_filetype = {
