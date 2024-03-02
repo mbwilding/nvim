@@ -1,7 +1,8 @@
 local c = {
+	transparent = "NONE",
+	fg = "#bdbdbd",
 	bg = "#000000",
-	fg = "#ffffff",
-	none = "NONE",
+	bg_alt = "#111111",
 
 	variable = "#c4c294",
 	operator = "#bdbdbd",
@@ -29,9 +30,6 @@ local c = {
 	module = "#ffd3b3",
 }
 
-
-
-
 local function highlight(group, opts)
 	if opts.link then
 		local cmd = string.format("highlight! link %s %s", group, opts.link)
@@ -39,12 +37,10 @@ local function highlight(group, opts)
 	else
 		local parts = { "highlight", group }
 
-		-- Only add the style part if it's provided and not equal to "NONE"
 		if opts.style and opts.style ~= "NONE" then
 			table.insert(parts, "gui=" .. opts.style)
 		end
 
-		-- Handle foreground color, including the "NONE" case for transparency
 		if opts.fg then
 			if opts.fg == "NONE" then
 				table.insert(parts, "guifg=NONE")
@@ -53,7 +49,6 @@ local function highlight(group, opts)
 			end
 		end
 
-		-- Handle background color, including the "NONE" case for transparency
 		if opts.bg then
 			if opts.bg == "NONE" then
 				table.insert(parts, "guibg=NONE")
@@ -62,7 +57,6 @@ local function highlight(group, opts)
 			end
 		end
 
-		-- Handle special color, including the "NONE" case for transparency
 		if opts.sp then
 			if opts.sp == "NONE" then
 				table.insert(parts, "guisp=NONE")
@@ -71,13 +65,10 @@ local function highlight(group, opts)
 			end
 		end
 
-		-- Join parts with a space and execute the command
 		local cmd = table.concat(parts, " ")
 		vim.cmd(cmd)
 	end
 end
-
-
 
 local function set_highlights()
 	--highlight("Normal", { fg = colors.fg, bg = colors.bg })
@@ -88,12 +79,22 @@ local function set_highlights()
 	--highlight("Strikethrough", { fg = colors.red, style = "strikethrough" })
 
 	-- Normal
-	--highlight("Normal", { fg = colors.fg, bg = colors.bg })
-	--highlight("NormalNC", { fg = colors.fg, bg = colors.bg })
+	highlight("Normal", { fg = c.fg, bg = c.bg })   -- Current window
+	highlight("NormalNC", { fg = c.fg, bg = c.bg }) -- Non-current window
+	highlight("ColorColumn", { fg = c.fg, bg = c.bg_alt }) -- Columns set with `colorcolumn`
 
 	-- Transparent
-	highlight("Normal", { fg = c.none, bg = c.none })
-	highlight("NormalNC", { fg = c.none, bg = c.none })
+	--highlight("Normal", { fg = c.fg, bg = c.transparent }) -- Current window
+	--highlight("NormalNC", { fg = c.fg, bg = c.transparent }) -- Non-current window
+	--highlight("ColorColumn", { fg = c.fg, bg = c.transparent }) -- Columns set with `colorcolumn`
+
+	-- Theme
+	highlight("NormalSB", { fg = c.fg, bg = c.error })    -- Normal text in sidebar
+	highlight("NormalFloat", { fg = c.fg, bg = c.bg_alt }) -- Normal text in floating windows
+	highlight("CursorLineNr", { fg = c.fg, bg = c.line_num_bg }) -- Line numbers
+	highlight("MatchParen", { fg = c.namespace })         -- Matching pair highlight
+	highlight("ErrorMsg", { fg = c.error })               -- Error messages on the commandline
+	highlight("LineNr", { fg = c.fg, bg = c.transparent }) -- Line numbers
 
 	-- Defaults
 	highlight("@variable", { fg = c.variable })
