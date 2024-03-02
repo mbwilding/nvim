@@ -1,11 +1,13 @@
 local c = {
 	bg = "#000000",
 	fg = "#ffffff",
+	none = "NONE",
 
 	variable = "#c4c294",
 	operator = "#bdbdbd",
 	string = "#c9a26d",
 	number = "#ed94c0",
+	escape = "#ed94c0",
 	comment = "#85c46c",
 	comment_alt = "#487d34",
 	keyword = "#6c95eb",
@@ -28,20 +30,53 @@ local c = {
 }
 
 
+
+
 local function highlight(group, opts)
-	-- Check if opts.link is present, indicating a link rather than direct styling
 	if opts.link then
 		local cmd = string.format("highlight! link %s %s", group, opts.link)
 		vim.cmd(cmd)
 	else
-		local style = opts.style and "gui=" .. opts.style or "gui=NONE"
-		local fg = opts.fg and "guifg=" .. opts.fg or "guifg=NONE"
-		local bg = opts.bg and "guibg=" .. opts.bg or "guibg=NONE"
-		local sp = opts.sp and "guisp=" .. opts.sp or ""
-		local cmd = table.concat({ "highlight", group, style, fg, bg, sp }, " ")
+		local parts = { "highlight", group }
+
+		-- Only add the style part if it's provided and not equal to "NONE"
+		if opts.style and opts.style ~= "NONE" then
+			table.insert(parts, "gui=" .. opts.style)
+		end
+
+		-- Handle foreground color, including the "NONE" case for transparency
+		if opts.fg then
+			if opts.fg == "NONE" then
+				table.insert(parts, "guifg=NONE")
+			else
+				table.insert(parts, "guifg=" .. opts.fg)
+			end
+		end
+
+		-- Handle background color, including the "NONE" case for transparency
+		if opts.bg then
+			if opts.bg == "NONE" then
+				table.insert(parts, "guibg=NONE")
+			else
+				table.insert(parts, "guibg=" .. opts.bg)
+			end
+		end
+
+		-- Handle special color, including the "NONE" case for transparency
+		if opts.sp then
+			if opts.sp == "NONE" then
+				table.insert(parts, "guisp=NONE")
+			else
+				table.insert(parts, "guisp=" .. opts.sp)
+			end
+		end
+
+		-- Join parts with a space and execute the command
+		local cmd = table.concat(parts, " ")
 		vim.cmd(cmd)
 	end
 end
+
 
 
 local function set_highlights()
@@ -57,8 +92,8 @@ local function set_highlights()
 	--highlight("NormalNC", { fg = colors.fg, bg = colors.bg })
 
 	-- Transparent
-	highlight("Normal", {})
-	highlight("NormalNC", {})
+	highlight("Normal", { fg = c.none, bg = c.none })
+	highlight("NormalNC", { fg = c.none, bg = c.none })
 
 	-- Defaults
 	highlight("@variable", { fg = c.variable })
@@ -92,6 +127,11 @@ local function set_highlights()
 	highlight("@lsp.typemod.struct", { fg = c.struct })
 	highlight("@boolean", { fg = c.keyword })
 	highlight("@lsp.typemod.property", { fg = c.member })
+	highlight("Identifier", { fg = c.member })
+	highlight("@string.escape", { fg = c.escape })
+	highlight("@lsp.type.invalidEscapeSequence", { fg = c.error })
+	highlight("@constant.macro", { fg = c.macro })
+	highlight("@lsp.typemod.operator.controlFlow", { fg = c.keyword })
 
 	-- Diagnostics
 	highlight("DiagnosticUnnecessary", { fg = c.redundant })
@@ -110,6 +150,9 @@ local function set_highlights()
 	highlight("@lsp.mod.mutable", { style = "underline" })
 	highlight("@lsp.typemod.namespace.crateRoot", { link = "@module" })
 	highlight("@lsp.typemod.interface.declaration", { fg = c.interface })
+
+	-- CSharp
+	highlight("@lsp.type.stringEscapeCharacter.cs", { fg = c.escape })
 end
 
 set_highlights()
