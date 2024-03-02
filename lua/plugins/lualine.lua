@@ -44,6 +44,10 @@
             return "󱉶 " .. table.concat(linters, ", ")
         end
 
+        local function icon()
+            return ""
+        end
+
         lualine.setup {
             options = {
                 icons_enabled = true,
@@ -53,11 +57,14 @@
                 globalstatus = true,
             },
             sections = {
+                lualine_a = {
+                    { icon }
+                },
                 lualine_b = {
                     "branch",
                     "diff",
                     "filename",
-                    "diagnostics"
+                    "diagnostics",
                 },
                 lualine_c = {
                     { lsp },
