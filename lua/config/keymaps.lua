@@ -1,6 +1,9 @@
 -- Map ; to :
 vim.keymap.set('n', ';', ':', { noremap = true, silent = true })
 
+-- Lazy Package Manager
+vim.keymap.set("n", "<leader>L", "<cmd>Lazy<CR>", { silent = true, desc = "Tool: Lazy" })
+
 -- Window resize via Alt + arrows
 vim.keymap.set('n', '<A-Up>', '<cmd>horizontal resize -1<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<A-Down>', '<cmd>horizontal resize +1<CR>', { noremap = true, silent = true })

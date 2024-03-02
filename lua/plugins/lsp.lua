@@ -66,7 +66,7 @@ return {
                     Lua = {
                         diagnostics = {
                             -- Recognize the `vim` global
-                            globals = { 'vim' },
+                            globals = { "vim" },
                         },
                         workspace = {
                             -- Make the server aware of Neovim runtime files
@@ -79,6 +79,8 @@ return {
         }
 
         require("mason").setup()
+        vim.keymap.set("n", "<leader>M", "<cmd>Mason<CR>", { silent = true, desc = "Tool: Mason" })
+
         require("mason-lspconfig").setup_handlers {
             -- The first entry (without a key) will be the default handler
             -- and will be called for each installed server that doesn't have
@@ -96,14 +98,14 @@ return {
             handlers = {
                 function(server_name)
                     local server = servers[server_name] or {}
-                    require('lspconfig')[server_name].setup {
+                    require("lspconfig")[server_name].setup {
                         cmd = server.cmd,
                         settings = server.settings,
                         filetypes = server.filetypes,
                         -- This handles overriding only values explicitly passed
                         -- by the server configuration above. Useful when disabling
                         -- certain features of an LSP (for example, turning off formatting for tsserver)
-                        capabilities = vim.tbl_deep_extend('force', vim.lsp.protocol.make_client_capabilities(), require('cmp_nvim_lsp').default_capabilities()),
+                        capabilities = vim.tbl_deep_extend("force", vim.lsp.protocol.make_client_capabilities(), require("cmp_nvim_lsp").default_capabilities()),
                     }
                 end,
             },

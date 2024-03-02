@@ -1,8 +1,8 @@
 return {
-    "griwes/lsp_lines.nvim",
-    branch = "griwes-patched",
+    "mbwilding/lsp_lines.nvim",
     config = function()
-        require("lsp_lines").setup()
+        local lsp_lines = require("lsp_lines")
+        lsp_lines.setup()
 
         vim.diagnostic.config({
             virtual_text = false, -- Disables in-built
@@ -15,7 +15,7 @@ return {
         vim.keymap.set(
             "n",
             "<leader>hl",
-            require("lsp_lines").toggle,
+            lsp_lines.toggle,
             { desc = "LSP Lines: Toggle" }
         )
     end,
