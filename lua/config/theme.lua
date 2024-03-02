@@ -1,10 +1,13 @@
 local c = {
 	transparent = "NONE",
-	fg = "#bdbdbd",
+	fg = "#bdbdbd", -- variable
 	bg = "#000000",
-	bg_alt = "#111111",
+	bg_window = "#090909",
+	bg_button = "#1f1f1f",
+	hl_main = "#4eade5", -- macro
+	hl_alt = "#6c95eb", -- keyword
 
-	variable = "#c4c294",
+	variable = "#bdbdbd",
 	operator = "#bdbdbd",
 	string = "#c9a26d",
 	number = "#ed94c0",
@@ -17,7 +20,6 @@ local c = {
 	interface = "#9591ff",
 	method = "#39cc8f",
 	constant = "#66c3cc",
-	field = "#66c3cc", -- unused
 	member = "#66c3cc",
 	todo = "#66c3cc",
 	macro = "#4eade5",
@@ -71,17 +73,10 @@ local function highlight(group, opts)
 end
 
 local function set_highlights()
-	--highlight("Normal", { fg = colors.fg, bg = colors.bg })
-	--highlight("Error", { fg = colors.red, bg = colors.bg, style = "bold" })
-	--highlight("Todo", { fg = colors.bg, bg = colors.yellow, style = "bold,italic" })
-	--highlight("CursorLine", { bg = "#333840" })
-	--highlight("Underlined", { fg = colors.blue, style = "underline" })
-	--highlight("Strikethrough", { fg = colors.red, style = "strikethrough" })
-
 	-- Normal
-	highlight("Normal", { fg = c.fg, bg = c.bg })   -- Current window
-	highlight("NormalNC", { fg = c.fg, bg = c.bg }) -- Non-current window
-	highlight("ColorColumn", { fg = c.fg, bg = c.bg_alt }) -- Columns set with `colorcolumn`
+	highlight("Normal", { fg = c.fg, bg = c.bg })      -- Current window
+	highlight("NormalNC", { fg = c.fg, bg = c.bg })    -- Non-current window
+	highlight("ColorColumn", { fg = c.fg, bg = c.bg_window }) -- Columns set with `colorcolumn`
 
 	-- Transparent
 	--highlight("Normal", { fg = c.fg, bg = c.transparent }) -- Current window
@@ -89,14 +84,34 @@ local function set_highlights()
 	--highlight("ColorColumn", { fg = c.fg, bg = c.transparent }) -- Columns set with `colorcolumn`
 
 	-- Theme
-	highlight("NormalSB", { fg = c.fg, bg = c.error })    -- Normal text in sidebar
-	highlight("NormalFloat", { fg = c.fg, bg = c.bg_alt }) -- Normal text in floating windows
-	highlight("CursorLineNr", { fg = c.fg, bg = c.line_num_bg }) -- Line numbers
-	highlight("MatchParen", { fg = c.namespace })         -- Matching pair highlight
-	highlight("ErrorMsg", { fg = c.error })               -- Error messages on the commandline
-	highlight("LineNr", { fg = c.fg, bg = c.transparent }) -- Line numbers
+	highlight("NormalSB", { fg = c.fg, bg = c.error })  -- Normal text in sidebar
+	highlight("NormalFloat", { fg = c.fg, bg = c.bg_window }) -- Normal text in floating windows
+	highlight("CursorLineNr", { fg = c.fg, bg = c.bg_window }) -- Line numbers
+	highlight("MatchParen", { fg = c.bg, bg = c.hl_main }) -- Matching pair highlight
+	highlight("ErrorMsg", { fg = c.error })             -- Error messages on the commandline
+	highlight("LineNr", { fg = c.fg, bg = c.bg_window }) -- Line numbers
+	highlight("Cursor", { fg = c.fg, bg = c.bg })       -- Character under the cursor
+	highlight("lCursor", { fg = c.fg, bg = c.bg })      -- Character under the cursor when `language-mapping`
+	highlight("CursorIM", { fg = c.fg, bg = c.bg })     -- Character under the cursor in IME mode
+	highlight("CursorLine", { fg = c.fg, bg = c.bg_button }) -- Screen line at the cursor
+	highlight("IncSearch", { fg = c.bg, bg = c.hl_main }) -- Yank highlight
 
-	-- Defaults
+	-- Lazy
+	highlight("LazyComment", { fg = c.hl_main })          -- Lazy comment
+	highlight("LazyReasonPlugin", { fg = c.hl_alt })      -- Lazy status
+	highlight("LazySpecial", { fg = c.hl_alt })           -- Lazy icons
+	highlight("LazyH1", { fg = c.bg, bg = c.hl_main })    -- Lazy header
+	highlight("LazyButtonActive", { fg = c.bg, bg = c.hl_main }) -- Lazy button
+
+	-- Mason
+	highlight("MasonHeader", { fg = c.bg, bg = c.hl_main })             -- Mason header
+	highlight("MasonHighlight", { fg = c.hl_main, bg = c.transparent }) -- Mason highlight
+	highlight("MasonHighlightBlockBold", { fg = c.bg_button, bg = c.hl_main }) -- Mason highlight block bold
+	highlight("MasonMuted", { fg = c.redundant, bg = c.transparent })   -- Mason muted
+	highlight("MasonMutedBlock", { fg = c.fg, bg = c.bg_button })       -- Mason muted blocked
+	highlight("MasonHighlightBlock", { fg = c.hl_main, bg = c.bg_button }) -- Mason muted blocked
+
+	-- Code
 	highlight("@variable", { fg = c.variable })
 	highlight("String", { fg = c.string })
 	highlight("Number", { fg = c.number })
@@ -133,6 +148,9 @@ local function set_highlights()
 	highlight("@lsp.type.invalidEscapeSequence", { fg = c.error })
 	highlight("@constant.macro", { fg = c.macro })
 	highlight("@lsp.typemod.operator.controlFlow", { fg = c.keyword })
+
+	-- Statuses
+	highlight("@WarningMsg", { fg = c.hint })
 
 	-- Diagnostics
 	highlight("DiagnosticUnnecessary", { fg = c.redundant })
