@@ -164,7 +164,7 @@
                 return no_lsp_msg
             end,
             icon = '',
-            color = { fg = colors.blue, gui = 'bold' },
+            color = { fg = colors.blue_light, gui = 'bold' },
         }
 
         ins_right {
