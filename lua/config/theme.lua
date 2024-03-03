@@ -111,7 +111,7 @@ local function set_highlights(transparent)
 	highlight("@lsp.typemod.property.declaration", { fg = colors.member })
 	highlight("@lsp.typemod.property", { fg = colors.member })
 	highlight("@lsp.typemod.struct", { fg = colors.struct })
-	--highlight("@lsp.typemod.typeAlias.library", { colors.struct }) -- link = "Type"
+	highlight("@lsp.typemod.typeAlias.library", { fg = colors.struct }) -- link = "Type"
 	highlight("@lsp.typemod.variable", { fg = colors.variable })
 	highlight("@module", { fg = colors.namespace })
 	highlight("@string.escape", { fg = colors.escape })
@@ -143,7 +143,7 @@ local function set_highlights(transparent)
 	-- Rust
 	highlight("@type.qualifier.rust", { fg = colors.keyword, style = "underline" })
 	highlight("@lsp.mod.mutable", { style = "underline" })
-	--highlight("@lsp.typemod.namespace.crateRoot", { colors.namespace }) -- link = "@module"
+	highlight("@lsp.typemod.namespace.crateRoot", { fg = colors.namespace }) -- link = "@module"
 	highlight("@lsp.typemod.interface.declaration", { fg = colors.interface })
 
 	-- CSharp

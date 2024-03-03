@@ -142,7 +142,7 @@
             diagnostics_color = {
                 color_error = { fg = colors.error },
                 color_warn = { fg = colors.orange },
-                color_info = { fg = colors.blue_light },
+                color_info = { fg = colors.green },
             },
         }
 
