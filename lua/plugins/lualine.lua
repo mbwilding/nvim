@@ -154,13 +154,14 @@
         ins_left {
             'o:encoding',
             fmt = string.upper,
-            cond = conditions.hide_in_width,
+            cond = conditions.buffer_not_empty,
             color = { fg = colors.green, gui = 'bold' },
         }
 
         ins_left {
             'fileformat',
             fmt = string.upper,
+            cond = conditions.buffer_not_empty,
             icons_enabled = false,
             color = { fg = colors.orange, gui = 'bold' },
         }
@@ -189,6 +190,7 @@
                 return no_lsp_msg
             end,
             icon = '',
+            cond = conditions.buffer_not_empty,
             color = { fg = colors.blue_light, gui = 'bold' },
         }
 

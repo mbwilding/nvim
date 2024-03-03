@@ -5,6 +5,6 @@ return {
 
         vim.keymap.set("n", "<leader>rn", function()
             return ":IncRename " .. vim.fn.expand("<cword>")
-        end, { expr = true })
+        end, { expr = true, desc = "LSP: Rename" })
     end,
 }

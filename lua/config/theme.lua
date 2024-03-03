@@ -91,8 +91,8 @@ function M.Highlights(transparent, toggle)
 	-- Theme
 	highlight("NormalSB", { fg = c.fg, bg = c.error })             -- Normal text in sidebar
 	highlight("NormalFloat", { fg = c.fg, bg = c.window_bg })      -- Normal text in floating windows
-	highlight("LineNr", { fg = c.fg, bg = c.transparent })         -- Line numbers
-	highlight("CursorLineNr", { fg = c.fg, bg = c.window_bg })     -- Line numbers
+	highlight("LineNr", { fg = c.blue_light, bg = c.transparent }) -- Line numbers
+	highlight("CursorLineNr", { fg = c.blue_light, bg = c.window_bg }) -- Line numbers
 	highlight("MatchParen", { fg = c.bg, bg = c.blue })            -- Matching pair highlight
 	highlight("Cursor", { fg = c.fg, bg = c.bg })                  -- Character under the cursor
 	highlight("lCursor", { fg = c.fg, bg = c.bg })                 -- Character under the cursor when `language-mapping`
