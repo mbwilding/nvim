@@ -179,8 +179,9 @@
             --icon = '',
             icon = '',
             fmt = function(s)
-                return "BRANCH: " .. s:upper()
+                return "GIT: " .. s:upper()
             end,
+            cond = conditions.buffer_not_empty,
             color = function()
                 return { fg = mode_color[vim.fn.mode()], gui = "bold" }
             end,
@@ -201,7 +202,8 @@
         ins_right {
             'diagnostics',
             sources = { 'nvim_diagnostic' },
-            symbols = { error = ' ', warn = ' ', info = ' ' },
+            --symbols = { error = ' ', warn = ' ', info = ' ' },
+            symbols = { error = 'E', warn = 'W', info = 'I' },
             diagnostics_color = {
                 color_error = { fg = colors.error },
                 color_warn = { fg = colors.orange },
