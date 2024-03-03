@@ -1,4 +1,4 @@
-﻿return {
+return {
     "eandrju/cellular-automaton.nvim",
     dependencies = {},
     config = function()

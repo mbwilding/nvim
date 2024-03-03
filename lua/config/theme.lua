@@ -1,4 +1,29 @@
-local c = require("config/colors")
+local M = {}
+local c = require("config.colors") -- Adjust the path as necessary
+
+local stateFilePath = vim.fn.stdpath("config") .. "/transparent_state"
+
+local function loadTransparentState()
+	local file = io.open(stateFilePath, "r")
+	if file then
+		local state = file:read("*l")
+		file:close()
+		if state == "true" then
+			return true
+		end
+	end
+	return false
+end
+
+local function saveTransparentState(state)
+	local file = io.open(stateFilePath, "w")
+	if file then
+		file:write(state and "true" or "false")
+		file:close()
+	end
+end
+
+local isTransparent = loadTransparentState()
 
 local function highlight(group, opts)
 	local parts = { "highlight", group }
@@ -40,7 +65,13 @@ local function highlight(group, opts)
 	vim.cmd(cmd)
 end
 
-local function set_highlights(transparent)
+function M.toggleHighlights()
+	isTransparent = not isTransparent
+	M.Highlights(isTransparent)
+	saveTransparentState(isTransparent)
+end
+
+function M.Highlights(transparent)
 	if transparent then
 		-- Transparent
 		highlight("Normal", { fg = c.fg, bg = c.transparent }) -- Current window
@@ -156,6 +187,6 @@ local function set_highlights(transparent)
 	highlight("@lsp.type.stringEscapeCharacter.cs", { fg = c.escape })
 end
 
-set_highlights(true)
+M.Highlights(isTransparent)
 
-return c
+return M

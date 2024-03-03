@@ -1,4 +1,4 @@
-﻿return {
+return {
     "akinsho/nvim-toggleterm.lua",
     config = function()
         local toggle_term = require("toggleterm")
