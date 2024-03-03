@@ -1,9 +1,9 @@
 local M = {}
 local c = require("config.colors") -- Adjust the path as necessary
 
-local stateFilePath = vim.fn.stdpath("config") .. "/state/transparent_state"
+local stateFilePath = vim.fn.stdpath("data") .. "/transparent_state"
 
-local function loadTransparentState()
+local function loadState()
 	local file = io.open(stateFilePath, "r")
 	if file then
 		local state = file:read("*l")
@@ -15,7 +15,7 @@ local function loadTransparentState()
 	return false
 end
 
-local function saveTransparentState(state)
+local function saveState(state)
 	local file = io.open(stateFilePath, "w")
 	if file then
 		file:write(state and "true" or "false")
@@ -23,7 +23,7 @@ local function saveTransparentState(state)
 	end
 end
 
-local isTransparent = loadTransparentState()
+local isTransparent = loadState()
 
 local function highlight(group, opts)
 	local parts = { "highlight", group }
@@ -67,11 +67,11 @@ end
 
 function M.toggleHighlights()
 	isTransparent = not isTransparent
-	M.Highlights(isTransparent)
-	saveTransparentState(isTransparent)
+	M.Highlights(isTransparent, true)
+	saveState(isTransparent)
 end
 
-function M.Highlights(transparent)
+function M.Highlights(transparent, toggle)
 	if transparent then
 		-- Transparent
 		highlight("Normal", { fg = c.fg, bg = c.transparent }) -- Current window
@@ -82,6 +82,10 @@ function M.Highlights(transparent)
 		highlight("Normal", { fg = c.fg, bg = c.bg }) -- Current window
 		highlight("NormalNC", { fg = c.fg, bg = c.bg }) -- Non-current window
 		highlight("ColorColumn", { fg = c.fg, bg = c.window_bg }) -- Columns set with `colorcolumn`
+	end
+
+	if toggle then
+		return
 	end
 
 	-- Theme
@@ -187,6 +191,6 @@ function M.Highlights(transparent)
 	highlight("@lsp.type.stringEscapeCharacter.cs", { fg = c.escape })
 end
 
-M.Highlights(isTransparent)
+M.Highlights(isTransparent, false)
 
 return M
