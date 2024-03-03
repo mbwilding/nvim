@@ -1,5 +1,5 @@
 local M = {}
-local c = require("config.colors") -- Adjust the path as necessary
+local c = require("config.colors")
 
 local stateFilePath = vim.fn.stdpath("data") .. "/transparent_state"
 
@@ -65,7 +65,7 @@ local function highlight(group, opts)
 	vim.cmd(cmd)
 end
 
-function M.toggleHighlights()
+function M.toggleTransparency()
 	isTransparent = not isTransparent
 	M.Highlights(isTransparent, true)
 	saveState(isTransparent)

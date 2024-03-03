@@ -21,34 +21,27 @@
             end,
         }
 
-        -- Config
+        -- Don't modify
         local config = {
             options = {
-                -- Disable sections and component separators
                 component_separators = '',
                 section_separators = '',
                 globalstatus = true,
                 icons_enabled = true,
                 theme = {
-                    -- We are going to use lualine_c an lualine_x as left and
-                    -- right section. Both are highlighted by c theme .  So we
-                    -- are just setting default looks o statusline
                     normal = { c = { fg = colors.fg, bg = colors.bg } },
                     inactive = { c = { fg = colors.fg, bg = colors.bg } },
                 },
             },
             sections = {
-                -- these are to remove the defaults
                 lualine_a = {},
                 lualine_b = {},
                 lualine_y = {},
                 lualine_z = {},
-                -- These will be filled later
                 lualine_c = {},
                 lualine_x = {},
             },
             inactive_sections = {
-                -- these are to remove the defaults
                 lualine_a = {},
                 lualine_b = {},
                 lualine_y = {},
@@ -58,93 +51,125 @@
             },
         }
 
-        -- Inserts a component in lualine_c at left section
+        local mode_color = {
+            n = colors.blue,
+            i = colors.green,
+            v = colors.purple,
+            [''] = colors.keyword,
+            V = colors.keyword,
+            c = colors.attribute,
+            no = colors.macro,
+            s = colors.orange,
+            S = colors.orange,
+            [''] = colors.orange,
+            ic = colors.member,
+            R = colors.number,
+            Rv = colors.number,
+            cv = colors.macro,
+            ce = colors.macro,
+            r = colors.todo,
+            rm = colors.todo,
+            ['r?'] = colors.todo,
+            ['!'] = colors.macro,
+            t = colors.macro,
+        }
+
         local function ins_left(component)
             table.insert(config.sections.lualine_c, component)
         end
 
-        -- Inserts a component in lualine_x at right section
         local function ins_right(component)
             table.insert(config.sections.lualine_x, component)
         end
 
         ins_left {
-            -- mode component
             function()
-                return ' '
+                return ""
             end,
             color = function()
-                local mode_color = {
-                    n = colors.blue,
-                    i = colors.green,
-                    v = colors.purple,
-                    [''] = colors.keyword,
-                    V = colors.keyword,
-                    c = colors.attribute,
-                    no = colors.macro,
-                    s = colors.orange,
-                    S = colors.orange,
-                    [''] = colors.orange,
-                    ic = colors.member,
-                    R = colors.number,
-                    Rv = colors.number,
-                    cv = colors.macro,
-                    ce = colors.macro,
-                    r = colors.todo,
-                    rm = colors.todo,
-                    ['r?'] = colors.todo,
-                    ['!'] = colors.macro,
-                    t = colors.macro,
-                }
                 return { fg = mode_color[vim.fn.mode()] }
             end,
-            --padding = { right = 0 },
+            -- padding = { left = 2 },
         }
 
         ins_left {
-            'filename',
-            cond = conditions.buffer_not_empty,
-            color = { fg = colors.fg, gui = 'bold' },
+            'selectioncount',
+            color = function()
+                return { fg = mode_color[vim.fn.mode()], gui = "bold" }
+            end,
         }
 
         ins_left {
-            'filetype',
-            cond = conditions.buffer_not_empty,
-            color = { fg = colors.fg, gui = 'bold' },
+            'location',
+            color = function()
+                return { fg = mode_color[vim.fn.mode()], gui = "bold" }
+            end,
+        }
+
+        ins_left {
+            'progress',
+            color = function()
+                return { fg = mode_color[vim.fn.mode()], gui = "bold" }
+            end,
         }
 
         ins_left {
             'filesize',
             cond = conditions.buffer_not_empty,
-            color = { fg = colors.fg, gui = 'bold' },
+            color = function()
+                return { fg = mode_color[vim.fn.mode()], gui = "bold" }
+            end,
         }
 
-        ins_left { 'location' }
-
-        ins_left { 'progress', color = { fg = colors.fg, gui = 'bold' } }
-
-        ins_left { 'selectioncount' }
-
-        -- Insert mid section. You can make any number of sections in neovim :)
-        -- for lualine it's any number greater then 2
-
-        --ins_left {
-        --    function()
-        --        return '%='
-        --    end,
-        --}
-
-        -- Add components to right sections
-        ins_right {
-            'diagnostics',
-            sources = { 'nvim_diagnostic' },
-            symbols = { error = ' ', warn = ' ', info = ' ' },
-            diagnostics_color = {
-                color_error = { fg = colors.error },
-                color_warn = { fg = colors.orange },
-                color_info = { fg = colors.green },
-            },
+        ins_left {
+            'filename',
+            cond = conditions.buffer_not_empty,
+            color = function()
+                return { fg = mode_color[vim.fn.mode()], gui = "bold" }
+            end,
         }
+
+
+
+
+
+
+
+        ins_left {
+            function()
+                return '%='
+            end,
+        }
+
+        ins_left {
+            'filetype',
+            icons_enabled = false,
+            cond = conditions.buffer_not_empty,
+            fmt = string.upper,
+            color = function()
+                return { fg = colors.blue_light, gui = "bold" }
+            end,
+        }
+
+        ins_left {
+            'o:encoding',
+            fmt = string.upper,
+            cond = conditions.hide_in_width,
+            color = { fg = colors.green, gui = 'bold' },
+        }
+
+        ins_left {
+            'fileformat',
+            fmt = string.upper,
+            icons_enabled = false,
+            color = { fg = colors.orange, gui = 'bold' },
+        }
+
+
+
+
+
+
 
         ins_right {
             -- LSP
@@ -168,17 +193,14 @@
         }
 
         ins_right {
-            'o:encoding',
-            fmt = string.upper,
-            cond = conditions.hide_in_width,
-            color = { fg = colors.green, gui = 'bold' },
-        }
-
-        ins_right {
-            'fileformat',
-            fmt = string.upper,
-            icons_enabled = false,
-            color = { fg = colors.orange, gui = 'bold' },
+            'diagnostics',
+            sources = { 'nvim_diagnostic' },
+            symbols = { error = ' ', warn = ' ', info = ' ' },
+            diagnostics_color = {
+                color_error = { fg = colors.error },
+                color_warn = { fg = colors.orange },
+                color_info = { fg = colors.green },
+            },
         }
 
         ins_right {
