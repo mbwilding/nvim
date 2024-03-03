@@ -1,3 +1,5 @@
+vim.loader.enable()
+
 -- Sets the leader key
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '

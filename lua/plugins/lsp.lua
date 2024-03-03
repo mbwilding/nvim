@@ -98,6 +98,14 @@ return {
             handlers = {
                 function(server_name)
                     local server = servers[server_name] or {}
+                    local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+                    -- UFO (Folding)
+                    capabilities.textDocument.foldingRange = {
+                        dynamicRegistration = false,
+                        lineFoldingOnly = true
+                    }
+
                     require("lspconfig")[server_name].setup {
                         cmd = server.cmd,
                         settings = server.settings,
@@ -105,7 +113,7 @@ return {
                         -- This handles overriding only values explicitly passed
                         -- by the server configuration above. Useful when disabling
                         -- certain features of an LSP (for example, turning off formatting for tsserver)
-                        capabilities = vim.tbl_deep_extend("force", vim.lsp.protocol.make_client_capabilities(), require("cmp_nvim_lsp").default_capabilities()),
+                        capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities()),
                     }
                 end,
             },
