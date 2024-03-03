@@ -8,7 +8,8 @@ vim.g.maplocalleader = ' '
 vim.o.hlsearch = true
 
 -- Make line numbers default
-vim.wo.number = true
+vim.wo.number = true         -- Current line is real line number if true rather than 0
+vim.wo.relativenumber = true -- Line numbers are relative to current line
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
