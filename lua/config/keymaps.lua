@@ -46,4 +46,4 @@ vim.keymap.set("n", "\\", "<cmd>Inspect<CR>", { silent = true, desc = "Theme: In
 -- Theme
 vim.keymap.set("n", '<leader>T', function()
 	require("config/theme").toggleHighlights()
-end, { noremap = true, silent = true })
+end, { noremap = true, silent = true, desc = "Theme: Transparent toggle" })

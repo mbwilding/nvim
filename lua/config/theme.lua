@@ -1,7 +1,7 @@
 local M = {}
 local c = require("config.colors") -- Adjust the path as necessary
 
-local stateFilePath = vim.fn.stdpath("config") .. "/transparent_state"
+local stateFilePath = vim.fn.stdpath("config") .. "/state/transparent_state"
 
 local function loadTransparentState()
 	local file = io.open(stateFilePath, "r")
