@@ -1,11 +1,9 @@
 {
     "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "actions": 
-    [
+    "actions": [
         {
-            "command": 
-            {
+            "command": {
                 "action": "copy",
                 "singleLine": false
             },
@@ -16,8 +14,7 @@
             "keys": "ctrl+v"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "splitPane",
                 "split": "auto",
                 "splitMode": "duplicate"
@@ -36,23 +33,19 @@
     "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
     "language": "en-US",
     "launchMode": "default",
-    "newTabMenu": 
-    [
+    "newTabMenu": [
         {
             "type": "remainingProfiles"
         }
     ],
-    "profiles": 
-    {
-        "defaults": 
-        {
+    "profiles": {
+        "defaults": {
             "backgroundImageOpacity": 0.1,
             "bellStyle": "window",
             "colorScheme": "Tokyo Night",
             "cursorShape": "filledBox",
             "experimental.retroTerminalEffect": false,
-            "font": 
-            {
+            "font": {
                 "face": "JetBrainsMono Nerd Font"
             },
             "opacity": 95,
@@ -61,8 +54,7 @@
             "useAcrylic": false,
             "useAtlasEngine": true
         },
-        "list": 
-        [
+        "list": [
             {
                 "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
@@ -101,8 +93,7 @@
             }
         ]
     },
-    "schemes": 
-    [
+    "schemes": [
         {
             "background": "#0C0C0C",
             "black": "#0C0C0C",
@@ -288,7 +279,7 @@
             "yellow": "#C4A000"
         },
         {
-            "background": "#1A1B26",
+            "background": "#000000",
             "black": "#15161E",
             "blue": "#7AA2F7",
             "brightBlack": "#414868",
