@@ -6,6 +6,7 @@
     config = function()
         local lualine = require("lualine")
         local colors = require("config/colors")
+        local mode_color = require("config/colors-mode")
 
         local conditions = {
             buffer_not_empty = function()
@@ -29,8 +30,8 @@
                 globalstatus = true,
                 icons_enabled = true,
                 theme = {
-                    normal = { c = { fg = colors.fg, bg = colors.bg } },
-                    inactive = { c = { fg = colors.fg, bg = colors.bg } },
+                    normal = { c = { fg = colors.blue_light, bg = colors.transparent } },
+                    inactive = { c = { fg = colors.redundant, bg = colors.transparent } },
                 },
             },
             sections = {
@@ -51,29 +52,6 @@
             },
         }
 
-        local mode_color = {
-            n = colors.blue,
-            i = colors.green,
-            v = colors.purple,
-            [''] = colors.keyword,
-            V = colors.keyword,
-            c = colors.attribute,
-            no = colors.macro,
-            s = colors.orange,
-            S = colors.orange,
-            [''] = colors.orange,
-            ic = colors.member,
-            R = colors.number,
-            Rv = colors.number,
-            cv = colors.macro,
-            ce = colors.macro,
-            r = colors.todo,
-            rm = colors.todo,
-            ['r?'] = colors.todo,
-            ['!'] = colors.macro,
-            t = colors.macro,
-        }
-
         local function ins_left(component)
             table.insert(config.sections.lualine_c, component)
         end
@@ -83,13 +61,66 @@
         end
 
         ins_left {
-            function()
-                return ""
-            end,
+            'location',
             color = function()
-                return { fg = mode_color[vim.fn.mode()] }
+                return { fg = mode_color[vim.fn.mode()], gui = "bold" }
             end,
-            -- padding = { left = 2 },
+            padding = { left = 3 }
+        }
+
+        ins_left {
+            'progress',
+            fmt = string.upper,
+            color = function()
+                return { fg = mode_color[vim.fn.mode()], gui = "bold" }
+            end,
+        }
+
+        ins_left {
+            'filename',
+            cond = conditions.buffer_not_empty,
+            fmt = string.upper,
+            color = function()
+                return { fg = mode_color[vim.fn.mode()], gui = "bold" }
+            end,
+        }
+
+        ins_left {
+            'filesize',
+            cond = conditions.buffer_not_empty,
+            fmt = string.upper,
+            color = function()
+                return { fg = mode_color[vim.fn.mode()], gui = "bold" }
+            end,
+        }
+
+        --ins_left {
+        --    'filetype',
+        --    icons_enabled = false,
+        --    cond = conditions.buffer_not_empty,
+        --    fmt = string.upper,
+        --    color = function()
+        --        return { fg = mode_color[vim.fn.mode()], gui = "bold" }
+        --    end,
+        --}
+
+        ins_left {
+            'o:encoding',
+            fmt = string.upper,
+            cond = conditions.buffer_not_empty,
+            color = function()
+                return { fg = mode_color[vim.fn.mode()], gui = "bold" }
+            end,
+        }
+
+        ins_left {
+            'fileformat',
+            fmt = string.upper,
+            cond = conditions.buffer_not_empty,
+            icons_enabled = false,
+            color = function()
+                return { fg = mode_color[vim.fn.mode()], gui = "bold" }
+            end,
         }
 
         ins_left {
@@ -99,73 +130,17 @@
             end,
         }
 
-        ins_left {
-            'location',
-            color = function()
-                return { fg = mode_color[vim.fn.mode()], gui = "bold" }
-            end,
-        }
-
-        ins_left {
-            'progress',
-            color = function()
-                return { fg = mode_color[vim.fn.mode()], gui = "bold" }
-            end,
-        }
-
-        ins_left {
-            'filesize',
-            cond = conditions.buffer_not_empty,
-            color = function()
-                return { fg = mode_color[vim.fn.mode()], gui = "bold" }
-            end,
-        }
-
-        ins_left {
-            'filename',
-            cond = conditions.buffer_not_empty,
-            color = function()
-                return { fg = mode_color[vim.fn.mode()], gui = "bold" }
-            end,
-        }
 
 
 
 
+        -- Used for divisions, can have center areas
 
-
-
-        ins_left {
-            function()
-                return '%='
-            end,
-        }
-
-        ins_left {
-            'filetype',
-            icons_enabled = false,
-            cond = conditions.buffer_not_empty,
-            fmt = string.upper,
-            color = function()
-                return { fg = colors.blue_light, gui = "bold" }
-            end,
-        }
-
-        ins_left {
-            'o:encoding',
-            fmt = string.upper,
-            cond = conditions.buffer_not_empty,
-            color = { fg = colors.green, gui = 'bold' },
-        }
-
-        ins_left {
-            'fileformat',
-            fmt = string.upper,
-            cond = conditions.buffer_not_empty,
-            icons_enabled = false,
-            color = { fg = colors.orange, gui = 'bold' },
-        }
-
+        --ins_left {
+        --    function()
+        --        return '%='
+        --    end,
+        --}
 
 
 
@@ -189,9 +164,38 @@
                 end
                 return no_lsp_msg
             end,
-            icon = '',
+            --icon = '',
             cond = conditions.buffer_not_empty,
-            color = { fg = colors.blue_light, gui = 'bold' },
+            fmt = function(s)
+                return "LSP: " .. s:upper()
+            end,
+            color = function()
+                return { fg = mode_color[vim.fn.mode()], gui = "bold" }
+            end,
+        }
+
+        ins_right {
+            'branch',
+            --icon = '',
+            icon = '',
+            fmt = function(s)
+                return "BRANCH: " .. s:upper()
+            end,
+            color = function()
+                return { fg = mode_color[vim.fn.mode()], gui = "bold" }
+            end,
+        }
+
+        ins_right {
+            'diff',
+            -- Is it me or the symbol for modified us really weird
+            --symbols = { added = ' ', modified = '󰝤 ', removed = ' ' },
+            diff_color = {
+                added = { fg = colors.green },
+                modified = { fg = colors.orange },
+                removed = { fg = colors.error },
+            },
+            cond = conditions.hide_in_width,
         }
 
         ins_right {
@@ -203,24 +207,6 @@
                 color_warn = { fg = colors.orange },
                 color_info = { fg = colors.green },
             },
-        }
-
-        ins_right {
-            'diff',
-            -- Is it me or the symbol for modified us really weird
-            symbols = { added = ' ', modified = '󰝤 ', removed = ' ' },
-            diff_color = {
-                added = { fg = colors.green },
-                modified = { fg = colors.blue_light },
-                removed = { fg = colors.error },
-            },
-            cond = conditions.hide_in_width,
-        }
-
-        ins_right {
-            'branch',
-            icon = '',
-            color = { fg = colors.purple, gui = 'bold' },
         }
 
         lualine.setup(config)

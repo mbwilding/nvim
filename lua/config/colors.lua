@@ -12,7 +12,7 @@ return {
 	blue_light = "#4eade5",
 	green = "#39cc8f",
 	purple = "#9591ff",
-	orange = "#ffb3b3",
+	orange = "#ffb083",
 
 	-- Code
 	variable = "#bdbdbd",
@@ -31,7 +31,7 @@ return {
 	todo = "#66c3cc",
 	macro = "#4eade5",
 	attribute = "#c191ff",
-	error = "#ff5647",
+	error = "#ff3333",
 	hint = "#555555",
 	redundant = "#787878",
 	delimiter = "#999999",
