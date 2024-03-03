@@ -1,7 +1,7 @@
 ﻿return {
     "nvim-lualine/lualine.nvim",
     dependencies = {
-        "nvim-tree/nvim-web-devicons",
+        --"nvim-tree/nvim-web-devicons",
     },
     config = function()
         local lualine = require("lualine")
@@ -150,7 +150,7 @@
         ins_right {
             -- LSP
             function()
-                local no_lsp_msg = ''
+                local no_lsp_msg = 'NULL'
                 local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
                 local clients = vim.lsp.get_clients()
                 if next(clients) == nil then
@@ -202,8 +202,8 @@
         ins_right {
             'diagnostics',
             sources = { 'nvim_diagnostic' },
+            icons_enabled = false,
             --symbols = { error = ' ', warn = ' ', info = ' ' },
-            symbols = { error = 'E', warn = 'W', info = 'I' },
             diagnostics_color = {
                 color_error = { fg = colors.error },
                 color_warn = { fg = colors.orange },

@@ -133,7 +133,7 @@ function M.Highlights(transparent, toggle)
 	highlight("MasonHighlightBlock", { fg = c.blue, bg = c.window_accent })
 
 	-- Oil
-	highlight("OilFile", { fg = c.fg })
+	highlight("OilFile", { fg = c.orange })
 
 	-- Code
 	highlight("@boolean", { fg = c.keyword })
@@ -144,6 +144,7 @@ function M.Highlights(transparent, toggle)
 	highlight("@lsp.mod.library", { fg = c.module })
 	highlight("@lsp.mod.static", { fg = c.constant })
 	highlight("@lsp.type.invalidEscapeSequence", { fg = c.error })
+	highlight("@lsp.type.formatSpecifier", { fg = c.struct })
 	highlight("@lsp.type.keyword", { fg = c.keyword })
 	highlight("@lsp.typemod.decorator.attribute", { fg = c.attribute })
 	highlight("@lsp.typemod.derive", { fg = c.interface })
@@ -191,6 +192,7 @@ function M.Highlights(transparent, toggle)
 	highlight("@lsp.mod.mutable", { style = "underline" })
 	highlight("@lsp.typemod.namespace.crateRoot", { fg = c.namespace }) -- link = "@module"
 	highlight("@lsp.typemod.interface.declaration", { fg = c.interface })
+	highlight("@lsp.mod.unsafe", { fg = c.error })
 
 	-- CSharp
 	highlight("@lsp.type.stringEscapeCharacter.cs", { fg = c.escape })

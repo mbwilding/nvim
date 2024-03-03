@@ -2,8 +2,8 @@ local colors = require("config/colors")
 
 return {
 	n = colors.blue_light, -- Normal
-	i = colors.green, -- Insert
-	v = colors.orange, -- Visual
+	i = colors.orange, -- Insert
+	v = colors.green, -- Visual
 	[''] = colors.keyword,
 	V = colors.keyword,
 	c = colors.orange,

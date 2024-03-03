@@ -64,37 +64,6 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 	end,
 })
 
--- Relative numbers group
-augroup("NumberToggle")
-
--- Enabling relative numbers
-vim.api.nvim_create_autocmd(
-	{ "BufEnter", "FocusGained", "InsertLeave", "WinEnter", "BufWinEnter" },
-	{
-		group = "NumberToggle",
-		pattern = "*",
-		callback = function()
-			if vim.wo.number then
-				vim.wo.relativenumber = true
-			end
-		end
-	}
-)
-
--- Disabling relative numbers only when the buffer is not focused
-vim.api.nvim_create_autocmd(
-	{ "FocusLost", "BufLeave" },
-	{
-		group = "NumberToggle",
-		pattern = "*",
-		callback = function()
-			if vim.wo.number then
-				vim.wo.relativenumber = false
-			end
-		end,
-	}
-)
-
 -- Set current line color to match mode color
 local function adjustLineNrHighlight()
 	local colors = require("config/colors")
@@ -103,7 +72,7 @@ local function adjustLineNrHighlight()
 	-- Get the current mode
 	local mode = vim.api.nvim_get_mode().mode
 
-	-- Find the color for the current mode; default to white if not defined
+	-- Find the color for the current mode or default
 	local color = mode_colors[mode] or colors.blue_light
 
 	-- Adjust LineNr highlight group to the color for the current mode
