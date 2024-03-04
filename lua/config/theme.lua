@@ -95,8 +95,8 @@ function M.Highlights(transparent, toggle)
 	highlight("NormalFloat", { fg = base.fg, bg = base.window_bg }) -- Normal text in floating windows
 
 	-- Gutter
-	highlight("LineNr", { fg = base.blue_light, bg = base.transparent }) -- Current line number
-	highlight("CursorLineNr", { fg = base.blue_light, bg = base.transparent }) -- Unknown
+	highlight("LineNr", { fg = base.orange, bg = base.transparent })     -- Current line number
+	highlight("CursorLineNr", { fg = base.orange, bg = base.transparent }) -- Unknown
 	highlight("LineNrAbove", { fg = code.redundant, bg = base.transparent }) -- Above current line numbers
 	highlight("LineNrBelow", { fg = code.redundant, bg = base.transparent }) -- Below current line numbers
 
