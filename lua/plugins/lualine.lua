@@ -76,6 +76,17 @@
             end,
         }
 
+
+
+
+
+
+        ins_left {
+            function()
+                return '%='
+            end,
+        }
+
         ins_left {
             'filename',
             cond = conditions.buffer_not_empty,
@@ -148,18 +159,6 @@
 
 
 
-        -- Used for divisions, can have center areas
-
-        --ins_left {
-        --    function()
-        --        return '%='
-        --    end,
-        --}
-
-
-
-
-
 
         ins_right {
             -- LSP
@@ -185,6 +184,18 @@
             end,
             color = function()
                 return { fg = mode_color[vim.fn.mode()], gui = "bold" }
+            end,
+        }
+
+
+
+
+
+
+
+        ins_right {
+            function()
+                return '%='
             end,
         }
 
