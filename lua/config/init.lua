@@ -1,5 +1,5 @@
 require("config.settings")
-require("config.theme")
+require("config.colors")
 require("config.lazy")
 require("config.keymaps")
 require("config.autocmds")

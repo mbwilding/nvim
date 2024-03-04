@@ -243,7 +243,7 @@
             icons_enabled = false,
             diff_color = {
                 added = { fg = colors.base.green },
-                modified = { fg = colors.base.blue_light },
+                modified = { fg = colors.base.blue },
                 removed = { fg = colors.base.red },
             },
             cond = conditions.hide_in_width,
