@@ -9,7 +9,7 @@ M.base = {
 	window_bg = "#090909",
 	window_accent = "#202020",
 
-	-- Colors
+	-- M.base
 	blue = "#6c95eb",
 	blue_light = "#4eade5",
 	cyan = "#66c3cc",
@@ -53,6 +53,29 @@ M.code = {
 	hint = M.base.gray,
 }
 
+M.mode = {
+	n = M.base.orange, -- Normal
+	i = M.base.blue_light, -- Insert
+	v = M.base.green, -- Visual
+	[''] = M.base.blue_light,
+	V = M.base.blue_light,
+	c = M.base.orange,
+	no = M.base.cyan,
+	s = M.base.orange,
+	S = M.base.orange,
+	[''] = M.base.orange,
+	ic = M.base.blue,
+	R = M.base.pink,
+	Rv = M.base.pink,
+	cv = M.base.cyan,
+	ce = M.base.cyan,
+	r = M.base.cyan,
+	rm = M.base.cyan,
+	['r?'] = M.base.cyan,
+	['!'] = M.base.cyan,
+	t = M.base.cyan,
+}
+
 return M
 
 -- Rider Dark
@@ -65,7 +88,7 @@ return M
 --	window_bg = "#090909",
 --	window_accent = "#202020",
 --
---	-- Colors
+--	-- M.base
 --	blue = "#6c95eb",
 --	blue_light = "#4eade5",
 --	green = "#39cc8f",

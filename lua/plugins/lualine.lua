@@ -5,8 +5,7 @@
     },
     config = function()
         local lualine = require("lualine")
-        local colors = require("config/colors").base
-        local mode_color = require("config/colors-mode")
+        local colors = require("config/colors")
 
         local conditions = {
             buffer_not_empty = function()
@@ -30,8 +29,8 @@
                 globalstatus = true,
                 icons_enabled = true,
                 theme = {
-                    normal = { c = { fg = colors.orange, bg = colors.transparent } },
-                    inactive = { c = { fg = colors.gray, bg = colors.transparent } },
+                    normal = { c = { fg = colors.base.orange, bg = colors.base.transparent } },
+                    inactive = { c = { fg = colors.base.gray, bg = colors.base.transparent } },
                 },
             },
             sections = {
@@ -63,7 +62,7 @@
         ins_left {
             'location',
             color = function()
-                return { fg = mode_color[vim.fn.mode()], gui = "bold" }
+                return { fg = colors.mode[vim.fn.mode()], gui = "bold" }
             end,
             padding = { left = 3, right = 1 }
         }
@@ -72,7 +71,7 @@
             'progress',
             fmt = string.upper,
             color = function()
-                return { fg = mode_color[vim.fn.mode()], gui = "bold" }
+                return { fg = colors.mode[vim.fn.mode()], gui = "bold" }
             end,
         }
 
@@ -91,10 +90,10 @@
             'filename',
             cond = conditions.buffer_not_empty,
             fmt = function(s)
-                return "FILE: " .. s:upper()
+                return "FIL: " .. s:upper()
             end,
             color = function()
-                return { fg = mode_color[vim.fn.mode()], gui = "bold" }
+                return { fg = colors.mode[vim.fn.mode()], gui = "bold" }
             end,
         }
 
@@ -102,10 +101,10 @@
             'filesize',
             cond = conditions.buffer_not_empty,
             fmt = function(s)
-                return "SIZE: " .. s:upper()
+                return "SIZ: " .. s:upper()
             end,
             color = function()
-                return { fg = mode_color[vim.fn.mode()], gui = "bold" }
+                return { fg = colors.mode[vim.fn.mode()], gui = "bold" }
             end,
         }
 
@@ -115,7 +114,7 @@
         --    cond = conditions.buffer_not_empty,
         --    fmt = string.upper,
         --    color = function()
-        --        return { fg = mode_color[vim.fn.mode()], gui = "bold" }
+        --        return { fg = colors.mode[vim.fn.mode()], gui = "bold" }
         --    end,
         --}
 
@@ -126,7 +125,7 @@
                 return "ENC: " .. s:upper()
             end,
             color = function()
-                return { fg = mode_color[vim.fn.mode()], gui = "bold" }
+                return { fg = colors.mode[vim.fn.mode()], gui = "bold" }
             end,
         }
 
@@ -135,10 +134,10 @@
             cond = conditions.buffer_not_empty,
             icons_enabled = false,
             fmt = function(s)
-                return "LE: " .. s:upper()
+                return "EOL: " .. s:upper()
             end,
             color = function()
-                return { fg = mode_color[vim.fn.mode()], gui = "bold" }
+                return { fg = colors.mode[vim.fn.mode()], gui = "bold" }
             end,
         }
 
@@ -151,7 +150,7 @@
                 end
             end,
             color = function()
-                return { fg = mode_color[vim.fn.mode()], gui = "bold" }
+                return { fg = colors.mode[vim.fn.mode()], gui = "bold" }
             end,
         }
 
@@ -189,7 +188,7 @@
                 return "LSP: " .. s:upper()
             end,
             color = function()
-                return { fg = mode_color[vim.fn.mode()], gui = "bold" }
+                return { fg = colors.mode[vim.fn.mode()], gui = "bold" }
             end,
         }
 
@@ -199,14 +198,17 @@
             icons_enabled = false,
             --symbols = { error = ' ', warn = ' ', info = ' ' },
             diagnostics_color = {
-                color_error = { fg = colors.error },
-                color_warn = { fg = colors.orange },
-                color_info = { fg = colors.green },
+                color_error = { fg = colors.base.error },
+                color_warn = { fg = colors.base.orange },
+                color_info = { fg = colors.base.green },
             },
             fmt = function(s)
                 if s ~= "" then
-                    return "DIAG: " .. s:upper()
+                    return "DIA: " .. s:upper()
                 end
+            end,
+            color = function()
+                return { fg = colors.mode[vim.fn.mode()], gui = "bold" }
             end,
         }
 
@@ -230,7 +232,7 @@
             end,
             cond = conditions.buffer_not_empty,
             color = function()
-                return { fg = mode_color[vim.fn.mode()], gui = "bold" }
+                return { fg = colors.mode[vim.fn.mode()], gui = "bold" }
             end,
         }
 
@@ -240,16 +242,19 @@
             --symbols = { added = ' ', modified = '󰝤 ', removed = ' ' },
             icons_enabled = false,
             diff_color = {
-                added = { fg = colors.green },
-                modified = { fg = colors.blue_light },
-                removed = { fg = colors.red },
+                added = { fg = colors.base.green },
+                modified = { fg = colors.base.blue_light },
+                removed = { fg = colors.base.red },
             },
             cond = conditions.hide_in_width,
             fmt = function(s)
                 if s ~= "" then
-                    return "DIFF: " .. s:upper()
+                    return "DIF: " .. s:upper()
                 end
-            end
+            end,
+            color = function()
+                return { fg = colors.mode[vim.fn.mode()], gui = "bold" }
+            end,
         }
 
         lualine.setup(config)
