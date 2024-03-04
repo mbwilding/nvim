@@ -12,7 +12,6 @@ M.base = {
 	-- Colors
 	blue = "#6c95eb",
 	blue_light = "#4eade5",
-	blue_ucla = "#2274a5",
 	cyan = "#66c3cc",
 	green = "#39cc8f",
 	purple = "#9591ff",
@@ -23,10 +22,10 @@ M.base = {
 	pink = "#ed94c0",
 	peach = "#f4b393",
 	turquoise = "#2de1c2",
-	--linen = "#ffede1",
-	--salmon = "#e2856e",
+	salmon = "#e2856e",
 	periwinkle = "#d4c2fc",
 	gray = "#4f5258",
+	--linen = "#ffede1",
 }
 
 M.code = {
@@ -39,10 +38,10 @@ M.code = {
 	comment = M.base.gray,
 	keyword = M.base.blue_light,
 	struct = M.base.purple,
-	enum = M.base.periwinkle,
+	enum = M.base.salmon,
 	interface = M.base.turquoise,
 	method = M.base.green,
-	constant = M.base.blue_ucla,
+	constant = M.base.periwinkle,
 	member = M.base.blue,
 	todo = M.base.cyan,
 	macro = M.base.cyan,

@@ -30,7 +30,7 @@
                 globalstatus = true,
                 icons_enabled = true,
                 theme = {
-                    normal = { c = { fg = colors.blue_light, bg = colors.transparent } },
+                    normal = { c = { fg = colors.orange, bg = colors.transparent } },
                     inactive = { c = { fg = colors.gray, bg = colors.transparent } },
                 },
             },
@@ -65,7 +65,7 @@
             color = function()
                 return { fg = mode_color[vim.fn.mode()], gui = "bold" }
             end,
-            padding = { left = 3 }
+            padding = { left = 3, right = 1 }
         }
 
         ins_left {
@@ -161,6 +161,12 @@
 
 
         ins_right {
+            function()
+                return '%='
+            end,
+        }
+
+        ins_right {
             -- LSP
             function()
                 local no_lsp_msg = 'NULL'
@@ -187,6 +193,22 @@
             end,
         }
 
+        ins_right {
+            'diagnostics',
+            sources = { 'nvim_diagnostic' },
+            icons_enabled = false,
+            --symbols = { error = ' ', warn = ' ', info = ' ' },
+            diagnostics_color = {
+                color_error = { fg = colors.error },
+                color_warn = { fg = colors.orange },
+                color_info = { fg = colors.green },
+            },
+            fmt = function(s)
+                if s ~= "" then
+                    return "DIAG: " .. s:upper()
+                end
+            end,
+        }
 
 
 
@@ -216,24 +238,18 @@
             'diff',
             -- Is it me or the symbol for modified us really weird
             --symbols = { added = ' ', modified = '󰝤 ', removed = ' ' },
+            icons_enabled = false,
             diff_color = {
                 added = { fg = colors.green },
-                modified = { fg = colors.orange },
-                removed = { fg = colors.error },
+                modified = { fg = colors.blue_light },
+                removed = { fg = colors.red },
             },
             cond = conditions.hide_in_width,
-        }
-
-        ins_right {
-            'diagnostics',
-            sources = { 'nvim_diagnostic' },
-            icons_enabled = false,
-            --symbols = { error = ' ', warn = ' ', info = ' ' },
-            diagnostics_color = {
-                color_error = { fg = colors.error },
-                color_warn = { fg = colors.orange },
-                color_info = { fg = colors.green },
-            },
+            fmt = function(s)
+                if s ~= "" then
+                    return "DIFF: " .. s:upper()
+                end
+            end
         }
 
         lualine.setup(config)
