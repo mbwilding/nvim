@@ -9,7 +9,7 @@ M.base = {
 	window_bg = "#090909",
 	window_accent = "#202020",
 
-	-- M.base
+	-- Colors
 	orange = "#ffb083",
 	blue = "#4eade5",
 	blue_dark = "#6c95eb",
@@ -22,10 +22,9 @@ M.base = {
 	pink = "#ed94c0",
 	peach = "#f4b393",
 	turquoise = "#2de1c2",
-	beige = "#c9a26d",
+	lime = "#b1d696",
 	gray = "#4f5258",
-	linen = "#ffede1",
-	--salmon = "#e2856e",
+	linen = "#ebe0c1",
 }
 
 M.code = {
@@ -38,7 +37,7 @@ M.code = {
 	comment = M.base.gray,
 	keyword = M.base.blue,
 	struct = M.base.purple,
-	enum = M.base.beige,
+	enum = M.base.lime,
 	interface = M.base.turquoise,
 	method = M.base.green,
 	constant = M.base.pink_hot,
