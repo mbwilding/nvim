@@ -44,6 +44,10 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 vim.keymap.set("n", "\\", "<cmd>Inspect<CR>", { silent = true, desc = "Theme: Inspect" })
 
 -- Theme
-vim.keymap.set("n", '<leader>T', function()
+vim.keymap.set("n", "<leader>Tt", function()
 	require("config/colors").toggleTransparency()
-end, { noremap = true, silent = true, desc = "Theme: Transparent toggle" })
+end, { noremap = true, silent = true, desc = "Theme: Toggle transparency" })
+
+vim.keymap.set("n", "<leader>Tr", function()
+	require("config/colors").reload()
+end, { noremap = true, silent = true, desc = "Theme: Reload" })

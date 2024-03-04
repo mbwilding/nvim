@@ -76,6 +76,9 @@ M.mode = {
 	t = M.base.cyan,
 }
 
+local base = M.base
+local code = M.code
+
 local stateFilePath = vim.fn.stdpath("data") .. "/transparent_state"
 
 local function loadState()
@@ -139,15 +142,6 @@ local function highlight(group, opts)
 	local cmd = table.concat(parts, " ")
 	vim.cmd(cmd)
 end
-
-function M.toggleTransparency()
-	isTransparent = not isTransparent
-	M.Highlights(isTransparent, false)
-	saveState(isTransparent)
-end
-
-local base = M.base
-local code = M.code
 
 function M.Highlights(transparent, initialize)
 	if transparent then
@@ -290,6 +284,16 @@ vim.api.nvim_create_autocmd("ModeChanged", {
 		vim.cmd("set termguicolors")
 	end
 })
+
+function M.toggleTransparency()
+	isTransparent = not isTransparent
+	M.Highlights(isTransparent, false)
+	saveState(isTransparent)
+end
+
+function M.reload()
+	M.Highlights(isTransparent, true)
+end
 
 M.Highlights(isTransparent, true)
 
