@@ -1,4 +1,6 @@
-return {
+local M = {}
+
+M.base = {
 	transparent = "NONE",
 
 	-- Default UI
@@ -24,31 +26,35 @@ return {
 	--linen = "#ffede1",
 	--salmon = "#e2856e",
 	periwinkle = "#d4c2fc",
-
-	-- Code
-	variable = "#ffb083",
-	operator = "#bdbdbd",
-	string = "#bdbdbd",
-	delimiter = "#bdbdbd",
-	number = "#ed94c0",
-	escape = "#ed94c0",
-	comment = "#4f5258",
-	keyword = "#4eade5",
-	struct = "#9591ff",
-	enum = "#d4c2fc",
-	interface = "#2de1c2",
-	method = "#39cc8f",
-	constant = "#2274a5",
-	member = "#6c95eb",
-	todo = "#66c3cc",
-	macro = "#66c3cc",
-	attribute = "#2de1c2",
-	error = "#ff3333",
-	hint = "#555555",
-	redundant = "#4f5258",
-	namespace = "#f4b393",
-	module = "#fce094",
+	gray = "#4f5258",
 }
+
+M.code = {
+	variable = M.base.orange,
+	operator = M.base.fg,
+	string = M.base.fg,
+	delimiter = M.base.fg,
+	number = M.base.pink,
+	escape = M.base.pink,
+	comment = M.base.gray,
+	keyword = M.base.blue_light,
+	struct = M.base.purple,
+	enum = M.base.periwinkle,
+	interface = M.base.turquoise,
+	method = M.base.green,
+	constant = M.base.blue_ucla,
+	member = M.base.blue,
+	todo = M.base.cyan,
+	macro = M.base.cyan,
+	attribute = M.base.turquoise,
+	error = M.base.red,
+	hint = M.base.turquoise, -- TODO: Revise
+	redundant = M.base.gray,
+	namespace = M.base.peach,
+	module = M.base.yellow,
+}
+
+return M
 
 -- Rider Dark
 --return {

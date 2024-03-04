@@ -1,24 +1,24 @@
-local colors = require("config/colors")
+local colors = require("config/colors").base
 
 return {
 	n = colors.orange, -- Normal
 	i = colors.blue_light, -- Insert
 	v = colors.green, -- Visual
-	[''] = colors.keyword,
-	V = colors.keyword,
+	[''] = colors.blue_light,
+	V = colors.blue_light,
 	c = colors.orange,
-	no = colors.macro,
+	no = colors.cyan,
 	s = colors.orange,
 	S = colors.orange,
 	[''] = colors.orange,
-	ic = colors.member,
-	R = colors.number,
-	Rv = colors.number,
-	cv = colors.macro,
-	ce = colors.macro,
-	r = colors.todo,
-	rm = colors.todo,
-	['r?'] = colors.todo,
-	['!'] = colors.macro,
-	t = colors.macro,
+	ic = colors.blue,
+	R = colors.pink,
+	Rv = colors.pink,
+	cv = colors.cyan,
+	ce = colors.cyan,
+	r = colors.cyan,
+	rm = colors.cyan,
+	['r?'] = colors.cyan,
+	['!'] = colors.cyan,
+	t = colors.cyan,
 }

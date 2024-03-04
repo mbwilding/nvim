@@ -5,7 +5,7 @@
     },
     config = function()
         local lualine = require("lualine")
-        local colors = require("config/colors")
+        local colors = require("config/colors").base
         local mode_color = require("config/colors-mode")
 
         local conditions = {
@@ -31,7 +31,7 @@
                 icons_enabled = true,
                 theme = {
                     normal = { c = { fg = colors.blue_light, bg = colors.transparent } },
-                    inactive = { c = { fg = colors.redundant, bg = colors.transparent } },
+                    inactive = { c = { fg = colors.gray, bg = colors.transparent } },
                 },
             },
             sections = {

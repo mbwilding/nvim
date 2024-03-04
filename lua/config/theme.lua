@@ -1,5 +1,7 @@
 local M = {}
-local c = require("config.colors")
+local colors = require("config.colors")
+local base = colors.base
+local code = colors.code
 
 local stateFilePath = vim.fn.stdpath("data") .. "/transparent_state"
 
@@ -74,14 +76,14 @@ end
 function M.Highlights(transparent, toggle)
 	if transparent then
 		-- Transparent
-		highlight("Normal", { fg = c.fg, bg = c.transparent }) -- Current window
-		highlight("NormalNC", { fg = c.fg, bg = c.transparent }) -- Non-current window
-		highlight("ColorColumn", { fg = c.fg, bg = c.transparent }) -- Columns set with `colorcolumn`
+		highlight("Normal", { fg = base.fg, bg = base.transparent }) -- Current window
+		highlight("NormalNC", { fg = base.fg, bg = base.transparent }) -- Non-current window
+		highlight("ColorColumn", { fg = base.fg, bg = base.transparent }) -- Columns set with `colorcolumn`
 	else
 		-- Normal
-		highlight("Normal", { fg = c.fg, bg = c.bg }) -- Current window
-		highlight("NormalNC", { fg = c.fg, bg = c.bg }) -- Non-current window
-		highlight("ColorColumn", { fg = c.fg, bg = c.window_bg }) -- Columns set with `colorcolumn`
+		highlight("Normal", { fg = base.fg, bg = base.bg }) -- Current window
+		highlight("NormalNC", { fg = base.fg, bg = base.bg }) -- Non-current window
+		highlight("ColorColumn", { fg = base.fg, bg = base.window_bg }) -- Columns set with `colorcolumn`
 	end
 
 	if toggle then
@@ -89,113 +91,113 @@ function M.Highlights(transparent, toggle)
 	end
 
 	-- Theme
-	highlight("NormalSB", { fg = c.fg, bg = c.transparent }) -- Normal text in sidebar
-	highlight("NormalFloat", { fg = c.fg, bg = c.window_bg }) -- Normal text in floating windows
+	highlight("NormalSB", { fg = base.fg, bg = base.transparent }) -- Normal text in sidebar
+	highlight("NormalFloat", { fg = base.fg, bg = base.window_bg }) -- Normal text in floating windows
 
 	-- Gutter
-	highlight("LineNr", { fg = c.blue_light, bg = c.transparent }) -- Current line number
-	highlight("CursorLineNr", { fg = c.blue_light, bg = c.transparent }) -- Unknown
-	highlight("LineNrAbove", { fg = c.redundant, bg = c.transparent }) -- Above current line numbers
-	highlight("LineNrBelow", { fg = c.redundant, bg = c.transparent }) -- Below current line numbers
+	highlight("LineNr", { fg = base.blue_light, bg = base.transparent }) -- Current line number
+	highlight("CursorLineNr", { fg = base.blue_light, bg = base.transparent }) -- Unknown
+	highlight("LineNrAbove", { fg = code.redundant, bg = base.transparent }) -- Above current line numbers
+	highlight("LineNrBelow", { fg = code.redundant, bg = base.transparent }) -- Below current line numbers
 
-	highlight("MatchParen", { fg = c.bg, bg = c.blue })            -- Matching pair highlight
-	highlight("Cursor", { fg = c.fg, bg = c.orange })              -- Character under the cursor
-	highlight("lCursor", { fg = c.fg, bg = c.orange })             -- Character under the cursor when `language-mapping`
-	highlight("CursorIM", { fg = c.fg, bg = c.bg })                -- Character under the cursor in IME mode
-	highlight("CursorLine", { fg = c.blue, bg = c.transparent })   -- Screen line at the cursor
-	highlight("IncSearch", { fg = c.bg, bg = c.blue })             -- Yank highlight
-	highlight("Conceal", { fg = c.redundant, bg = c.transparent }) -- Grayed out
-	highlight("EndOfBuffer", { fg = c.bg })                        -- End of buffer `~`
-	highlight("Directory", { fg = c.blue })                        -- Directory color
-	highlight("DiffAdd", { fg = c.green })                         -- Diff add
-	highlight("DiffChange", { fg = c.blue_light })                 -- Diff change
-	highlight("DiffDelete", { fg = c.error })                      -- Diff delete
-	highlight("ErrorMsg", { fg = c.error })                        -- Error messages on the commandline
-	highlight("VertSplit", { fg = c.window_accent, bg = c.window_bg }) -- Vertical split border
-	highlight("WinSeparator", { fg = c.window_accent, bg = c.window_bg }) -- Window border
-	highlight("Folded", { fg = c.blue_light, bg = c.transparent }) -- Folded gutter
+	highlight("MatchParen", { fg = base.bg, bg = base.blue })            -- Matching pair highlight
+	highlight("Cursor", { fg = base.fg, bg = base.orange })              -- Character under the cursor
+	highlight("lCursor", { fg = base.fg, bg = base.orange })             -- Character under the cursor when `language-mapping`
+	highlight("CursorIM", { fg = base.fg, bg = base.bg })                -- Character under the cursor in IME mode
+	highlight("CursorLine", { fg = base.blue, bg = base.transparent })   -- Screen line at the cursor
+	highlight("IncSearch", { fg = base.bg, bg = base.blue })             -- Yank highlight
+	highlight("Conceal", { fg = code.redundant, bg = base.transparent }) -- Grayed out
+	highlight("EndOfBuffer", { fg = base.bg })                           -- End of buffer `~`
+	highlight("Directory", { fg = base.blue })                           -- Directory color
+	highlight("DiffAdd", { fg = base.green })                            -- Diff add
+	highlight("DiffChange", { fg = base.blue_light })                    -- Diff change
+	highlight("DiffDelete", { fg = code.error })                         -- Diff delete
+	highlight("ErrorMsg", { fg = code.error })                           -- Error messages on the commandline
+	highlight("VertSplit", { fg = base.window_accent, bg = base.window_bg }) -- Vertical split border
+	highlight("WinSeparator", { fg = base.window_accent, bg = base.window_bg }) -- Window border
+	highlight("Folded", { fg = base.blue_light, bg = base.transparent }) -- Folded gutter
 	-- Lazy
-	highlight("LazyComment", { fg = c.comment })
-	highlight("LazyProp", { fg = c.blue })
-	highlight("LazyReasonPlugin", { fg = c.comment })
-	highlight("LazySpecial", { fg = c.blue })
-	highlight("LazyH1", { fg = c.bg, bg = c.blue })
-	highlight("LazyButton", { fg = c.fg, bg = c.window_accent })
-	highlight("LazyButtonActive", { fg = c.bg, bg = c.blue })
-	highlight("Title", { fg = c.blue_light })
+	highlight("LazyComment", { fg = code.comment })
+	highlight("LazyProp", { fg = base.blue })
+	highlight("LazyReasonPlugin", { fg = code.comment })
+	highlight("LazySpecial", { fg = base.blue })
+	highlight("LazyH1", { fg = base.bg, bg = base.blue })
+	highlight("LazyButton", { fg = base.fg, bg = base.window_accent })
+	highlight("LazyButtonActive", { fg = base.bg, bg = base.blue })
+	highlight("Title", { fg = base.blue_light })
 
 	-- Mason
-	highlight("MasonHeader", { fg = c.bg, bg = c.blue })
-	highlight("MasonHighlight", { fg = c.blue, bg = c.transparent })
-	highlight("MasonHighlightBlockBold", { fg = c.window_accent, bg = c.blue })
-	highlight("MasonMuted", { fg = c.redundant, bg = c.transparent })
-	highlight("MasonMutedBlock", { fg = c.fg, bg = c.window_accent })
-	highlight("MasonHighlightBlock", { fg = c.blue, bg = c.window_accent })
+	highlight("MasonHeader", { fg = base.bg, bg = base.blue })
+	highlight("MasonHighlight", { fg = base.blue, bg = base.transparent })
+	highlight("MasonHighlightBlockBold", { fg = base.window_accent, bg = base.blue })
+	highlight("MasonMuted", { fg = code.redundant, bg = base.transparent })
+	highlight("MasonMutedBlock", { fg = base.fg, bg = base.window_accent })
+	highlight("MasonHighlightBlock", { fg = base.blue, bg = base.window_accent })
 
 	-- Oil
-	highlight("OilFile", { fg = c.orange })
+	highlight("OilFile", { fg = base.orange })
 
 	-- Code
-	highlight("@boolean", { fg = c.keyword })
-	highlight("@constant.macro", { fg = c.macro })
-	highlight("@constant", { fg = c.constant })
-	highlight("@function.macro", { fg = c.macro })
-	highlight("@lsp.mod.declaration", { fg = c.module })
-	highlight("@lsp.mod.library", { fg = c.module })
-	highlight("@lsp.mod.static", { fg = c.constant })
-	highlight("@lsp.type.invalidEscapeSequence", { fg = c.error })
-	highlight("@lsp.type.formatSpecifier", { fg = c.struct })
-	highlight("@lsp.type.keyword", { fg = c.keyword })
-	highlight("@lsp.typemod.decorator.attribute", { fg = c.attribute })
-	highlight("@lsp.typemod.derive", { fg = c.interface })
-	highlight("@lsp.typemod.enum", { fg = c.enum })
-	highlight("@lsp.typemod.enumMember", { fg = c.constant })
-	highlight("@lsp.typemod.function", { fg = c.method })
-	highlight("@lsp.typemod.interface.library", { fg = c.interface })
-	highlight("@lsp.typemod.macro", { fg = c.macro })
-	highlight("@lsp.typemod.method", { fg = c.method })
-	highlight("@lsp.typemod.operator.controlFlow", { fg = c.keyword })
-	highlight("@lsp.typemod.property.declaration", { fg = c.member })
-	highlight("@lsp.typemod.property", { fg = c.member })
-	highlight("@lsp.typemod.struct", { fg = c.struct })
-	highlight("@lsp.typemod.typeAlias.library", { fg = c.struct }) -- link = "Type"
-	highlight("@lsp.typemod.variable", { fg = c.variable })
-	highlight("@module", { fg = c.namespace })
-	highlight("@string.escape", { fg = c.escape })
-	highlight("@variable", { fg = c.variable })
-	highlight("@variable.member", { fg = c.member })
-	highlight("Comment", { fg = c.comment })
-	highlight("Delimiter", { fg = c.delimiter })
-	highlight("Function", { fg = c.method })
-	highlight("Identifier", { fg = c.member })
-	highlight("Number", { fg = c.number })
-	highlight("Operator", { fg = c.operator })
-	highlight("Special", { fg = c.keyword })
-	highlight("Statement", { fg = c.keyword })
-	highlight("String", { fg = c.string })
-	highlight("Type", { fg = c.struct })
+	highlight("@boolean", { fg = code.keyword })
+	highlight("@constant.macro", { fg = code.macro })
+	highlight("@constant", { fg = code.constant })
+	highlight("@function.macro", { fg = code.macro })
+	highlight("@lsp.mod.declaration", { fg = code.module })
+	highlight("@lsp.mod.library", { fg = code.module })
+	highlight("@lsp.mod.static", { fg = code.constant })
+	highlight("@lsp.type.invalidEscapeSequence", { fg = code.error })
+	highlight("@lsp.type.formatSpecifier", { fg = code.struct })
+	highlight("@lsp.type.keyword", { fg = code.keyword })
+	highlight("@lsp.typemod.decorator.attribute", { fg = code.attribute })
+	highlight("@lsp.typemod.derive", { fg = code.interface })
+	highlight("@lsp.typemod.enum", { fg = code.enum })
+	highlight("@lsp.typemod.enumMember", { fg = code.constant })
+	highlight("@lsp.typemod.function", { fg = code.method })
+	highlight("@lsp.typemod.interface.library", { fg = code.interface })
+	highlight("@lsp.typemod.macro", { fg = code.macro })
+	highlight("@lsp.typemod.method", { fg = code.method })
+	highlight("@lsp.typemod.operator.controlFlow", { fg = code.keyword })
+	highlight("@lsp.typemod.property.declaration", { fg = code.member })
+	highlight("@lsp.typemod.property", { fg = code.member })
+	highlight("@lsp.typemod.struct", { fg = code.struct })
+	highlight("@lsp.typemod.typeAlias.library", { fg = code.struct }) -- link = "Type"
+	highlight("@lsp.typemod.variable", { fg = code.variable })
+	highlight("@module", { fg = code.namespace })
+	highlight("@string.escape", { fg = code.escape })
+	highlight("@variable", { fg = code.variable })
+	highlight("@variable.member", { fg = code.member })
+	highlight("Comment", { fg = code.comment })
+	highlight("Delimiter", { fg = code.delimiter })
+	highlight("Function", { fg = code.method })
+	highlight("Identifier", { fg = code.member })
+	highlight("Number", { fg = code.number })
+	highlight("Operator", { fg = code.operator })
+	highlight("Special", { fg = code.keyword })
+	highlight("Statement", { fg = code.keyword })
+	highlight("String", { fg = code.string })
+	highlight("Type", { fg = code.struct })
 
 	-- Diagnostics
-	highlight("DiagnosticUnnecessary", { fg = c.redundant })
+	highlight("DiagnosticUnnecessary", { fg = code.redundant })
 
 	-- nvim-notify
-	highlight("NotifyBackground", { bg = c.bg })
-	highlight("NotifyINFOBody", { fg = c.fg })
-	highlight("NoiceAttr", { fg = c.fg })
+	highlight("NotifyBackground", { bg = base.bg })
+	highlight("NotifyINFOBody", { fg = base.fg })
+	highlight("NoiceAttr", { fg = base.fg })
 
 	-- Hints
-	highlight("LspInlayHint", { fg = c.hint })
-	highlight("LspLens", { fg = c.redundant })
+	highlight("LspInlayHint", { fg = code.hint })
+	highlight("LspLens", { fg = code.redundant })
 
 	-- Rust
-	highlight("@type.qualifier.rust", { fg = c.keyword, style = "underline" })
+	highlight("@type.qualifier.rust", { fg = code.keyword, style = "underline" })
 	highlight("@lsp.mod.mutable", { style = "underline" })
-	highlight("@lsp.typemod.namespace.crateRoot", { fg = c.namespace }) -- link = "@module"
-	highlight("@lsp.typemod.interface.declaration", { fg = c.interface })
-	highlight("@lsp.mod.unsafe", { fg = c.error })
+	highlight("@lsp.typemod.namespace.crateRoot", { fg = code.namespace }) -- link = "@module"
+	highlight("@lsp.typemod.interface.declaration", { fg = code.interface })
+	highlight("@lsp.mod.unsafe", { fg = code.error })
 
 	-- CSharp
-	highlight("@lsp.type.stringEscapeCharacter.cs", { fg = c.escape })
+	highlight("@lsp.type.stringEscapeCharacter.cs", { fg = code.escape })
 end
 
 vim.api.nvim_create_autocmd("ModeChanged", {
