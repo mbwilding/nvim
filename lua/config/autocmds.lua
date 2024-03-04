@@ -64,22 +64,21 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 	end,
 })
 
--- Set current line color to match mode color
-local function adjustLineNrHighlight()
-	local colors = require("config/colors")
-	local mode_colors = require("config/colors-mode")
-
-	-- Get the current mode
-	local mode = vim.api.nvim_get_mode().mode
-
-	-- Find the color for the current mode or default
-	local color = mode_colors[mode] or colors.blue_light
-
-	-- Adjust LineNr highlight group to the color for the current mode
-	vim.cmd(string.format("highlight LineNr guifg=%s", color))
-end
 
 vim.api.nvim_create_autocmd("ModeChanged", {
+	group = augroup("mode_colors"),
 	pattern = "*",
-	callback = adjustLineNrHighlight,
+	callback = function()
+		local colors = require("config/colors")
+		local mode_colors = require("config/colors-mode")
+
+		local mode = vim.api.nvim_get_mode().mode
+		local color = mode_colors[mode] or colors.orange
+
+		vim.cmd(string.format("highlight LineNr guifg=%s", color))
+		vim.cmd(string.format("highlight Cursor guifg=%s guibg=%s", color, color))
+		vim.cmd(string.format("highlight lCursor guifg=%s guibg=%s", color, color))
+
+		vim.cmd("set termguicolors")
+	end
 })

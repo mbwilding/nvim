@@ -89,7 +89,7 @@ function M.Highlights(transparent, toggle)
 	end
 
 	-- Theme
-	highlight("NormalSB", { fg = c.fg, bg = c.error }) -- Normal text in sidebar
+	highlight("NormalSB", { fg = c.fg, bg = c.transparent }) -- Normal text in sidebar
 	highlight("NormalFloat", { fg = c.fg, bg = c.window_bg }) -- Normal text in floating windows
 
 	-- Gutter
@@ -99,8 +99,8 @@ function M.Highlights(transparent, toggle)
 	highlight("LineNrBelow", { fg = c.redundant, bg = c.transparent }) -- Below current line numbers
 
 	highlight("MatchParen", { fg = c.bg, bg = c.blue })            -- Matching pair highlight
-	highlight("Cursor", { fg = c.fg, bg = c.bg })                  -- Character under the cursor
-	highlight("lCursor", { fg = c.fg, bg = c.bg })                 -- Character under the cursor when `language-mapping`
+	highlight("Cursor", { fg = c.fg, bg = c.orange })              -- Character under the cursor
+	highlight("lCursor", { fg = c.fg, bg = c.orange })             -- Character under the cursor when `language-mapping`
 	highlight("CursorIM", { fg = c.fg, bg = c.bg })                -- Character under the cursor in IME mode
 	highlight("CursorLine", { fg = c.blue, bg = c.transparent })   -- Screen line at the cursor
 	highlight("IncSearch", { fg = c.bg, bg = c.blue })             -- Yank highlight
