@@ -1,6 +1,5 @@
 return {
     'saecki/crates.nvim',
-    tag = "unstable",
     event = { "BufRead Cargo.toml" },
     config = function()
         local crates = require("crates")
