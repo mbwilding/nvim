@@ -79,7 +79,9 @@
         ins_left {
             'filename',
             cond = conditions.buffer_not_empty,
-            fmt = string.upper,
+            fmt = function(s)
+                return "FILE: " .. s:upper()
+            end,
             color = function()
                 return { fg = mode_color[vim.fn.mode()], gui = "bold" }
             end,
@@ -88,7 +90,9 @@
         ins_left {
             'filesize',
             cond = conditions.buffer_not_empty,
-            fmt = string.upper,
+            fmt = function(s)
+                return "SIZE: " .. s:upper()
+            end,
             color = function()
                 return { fg = mode_color[vim.fn.mode()], gui = "bold" }
             end,
@@ -106,8 +110,10 @@
 
         ins_left {
             'o:encoding',
-            fmt = string.upper,
             cond = conditions.buffer_not_empty,
+            fmt = function(s)
+                return "ENC: " .. s:upper()
+            end,
             color = function()
                 return { fg = mode_color[vim.fn.mode()], gui = "bold" }
             end,
@@ -115,9 +121,11 @@
 
         ins_left {
             'fileformat',
-            fmt = string.upper,
             cond = conditions.buffer_not_empty,
             icons_enabled = false,
+            fmt = function(s)
+                return "LE: " .. s:upper()
+            end,
             color = function()
                 return { fg = mode_color[vim.fn.mode()], gui = "bold" }
             end,
@@ -125,6 +133,12 @@
 
         ins_left {
             'selectioncount',
+            cond = conditions.buffer_not_empty,
+            fmt = function(s)
+                if s ~= "" then
+                    return "SEL: " .. s:upper()
+                end
+            end,
             color = function()
                 return { fg = mode_color[vim.fn.mode()], gui = "bold" }
             end,

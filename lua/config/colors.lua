@@ -48,10 +48,10 @@ M.code = {
 	macro = M.base.cyan,
 	attribute = M.base.turquoise,
 	error = M.base.red,
-	hint = M.base.turquoise, -- TODO: Revise
-	redundant = M.base.gray,
 	namespace = M.base.peach,
 	module = M.base.yellow,
+	redundant = M.base.gray,
+	hint = M.base.gray,
 }
 
 return M

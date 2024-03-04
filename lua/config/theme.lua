@@ -108,7 +108,6 @@ function M.Highlights(transparent, toggle)
 	highlight("IncSearch", { fg = base.bg, bg = base.blue })             -- Yank highlight
 	highlight("Conceal", { fg = code.redundant, bg = base.transparent }) -- Grayed out
 	highlight("EndOfBuffer", { fg = base.bg })                           -- End of buffer `~`
-	highlight("Directory", { fg = base.blue })                           -- Directory color
 	highlight("DiffAdd", { fg = base.green })                            -- Diff add
 	highlight("DiffChange", { fg = base.blue_light })                    -- Diff change
 	highlight("DiffDelete", { fg = code.error })                         -- Diff delete
@@ -134,8 +133,9 @@ function M.Highlights(transparent, toggle)
 	highlight("MasonMutedBlock", { fg = base.fg, bg = base.window_accent })
 	highlight("MasonHighlightBlock", { fg = base.blue, bg = base.window_accent })
 
-	-- Oil
-	highlight("OilFile", { fg = base.orange })
+	-- File system
+	highlight("Directory", { fg = base.blue }) -- Directory color
+	highlight("OilFile", { fg = base.orange }) -- Oil file color
 
 	-- Code
 	highlight("@boolean", { fg = code.keyword })
@@ -210,8 +210,8 @@ vim.api.nvim_create_autocmd("ModeChanged", {
 		local color = mode_colors[mode] or colors.orange
 
 		vim.cmd(string.format("highlight LineNr guifg=%s", color))
-		vim.cmd(string.format("highlight Cursor guifg=%s guibg=%s", color, color))
-		vim.cmd(string.format("highlight lCursor guifg=%s guibg=%s", color, color))
+		vim.cmd(string.format("highlight Cursor guibg=%s", color))
+		vim.cmd(string.format("highlight lCursor guibg=%s", color))
 
 		vim.cmd("set termguicolors")
 	end
