@@ -198,6 +198,23 @@ function M.Highlights(transparent, toggle)
 	highlight("@lsp.type.stringEscapeCharacter.cs", { fg = c.escape })
 end
 
+vim.api.nvim_create_autocmd("ModeChanged", {
+	pattern = "*",
+	callback = function()
+		local colors = require("config/colors")
+		local mode_colors = require("config/colors-mode")
+
+		local mode = vim.api.nvim_get_mode().mode
+		local color = mode_colors[mode] or colors.orange
+
+		vim.cmd(string.format("highlight LineNr guifg=%s", color))
+		vim.cmd(string.format("highlight Cursor guifg=%s guibg=%s", color, color))
+		vim.cmd(string.format("highlight lCursor guifg=%s guibg=%s", color, color))
+
+		vim.cmd("set termguicolors")
+	end
+})
+
 M.Highlights(isTransparent, false)
 
 return M
