@@ -26,7 +26,7 @@
             options = {
                 component_separators = '',
                 section_separators = '',
-                globalstatus = true,
+                globalstatus = false, -- false means a lualine per buffer
                 icons_enabled = true,
                 theme = {
                     normal = { c = { fg = colors.base.orange, bg = colors.base.transparent } },
