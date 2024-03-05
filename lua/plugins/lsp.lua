@@ -64,15 +64,19 @@ return {
             lua_ls = {
                 settings = {
                     Lua = {
-                        diagnostics = {
-                            -- Recognize the `vim` global
-                            globals = { "vim" },
-                        },
+                        runtime = { version = 'LuaJIT' },
                         workspace = {
-                            -- Make the server aware of Neovim runtime files
-                            library = vim.api.nvim_get_runtime_file("", true),
+                            checkThirdParty = false,
+                            library = {
+                                '${3rd}/luv/library',
+                                unpack(vim.api.nvim_get_runtime_file('', true)),
+                            },
                         },
-                        hint = { enable = true }
+                        completion = {
+                            callSnippet = 'Replace',
+                        },
+                        -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+                        -- diagnostics = { disable = { 'missing-fields' } },
                     },
                 },
             },
@@ -148,33 +152,33 @@ return {
                 -- Jump to the definition of the word under your cursor.
                 --  This is where a variable was first declared, or where a function is defined, etc.
                 --  To jump back, press <C-T>.
-                map('gd', require('telescope.builtin').lsp_definitions, 'Goto definition')
+                map('gd', require('telescope.builtin').lsp_definitions, 'LSP: Goto definition')
 
                 -- WARN: This is not Goto Definition, this is Goto Declaration.
                 --  For example, in C this would take you to the header
-                map('gD', vim.lsp.buf.declaration, 'Goto declaration')
+                map('gD', vim.lsp.buf.declaration, 'LSP: Goto declaration')
 
                 -- Jump to the type of the word under your cursor.
                 --  Useful when you're not sure what type a variable is and you want to see
                 --  the definition of its *type*, not where it was *defined*.
-                map('gt', require('telescope.builtin').lsp_type_definitions, 'Type definition')
+                map('gt', require('telescope.builtin').lsp_type_definitions, 'LSP: Type definition')
 
                 -- Find references for the word under your cursor.
-                map('gr', require('telescope.builtin').lsp_references, 'Goto references')
+                map('gr', require('telescope.builtin').lsp_references, 'LSP: Goto references')
 
                 -- Jump to the implementation of the word under your cursor.
                 --  Useful when your language has ways of declaring types without an actual implementation.
-                map('gi', require('telescope.builtin').lsp_implementations, 'Goto implementation')
+                map('gi', require('telescope.builtin').lsp_implementations, 'LSP: Goto implementation')
 
                 -- Fuzzy find all the symbols in your current document.
                 --  Symbols are things like variables, functions, types, etc.
                 map('gs', require('telescope.builtin').lsp_document_symbols,
-                    'Document symbols')
+                    'LSP: Document symbols')
 
                 -- Fuzzy find all the symbols in your current workspace
                 --  Similar to document symbols, except searches over your whole project.
                 map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols,
-                    'Workspace symbols')
+                    'LSP: Workspace symbols')
 
                 -- Rename the variable under your cursor [Disabled due to inc-rename]
                 --map('<leader>rn', vim.lsp.buf.rename, 'Rename')
@@ -188,10 +192,10 @@ return {
 
                 -- Opens a popup that displays documentation about the word under your cursor
                 --  See `:help K` for why this keymap
-                map('K', vim.lsp.buf.hover, 'Hover documentation')
+                map('K', vim.lsp.buf.hover, 'LSP: Hover documentation')
 
                 -- Show the signature of the function you're currently completing.
-                map('<C-k>', vim.lsp.buf.signature_help, 'Signature documentation')
+                map('<C-k>', vim.lsp.buf.signature_help, 'LSP: Signature documentation')
 
                 -- Navigation
                 vim.api.nvim_set_keymap('n', '<C-p>', '<C-t>', { noremap = true, silent = true })

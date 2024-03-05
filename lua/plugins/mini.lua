@@ -4,7 +4,7 @@ return { -- Collection of various small independent plugins/modules
         -- Better Around/Inside textobjects
         --
         -- Examples:
-        --  - va)  - [V]isually select [A]round [)]parenthen
+        --  - va)  - [V]isually select [A]round [)]paren
         --  - yinq - [Y]ank [I]nside [N]ext [']quote
         --  - ci'  - [C]hange [I]nside [']quote
         require('mini.ai').setup { n_lines = 500 }
@@ -17,7 +17,18 @@ return { -- Collection of various small independent plugins/modules
         require('mini.surround').setup()
 
         -- Simple and easy statusline.
-        -- require('mini.statusline').setup()
+        --  You could remove this setup call if you don't like it,
+        --  and try some other statusline plugin
+        local statusline = require 'mini.statusline'
+        statusline.setup()
+
+        -- You can configure sections in the statusline by overriding their
+        -- default behavior. For example, here we set the section for
+        -- cursor location to LINE:COLUMN
+        ---@diagnostic disable-next-line: duplicate-set-field
+        statusline.section_location = function()
+            return '%2l:%-2v'
+        end
 
         -- ... and there is more!
         --  Check out: https://github.com/echasnovski/mini.nvim
