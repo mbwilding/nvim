@@ -10,62 +10,63 @@ M.base = {
 	window_accent = "#202020",
 
 	-- Colors
-	orange = "#ffb083",
-	blue = "#4eade5",
+	blue_light = "#4eade5",
 	blue_dark = "#6c95eb",
 	cyan = "#66c3cc",
-	green = "#39cc8f",
-	purple = "#9591ff",
-	yellow = "#fce094",
 	red = "#ff3333",
-	pink_hot = "#fc60a8",
-	pink = "#ed94c0",
-	peach = "#f4b393",
-	turquoise = "#2de1c2",
-	lime = "#b1d696",
-	gray = "#4f5258",
-	linen = "#ebe0c1",
+	pink_light = "#e1bfff",
+	pink_dark = "#ed94c0",
+	blue = "#6c95eb",
+	green = "#39cc8f",
+	purple_light = "#c191ff",
+	purple_dark = "#9591ff",
+	brown = "#c9a26d",
+	lime = "#85c46c",
+	gray_light = "#787878",
+	gray_dark = "#4f5258",
+	orange_light = "#ffd3b3",
+	orange_dark = "#ffb083",
 }
 
 M.code = {
-	variable = M.base.orange,
+	variable = M.base.fg,
 	operator = M.base.fg,
-	string = M.base.linen,
+	string = M.base.brown,
 	delimiter = M.base.fg,
-	number = M.base.pink,
-	escape = M.base.pink,
-	comment = M.base.gray,
-	keyword = M.base.blue,
-	struct = M.base.purple,
-	enum = M.base.lime,
-	interface = M.base.turquoise,
+	number = M.base.pink_dark,
+	escape = M.base.pink_dark,
+	comment = M.base.lime,
+	keyword = M.base.blue_dark,
+	struct = M.base.purple_light,
+	enum = M.base.pink_light,
+	interface = M.base.purple_dark,
 	method = M.base.green,
-	constant = M.base.pink_hot,
-	member = M.base.blue_dark,
-	todo = M.base.cyan,
-	macro = M.base.cyan,
-	attribute = M.base.turquoise,
+	constant = M.base.cyan,
+	member = M.base.cyan,
+	macro = M.base.blue_light,
+	attribute = M.base.purple_light,
+	namespace = M.base.orange_dark,
+	module = M.base.orange_light,
+	redundant = M.base.gray_light,
+	hint = M.base.grey_dark,
+	todo = M.base.blue_light,
 	error = M.base.red,
-	namespace = M.base.peach,
-	module = M.base.yellow,
-	redundant = M.base.gray,
-	hint = M.base.gray,
 }
 
 M.mode = {
-	n = M.base.orange, -- Normal
+	n = M.base.orange_dark, -- Normal
 	i = M.base.blue, -- Insert
 	v = M.base.green, -- Visual
 	[''] = M.base.blue,
 	V = M.base.blue,
-	c = M.base.orange,
+	c = M.base.orange_dark,
 	no = M.base.cyan,
-	s = M.base.orange,
-	S = M.base.orange,
-	[''] = M.base.orange,
+	s = M.base.orange_dark,
+	S = M.base.orange_dark,
+	[''] = M.base.orange_dark,
 	ic = M.base.blue_dark,
-	R = M.base.pink,
-	Rv = M.base.pink,
+	R = M.base.pink_dark,
+	Rv = M.base.pink_dark,
 	cv = M.base.cyan,
 	ce = M.base.cyan,
 	r = M.base.cyan,
@@ -164,14 +165,14 @@ function M.Highlights(transparent, initialize)
 	highlight("NormalFloat", { fg = base.fg, bg = base.window_bg }) -- Normal text in floating windows
 
 	-- Gutter
-	highlight("LineNr", { fg = base.orange, bg = base.transparent })     -- Current line number
-	highlight("CursorLineNr", { fg = base.orange, bg = base.transparent }) -- Unknown
+	highlight("LineNr", { fg = base.orange_dark, bg = base.transparent }) -- Current line number
+	highlight("CursorLineNr", { fg = base.orange_dark, bg = base.transparent }) -- Unknown
 	highlight("LineNrAbove", { fg = code.redundant, bg = base.transparent }) -- Above current line numbers
 	highlight("LineNrBelow", { fg = code.redundant, bg = base.transparent }) -- Below current line numbers
 
 	highlight("MatchParen", { fg = base.bg, bg = base.blue_dark })       -- Matching pair highlight
-	highlight("Cursor", { fg = base.fg, bg = base.orange })              -- Character under the cursor
-	highlight("lCursor", { fg = base.fg, bg = base.orange })             -- Character under the cursor when `language-mapping`
+	highlight("Cursor", { fg = base.fg, bg = base.orange_dark })         -- Character under the cursor
+	highlight("lCursor", { fg = base.fg, bg = base.orange_dark })        -- Character under the cursor when `language-mapping`
 	highlight("CursorIM", { fg = base.fg, bg = base.bg })                -- Character under the cursor in IME mode
 	highlight("CursorLine", { fg = base.blue_dark, bg = base.transparent }) -- Screen line at the cursor
 	highlight("IncSearch", { fg = base.bg, bg = base.blue_dark })        -- Yank highlight
@@ -186,25 +187,25 @@ function M.Highlights(transparent, initialize)
 	highlight("Folded", { fg = base.blue, bg = base.transparent })       -- Folded gutter
 	-- Lazy
 	highlight("LazyComment", { fg = code.comment })
-	highlight("LazyProp", { fg = base.orange })
+	highlight("LazyProp", { fg = base.orange_dark })
 	highlight("LazyReasonPlugin", { fg = code.comment })
-	highlight("LazySpecial", { fg = base.orange })
-	highlight("LazyH1", { fg = base.bg, bg = base.orange })
+	highlight("LazySpecial", { fg = base.orange_dark })
+	highlight("LazyH1", { fg = base.bg, bg = base.orange_dark })
 	highlight("LazyButton", { fg = base.fg, bg = base.window_accent })
-	highlight("LazyButtonActive", { fg = base.bg, bg = base.orange })
-	highlight("Title", { fg = base.orange })
+	highlight("LazyButtonActive", { fg = base.bg, bg = base.orange_dark })
+	highlight("Title", { fg = base.orange_dark })
 
 	-- Mason
-	highlight("MasonHeader", { fg = base.bg, bg = base.orange })
+	highlight("MasonHeader", { fg = base.bg, bg = base.orange_dark })
 	highlight("MasonHighlight", { fg = base.blue_dark, bg = base.transparent })
-	highlight("MasonHighlightBlockBold", { fg = base.window_accent, bg = base.orange })
+	highlight("MasonHighlightBlockBold", { fg = base.window_accent, bg = base.orange_dark })
 	highlight("MasonMuted", { fg = code.redundant, bg = base.transparent })
 	highlight("MasonMutedBlock", { fg = base.fg, bg = base.window_accent })
-	highlight("MasonHighlightBlock", { fg = base.orange, bg = base.window_accent })
+	highlight("MasonHighlightBlock", { fg = base.orange_dark, bg = base.window_accent })
 
 	-- File system
 	highlight("Directory", { fg = base.blue_dark }) -- Directory color
-	highlight("OilFile", { fg = base.orange }) -- Oil file color
+	highlight("OilFile", { fg = base.orange_dark }) -- Oil file color
 
 	-- Code
 	highlight("@boolean", { fg = code.keyword })
@@ -255,8 +256,8 @@ function M.Highlights(transparent, initialize)
 	highlight("NoiceAttr", { fg = base.fg })
 
 	-- Hints
-	highlight("LspInlayHint", { fg = code.hint })
-	highlight("LspLens", { fg = code.redundant })
+	highlight("LspInlayHint", { fg = base.gray_dark })
+	highlight("LspLens", { fg = base.gray_light })
 
 	-- Rust
 	highlight("@type.qualifier.rust", { fg = code.keyword, style = "underline" })

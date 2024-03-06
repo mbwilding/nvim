@@ -29,8 +29,8 @@
                 globalstatus = true,
                 icons_enabled = false,
                 theme = {
-                    normal = { c = { fg = colors.base.orange, bg = colors.base.transparent } },
-                    inactive = { c = { fg = colors.base.gray, bg = colors.base.transparent } },
+                    normal = { c = { fg = colors.base.orange_dark, bg = colors.base.transparent } },
+                    inactive = { c = { fg = colors.base.gray_dark, bg = colors.base.transparent } },
                 },
             },
             sections = {
@@ -227,7 +227,7 @@
             --symbols = { error = ' ', warn = ' ', info = ' ' },
             diagnostics_color = {
                 color_error = { fg = colors.base.error },
-                color_warn = { fg = colors.base.orange },
+                color_warn = { fg = colors.base.orange_dark },
                 color_info = { fg = colors.base.green },
             },
             fmt = function(s)

@@ -4,6 +4,7 @@ return {
     dependencies = {
         'nvim-lua/plenary.nvim',
         'nvim-telescope/telescope-ui-select.nvim',
+        'aaronhallaert/advanced-git-search.nvim',
         {
             'nvim-telescope/telescope-fzf-native.nvim',
             -- Build command adjusted to use 'make' if available, otherwise 'cmake'
@@ -59,12 +60,39 @@ return {
                 ['ui-select'] = {
                     require('telescope.themes').get_dropdown(),
                 },
+                ['advanced_git_search'] = {
+                    -- fugitive or diffview
+                    diff_plugin = "diffview",
+                    -- customize git in previewer
+                    -- e.g. flags such as { "--no-pager" }, or { "-c", "delta.side-by-side=false" }
+                    git_flags = {},
+                    -- customize git diff in previewer
+                    -- e.g. flags such as { "--raw" }
+                    git_diff_flags = {},
+                    -- Show builtin git pickers when executing "show_custom_functions" or :AdvancedGitSearch
+                    show_builtin_git_pickers = false,
+                    entry_default_author_or_date = "author", -- one of "author" or "date"
+
+                    -- Telescope layout setup
+                    telescope_theme = {
+                        function_name_1 = {
+                            -- Theme options
+                        },
+                        function_name_2 = "dropdown",
+                        -- e.g. realistic example
+                        show_custom_functions = {
+                            layout_config = { width = 0.4, height = 0.4 },
+                        },
+
+                    }
+                }
             },
         }
 
         -- Enable telescope extensions, if they are installed
         pcall(require('telescope').load_extension, 'fzf')
         pcall(require('telescope').load_extension, 'ui-select')
+        pcall(require('telescope').load_extension, 'advanced_git_search')
 
         -- See `:help telescope.builtin`
         local builtin = require 'telescope.builtin'
@@ -101,5 +129,8 @@ return {
         vim.keymap.set('n', '<leader>sn', function()
             builtin.find_files { cwd = vim.fn.stdpath 'config' }
         end, { desc = 'Telescope: Search Neovim files' })
+
+        vim.keymap.set('n', '<leader>sG', '<cmd>AdvancedGitSearch<CR>',
+            { silent = true, desc = "Telescope: Advanced git search" })
     end,
 }
