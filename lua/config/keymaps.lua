@@ -51,3 +51,7 @@ end, { noremap = true, silent = true, desc = "Theme: Toggle transparency" })
 vim.keymap.set("n", "<leader>Tr", function()
 	require("config/colors").reload()
 end, { noremap = true, silent = true, desc = "Theme: Reload" })
+
+vim.keymap.set("n", "<leader>Qq", function()
+	vim.wo.relativenumber = not vim.wo.relativenumber
+end, { silent = true, desc = "Toggle relative line numbers" })
