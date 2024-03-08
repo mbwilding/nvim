@@ -1,21 +1,21 @@
 -- Map ; to :
-vim.keymap.set('n', ';', ':', { noremap = true, silent = true })
+vim.keymap.set('n', ';', ':', { silent = true })
 
 -- Lazy Package Manager
 vim.keymap.set("n", "<leader>L", "<cmd>Lazy<CR>", { silent = true, desc = "Tool: Lazy" })
 
 -- Window resize via Alt + arrows
-vim.keymap.set('n', '<A-Up>', '<cmd>horizontal resize -1<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<A-Down>', '<cmd>horizontal resize +1<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<A-Left>', '<cmd>vertical resize -1<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<A-Right>', '<cmd>vertical resize +1<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<A-Up>', '<cmd>horizontal resize -1<CR>', { silent = true })
+vim.keymap.set('n', '<A-Down>', '<cmd>horizontal resize +1<CR>', { silent = true })
+vim.keymap.set('n', '<A-Left>', '<cmd>vertical resize -1<CR>', { silent = true })
+vim.keymap.set('n', '<A-Right>', '<cmd>vertical resize +1<CR>', { silent = true })
 
 -- Tab close
-vim.keymap.set('n', 'q', ':tabclose<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', 'q', ':tabclose<CR>', { silent = true })
 
 -- Disables search highlight
-vim.keymap.set('n', '<CR>', ':noh<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<ESC>', ':noh<ESC>', { noremap = true, silent = true })
+vim.keymap.set('n', '<CR>', ':noh<CR>', { silent = true })
+vim.keymap.set('n', '<ESC>', ':noh<ESC>', { silent = true })
 
 -- Space do nothing
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
@@ -31,10 +31,10 @@ vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open float
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- Buffer focus
-vim.keymap.set('n', '<S-Left>', '<C-w>h', { noremap = true, silent = true })
-vim.keymap.set('n', '<S-Down>', '<C-w>j', { noremap = true, silent = true })
-vim.keymap.set('n', '<S-Up>', '<C-w>k', { noremap = true, silent = true })
-vim.keymap.set('n', '<S-Right>', '<C-w>l', { noremap = true, silent = true })
+vim.keymap.set('n', '<S-Left>', '<C-w>h', { silent = true })
+vim.keymap.set('n', '<S-Down>', '<C-w>j', { silent = true })
+vim.keymap.set('n', '<S-Up>', '<C-w>k', { silent = true })
+vim.keymap.set('n', '<S-Right>', '<C-w>l', { silent = true })
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
@@ -46,12 +46,12 @@ vim.keymap.set("n", "\\", "<cmd>Inspect<CR>", { silent = true, desc = "Theme: In
 -- Theme
 vim.keymap.set("n", "<leader>Tt", function()
 	require("config/colors").toggleTransparency()
-end, { noremap = true, silent = true, desc = "Theme: Toggle transparency" })
+end, { silent = true, desc = "Theme: Toggle transparency" })
 
 vim.keymap.set("n", "<leader>Tr", function()
 	require("config/colors").reload()
-end, { noremap = true, silent = true, desc = "Theme: Reload" })
+end, { silent = true, desc = "Theme: Reload" })
 
-vim.keymap.set("n", "<leader>Qq", function()
+vim.keymap.set("n", "<leader>Sr", function()
 	vim.wo.relativenumber = not vim.wo.relativenumber
 end, { silent = true, desc = "Toggle relative line numbers" })
