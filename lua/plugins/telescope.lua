@@ -125,11 +125,23 @@ return {
             }
         end, { desc = 'Telescope: Search in open files' })
 
-        -- Shortcut for searching your neovim configuration files
+        -- Search Neovim config files
         vim.keymap.set('n', '<leader>sn', function()
             builtin.find_files { cwd = vim.fn.stdpath 'config' }
         end, { desc = 'Telescope: Search Neovim files' })
 
+
+        -- Search work files
+        vim.keymap.set('n', '<leader>sw', function()
+            builtin.find_files { cwd = "F:\\work" }
+        end, { desc = 'Telescope: Search work files' })
+
+        -- Search work files content
+        vim.keymap.set('n', '<leader>sW', function()
+            builtin.live_grep { cwd = "F:\\work" }
+        end, { desc = 'Telescope: Search work content' })
+
+        -- Advanced Git Search
         vim.keymap.set('n', '<leader>sG', '<cmd>AdvancedGitSearch<CR>',
             { silent = true, desc = "Telescope: Advanced git search" })
     end,
