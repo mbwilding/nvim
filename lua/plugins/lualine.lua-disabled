@@ -71,9 +71,10 @@
             'progress',
             fmt = function(s)
                 local default = "PRO"
-                if s ~= "" then
-                    return default .. ": " .. s:upper()
+                if s == "" then
+                    return default .. ": NULL"
                 end
+                return default .. ": " .. s:upper()
             end,
             color = function()
                 return { fg = colors.mode[vim.fn.mode()], gui = "bold" }
@@ -85,9 +86,10 @@
             --cond = conditions.buffer_not_empty,
             fmt = function(s)
                 local default = "SEL"
-                if s ~= "" then
-                    return default .. ": " .. s:upper()
+                if s == "" then
+                    return default .. ": NULL"
                 end
+                return default .. ": " .. s:upper()
             end,
             color = function()
                 return { fg = colors.mode[vim.fn.mode()], gui = "bold" }
@@ -110,9 +112,10 @@
             --cond = conditions.buffer_not_empty,
             fmt = function(s)
                 local default = "FIL"
-                if s ~= "[No Name]" then
-                    return default .. ": " .. s:upper()
+                if s == "[No Name]" then
+                    return default .. ": NULL"
                 end
+                return default .. ": " .. s:upper()
             end,
             color = function()
                 return { fg = colors.mode[vim.fn.mode()], gui = "bold" }
@@ -124,9 +127,10 @@
             --cond = conditions.buffer_not_empty,
             fmt = function(s)
                 local default = "SIZ"
-                if s ~= "" then
-                    return default .. ": " .. s:upper()
+                if s == "" then
+                    return default .. ": NULL"
                 end
+                return default .. ": " .. s:upper()
             end,
             color = function()
                 return { fg = colors.mode[vim.fn.mode()], gui = "bold" }
@@ -148,9 +152,10 @@
             --cond = conditions.buffer_not_empty,
             fmt = function(s)
                 local default = "ENC"
-                if s ~= "" then
-                    return default .. ": " .. s:upper()
+                if s == "" then
+                    return default .. ": NULL"
                 end
+                return default .. ": " .. s:upper()
             end,
             color = function()
                 return { fg = colors.mode[vim.fn.mode()], gui = "bold" }
@@ -163,9 +168,10 @@
             icons_enabled = false,
             fmt = function(s)
                 local default = "EOL"
-                if s ~= "" then
-                    return default .. ": " .. s:upper()
+                if s == "" then
+                    return default .. ": NULL"
                 end
+                return default .. ": " .. s:upper()
             end,
             color = function()
                 return { fg = colors.mode[vim.fn.mode()], gui = "bold" }
@@ -204,9 +210,10 @@
             --cond = conditions.buffer_not_empty,
             fmt = function(s)
                 local default = "LSP"
-                if s ~= "" then
-                    return default .. ": " .. s:upper()
+                if s == "" then
+                    return default .. ": NULL"
                 end
+                return default .. ": " .. s:upper()
             end,
             color = function()
                 return { fg = colors.mode[vim.fn.mode()], gui = "bold" }
@@ -225,9 +232,10 @@
             },
             fmt = function(s)
                 local default = "DIA"
-                if s ~= "" then
-                    return default .. ": " .. s:upper()
+                if s == "" then
+                    return default .. ": NULL"
                 end
+                return default .. ": " .. s:upper()
             end,
             color = function()
                 return { fg = colors.mode[vim.fn.mode()], gui = "bold" }
@@ -251,9 +259,10 @@
             icon = '',
             fmt = function(s)
                 local default = "GIT"
-                if s ~= "" then
-                    return default .. ": " .. s:upper()
+                if s == "" then
+                    return default .. ": NULL"
                 end
+                return default .. ": " .. s:upper()
             end,
             --cond = conditions.buffer_not_empty,
             color = function()
@@ -274,9 +283,10 @@
             --cond = conditions.hide_in_width,
             fmt = function(s)
                 local default = "DIF"
-                if s ~= "" then
-                    return default .. ": " .. s:upper()
+                if s == "" then
+                    return default .. ": NULL"
                 end
+                return default .. ": " .. s:upper()
             end,
             color = function()
                 return { fg = colors.mode[vim.fn.mode()], gui = "bold" }
