@@ -1,5 +1,10 @@
 local M = {}
 
+vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" })
+vim.fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" })
+vim.fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo" })
+vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
+
 M.base = {
 	transparent = "NONE",
 
@@ -57,13 +62,13 @@ M.mode = {
 	n = M.base.orange_dark, -- Normal
 	i = M.base.blue, -- Insert
 	v = M.base.green, -- Visual
-	[''] = M.base.blue,
-	V = M.base.blue,
+	[""] = M.base.blue,
+	V = M.base.green,
 	c = M.base.orange_dark,
 	no = M.base.cyan,
 	s = M.base.orange_dark,
 	S = M.base.orange_dark,
-	[''] = M.base.orange_dark,
+	[""] = M.base.orange_dark,
 	ic = M.base.blue_dark,
 	R = M.base.pink_dark,
 	Rv = M.base.pink_dark,
@@ -71,9 +76,10 @@ M.mode = {
 	ce = M.base.cyan,
 	r = M.base.cyan,
 	rm = M.base.cyan,
-	['r?'] = M.base.cyan,
-	['!'] = M.base.cyan,
+	["r?"] = M.base.cyan,
+	["!"] = M.base.cyan,
 	t = M.base.cyan,
+	nt = M.base.cyan,
 }
 
 local base = M.base
@@ -170,21 +176,27 @@ function M.Highlights(transparent, initialize)
 	highlight("LineNrAbove", { fg = code.redundant, bg = base.transparent }) -- Above current line numbers
 	highlight("LineNrBelow", { fg = code.redundant, bg = base.transparent }) -- Below current line numbers
 
-	highlight("MatchParen", { fg = base.bg, bg = base.blue_dark })       -- Matching pair highlight
-	highlight("Cursor", { fg = base.fg, bg = base.orange_dark })         -- Character under the cursor
-	highlight("lCursor", { fg = base.fg, bg = base.orange_dark })        -- Character under the cursor when `language-mapping`
-	highlight("CursorIM", { fg = base.fg, bg = base.bg })                -- Character under the cursor in IME mode
+	-- Generic
+	highlight("MatchParen", { fg = base.bg, bg = base.blue_dark }) -- Matching pair highlight
+	highlight("Cursor", { fg = base.fg, bg = base.orange_dark }) -- Character under the cursor
+	highlight("lCursor", { fg = base.fg, bg = base.orange_dark }) -- Character under the cursor when `language-mapping`
+	highlight("CursorIM", { fg = base.fg, bg = base.bg }) -- Character under the cursor in IME mode
 	highlight("CursorLine", { fg = base.blue_dark, bg = base.transparent }) -- Screen line at the cursor
-	highlight("IncSearch", { fg = base.bg, bg = base.blue_dark })        -- Yank highlight
+	highlight("IncSearch", { fg = base.bg, bg = base.blue_dark }) -- Yank highlight
 	highlight("Conceal", { fg = code.redundant, bg = base.transparent }) -- Grayed out
-	highlight("EndOfBuffer", { fg = base.bg })                           -- End of buffer `~`
-	highlight("DiffAdd", { fg = base.green })                            -- Diff add
-	highlight("DiffChange", { fg = base.blue })                          -- Diff change
-	highlight("DiffDelete", { fg = code.error })                         -- Diff delete
-	highlight("ErrorMsg", { fg = code.error })                           -- Error messages on the commandline
+	highlight("EndOfBuffer", { fg = base.bg }) -- End of buffer `~`
+	highlight("DiffAdd", { fg = base.green }) -- Diff add
+	highlight("DiffChange", { fg = base.orange_dark }) -- Diff change
+	highlight("DiffDelete", { fg = code.error }) -- Diff delete
+	highlight("ErrorMsg", { fg = code.error }) -- Error messages on the commandline
 	highlight("VertSplit", { fg = base.window_accent, bg = base.window_bg }) -- Vertical split border
 	highlight("WinSeparator", { fg = base.window_accent, bg = base.window_bg }) -- Window border
-	highlight("Folded", { fg = base.blue, bg = base.transparent })       -- Folded gutter
+	highlight("WinBar", { fg = base.fg, bg = base.window_bg })
+	highlight("WinBarNC", { fg = base.fg, bg = base.window_bg })
+	highlight("StatusLine", { fg = base.fg, bg = base.window_bg })
+	highlight("StatusLineNC", { fg = base.fg, bg = base.window_bg })
+	highlight("Folded", { fg = base.blue, bg = base.transparent }) -- Folded gutter
+
 	-- Lazy
 	highlight("LazyComment", { fg = code.comment })
 	highlight("LazyProp", { fg = base.orange_dark })
@@ -282,7 +294,7 @@ vim.api.nvim_create_autocmd("ModeChanged", {
 		vim.cmd(string.format("highlight lCursor guibg=%s", color))
 
 		vim.cmd("set termguicolors")
-	end
+	end,
 })
 
 function M.toggleTransparency()
