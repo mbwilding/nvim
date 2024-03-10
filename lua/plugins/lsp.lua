@@ -22,6 +22,7 @@ return {
             jqls = {},
             jsonls = {},
             eslint = {},
+            asm_lsp = {},
             yamlls = {
                 settings = {
                     yaml = {
