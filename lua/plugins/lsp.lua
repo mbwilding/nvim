@@ -28,6 +28,7 @@ return {
                     yaml = {
                         -- Specify AWS CloudFormation specific settings
                         customTags = {
+                            -- AWS CloudFormation
                             "!Ref",
                             "!If sequence",
                             "!GetAtt",
@@ -55,7 +56,9 @@ return {
                             "!Not mapping",
                             "!Equals mapping",
                             "!And mapping",
-                            "!Or mapping"
+                            "!Or mapping",
+                            -- GitLab
+                            "!reference sequence"
                         },
                         schemas = require("schemastore").json.schemas(),
                         validate = { enable = true },
