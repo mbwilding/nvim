@@ -13,7 +13,11 @@ return {
             clangd = {},
             rust_analyzer = {},
             omnisharp = {},
-            powershell_es = {},
+            powershell_es = {
+                init_options = {
+                    enableProfileLoading = false,
+                },
+            },
             tsserver = {},
             tailwindcss = {},
             taplo = {},
