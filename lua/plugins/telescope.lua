@@ -126,23 +126,32 @@ return {
         end, { desc = 'Telescope: Search in open files' })
 
         -- Search Neovim config files
-        vim.keymap.set('n', '<leader>sn', function()
+        vim.keymap.set('n', '<leader>sN', function()
             builtin.find_files { cwd = vim.fn.stdpath 'config' }
         end, { desc = 'Telescope: Search Neovim files' })
 
+        -- Search Neovim config content
+        vim.keymap.set('n', '<leader>sn', function()
+            builtin.live_grep { cwd = vim.fn.stdpath 'config' }
+        end, { desc = 'Telescope: Search Neovim files' })
+
+        -- Search work ci files
+        vim.keymap.set('n', '<leader>sC', function()
+            builtin.live_grep { cwd = "F:\\rwwa\\common\\gitlab-ci-shared" }
+        end, { desc = 'Telescope: Search work ci files' })
+
+        -- Search work ci content
+        vim.keymap.set('n', '<leader>sc', function()
+            builtin.live_grep { cwd = "F:\\rwwa\\common\\gitlab-ci-shared" }
+        end, { desc = 'Telescope: Search work ci content' })
 
         -- Search work files
-        vim.keymap.set('n', '<leader>sw', function()
+        vim.keymap.set('n', '<leader>sW', function()
             builtin.find_files { cwd = "F:\\rwwa" }
         end, { desc = 'Telescope: Search work files' })
 
-        -- Search work ci files
-        vim.keymap.set('n', '<leader>sc', function()
-            builtin.find_files { cwd = "F:\\rwwa\\common\\gitlab-ci-shared" }
-        end, { desc = 'Telescope: Search work ci files' })
-
-        -- Search work files content
-        vim.keymap.set('n', '<leader>sW', function()
+        -- Search work content
+        vim.keymap.set('n', '<leader>sw', function()
             builtin.live_grep { cwd = "F:\\work" }
         end, { desc = 'Telescope: Search work content' })
 
