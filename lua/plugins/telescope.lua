@@ -133,8 +133,13 @@ return {
 
         -- Search work files
         vim.keymap.set('n', '<leader>sw', function()
-            builtin.find_files { cwd = "F:\\work" }
+            builtin.find_files { cwd = "F:\\rwwa" }
         end, { desc = 'Telescope: Search work files' })
+
+        -- Search work ci files
+        vim.keymap.set('n', '<leader>sc', function()
+            builtin.find_files { cwd = "F:\\rwwa\\common\\gitlab-ci-shared" }
+        end, { desc = 'Telescope: Search work ci files' })
 
         -- Search work files content
         vim.keymap.set('n', '<leader>sW', function()
