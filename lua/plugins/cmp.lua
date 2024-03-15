@@ -48,7 +48,7 @@ return {
 				-- Accept ([y]es) the completion.
 				--  This will auto-import if your LSP supports it.
 				--  This will expand snippets if the LSP sent a snippet.
-				["<enter>"] = cmp.mapping.confirm({ select = true }),
+				["<C-y>"] = cmp.mapping.confirm({ select = true }),
 
 				-- Manually trigger a completion from nvim-cmp.
 				--  Generally you don't need this, because nvim-cmp will display
@@ -75,10 +75,10 @@ return {
 				end, { "i", "s" }),
 			}),
 			sources = {
-				{ name = "copilot", group_index = 2 },
+				{ name = "copilot",  group_index = 2 },
 				{ name = "nvim_lsp", group_index = 2 },
-				{ name = "path", group_index = 2 },
-				{ name = "luasnip", group_index = 2 },
+				{ name = "path",     group_index = 2 },
+				{ name = "luasnip",  group_index = 2 },
 			},
 			formatting = {
 				format = lspkind.cmp_format({

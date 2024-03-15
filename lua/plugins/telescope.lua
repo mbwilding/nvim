@@ -55,7 +55,36 @@ return {
             --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
             --   },
             -- },
-            -- pickers = {}
+            pickers = {
+                find_files = {
+                    hidden = true,
+                }
+            },
+            defaults = {
+                vimgrep_arguments = {
+                    'rg',
+                    '--hidden',
+                    '--color=never',
+                    '--no-heading',
+                    '--with-filename',
+                    '--line-number',
+                    '--column',
+                    '--smart-case'
+                },
+                -- file_ignore_patterns = {
+                --     ".git/",
+                --     "node_modules/",
+                --     "vendor/",
+                --     "build/",
+                --     "dist/",
+                --     "target/",
+                --     ".cache/",
+                --     ".vscode/",
+                --     ".idea/",
+                --     ".next/",
+                --     ".DS_Store"
+                -- },
+            },
             extensions = {
                 ['ui-select'] = {
                     require('telescope.themes').get_dropdown(),
@@ -137,13 +166,23 @@ return {
 
         -- Search work ci files
         vim.keymap.set('n', '<leader>sC', function()
-            builtin.live_grep { cwd = "F:\\rwwa\\common\\gitlab-ci-shared" }
-        end, { desc = 'Telescope: Search work ci files' })
+            builtin.find_files { cwd = "F:\\rwwa\\common\\gitlab-ci-shared" }
+        end, { desc = 'Telescope: Search work CI files' })
 
         -- Search work ci content
         vim.keymap.set('n', '<leader>sc', function()
             builtin.live_grep { cwd = "F:\\rwwa\\common\\gitlab-ci-shared" }
-        end, { desc = 'Telescope: Search work ci content' })
+        end, { desc = 'Telescope: Search work CI content' })
+
+        -- Search work pe files
+        vim.keymap.set('n', '<leader>sE', function()
+            builtin.find_files { cwd = "F:\\rwwa\\platform-enablement" }
+        end, { desc = 'Telescope: Search work PE files' })
+
+        -- Search work pe content
+        vim.keymap.set('n', '<leader>se', function()
+            builtin.live_grep { cwd = "F:\\rwwa\\platform-enablement" }
+        end, { desc = 'Telescope: Search work PE content' })
 
         -- Search work files
         vim.keymap.set('n', '<leader>sW', function()
