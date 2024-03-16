@@ -397,7 +397,7 @@ return {
 			provider = function()
 				return " " .. require("dap").status()
 			end,
-			hl = colors.base.blue_dark,
+			hl = { fg = colors.base.blue_dark },
 		}
 
 		-- WORKING DIRECTORY
@@ -412,7 +412,7 @@ return {
 				local trail = cwd:sub(-1) == "/" and "" or "/"
 				return icon .. cwd .. trail
 			end,
-			hl = { fg = colors.base.purple_light, bold = true },
+			hl = { fg = colors.base.purple_light, bg = colors.window_bg, bold = true },
 		}
 
 		-- DATE TIME
@@ -420,7 +420,7 @@ return {
 			provider = function()
 				return os.date("%Y-%m-%d %I:%M:%S %p")
 			end,
-			hl = { fg = colors.base.purple_light },
+			hl = { fg = colors.base.purple_light, bg = colors.base.window_bg },
 		}
 		local function startTimerOnSecondDivisibleBy(updateRateInSeconds)
 			local currentTime = os.date("*t")
