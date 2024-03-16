@@ -96,7 +96,7 @@ return {
 				local filename = self.filename
 				local extension = vim.fn.fnamemodify(filename, ":e")
 				self.icon, self.icon_color =
-				    require("nvim-web-devicons").get_icon_color(filename, extension, { default = true })
+					require("nvim-web-devicons").get_icon_color(filename, extension, { default = true })
 			end,
 			provider = function(self)
 				return self.icon and (self.icon .. " ")
@@ -182,7 +182,7 @@ return {
 				end
 			end,
 			hl = function()
-				return { fg = colors.base.green, bg = colors.base.window_bg }
+				return { fg = colors.base.green, bg = colors.base.window_bg, bold = true }
 			end,
 		}
 
@@ -205,7 +205,7 @@ return {
 				return string.format(" %.2g%s", fsize / math.pow(1024, i), suffix[i + 1])
 			end,
 			hl = function()
-				return { fg = colors.base.orange_light, bg = colors.base.window_bg }
+				return { fg = colors.base.orange_light, bg = colors.base.window_bg, bold = true }
 			end,
 		}
 
@@ -216,7 +216,7 @@ return {
 				local ftime = vim.fn.getftime(vim.api.nvim_buf_get_name(0))
 				return (ftime > 0) and os.date("%c", ftime)
 			end,
-			hl = { bg = colors.base.window_bg },
+			hl = { bg = colors.base.window_bg, bold = true },
 		}
 
 		-- RULER
@@ -253,7 +253,7 @@ return {
 				return "(%c) [%l/%L] " .. string.rep(self.sbar[i], 1) .. " "
 			end,
 			hl = function()
-				return { fg = colors.base.orange_light, bg = colors.base.window_bg }
+				return { fg = colors.base.orange_light, bg = colors.base.window_bg, bold = true }
 			end,
 		}
 
@@ -263,11 +263,11 @@ return {
 			init = function(self)
 				self.status_dict = vim.b.gitsigns_status_dict
 				self.has_changes = self.status_dict.added ~= nil
-				    or self.status_dict.removed ~= nil
-				    or self.status_dict.changed ~= nil
+					or self.status_dict.removed ~= nil
+					or self.status_dict.changed ~= nil
 			end,
 
-			hl = { fg = colors.base.blue_light, bg = colors.base.window_bg },
+			hl = { fg = colors.base.blue_light, bg = colors.base.window_bg, bold = true },
 
 			{ -- git branch name
 				provider = function(self)
@@ -365,26 +365,26 @@ return {
 				provider = function(self)
 					return self.info > 0 and (" " .. self.info_icon .. self.info .. " ")
 				end,
-				hl = { fg = colors.base.green, bg = colors.base.window_bg },
+				hl = { fg = colors.base.green, bg = colors.base.window_bg, bold = true },
 			},
 			{
 				provider = function(self)
 					return self.hints > 0 and (" " .. self.hint_icon .. self.hints)
 				end,
-				hl = { fg = colors.base.blue_light, bg = colors.base.window_bg },
+				hl = { fg = colors.base.blue_light, bg = colors.base.window_bg, bold = true },
 			},
 			{
 				provider = function(self)
 					-- 0 is just another output, we can decide to print it or not!
 					return self.errors > 0 and (" " .. self.error_icon .. self.errors .. " ")
 				end,
-				hl = { fg = colors.base.red, bg = colors.base.window_bg },
+				hl = { fg = colors.base.red, bg = colors.base.window_bg, bold = true },
 			},
 			{
 				provider = function(self)
 					return self.warnings > 0 and (" " .. self.warn_icon .. self.warnings .. " ")
 				end,
-				hl = { fg = colors.base.orange_dark, bg = colors.base.window_bg },
+				hl = { fg = colors.base.orange_dark, bg = colors.base.window_bg, bold = true },
 			},
 		}
 
@@ -397,7 +397,7 @@ return {
 			provider = function()
 				return " " .. require("dap").status()
 			end,
-			hl = { fg = colors.base.blue_dark },
+			hl = { fg = colors.base.blue_dark, bg = colors.base.window_bg, bold = true },
 		}
 
 		-- WORKING DIRECTORY
@@ -412,7 +412,7 @@ return {
 				local trail = cwd:sub(-1) == "/" and "" or "/"
 				return icon .. cwd .. trail
 			end,
-			hl = { fg = colors.base.purple_light, bg = colors.window_bg, bold = true },
+			hl = { fg = colors.base.purple_light, bg = colors.base.window_bg, bold = true },
 		}
 
 		-- DATE TIME
@@ -420,7 +420,7 @@ return {
 			provider = function()
 				return os.date("%Y-%m-%d %I:%M:%S %p")
 			end,
-			hl = { fg = colors.base.purple_light, bg = colors.base.window_bg },
+			hl = { fg = colors.base.purple_light, bg = colors.base.window_bg, bold = true },
 		}
 		local function startTimerOnSecondDivisibleBy(updateRateInSeconds)
 			local currentTime = os.date("*t")
