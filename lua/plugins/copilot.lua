@@ -5,8 +5,8 @@ return {
 	build = ":Copilot auth",
 	module = "copilot",
 	opts = {
-		suggestion = { enabled = false },
-		panel = { enabled = false },
+		suggestion = { enabled = true },
+		panel = { enabled = true },
 		filetypes = {
 			yaml = false,
 			markdown = false,
@@ -16,6 +16,9 @@ return {
 			hgcommit = false,
 			svn = false,
 			cvs = false,
+		},
+		experimental = {
+			ghost_text = false,
 		},
 	},
 	dependencies = {

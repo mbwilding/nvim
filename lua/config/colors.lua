@@ -196,6 +196,15 @@ function M.Highlights(transparent, initialize)
 	highlight("StatusLineNC", { fg = base.fg, bg = base.window_bg })
 	highlight("Folded", { fg = base.blue_dark, bg = base.transparent }) -- Folded gutter
 
+	-- NeoVim
+	highlight("healthError", { fg = base.red })
+	highlight("healthSuccess", { fg = base.green })
+	highlight("healthWarning", { fg = base.orange_light })
+
+	-- Cmp
+	highlight("CmpDocumentation", { fg = base.fg, bg = base.window_bg })
+	highlight("CmpDocumentationBorder", { fg = base.window_accent, bg = base.window_bg })
+
 	-- Lazy
 	highlight("LazyComment", { fg = code.comment })
 	highlight("LazyProp", { fg = base.orange_dark })
