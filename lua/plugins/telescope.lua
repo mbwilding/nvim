@@ -23,6 +23,7 @@ return {
                 return vim.fn.executable('make') == 1 or vim.fn.executable('cmake') == 1
             end,
         },
+        "nvim-tree/nvim-web-devicons"
     },
     config = function()
         -- Telescope is a fuzzy finder that comes with a lot of different things that

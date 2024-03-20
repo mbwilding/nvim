@@ -21,7 +21,6 @@ M.base = {
 	red = "#ff3333",
 	pink_light = "#e1bfff",
 	pink_dark = "#ed94c0",
-	blue = "#6c95eb",
 	green = "#39cc8f",
 	purple_light = "#c191ff",
 	purple_dark = "#9591ff",
@@ -59,10 +58,10 @@ M.code = {
 }
 
 M.mode = {
-	n = M.base.orange_dark, -- Normal
-	i = M.base.blue, -- Insert
+	n = M.base.blue_light, -- Normal
+	i = M.base.orange_dark, -- Insert
 	v = M.base.green, -- Visual
-	[""] = M.base.blue,
+	[""] = M.base.blue_dark,
 	V = M.base.green,
 	c = M.base.orange_dark,
 	no = M.base.cyan,
@@ -171,31 +170,31 @@ function M.Highlights(transparent, initialize)
 	highlight("NormalFloat", { fg = base.fg, bg = base.window_bg }) -- Normal text in floating windows
 
 	-- Gutter
-	highlight("LineNr", { fg = base.orange_dark, bg = base.transparent }) -- Current line number
+	highlight("LineNr", { fg = base.blue_light, bg = base.transparent }) -- Current line number
 	highlight("CursorLineNr", { fg = base.orange_dark, bg = base.transparent }) -- Unknown
 	highlight("LineNrAbove", { fg = code.redundant, bg = base.transparent }) -- Above current line numbers
 	highlight("LineNrBelow", { fg = code.redundant, bg = base.transparent }) -- Below current line numbers
 
 	-- Generic
-	highlight("MatchParen", { fg = base.bg, bg = base.blue_dark }) -- Matching pair highlight
-	highlight("Cursor", { fg = base.fg, bg = base.orange_dark }) -- Character under the cursor
-	highlight("lCursor", { fg = base.fg, bg = base.orange_dark }) -- Character under the cursor when `language-mapping`
-	highlight("CursorIM", { fg = base.fg, bg = base.bg }) -- Character under the cursor in IME mode
+	highlight("MatchParen", { fg = base.bg, bg = base.blue_dark })       -- Matching pair highlight
+	highlight("Cursor", { fg = base.fg, bg = base.orange_dark })         -- Character under the cursor
+	highlight("lCursor", { fg = base.fg, bg = base.orange_dark })        -- Character under the cursor when `language-mapping`
+	highlight("CursorIM", { fg = base.fg, bg = base.bg })                -- Character under the cursor in IME mode
 	highlight("CursorLine", { fg = base.blue_dark, bg = base.transparent }) -- Screen line at the cursor
-	highlight("IncSearch", { fg = base.bg, bg = base.blue_dark }) -- Yank highlight
+	highlight("IncSearch", { fg = base.bg, bg = base.blue_dark })        -- Yank highlight
 	highlight("Conceal", { fg = code.redundant, bg = base.transparent }) -- Grayed out
-	highlight("EndOfBuffer", { fg = base.bg }) -- End of buffer `~`
-	highlight("DiffAdd", { fg = base.green }) -- Diff add
-	highlight("DiffChange", { fg = base.orange_dark }) -- Diff change
-	highlight("DiffDelete", { fg = code.error }) -- Diff delete
-	highlight("ErrorMsg", { fg = code.error }) -- Error messages on the commandline
+	highlight("EndOfBuffer", { fg = base.bg })                           -- End of buffer `~`
+	highlight("DiffAdd", { fg = base.green })                            -- Diff add
+	highlight("DiffChange", { fg = base.orange_dark })                   -- Diff change
+	highlight("DiffDelete", { fg = code.error })                         -- Diff delete
+	highlight("ErrorMsg", { fg = code.error })                           -- Error messages on the commandline
 	highlight("VertSplit", { fg = base.window_accent, bg = base.window_bg }) -- Vertical split border
 	highlight("WinSeparator", { fg = base.window_accent, bg = base.window_bg }) -- Window border
 	highlight("WinBar", { fg = base.fg, bg = base.window_bg })
 	highlight("WinBarNC", { fg = base.fg, bg = base.window_bg })
 	highlight("StatusLine", { fg = base.fg, bg = base.window_bg })
 	highlight("StatusLineNC", { fg = base.fg, bg = base.window_bg })
-	highlight("Folded", { fg = base.blue, bg = base.transparent }) -- Folded gutter
+	highlight("Folded", { fg = base.blue_dark, bg = base.transparent }) -- Folded gutter
 
 	-- Lazy
 	highlight("LazyComment", { fg = code.comment })
@@ -215,9 +214,21 @@ function M.Highlights(transparent, initialize)
 	highlight("MasonMutedBlock", { fg = base.fg, bg = base.window_accent })
 	highlight("MasonHighlightBlock", { fg = base.orange_dark, bg = base.window_accent })
 
-	-- File system
+	-- File System
 	highlight("Directory", { fg = base.blue_dark }) -- Directory color
 	highlight("OilFile", { fg = base.orange_dark }) -- Oil file color
+
+	-- Telescope
+	highlight("TelescopeBorder", { fg = base.blue_light, bg = base.window_bg })
+	highlight("TelescopeNormal", { fg = base.orange_dark, bg = base.window_bg })
+
+	-- Which Key
+	highlight("WhichKey", { fg = base.orange_dark })
+	highlight("WhichKeyGroup", { fg = base.orange_dark })
+	highlight("WhichKeyDesc", { fg = base.orange_dark })
+	highlight("WhichKeySeparator", { fg = base.orange_dark })
+	highlight("WhichKeyFloat", { bg = base.window_bg })
+	highlight("WhichKeyValue", { fg = base.orange_dark })
 
 	-- Code
 	highlight("@boolean", { fg = code.keyword })

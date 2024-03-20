@@ -14,7 +14,7 @@ return {
 
         vim.keymap.set(
             "n",
-            "<leader>hl",
+            "<leader>ll",
             lsp_lines.toggle,
             { desc = "LSP Lines: Toggle" }
         )

@@ -159,7 +159,7 @@ return {
 				end
 			end,
 			hl = function()
-				return { fg = colors.base.blue, bg = colors.base.window_bg }
+				return { fg = colors.base.blue_dark, bg = colors.base.window_bg }
 			end,
 		}
 
@@ -439,7 +439,7 @@ return {
 
 		-- MEMES
 		local meme = {
-			provider = "Hentai Adult Television Content: 157.6TB",
+			provider = "Cat Pictures: 157.6TB",
 		}
 
 		-- HELPERS

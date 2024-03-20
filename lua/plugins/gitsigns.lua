@@ -27,7 +27,7 @@ return {
                     gs.next_hunk()
                 end)
                 return '<Ignore>'
-            end, { expr = true, desc = 'Jump to next hunk' })
+            end, { expr = true, desc = 'Git Signs: Jump to next hunk' })
 
             map({ 'n', 'v' }, '[c', function()
                 if vim.wo.diff then
@@ -37,38 +37,42 @@ return {
                     gs.prev_hunk()
                 end)
                 return '<Ignore>'
-            end, { expr = true, desc = 'Jump to previous hunk' })
+            end, { expr = true, desc = 'Git Signs: Jump to previous hunk' })
 
             -- Actions
             -- visual mode
-            map('v', '<leader>hs', function()
+            map('v', '<leader>gss', function()
                 gs.stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
-            end, { desc = 'stage git hunk' })
-            map('v', '<leader>hr', function()
+            end, { desc = 'Git Signs: Stage Git Hunk' })
+            map('v', '<leader>gsr', function()
                 gs.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
-            end, { desc = 'reset git hunk' })
+            end, { desc = 'Git Signs: Reset Git Hunk' })
             -- normal mode
-            map('n', '<leader>hs', gs.stage_hunk, { desc = 'git stage hunk' })
-            map('n', '<leader>hr', gs.reset_hunk, { desc = 'git reset hunk' })
-            map('n', '<leader>hS', gs.stage_buffer, { desc = 'git Stage buffer' })
-            map('n', '<leader>hu', gs.undo_stage_hunk, { desc = 'undo stage hunk' })
-            map('n', '<leader>hR', gs.reset_buffer, { desc = 'git Reset buffer' })
-            map('n', '<leader>hp', gs.preview_hunk, { desc = 'preview git hunk' })
-            map('n', '<leader>hb', function()
+            map('n', '<leader>gsh', gs.stage_hunk, { desc = 'Git Signs: Git Stage Hunk' })
+            map('n', '<leader>gsr', gs.reset_hunk, { desc = 'Git Signs: Git Reset Hunk' })
+            map('n', '<leader>gsS', gs.stage_buffer, { desc = 'Git Signs: Git Stage Buffer' })
+            map('n', '<leader>gsu', gs.undo_stage_hunk, { desc = 'Git Signs: Undo Stage Hunk' })
+            map('n', '<leader>gsR', gs.reset_buffer, { desc = 'Git Signs: Git Reset buffer' })
+            map('n', '<leader>gsp', gs.preview_hunk, { desc = 'Git Signs: Preview Git Hunk' })
+            map('n', '<leader>gsl', function()
                 gs.blame_line { full = false }
-            end, { desc = 'git blame line' })
-            map('n', '<leader>hd', gs.diffthis, { desc = 'git diff against index' })
-            map('n', '<leader>hD', function()
+            end, { desc = 'Git Signs: Git Blame Line' })
+            map('n', '<leader>gsd', gs.diffthis, { desc = 'Git Signs: Git Diff Against Index' })
+            map('n', '<leader>gsD', function()
                 gs.diffthis '~'
-            end, { desc = 'git diff against last commit' })
+            end, { desc = 'Git Signs: Git Diff Against Last Commit' })
 
             -- Toggles
-            map('n', '<leader>tb', gs.toggle_current_line_blame, { desc = 'toggle git blame line' })
-            map('n', '<leader>td', gs.toggle_deleted, { desc = 'toggle git show deleted' })
+            map('n', '<leader>gsb', gs.toggle_current_line_blame, { desc = 'Git Signs: Toggle Git Blame Line' })
+            map('n', '<leader>gst', gs.toggle_deleted, { desc = 'Git Signs: Toggle Git Show Deleted' })
 
             -- Text object
-            map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'select git hunk' })
+            map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'Git Signs: Select Git Hunk' })
+
+            -- TODO: Fix this
+            require("which-key").register({
+                gs = { name = "Git Signs" },
+            }, { prefix = "<leader>" })
         end,
     },
 }
-
