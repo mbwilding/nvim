@@ -477,8 +477,6 @@ return {
 				spacer,
 				vim_mode,
 				spacer,
-				grapple,
-				spacer,
 				git,
 				spacer,
 				lsp,
@@ -503,6 +501,8 @@ return {
 				--meme,
 
 				align,
+				grapple,
+				spacer,
 				ruler,
 				spacer,
 				date_time,
