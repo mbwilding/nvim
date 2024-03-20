@@ -489,6 +489,7 @@ return {
 
 				align,
 				file_name_block,
+				spacer,
 				file_size,
 				--file_type,
 				file_encoding,
@@ -498,8 +499,8 @@ return {
 				align,
 				work_dir,
 
-				align,
-				meme,
+				--align,
+				--meme,
 
 				align,
 				ruler,
