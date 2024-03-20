@@ -1,7 +1,10 @@
 return {
 	"rebelot/heirline.nvim",
 	event = "BufReadPre",
-	dependencies = "nvim-tree/nvim-web-devicons",
+	dependencies = {
+		"nvim-tree/nvim-web-devicons",
+		"cbochs/grapple.nvim"
+	},
 	config = function()
 		local conditions = require("heirline.conditions")
 		local utils = require("heirline.utils")
@@ -437,9 +440,26 @@ return {
 		end
 		startTimerOnSecondDivisibleBy(1)
 
+		-- GRAPPLE
+		local grapple = {
+			provider = function()
+				local value = require("grapple").name_or_index()
+				if value == "" then
+					return nil
+				end
+				return " " .. value
+			end,
+			condition = function()
+				return require("grapple").exists()
+			end,
+			hl = { fg = colors.base.purple_light, bold = true },
+		}
+
+
 		-- MEMES
 		local meme = {
-			provider = "Cat Pictures: 157.6TB",
+			provider = "Feet Pics: 57.6TB",
+			hl = { fg = colors.base.brown, bold = true },
 		}
 
 		-- HELPERS
@@ -456,6 +476,8 @@ return {
 			statusline = {
 				spacer,
 				vim_mode,
+				spacer,
+				grapple,
 				spacer,
 				git,
 				spacer,

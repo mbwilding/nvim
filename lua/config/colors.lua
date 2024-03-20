@@ -204,6 +204,10 @@ function M.Highlights(transparent, initialize)
 	-- Cmp
 	highlight("CmpDocumentation", { fg = base.fg, bg = base.window_bg })
 	highlight("CmpDocumentationBorder", { fg = base.window_accent, bg = base.window_bg })
+	highlight("CmpItemAbbr", { fg = base.fg, bg = base.transparent })
+	highlight("CmpItemAbbrDeprecated", { fg = base.gray_dark, bg = base.transparent, style = "strikethrough" })
+	highlight("CmpItemAbbrMatch", { fg = base.blue_light, bg = base.transparent })
+	highlight("CmpItemAbbrMatchFuzzy", { fg = base.blue_light, bg = base.transparent })
 
 	-- Lazy
 	highlight("LazyComment", { fg = code.comment })
@@ -228,8 +232,9 @@ function M.Highlights(transparent, initialize)
 	highlight("OilFile", { fg = base.orange_dark }) -- Oil file color
 
 	-- Telescope
-	highlight("TelescopeBorder", { fg = base.blue_light, bg = base.window_bg })
-	highlight("TelescopeNormal", { fg = base.orange_dark, bg = base.window_bg })
+	highlight("TelescopeNormal", { fg = base.blue_light, bg = base.window_bg })
+	highlight("TelescopeBorder", { fg = base.orange_dark, bg = base.window_bg })
+	highlight("TelescopeMatching", { fg = base.orange_dark, bg = base.window_bg })
 
 	-- Which Key
 	highlight("WhichKey", { fg = base.orange_dark })

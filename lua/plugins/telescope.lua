@@ -23,7 +23,8 @@ return {
                 return vim.fn.executable('make') == 1 or vim.fn.executable('cmake') == 1
             end,
         },
-        "nvim-tree/nvim-web-devicons"
+        "nvim-tree/nvim-web-devicons",
+        "cbochs/grapple.nvim"
     },
     config = function()
         -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -123,6 +124,7 @@ return {
         pcall(require('telescope').load_extension, 'fzf')
         pcall(require('telescope').load_extension, 'ui-select')
         pcall(require('telescope').load_extension, 'advanced_git_search')
+        pcall(require('telescope').load_extension, 'grapple')
 
         -- See `:help telescope.builtin`
         local builtin = require 'telescope.builtin'
