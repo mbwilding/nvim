@@ -8,7 +8,7 @@ return {
 			edit_with_instructions = {
 				diff = false,
 				keymaps = {
-					close = "<C-c>",
+					close = "<C-q>",
 					accept = "<C-y>",
 					toggle_diff = "<C-d>",
 					toggle_settings = "<C-o>",
@@ -40,7 +40,7 @@ return {
 					},
 				},
 				keymaps = {
-					close = "<C-c>",
+					close = "<C-q>",
 					yank_last = "<C-y>",
 					yank_last_code = "<C-k>",
 					scroll_up = "<C-u>",
@@ -64,17 +64,17 @@ return {
 					stop_generating = "<C-x>",
 				},
 			},
-			popup_layout = {
-				default = "center",
-				center = {
-					width = "80",
-					height = "80",
-				},
-				right = {
-					width = "30",
-					width_settings_open = "50",
-				},
-			},
+			-- popup_layout = {
+			-- 	default = "center",
+			-- 	center = {
+			-- 		width = "80",
+			-- 		height = "80",
+			-- 	},
+			-- 	right = {
+			-- 		width = "30",
+			-- 		width_settings_open = "50",
+			-- 	},
+			-- },
 			popup_window = {
 				border = {
 					highlight = "FloatBorder",
