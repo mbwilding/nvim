@@ -39,7 +39,7 @@ return {
 			completion = {
 				completeopt = "menu,menuone,noinsert",
 			},
-			mapping = cmp.mapping.preset.insert({
+			mapping = {
 				-- Select the [n]ext item
 				["<C-n>"] = cmp.mapping.select_next_item(),
 				-- Select the [p]revious item
@@ -73,7 +73,7 @@ return {
 						luasnip.jump(-1)
 					end
 				end, { "i", "s" }),
-			}),
+			},
 			sources = {
 				{ name = "copilot",  group_index = 2 },
 				{ name = "nvim_lsp", group_index = 2 },
