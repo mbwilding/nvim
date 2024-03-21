@@ -5,7 +5,7 @@ return {
 
         local shell_command
         if vim.fn.has 'win32' == 1 then
-            shell_command = "pwsh.exe -NoLogo"
+            shell_command = "pwsh.exe -NoLogo -NoProfile"
         else
             shell_command = nil
         end

@@ -6,7 +6,7 @@ vim.fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSig
 vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
 
 M.base = {
-	transparent = "NONE",
+	none = "NONE",
 
 	-- Default UI
 	fg = "#bdbdbd",
@@ -151,9 +151,9 @@ end
 function M.Highlights(transparent, initialize)
 	if transparent then
 		-- Transparent
-		highlight("Normal", { fg = base.fg, bg = base.transparent }) -- Current window
-		highlight("NormalNC", { fg = base.fg, bg = base.transparent }) -- Non-current window
-		highlight("ColorColumn", { fg = base.fg, bg = base.transparent }) -- Columns set with `colorcolumn`
+		highlight("Normal", { fg = base.fg, bg = base.none }) -- Current window
+		highlight("NormalNC", { fg = base.fg, bg = base.none }) -- Non-current window
+		highlight("ColorColumn", { fg = base.fg, bg = base.none }) -- Columns set with `colorcolumn`
 	else
 		-- Normal
 		highlight("Normal", { fg = base.fg, bg = base.bg }) -- Current window
@@ -166,23 +166,23 @@ function M.Highlights(transparent, initialize)
 	end
 
 	-- Theme
-	highlight("NormalSB", { fg = base.fg, bg = base.transparent }) -- Normal text in sidebar
+	highlight("NormalSB", { fg = base.fg, bg = base.none })  -- Normal text in sidebar
 	highlight("NormalFloat", { fg = base.fg, bg = base.window_bg }) -- Normal text in floating windows
 
 	-- Gutter
-	highlight("LineNr", { fg = base.blue_light, bg = base.transparent }) -- Current line number
-	highlight("CursorLineNr", { fg = base.orange_dark, bg = base.transparent }) -- Unknown
-	highlight("LineNrAbove", { fg = code.redundant, bg = base.transparent }) -- Above current line numbers
-	highlight("LineNrBelow", { fg = code.redundant, bg = base.transparent }) -- Below current line numbers
+	highlight("LineNr", { fg = base.blue_light, bg = base.none }) -- Current line number
+	highlight("CursorLineNr", { fg = base.orange_dark, bg = base.none }) -- Unknown
+	highlight("LineNrAbove", { fg = code.redundant, bg = base.none }) -- Above current line numbers
+	highlight("LineNrBelow", { fg = code.redundant, bg = base.none }) -- Below current line numbers
 
 	-- Generic
 	highlight("MatchParen", { fg = base.bg, bg = base.blue_dark })       -- Matching pair highlight
 	highlight("Cursor", { fg = base.fg, bg = base.orange_dark })         -- Character under the cursor
 	highlight("lCursor", { fg = base.fg, bg = base.orange_dark })        -- Character under the cursor when `language-mapping`
 	highlight("CursorIM", { fg = base.fg, bg = base.bg })                -- Character under the cursor in IME mode
-	highlight("CursorLine", { fg = base.blue_dark, bg = base.transparent }) -- Screen line at the cursor
+	highlight("CursorLine", { fg = base.blue_dark, bg = base.none })     -- Screen line at the cursor
 	highlight("IncSearch", { fg = base.bg, bg = base.blue_dark })        -- Yank highlight
-	highlight("Conceal", { fg = code.redundant, bg = base.transparent }) -- Grayed out
+	highlight("Conceal", { fg = code.redundant, bg = base.none })        -- Grayed out
 	highlight("EndOfBuffer", { fg = base.bg })                           -- End of buffer `~`
 	highlight("DiffAdd", { fg = base.green })                            -- Diff add
 	highlight("DiffChange", { fg = base.orange_dark })                   -- Diff change
@@ -194,7 +194,7 @@ function M.Highlights(transparent, initialize)
 	highlight("WinBarNC", { fg = base.fg, bg = base.window_bg })
 	highlight("StatusLine", { fg = base.fg, bg = base.window_bg })
 	highlight("StatusLineNC", { fg = base.fg, bg = base.window_bg })
-	highlight("Folded", { fg = base.blue_dark, bg = base.transparent }) -- Folded gutter
+	highlight("Folded", { fg = base.blue_dark, bg = base.none }) -- Folded gutter
 
 	-- NeoVim
 	highlight("healthError", { fg = base.red })
@@ -204,10 +204,10 @@ function M.Highlights(transparent, initialize)
 	-- Cmp
 	highlight("CmpDocumentation", { fg = base.fg, bg = base.window_bg })
 	highlight("CmpDocumentationBorder", { fg = base.window_accent, bg = base.window_bg })
-	highlight("CmpItemAbbr", { fg = base.fg, bg = base.transparent })
-	highlight("CmpItemAbbrDeprecated", { fg = base.gray_dark, bg = base.transparent, style = "strikethrough" })
-	highlight("CmpItemAbbrMatch", { fg = base.blue_light, bg = base.transparent })
-	highlight("CmpItemAbbrMatchFuzzy", { fg = base.blue_light, bg = base.transparent })
+	highlight("CmpItemAbbr", { fg = base.fg, bg = base.none })
+	highlight("CmpItemAbbrDeprecated", { fg = base.gray_dark, bg = base.none, style = "strikethrough" })
+	highlight("CmpItemAbbrMatch", { fg = base.blue_light, bg = base.none })
+	highlight("CmpItemAbbrMatchFuzzy", { fg = base.blue_light, bg = base.none })
 
 	-- Lazy
 	highlight("LazyComment", { fg = code.comment })
@@ -221,9 +221,9 @@ function M.Highlights(transparent, initialize)
 
 	-- Mason
 	highlight("MasonHeader", { fg = base.bg, bg = base.orange_dark })
-	highlight("MasonHighlight", { fg = base.blue_dark, bg = base.transparent })
+	highlight("MasonHighlight", { fg = base.blue_dark, bg = base.none })
 	highlight("MasonHighlightBlockBold", { fg = base.window_accent, bg = base.orange_dark })
-	highlight("MasonMuted", { fg = code.redundant, bg = base.transparent })
+	highlight("MasonMuted", { fg = code.redundant, bg = base.none })
 	highlight("MasonMutedBlock", { fg = base.fg, bg = base.window_accent })
 	highlight("MasonHighlightBlock", { fg = base.orange_dark, bg = base.window_accent })
 

@@ -452,7 +452,7 @@ return {
 			condition = function()
 				return require("grapple").exists()
 			end,
-			hl = { fg = colors.base.purple_light, bold = true },
+			hl = { fg = colors.base.purple_light, bg = colors.base.none, bold = true },
 		}
 
 

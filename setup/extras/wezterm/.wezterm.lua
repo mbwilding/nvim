@@ -276,7 +276,7 @@ end
 
 -- Windows
 if os.getenv("OS") == "Windows_NT" then
-	config.default_prog = { "pwsh", "-NoLogo" }
+	config.default_prog = { "pwsh", "-NoLogo", "-NoProfile" }
 	config.initial_cols = 120
 	config.initial_rows = 30
 end
