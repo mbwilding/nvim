@@ -192,8 +192,8 @@ function M.Highlights(transparent, initialize)
 	highlight("WinSeparator", { fg = base.window_accent, bg = base.window_bg }) -- Window border
 	highlight("WinBar", { fg = base.fg, bg = base.window_bg })
 	highlight("WinBarNC", { fg = base.fg, bg = base.window_bg })
-	highlight("StatusLine", { fg = base.fg, bg = base.window_bg })
-	highlight("StatusLineNC", { fg = base.fg, bg = base.window_bg })
+	highlight("StatusLine", { fg = base.blue_light, bg = base.window_accent })
+	highlight("StatusLineNC", { fg = base.orange_dark, bg = base.window_bg })
 	highlight("Folded", { fg = base.blue_dark, bg = base.none }) -- Folded gutter
 
 	-- NeoVim
