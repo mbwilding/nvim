@@ -11,7 +11,7 @@ M.base = {
 	-- Default UI
 	fg = "#bdbdbd",
 	bg = "#000000",
-	window_bg = "#090909",
+	window_bg = "#000000",
 	window_accent = "#202020",
 
 	-- Colors
@@ -154,11 +154,14 @@ function M.Highlights(transparent, initialize)
 		highlight("Normal", { fg = base.fg, bg = base.none }) -- Current window
 		highlight("NormalNC", { fg = base.fg, bg = base.none }) -- Non-current window
 		highlight("ColorColumn", { fg = base.fg, bg = base.none }) -- Columns set with `colorcolumn`
+		highlight("NormalFloat", { fg = base.fg, bg = base.none }) -- Normal text in floating windows
+		-- M.base.window_bg = M.base.none
 	else
 		-- Normal
 		highlight("Normal", { fg = base.fg, bg = base.bg }) -- Current window
 		highlight("NormalNC", { fg = base.fg, bg = base.bg }) -- Non-current window
 		highlight("ColorColumn", { fg = base.fg, bg = base.window_bg }) -- Columns set with `colorcolumn`
+		highlight("NormalFloat", { fg = base.fg, bg = base.window_bg }) -- Normal text in floating windows
 	end
 
 	if not initialize then
@@ -166,8 +169,7 @@ function M.Highlights(transparent, initialize)
 	end
 
 	-- Theme
-	highlight("NormalSB", { fg = base.fg, bg = base.none })  -- Normal text in sidebar
-	highlight("NormalFloat", { fg = base.fg, bg = base.window_bg }) -- Normal text in floating windows
+	highlight("NormalSB", { fg = base.fg, bg = base.none }) -- Normal text in sidebar
 
 	-- Gutter
 	highlight("LineNr", { fg = base.blue_light, bg = base.none }) -- Current line number
@@ -192,9 +194,12 @@ function M.Highlights(transparent, initialize)
 	highlight("WinSeparator", { fg = base.window_accent, bg = base.window_bg }) -- Window border
 	highlight("WinBar", { fg = base.fg, bg = base.window_bg })
 	highlight("WinBarNC", { fg = base.fg, bg = base.window_bg })
-	highlight("StatusLine", { fg = base.blue_light, bg = base.window_accent })
-	highlight("StatusLineNC", { fg = base.orange_dark, bg = base.window_bg })
+	highlight("StatusLine", { fg = base.fg, bg = base.bg })
+	highlight("StatusLineNC", { fg = base.fg, bg = base.bg })
 	highlight("Folded", { fg = base.blue_dark, bg = base.none }) -- Folded gutter
+	highlight("TabLine", { fg = base.fg, bg = base.window_accent })
+	highlight("TabLineSel", { fg = base.window_bg, bg = base.blue_dark })
+	highlight("TabLineFill", { bg = base.bg })
 
 	-- NeoVim
 	highlight("healthError", { fg = base.red })

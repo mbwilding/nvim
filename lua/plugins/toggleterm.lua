@@ -17,7 +17,7 @@ return {
             -- direction = "float",
             shell = shell_command,
             auto_scroll = true,
-            -- persist_mode = true,
+            persist_mode = false,
             persist_size = true,
             close_on_exit = true,
             hide_numbers = true,
@@ -27,6 +27,8 @@ return {
         vim.keymap.set({ "n", "t" }, "<leader>th", "<cmd>:1ToggleTerm direction=horizontal size=20<CR>")
         vim.keymap.set({ "n", "t" }, "<leader>tt", "<cmd>:2ToggleTerm direction=horizontal size=20<CR>")
         vim.keymap.set({ "n", "t" }, "<leader>tn", "<cmd>:3ToggleTerm direction=horizontal size=20<CR>")
-        vim.keymap.set({ "n", "t" }, "<leader>ts", "<cmd>:4ToggleTerm direction=float<CR>")
+        vim.keymap.set({ "n", "t" }, "<leader>ts", "<cmd>:4ToggleTerm direction=horizontal size=20<CR>")
+        vim.keymap.set({ "n", "t" }, "<leader>tf", "<cmd>:4ToggleTerm direction=float<CR>")
+        vim.keymap.set({ "n", "t" }, "<leader>tc", "<cmd>:ToggleTermToggleAll<CR>")
     end,
 }
