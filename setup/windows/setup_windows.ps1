@@ -49,7 +49,7 @@ function Get-GitHub-Release-Url-ByTag
 Get-GitHub-Release-Url-ByTag -GitHubRepository "neovim/neovim" -FilenamePattern "nvim-win64.msi" -Tag "nightly";
 
 # Install software packages using winget
-winget install wez.wezterm Kitware.CMake zig.zig BurntSushi.ripgrep.MSVC OpenJS.NodeJS JesseDuffield.lazygit JanDeDobbeleer.OhMyPosh Golang.Go JernejSimoncic.Wget GnuWin32.UnZip GnuWin32.Zip 7zip.7zip Python.Python.3.12 RubyInstallerTeam.RubyWithDevKit.3.2 StrawberryPerl.StrawberryPerl
+winget install Kitware.CMake zig.zig BurntSushi.ripgrep.MSVC OpenJS.NodeJS JesseDuffield.lazygit JanDeDobbeleer.OhMyPosh Golang.Go JernejSimoncic.Wget GnuWin32.UnZip GnuWin32.Zip 7zip.7zip Python.Python.3.12 RubyInstallerTeam.RubyWithDevKit.3.2 StrawberryPerl.StrawberryPerl
 
 pip install cfn-lint
 gem install cfn-nag
