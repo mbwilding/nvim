@@ -99,10 +99,10 @@ return {
 				local filename = self.filename
 				local extension = vim.fn.fnamemodify(filename, ":e")
 				self.icon, self.icon_color =
-					require("nvim-web-devicons").get_icon_color(filename, extension, { default = true })
+				    require("nvim-web-devicons").get_icon_color(filename, extension, { default = true })
 			end,
 			provider = function(self)
-				return self.icon and (self.icon .. " ")
+				return self.icon and (self.icon .. "  ")
 			end,
 			hl = function(self)
 				return { fg = self.icon_color, bg = colors.base.none }
@@ -266,8 +266,8 @@ return {
 			init = function(self)
 				self.status_dict = vim.b.gitsigns_status_dict
 				self.has_changes = self.status_dict.added ~= nil
-					or self.status_dict.removed ~= nil
-					or self.status_dict.changed ~= nil
+				    or self.status_dict.removed ~= nil
+				    or self.status_dict.changed ~= nil
 			end,
 
 			hl = { fg = colors.base.blue_light, bg = colors.base.none, bold = true },
@@ -337,7 +337,7 @@ return {
 				for _, client in ipairs(clients) do
 					local filetypes = client.config.filetypes
 					if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-						return " " .. client.name
+						return "  " .. client.name
 					end
 				end
 			end,
@@ -406,7 +406,7 @@ return {
 		-- WORKING DIRECTORY
 		local work_dir = {
 			provider = function()
-				local icon = " "
+				local icon = "  "
 				local cwd = vim.fn.getcwd(0)
 				cwd = vim.fn.fnamemodify(cwd, ":~")
 				if not conditions.width_percent_below(#cwd, 0.25) then
