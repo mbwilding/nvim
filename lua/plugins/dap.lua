@@ -30,6 +30,7 @@ return {
 
 				--'delve', -- go
 				"coreclr", -- netcoredbg
+				"codelldb",
 			},
 		})
 
@@ -92,60 +93,59 @@ return {
 		}
 
 		---- RUST
-		-- local function find_codelldb_path()
-		--     local possible_paths = {
-		--         "/usr/local/bin/codelldb",                                            -- or wherever your codelldb might be
-		--         "/path/to/.vscode/extensions/vadimcn.vscode-lldb-*/adapter/codelldb", -- example for VSCode extension path
-		--     }
-		--
-		--     for _, path in ipairs(possible_paths) do
-		--         if vim.fn.filereadable(path) == 1 then
-		--             return path
-		--         end
-		--     end
-		--
-		--     print("codelldb not found")
-		--     return nil -- You might want to handle this case more gracefully
-		-- end
-		--
-		-- local function find_rust_target()
-		--     local metadata = vim.fn.json_decode(vim.fn.system("cargo metadata --no-deps --format-version 1"))
-		--     if metadata and metadata["packages"] then
-		--         local package = metadata["packages"][1] -- Assuming you want to debug the first package
-		--         if package and package["targets"] then
-		--             for _, target in ipairs(package["targets"]) do
-		--                 if target["kind"] and vim.tbl_contains(target["kind"], "bin") then
-		--                     return target["name"]
-		--                 end
-		--             end
-		--         end
-		--     end
-		--
-		--     print("Rust target not found")
-		--     return nil
-		-- end
-		--
-		-- dap.adapters.codelldb = {
-		--     type = 'server',
-		--     port = '${port}',
-		--     executable = {
-		--         command = find_codelldb_path(),
-		--         args = { '--port', '${port}' },
-		--     }
-		-- }
-		--
-		-- dap.configurations.rust = {
-		--     {
-		--         name = "Launch",
-		--         type = "codelldb",
-		--         request = "launch",
-		--         program = function()
-		--             return vim.fn.getcwd() ..
-		--                 "/target/debug/" .. find_rust_target()
-		--         end,
-		--         cwd = '${workspaceFolder}',
-		--         stopOnEntry = false,
-		--     },
-		-- }
+		local function find_codelldb_path()
+			local possible_paths = {
+				vim.env.HOME .. "/.local/share/nvim/mason/bin/codelldb",
+				vim.env.HOME .. "/AppData/Local/nvim-data/mason/bin/codelldb",
+			}
+
+			for _, path in ipairs(possible_paths) do
+				if vim.fn.filereadable(path) == 1 then
+					return path
+				end
+			end
+
+			print("codelldb not found")
+			return nil -- You might want to handle this case more gracefully
+		end
+
+		local function find_rust_target()
+			local metadata = vim.fn.json_decode(vim.fn.system("cargo metadata --no-deps --format-version 1"))
+			if metadata and metadata["packages"] then
+				local package = metadata["packages"][1] -- Assuming you want to debug the first package
+				if package and package["targets"] then
+					for _, target in ipairs(package["targets"]) do
+						if target["kind"] and vim.tbl_contains(target["kind"], "bin") then
+							return target["name"]
+						end
+					end
+				end
+			end
+
+			print("Rust target not found")
+			return nil
+		end
+
+		dap.adapters.codelldb = {
+			type = "server",
+			port = "${port}",
+			executable = {
+				command = find_codelldb_path(),
+				args = { "--port", "${port}" },
+			},
+		}
+
+		dap.configurations.rust = {
+			{
+				name = "Launch",
+				type = "codelldb",
+				request = "launch",
+				program = function()
+					return vim.fn.getcwd() .. "/target/debug/" .. find_rust_target()
+				end,
+				cwd = "${workspaceFolder}",
+				stopOnEntry = false,
+			},
+		}
 	end,
 }
