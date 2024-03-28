@@ -59,16 +59,17 @@ M.code = {
 	error = M.base.red,
 }
 
+local primary = M.base.blue_light
+local secondary = M.base.orange_dark
 
 if switch then
-	local backup = M.base.blue_light
-	M.base.blue_light = M.base.orange_dark
-	M.base.orange_dark = backup
+	primary = M.base.orange_dark
+	secondary = M.base.blue_light
 end
 
 M.mode = {
-	n = M.base.blue_light, -- Normal
-	i = M.base.orange_dark, -- Insert
+	n = primary, -- Normal
+	i = secondary, -- Insert
 	v = M.base.green, -- Visual
 	[""] = M.base.blue_dark,
 	V = M.base.green,
@@ -181,15 +182,15 @@ function M.Highlights(transparent, initialize)
 	highlight("NormalSB", { fg = base.fg, bg = base.none }) -- Normal text in sidebar
 
 	-- Gutter
-	highlight("LineNr", { fg = base.blue_light, bg = base.none }) -- Current line number
-	highlight("CursorLineNr", { fg = base.orange_dark, bg = base.none }) -- Unknown
+	highlight("LineNr", { fg = primary, bg = base.none })      -- Current line number
+	highlight("CursorLineNr", { fg = primary, bg = base.none }) -- Unknown
 	highlight("LineNrAbove", { fg = code.redundant, bg = base.none }) -- Above current line numbers
 	highlight("LineNrBelow", { fg = code.redundant, bg = base.none }) -- Below current line numbers
 
 	-- Generic
 	highlight("MatchParen", { fg = base.bg, bg = base.blue_dark })       -- Matching pair highlight
-	highlight("Cursor", { fg = base.fg, bg = base.orange_dark })         -- Character under the cursor
-	highlight("lCursor", { fg = base.fg, bg = base.orange_dark })        -- Character under the cursor when `language-mapping`
+	highlight("Cursor", { fg = base.fg, bg = secondary })                -- Character under the cursor
+	highlight("lCursor", { fg = base.fg, bg = secondary })               -- Character under the cursor when `language-mapping`
 	highlight("CursorIM", { fg = base.fg, bg = base.bg })                -- Character under the cursor in IME mode
 	highlight("CursorLine", { fg = base.blue_dark, bg = base.none })     -- Screen line at the cursor
 	highlight("IncSearch", { fg = base.bg, bg = base.blue_dark })        -- Yank highlight
@@ -220,43 +221,43 @@ function M.Highlights(transparent, initialize)
 	highlight("CmpDocumentationBorder", { fg = base.window_accent, bg = base.window_bg })
 	highlight("CmpItemAbbr", { fg = base.fg, bg = base.none })
 	highlight("CmpItemAbbrDeprecated", { fg = base.gray_dark, bg = base.none, style = "strikethrough" })
-	highlight("CmpItemAbbrMatch", { fg = base.blue_light, bg = base.none })
-	highlight("CmpItemAbbrMatchFuzzy", { fg = base.blue_light, bg = base.none })
+	highlight("CmpItemAbbrMatch", { fg = primary, bg = base.none })
+	highlight("CmpItemAbbrMatchFuzzy", { fg = primary, bg = base.none })
 
 	-- Lazy
 	highlight("LazyComment", { fg = code.comment })
-	highlight("LazyProp", { fg = base.orange_dark })
+	highlight("LazyProp", { fg = secondary })
 	highlight("LazyReasonPlugin", { fg = code.comment })
-	highlight("LazySpecial", { fg = base.orange_dark })
-	highlight("LazyH1", { fg = base.bg, bg = base.orange_dark })
+	highlight("LazySpecial", { fg = secondary })
+	highlight("LazyH1", { fg = base.bg, bg = secondary })
 	highlight("LazyButton", { fg = base.fg, bg = base.window_accent })
-	highlight("LazyButtonActive", { fg = base.bg, bg = base.orange_dark })
-	highlight("Title", { fg = base.orange_dark })
+	highlight("LazyButtonActive", { fg = base.bg, bg = secondary })
+	highlight("Title", { fg = secondary })
 
 	-- Mason
-	highlight("MasonHeader", { fg = base.bg, bg = base.orange_dark })
+	highlight("MasonHeader", { fg = base.bg, bg = secondary })
 	highlight("MasonHighlight", { fg = base.blue_dark, bg = base.none })
-	highlight("MasonHighlightBlockBold", { fg = base.window_accent, bg = base.orange_dark })
+	highlight("MasonHighlightBlockBold", { fg = base.window_accent, bg = secondary })
 	highlight("MasonMuted", { fg = code.redundant, bg = base.none })
 	highlight("MasonMutedBlock", { fg = base.fg, bg = base.window_accent })
-	highlight("MasonHighlightBlock", { fg = base.orange_dark, bg = base.window_accent })
+	highlight("MasonHighlightBlock", { fg = secondary, bg = base.window_accent })
 
 	-- File System
-	highlight("Directory", { fg = base.blue_dark }) -- Directory color
-	highlight("OilFile", { fg = base.orange_dark }) -- Oil file color
+	highlight("Directory", { fg = primary }) -- Directory color
+	highlight("OilFile", { fg = secondary }) -- Oil file color
 
 	-- Telescope
-	highlight("TelescopeNormal", { fg = base.blue_light, bg = base.window_bg })
-	highlight("TelescopeBorder", { fg = base.orange_dark, bg = base.window_bg })
-	highlight("TelescopeMatching", { fg = base.orange_dark, bg = base.window_bg })
+	highlight("TelescopeNormal", { fg = primary, bg = base.window_bg })
+	highlight("TelescopeBorder", { fg = secondary, bg = base.window_bg })
+	highlight("TelescopeMatching", { fg = secondary, bg = base.window_bg })
 
 	-- Which Key
-	highlight("WhichKey", { fg = base.orange_dark })
-	highlight("WhichKeyGroup", { fg = base.orange_dark })
-	highlight("WhichKeyDesc", { fg = base.orange_dark })
-	highlight("WhichKeySeparator", { fg = base.orange_dark })
+	highlight("WhichKey", { fg = primary })
+	highlight("WhichKeyGroup", { fg = primary })
+	highlight("WhichKeyDesc", { fg = primary })
+	highlight("WhichKeySeparator", { fg = primary })
 	highlight("WhichKeyFloat", { bg = base.window_bg })
-	highlight("WhichKeyValue", { fg = base.orange_dark })
+	highlight("WhichKeyValue", { fg = primary })
 
 	-- Code
 	highlight("@boolean", { fg = code.keyword })
