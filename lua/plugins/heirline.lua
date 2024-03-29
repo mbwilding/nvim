@@ -99,7 +99,7 @@ return {
 				local filename = self.filename
 				local extension = vim.fn.fnamemodify(filename, ":e")
 				self.icon, self.icon_color =
-				    require("nvim-web-devicons").get_icon_color(filename, extension, { default = true })
+					require("nvim-web-devicons").get_icon_color(filename, extension, { default = true })
 			end,
 			provider = function(self)
 				return self.icon and (self.icon .. "  ")
@@ -122,7 +122,7 @@ return {
 				return filename
 			end,
 			hl = function()
-				return { fg = colors.base.brown, bg = colors.base.none }
+				return { fg = colors.base.brown, bg = colors.base.none, bold = true, force = true }
 			end,
 		}
 
@@ -266,8 +266,8 @@ return {
 			init = function(self)
 				self.status_dict = vim.b.gitsigns_status_dict
 				self.has_changes = self.status_dict.added ~= nil
-				    or self.status_dict.removed ~= nil
-				    or self.status_dict.changed ~= nil
+					or self.status_dict.removed ~= nil
+					or self.status_dict.changed ~= nil
 			end,
 
 			hl = { fg = colors.base.blue_light, bg = colors.base.none, bold = true },
