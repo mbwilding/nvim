@@ -96,7 +96,8 @@ return {
 		local function find_codelldb_path()
 			local possible_paths = {
 				vim.env.HOME .. "/.local/share/nvim/mason/bin/codelldb",
-				vim.env.HOME .. "/AppData/Local/nvim-data/mason/bin/codelldb",
+				vim.env.HOME ..
+				"/AppData/Local/nvim-data/mason/packages/codelldb/extension/adapter/codelldb.exe",
 			}
 
 			for _, path in ipairs(possible_paths) do
