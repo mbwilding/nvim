@@ -125,6 +125,7 @@ return {
         pcall(require('telescope').load_extension, 'ui-select')
         pcall(require('telescope').load_extension, 'advanced_git_search')
         pcall(require('telescope').load_extension, 'grapple')
+        pcall(require('telescope').load_extension, 'noice')
 
         -- See `:help telescope.builtin`
         local builtin = require 'telescope.builtin'
