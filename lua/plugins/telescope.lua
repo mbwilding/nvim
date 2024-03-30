@@ -197,6 +197,16 @@ return {
             builtin.live_grep { cwd = "F:\\work" }
         end, { desc = 'Telescope: Search work content' })
 
+        -- Search language files
+        vim.keymap.set('n', '<leader>sL', function()
+            builtin.find_files { cwd = "F:\\Languages" }
+        end, { desc = 'Telescope: Search work files' })
+
+        -- Search language content
+        vim.keymap.set('n', '<leader>sl', function()
+            builtin.live_grep { cwd = "F:\\Languages" }
+        end, { desc = 'Telescope: Search work content' })
+
         -- Advanced Git Search
         vim.keymap.set('n', '<leader>sG', '<cmd>AdvancedGitSearch<CR>',
             { silent = true, desc = "Telescope: Advanced git search" })
