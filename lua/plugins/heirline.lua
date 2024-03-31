@@ -13,6 +13,17 @@ return {
 
 		local icons = true
 
+		-- HELPERS
+		local spacer = { provider = " " }
+
+		local align = { provider = "%=" }
+
+		local cut = { provider = "%<" }
+
+		local o = { provider = "[" }
+
+		local c = { provider = "]" }
+
 		-- MODE
 		local mode_name = {
 			n = "NORMAL",
@@ -102,7 +113,7 @@ return {
 					require("nvim-web-devicons").get_icon_color(filename, extension, { default = true })
 			end,
 			provider = function(self)
-				return self.icon and (self.icon .. "  ")
+				return self.icon and (self.icon .. " ")
 			end,
 			hl = function(self)
 				return { fg = self.icon_color, bg = colors.base.none }
@@ -119,7 +130,7 @@ return {
 				if not conditions.width_percent_below(#filename, 0.25) then
 					filename = vim.fn.pathshorten(filename)
 				end
-				return filename
+				return "[" .. filename .. "]"
 			end,
 			hl = function()
 				return { fg = colors.base.brown, bg = colors.base.none, bold = true, force = true }
@@ -274,7 +285,7 @@ return {
 
 			{ -- git branch name
 				provider = function(self)
-					return " " .. self.status_dict.head
+					return " " .. "[" .. self.status_dict.head .. "]"
 				end,
 				hl = { bold = true },
 			},
@@ -337,7 +348,7 @@ return {
 				for _, client in ipairs(clients) do
 					local filetypes = client.config.filetypes
 					if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-						return "  " .. client.name
+						return " " .. "[" .. client.name .. "]"
 					end
 				end
 			end,
@@ -398,7 +409,7 @@ return {
 				return session ~= nil
 			end,
 			provider = function()
-				return " " .. require("dap").status()
+				return " " .. "[" .. require("dap").status() .. "]"
 			end,
 			hl = { fg = colors.base.blue_dark, bg = colors.base.none, bold = true },
 		}
@@ -406,14 +417,14 @@ return {
 		-- WORKING DIRECTORY
 		local work_dir = {
 			provider = function()
-				local icon = "  "
+				local icon = " "
 				local cwd = vim.fn.getcwd(0)
 				cwd = vim.fn.fnamemodify(cwd, ":~")
 				if not conditions.width_percent_below(#cwd, 0.25) then
 					cwd = vim.fn.pathshorten(cwd)
 				end
 				local trail = cwd:sub(-1) == "/" and "" or "/"
-				return icon .. cwd .. trail
+				return icon .. "[" .. cwd .. trail .. "]"
 			end,
 			hl = { fg = colors.base.purple_light, bg = colors.base.none, bold = true },
 		}
@@ -447,7 +458,7 @@ return {
 				if value == "" then
 					return nil
 				end
-				return " " .. value
+				return " " .. "[" .. value .. "]"
 			end,
 			condition = function()
 				return require("grapple").exists()
@@ -461,43 +472,29 @@ return {
 			hl = { fg = colors.base.brown, bold = true },
 		}
 
-		-- HELPERS
-		local spacer = {
-			provider = " ",
-		}
-
-		local align = {
-			provider = "%=",
-		}
-
 		-- INIT
 		require("heirline").setup({
 			statusline = {
 				spacer,
 				vim_mode,
 				spacer,
+				file_name_block,
+				spacer,
+				work_dir,
+				spacer,
+				file_size,
+				spacer,
+				file_encoding,
+				spacer,
+				file_format,
+
+				align,
 				git,
 				spacer,
 				lsp,
-				diagnostics,
-
-				align,
-				debug,
-
-				align,
-				file_name_block,
 				spacer,
-				file_size,
-				--file_type,
-				file_encoding,
-				file_format,
-				--file_last_modified,
-
-				align,
-				work_dir,
-
-				--align,
-				--meme,
+				debug,
+				diagnostics,
 
 				align,
 				grapple,
