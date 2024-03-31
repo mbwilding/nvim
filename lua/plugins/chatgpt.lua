@@ -169,8 +169,7 @@ return {
 			use_openai_functions_for_edits = false,
 			actions_paths = {},
 			show_quickfixes_cmd = "Trouble quickfix",
-			predefined_chat_gpt_prompts =
-			"https://raw.githubusercontent.com/f/awesome-chatgpt-prompts/main/prompts.csv",
+			predefined_chat_gpt_prompts = "https://raw.githubusercontent.com/f/awesome-chatgpt-prompts/main/prompts.csv",
 			highlights = {
 				help_key = "@symbol",
 				help_description = "@comment",
@@ -178,10 +177,8 @@ return {
 		})
 
 		vim.keymap.set("n", "<leader>cgp", "<cmd>ChatGPT<CR>", { desc = "ChatGPT: Prompt" })
-		vim.keymap.set({ "n", "v" }, "<leader>cgt", "<cmd>ChatGPTRun add_tests<CR>",
-			{ desc = "ChatGPT: Add Tests" })
-		vim.keymap.set({ "n", "v" }, "<leader>cgb", "<cmd>ChatGPTRun fix_bugs<CR>",
-			{ desc = "ChatGPT: Fix Bugs" })
+		vim.keymap.set({ "n", "v" }, "<leader>cgt", "<cmd>ChatGPTRun add_tests<CR>", { desc = "ChatGPT: Add Tests" })
+		vim.keymap.set({ "n", "v" }, "<leader>cgb", "<cmd>ChatGPTRun fix_bugs<CR>", { desc = "ChatGPT: Fix Bugs" })
 		vim.keymap.set(
 			{ "n", "v" },
 			"<leader>cgg",

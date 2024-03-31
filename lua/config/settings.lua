@@ -1,64 +1,88 @@
+-- Enable loading of plugins
 vim.loader.enable()
 
--- Sets the leader key
+-- Set leader keys to space
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Set highlight on search
+-- Highlight search results
 vim.o.hlsearch = true
 
--- Make line numbers default
-vim.wo.number = true -- Current line is real line number if true rather than 0
-vim.wo.relativenumber = true -- Line numbers are relative to current line
+-- Enable line numbers
+vim.wo.number = true
 
--- Enable mouse mode
+-- Enable relative line numbers
+vim.wo.relativenumber = true
+
+-- Enable mouse support
 vim.o.mouse = "a"
 
--- Sync clipboard between OS and Neovim.
+-- Use system clipboard
 vim.o.clipboard = "unnamedplus"
 
 -- Enable break indent
 vim.o.breakindent = true
 
--- Save undo history
+-- Enable undo file
 vim.o.undofile = true
 
--- Case-insensitive searching UNLESS \C or capital in search
+-- Ignore case in search
 vim.o.ignorecase = true
+
+-- Enable smart case
 vim.o.smartcase = true
 
--- Keep signcolumn on by default
+-- Always show sign column
 vim.wo.signcolumn = "yes"
 
--- Decrease update time
+-- Set update time for diagnostics
 vim.o.updatetime = 250
+
+-- Set timeout length
 vim.o.timeoutlen = 300
 
--- Set completeopt to have a better completion experience
+-- Set completion options
 vim.o.completeopt = "menuone,noselect"
 
--- NOTE: You should make sure your terminal supports this
+-- Enable true color support
 vim.o.termguicolors = true
 
--- TODO: Order these
+-- Enable smart indent
 vim.opt.smartindent = true
+
+-- Enable text wrapping
 vim.opt.wrap = true
+
+-- Disable swap file
 vim.opt.swapfile = false
+
+-- Disable backup file
 vim.opt.backup = false
+
+-- Set undo levels
 vim.opt.undolevels = 30000
+
+-- Set scroll offset
 vim.opt.scrolloff = 15
+
+-- Update time for CursorHold
 vim.opt.updatetime = 50
-vim.opt.autowrite = false
+
+-- Enable auto write
+vim.opt.autowrite = true
+
+-- Disable cursor line
 vim.opt.cursorline = false
+
+-- Enable confirm dialog when leaving buffer
 vim.opt.confirm = true
+
+-- Set spell check language
 vim.opt.spelllang = "en"
+
+-- Set fill characters after EOF
 vim.opt.fillchars:append({ eob = " " })
 
--- Sluth auto detects
---vim.opt.softtabstop = 4
---vim.opt.shiftwidth = 4
---vim.opt.expandtab = true
---vim.opt.tabstop = 4
-
--- Sync with system clipboard
-vim.opt.clipboard = "unnamedplus"
+-- Indentation
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4

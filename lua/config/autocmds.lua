@@ -41,7 +41,6 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
-
 -- Wrap and check for spell in text filetypes
 vim.api.nvim_create_autocmd("FileType", {
 	group = augroup("wrap_spell"),

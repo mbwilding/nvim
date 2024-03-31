@@ -1,7 +1,7 @@
 return {
 	"cbochs/grapple.nvim",
 	dependencies = {
-		"nvim-tree/nvim-web-devicons"
+		"nvim-tree/nvim-web-devicons",
 	},
 	opts = {
 		scope = "git", -- also "git_branch"
@@ -9,14 +9,14 @@ return {
 	event = { "BufReadPost", "BufNewFile" },
 	cmd = "Grapple",
 	keys = {
-		{ "<leader>y", "<cmd>Grapple toggle<cr>",         desc = "Grapple toggle tag" },
+		{ "<leader>y", "<cmd>Grapple toggle<cr>", desc = "Grapple toggle tag" },
 		-- { "<leader>Z", "<cmd>Grapple toggle_tags<cr>",    desc = "Grapple toggle tags" },
 		-- { "<leader>K", "<cmd>Grapple toggle_scopes<cr>",  desc = "Grapple toggle scopes" },
 		-- { "<leader>j", "<cmd>Grapple cycle forward<cr>",  desc = "Grapple cycle forward" },
 		-- { "<leader>J", "<cmd>Grapple cycle backward<cr>", desc = "Grapple cycle backward" },
-		{ "<C-h>",     "<cmd>Grapple select index=1<cr>", desc = "Grapple: Select 1" },
-		{ "<C-t>",     "<cmd>Grapple select index=2<cr>", desc = "Grapple: Select 2" },
-		{ "<C-n>",     "<cmd>Grapple select index=3<cr>", desc = "Grapple: Select 3" },
-		{ "<C-s>",     "<cmd>Grapple select index=4<cr>", desc = "Grapple: Select 4" },
+		{ "<C-h>", "<cmd>Grapple select index=1<cr>", desc = "Grapple: Select 1" },
+		{ "<C-t>", "<cmd>Grapple select index=2<cr>", desc = "Grapple: Select 2" },
+		{ "<C-n>", "<cmd>Grapple select index=3<cr>", desc = "Grapple: Select 3" },
+		{ "<C-s>", "<cmd>Grapple select index=4<cr>", desc = "Grapple: Select 4" },
 	},
 }

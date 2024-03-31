@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 
-# Check if WSL and map config
 if uname -a | grep -qi 'microsoft'; then
     echo "Running under Windows Subsystem for Linux (WSL)"
-    # Map config to windows one 
     mkdir -p $HOME/.config
     WIN_USER=$(cmd.exe /C "echo %USERNAME%" | tr -d '\r')
     if [ -d "/mnt/c/Users/$WIN_USER/AppData/Local/nvim" ]; then

@@ -182,24 +182,24 @@ function M.Highlights(transparent, initialize)
 	highlight("NormalSB", { fg = base.fg, bg = base.none }) -- Normal text in sidebar
 
 	-- Gutter
-	highlight("LineNr", { fg = primary, bg = base.none })      -- Current line number
+	highlight("LineNr", { fg = primary, bg = base.none }) -- Current line number
 	highlight("CursorLineNr", { fg = primary, bg = base.none }) -- Unknown
 	highlight("LineNrAbove", { fg = code.redundant, bg = base.none }) -- Above current line numbers
 	highlight("LineNrBelow", { fg = code.redundant, bg = base.none }) -- Below current line numbers
 
 	-- Generic
-	highlight("MatchParen", { fg = base.bg, bg = base.blue_dark })       -- Matching pair highlight
-	highlight("Cursor", { fg = base.fg, bg = secondary })                -- Character under the cursor
-	highlight("lCursor", { fg = base.fg, bg = secondary })               -- Character under the cursor when `language-mapping`
-	highlight("CursorIM", { fg = base.fg, bg = base.bg })                -- Character under the cursor in IME mode
-	highlight("CursorLine", { fg = base.blue_dark, bg = base.none })     -- Screen line at the cursor
-	highlight("IncSearch", { fg = base.bg, bg = base.blue_dark })        -- Yank highlight
-	highlight("Conceal", { fg = code.redundant, bg = base.none })        -- Grayed out
-	highlight("EndOfBuffer", { fg = base.bg })                           -- End of buffer `~`
-	highlight("DiffAdd", { fg = base.green })                            -- Diff add
-	highlight("DiffChange", { fg = base.orange_dark })                   -- Diff change
-	highlight("DiffDelete", { fg = code.error })                         -- Diff delete
-	highlight("ErrorMsg", { fg = code.error })                           -- Error messages on the commandline
+	highlight("MatchParen", { fg = base.bg, bg = base.blue_dark }) -- Matching pair highlight
+	highlight("Cursor", { fg = base.fg, bg = secondary }) -- Character under the cursor
+	highlight("lCursor", { fg = base.fg, bg = secondary }) -- Character under the cursor when `language-mapping`
+	highlight("CursorIM", { fg = base.fg, bg = base.bg }) -- Character under the cursor in IME mode
+	highlight("CursorLine", { fg = base.blue_dark, bg = base.none }) -- Screen line at the cursor
+	highlight("IncSearch", { fg = base.bg, bg = base.blue_dark }) -- Yank highlight
+	highlight("Conceal", { fg = code.redundant, bg = base.none }) -- Grayed out
+	highlight("EndOfBuffer", { fg = base.bg }) -- End of buffer `~`
+	highlight("DiffAdd", { fg = base.green }) -- Diff add
+	highlight("DiffChange", { fg = base.orange_dark }) -- Diff change
+	highlight("DiffDelete", { fg = code.error }) -- Diff delete
+	highlight("ErrorMsg", { fg = code.error }) -- Error messages on the commandline
 	highlight("VertSplit", { fg = base.window_accent, bg = base.window_bg }) -- Vertical split border
 	highlight("WinSeparator", { fg = base.window_accent, bg = base.window_bg }) -- Window border
 	highlight("WinBar", { fg = base.fg, bg = base.window_bg })

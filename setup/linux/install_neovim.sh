@@ -4,4 +4,3 @@ wget --quiet https://github.com/neovim/neovim/releases/download/nightly/nvim.app
 chmod +x nvim
 sudo chown root:root nvim
 sudo mv nvim /usr/bin
-
