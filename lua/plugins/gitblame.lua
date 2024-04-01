@@ -21,7 +21,7 @@ return {
 
 		vim.api.nvim_set_keymap(
 			"n",
-			"<leader>gbb",
+			"<leader>gbt",
 			"<cmd>GitBlameToggle<CR>",
 			{ noremap = true, silent = true, desc = "Gitblame: Toggle" }
 		)

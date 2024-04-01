@@ -5,7 +5,19 @@ return {
 	build = ":Copilot auth",
 	module = "copilot",
 	opts = {
-		suggestion = { enabled = true },
+		suggestion = {
+			enabled = true,
+			auto_trigger = true,
+			debounce = 75,
+			keymap = {
+				accept = "<C-y>",
+				accept_word = false,
+				accept_line = false,
+				next = "<C-n>",
+				prev = "<C-p>",
+				dismiss = "<C-Esc>",
+			},
+		},
 		panel = { enabled = true },
 		filetypes = {
 			yaml = false,
@@ -16,15 +28,13 @@ return {
 			hgcommit = false,
 			svn = false,
 			cvs = false,
-		},
-		experimental = {
-			ghost_text = false,
+			["."] = false,
 		},
 	},
-	dependencies = {
-		"zbirenbaum/copilot-cmp",
-		config = function()
-			require("copilot_cmp").setup()
-		end,
-	},
+	-- dependencies = {
+	-- 	"zbirenbaum/copilot-cmp",
+	-- 	config = function()
+	-- 		require("copilot_cmp").setup()
+	-- 	end,
+	-- },
 }

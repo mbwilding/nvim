@@ -259,6 +259,10 @@ function M.Highlights(transparent, initialize)
 	highlight("WhichKeyFloat", { bg = base.window_bg })
 	highlight("WhichKeyValue", { fg = primary })
 
+	-- Copilot
+	highlight("CopilotSuggestion", { fg = base.gray_dark })
+	highlight("CopilotAnnotation", { fg = base.gray_light })
+
 	-- Code
 	highlight("@boolean", { fg = code.keyword })
 	highlight("@constant.macro", { fg = code.macro })
