@@ -39,7 +39,6 @@ return {
 			yamlls = {
 				settings = {
 					yaml = {
-						-- SpecienableDecompilationSupportfy AWS CloudFormation specific settings
 						customTags = {
 							-- AWS CloudFormation
 							"!Ref",
