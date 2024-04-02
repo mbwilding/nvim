@@ -12,7 +12,16 @@ return {
 			--"bashls",
 			clangd = {},
 			rust_analyzer = {},
-			omnisharp = {},
+			omnisharp = {
+				settings = {
+					omnisharp = {
+						enableAsyncCompletion = true,
+						enableDecompilationSupport = true,
+						enableRoslynAnalyzers = true,
+						enableEditorConfigSupport = true,
+					},
+				},
+			},
 			powershell_es = {
 				init_options = {
 					enableProfileLoading = false,
@@ -30,7 +39,7 @@ return {
 			yamlls = {
 				settings = {
 					yaml = {
-						-- Specify AWS CloudFormation specific settings
+						-- SpecienableDecompilationSupportfy AWS CloudFormation specific settings
 						customTags = {
 							-- AWS CloudFormation
 							"!Ref",
