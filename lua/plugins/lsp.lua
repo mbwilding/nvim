@@ -235,7 +235,10 @@ return {
 				--    callback = vim.lsp.buf.clear_references,
 				--})
 
-				vim.lsp.inlay_hint.enable(event.buf, true)
+				-- Inlay hints
+				if not event.file:match("%.toml$") then
+					vim.lsp.inlay_hint.enable(event.buf, true)
+				end
 
 				vim.keymap.set("n", "<leader>ih", function()
 					local bufnr = vim.api.nvim_get_current_buf()
