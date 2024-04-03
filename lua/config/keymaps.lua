@@ -40,18 +40,10 @@ vim.keymap.set("n", "<S-Right>", "<C-w>l", { silent = true })
 -- vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 -- vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
--- Debug
-vim.keymap.set("n", "\\", "<cmd>Inspect<CR>", { silent = true, desc = "Theme: Inspect" })
-
--- Theme
-vim.keymap.set("n", "<leader>Tt", function()
-	require("config/colors").toggleTransparency()
-end, { silent = true, desc = "Theme: Toggle transparency" })
-
-vim.keymap.set("n", "<leader>Tr", function()
-	require("config/colors").reload()
-end, { silent = true, desc = "Theme: Reload" })
-
+-- Toggles
 vim.keymap.set("n", "<leader>ir", function()
 	vim.wo.relativenumber = not vim.wo.relativenumber
 end, { silent = true, desc = "Toggle relative line numbers" })
+
+-- Debug
+vim.keymap.set("n", "\\", "<cmd>Inspect<CR>", { silent = true, desc = "Theme: Inspect" })
