@@ -8,7 +8,7 @@ return {
 	config = function()
 		local conditions = require("heirline.conditions")
 		local utils = require("heirline.utils")
-		local colors = require("config/colors")
+		local colors = require("gronk")
 		require("heirline").load_colors(colors)
 
 		local icons = true
