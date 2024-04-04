@@ -1,9 +1,12 @@
--- Enable loading of plugins
+-- Enable loading plugins faster
 vim.loader.enable()
 
 -- Set leader keys to space
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+
+-- Enable true color support
+vim.o.termguicolors = true
 
 -- Highlight search results
 vim.o.hlsearch = true
@@ -43,9 +46,6 @@ vim.o.timeoutlen = 300
 
 -- Set completion options
 vim.o.completeopt = "menuone,noselect"
-
--- Enable true color support
-vim.o.termguicolors = true
 
 -- Enable smart indent
 vim.opt.smartindent = true
