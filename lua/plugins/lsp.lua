@@ -12,6 +12,7 @@ return {
 			--"bashls",
 			clangd = {},
 			rust_analyzer = {},
+			gopls = {},
 			omnisharp = {
 				settings = {
 					omnisharp = {
@@ -27,6 +28,8 @@ return {
 					enableProfileLoading = false,
 				},
 			},
+			docker_compose_language_service = {},
+			dockerls = {},
 			tsserver = {},
 			tailwindcss = {},
 			taplo = {},
@@ -35,7 +38,6 @@ return {
 			jqls = {},
 			jsonls = {},
 			eslint = {},
-			asm_lsp = {},
 			yamlls = {
 				settings = {
 					yaml = {
