@@ -28,6 +28,7 @@ return {
 					enableProfileLoading = false,
 				},
 			},
+			azure_pipelines_ls = {},
 			docker_compose_language_service = {},
 			dockerls = {},
 			tsserver = {},
