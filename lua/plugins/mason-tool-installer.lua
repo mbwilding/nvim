@@ -3,18 +3,19 @@ return {
     dependencies = {
         "williamboman/mason.nvim",
     },
+    build = ":MasonToolsUpdate",
     config = function()
         require('mason-tool-installer').setup({
             -- a list of all tools you want to ensure are installed upon
             -- start
             ensure_installed = {
                 "cfn-lint",
-                "typos",
                 "vint",
                 "yamllint",
                 "jsonlint",
                 "actionlint",
                 "markdownlint",
+                "stylua",
             },
             -- if set to true this will check each tool for updates. If updates
             -- are available the tool will be updated. This setting does not

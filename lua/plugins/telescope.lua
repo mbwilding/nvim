@@ -1,6 +1,6 @@
 return {
 	"nvim-telescope/telescope.nvim",
-	branch = "0.1.x",
+	-- branch = "0.1.x",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-telescope/telescope-ui-select.nvim",
@@ -72,19 +72,19 @@ return {
 					"--column",
 					"--smart-case",
 				},
-				-- file_ignore_patterns = {
-				--     ".git/",
-				--     "node_modules/",
-				--     "vendor/",
-				--     "build/",
-				--     "dist/",
-				--     "target/",
-				--     ".cache/",
-				--     ".vscode/",
-				--     ".idea/",
-				--     ".next/",
-				--     ".DS_Store"
-				-- },
+				file_ignore_patterns = {
+					".git/",
+					"node_modules/",
+					"vendor/",
+					"build/",
+					"dist/",
+					"target/",
+					".cache/",
+					".vscode/",
+					".idea/",
+					".next/",
+					".DS_Store",
+				},
 			},
 			extensions = {
 				["ui-select"] = {
@@ -119,11 +119,10 @@ return {
 		})
 
 		-- Enable telescope extensions, if they are installed
-		pcall(require("telescope").load_extension, "fzf")
-		pcall(require("telescope").load_extension, "ui-select")
-		pcall(require("telescope").load_extension, "advanced_git_search")
-		pcall(require("telescope").load_extension, "grapple")
-		pcall(require("telescope").load_extension, "noice")
+		local extensions = { "fzf", "ui-select", "advanced_git_search", "grapple", "noice" }
+		for _, ext in ipairs(extensions) do
+			pcall(require("telescope").load_extension, ext)
+		end
 
 		-- See `:help telescope.builtin`
 		local builtin = require("telescope.builtin")
