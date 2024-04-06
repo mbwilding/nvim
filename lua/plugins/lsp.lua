@@ -39,6 +39,7 @@ return {
 			jqls = {},
 			jsonls = {},
 			eslint = {},
+			glsl_analyzer = {},
 			yamlls = {
 				settings = {
 					yaml = {
