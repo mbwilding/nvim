@@ -45,8 +45,5 @@ return {
 		})
 		-- You can set formatters_by_ft and formatters directly
 		require("conform").formatters_by_ft.lua = { "stylua" }
-		require("conform").formatters.my_formatter = {
-			command = "my_cmd",
-		}
 	end,
 }
