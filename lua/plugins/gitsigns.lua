@@ -69,10 +69,10 @@ return {
 			-- Text object
 			map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Git Signs: Select Git Hunk" })
 
-			-- TODO: Fix this
-			require("which-key").register({
-				gs = { name = "Git Signs" },
-			}, { prefix = "<leader>" })
+			-- TODO:
+			-- require("which-key").register({
+			-- 	gs = { name = "Git Signs" },
+			-- }, { prefix = "<leader>" })
 		end,
 	},
 }

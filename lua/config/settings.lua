@@ -41,7 +41,8 @@ vim.wo.signcolumn = "yes"
 -- Set update time for diagnostics
 vim.o.updatetime = 250
 
--- Set timeout length
+-- Leader command timeout
+vim.o.timeout = false
 vim.o.timeoutlen = 300
 
 -- Set completion options

@@ -12,7 +12,8 @@ return {
 				if vim.fn.executable("make") == 1 then
 					return "make"
 				elseif vim.fn.executable("cmake") == 1 then
-					return "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
+					return
+					"cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
 				else
 					error("Neither 'make' nor 'cmake' are available for building telescope-fzf-native.nvim")
 				end
@@ -73,17 +74,29 @@ return {
 					"--smart-case",
 				},
 				file_ignore_patterns = {
-					".git/",
-					"node_modules/",
-					"vendor/",
-					"build/",
-					"dist/",
-					"target/",
-					".cache/",
-					".vscode/",
-					".idea/",
-					".next/",
 					".DS_Store",
+					".git/",
+					".git\\",
+					"node_modules/",
+					"node_modules\\",
+					"vendor/",
+					"vendor\\",
+					"build/",
+					"build\\",
+					"dist/",
+					"dist\\",
+					"target/",
+					"target\\",
+					".cache/",
+					".cache\\",
+					".vscode/",
+					".vscode\\",
+					".vs/",
+					".vs\\",
+					".idea/",
+					".idea\\",
+					".next/",
+					".next\\",
 				},
 			},
 			extensions = {
