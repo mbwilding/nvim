@@ -103,7 +103,6 @@ return {
 		}
 
 		require("mason").setup()
-		vim.keymap.set("n", "<leader>Tm", "<cmd>Mason<CR>", { silent = true, desc = "Tool: Mason" })
 
 		require("mason-lspconfig").setup_handlers({
 			-- The first entry (without a key) will be the default handler

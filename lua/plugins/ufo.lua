@@ -10,7 +10,7 @@ return {
 		vim.o.foldenable = true
 
 		vim.keymap.set("n", "zR", require("ufo").openAllFolds)
-		vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
+		vim.keymap.set("n", "zC", require("ufo").closeAllFolds)
 
 		require("ufo").setup()
 	end,
