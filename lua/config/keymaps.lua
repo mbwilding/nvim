@@ -8,10 +8,10 @@ vim.keymap.set({ "n", "i", "c" }, "<Left>", "<Nop>", { silent = true })
 vim.keymap.set({ "n", "i", "c" }, "<Right>", "<Nop>", { silent = true })
 
 -- Allow hjkl navigation in non-normal mode
-vim.keymap.set("i", "<C-k>", "<Up>", { silent = true })
-vim.keymap.set("i", "<C-j>", "<Down>", { silent = true })
-vim.keymap.set("i", "<C-h>", "<Left>", { silent = true })
-vim.keymap.set("i", "<C-l>", "<Right>", { silent = true })
+vim.keymap.set({ "i", "c" }, "<C-k>", "<Up>", { silent = true })
+vim.keymap.set({ "i", "c" }, "<C-j>", "<Down>", { silent = true })
+vim.keymap.set({ "i", "c" }, "<C-h>", "<Left>", { silent = true })
+vim.keymap.set({ "i", "c" }, "<C-l>", "<Right>", { silent = true })
 
 -- Window resize via Alt + hjkl
 vim.keymap.set("n", "<A-k>", "<cmd>horizontal resize -1<CR>", { silent = true })
