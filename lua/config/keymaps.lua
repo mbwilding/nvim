@@ -23,6 +23,7 @@ vim.keymap.set("n", "<A-l>", "<cmd>vertical resize +1<CR>", { silent = true })
 vim.keymap.set("n", "q", ":tabclose<CR>", { silent = true })
 
 -- Disables search highlight
+vim.keymap.set("n", "<CR>", "<cmd>noh<CR>", { silent = true })
 vim.keymap.set("n", "<ESC>", "<cmd>noh<ESC>", { silent = true })
 
 -- Space do nothing
