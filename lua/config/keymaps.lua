@@ -5,10 +5,10 @@ vim.keymap.set("n", ";", ":", { silent = true })
 vim.keymap.set("n", "<leader>Tl", "<cmd>Lazy<CR>", { silent = true, desc = "Tool: Lazy" })
 
 -- Window resize via Alt + arrows
-vim.keymap.set("n", "<A-Up>", "<cmd>horizontal resize -1<CR>", { silent = true })
-vim.keymap.set("n", "<A-Down>", "<cmd>horizontal resize +1<CR>", { silent = true })
-vim.keymap.set("n", "<A-Left>", "<cmd>vertical resize -1<CR>", { silent = true })
-vim.keymap.set("n", "<A-Right>", "<cmd>vertical resize +1<CR>", { silent = true })
+vim.keymap.set("n", "<A-k>", "<cmd>horizontal resize -1<CR>", { silent = true })
+vim.keymap.set("n", "<A-j>", "<cmd>horizontal resize +1<CR>", { silent = true })
+vim.keymap.set("n", "<A-h>", "<cmd>vertical resize -1<CR>", { silent = true })
+vim.keymap.set("n", "<A-l>", "<cmd>vertical resize +1<CR>", { silent = true })
 
 -- Tab close
 vim.keymap.set("n", "q", ":tabclose<CR>", { silent = true })
@@ -31,10 +31,10 @@ vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open float
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
 -- Buffer focus
-vim.keymap.set("n", "<S-Left>", "<C-w>h", { silent = true })
-vim.keymap.set("n", "<S-Down>", "<C-w>j", { silent = true })
-vim.keymap.set("n", "<S-Up>", "<C-w>k", { silent = true })
-vim.keymap.set("n", "<S-Right>", "<C-w>l", { silent = true })
+vim.keymap.set("n", "<S-h>", "<C-w>h", { silent = true })
+vim.keymap.set("n", "<S-j>", "<C-w>j", { silent = true })
+vim.keymap.set("n", "<S-k>", "<C-w>k", { silent = true })
+vim.keymap.set("n", "<S-l>", "<C-w>l", { silent = true })
 -- vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 -- vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 -- vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })

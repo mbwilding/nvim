@@ -103,10 +103,10 @@ return {
 				swap = {
 					enable = true,
 					swap_next = {
-						["<leader>m<Right>"] = "@parameter.inner",
+						["<leader>ml"] = "@parameter.inner",
 					},
 					swap_previous = {
-						["<leader>m<Left>"] = "@parameter.inner",
+						["<leader>mh"] = "@parameter.inner",
 					},
 				},
 				move = {
