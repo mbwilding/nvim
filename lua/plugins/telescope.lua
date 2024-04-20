@@ -5,6 +5,7 @@ return {
 		"nvim-lua/plenary.nvim",
 		"nvim-telescope/telescope-ui-select.nvim",
 		"aaronhallaert/advanced-git-search.nvim",
+		"debugloop/telescope-undo.nvim",
 		{
 			"nvim-telescope/telescope-fzf-native.nvim",
 			-- Build command adjusted to use 'make' if available, otherwise 'cmake'
@@ -132,7 +133,7 @@ return {
 		})
 
 		-- Enable telescope extensions, if they are installed
-		local extensions = { "fzf", "ui-select", "advanced_git_search", "grapple", "noice" }
+		local extensions = { "fzf", "ui-select", "advanced_git_search", "grapple", "noice", "undo" }
 		for _, ext in ipairs(extensions) do
 			pcall(require("telescope").load_extension, ext)
 		end
@@ -229,6 +230,14 @@ return {
 			"<leader>sG",
 			"<cmd>AdvancedGitSearch<CR>",
 			{ silent = true, desc = "Telescope: Advanced git search" }
+		)
+
+		-- Undo
+		vim.keymap.set(
+			"n",
+			"<leader>u",
+			"<cmd>Telescope undo<CR>",
+			{ silent = true, desc = "Telescope: Undo history" }
 		)
 	end,
 }
