@@ -20,9 +20,6 @@ vim.wo.relativenumber = true
 -- Enable mouse support
 vim.o.mouse = "a"
 
--- Use system clipboard
-vim.o.clipboard = "unnamedplus"
-
 -- Enable break indent
 vim.o.breakindent = true
 
@@ -93,3 +90,18 @@ vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "DiagnosticSi
 vim.fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" })
 vim.fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo" })
 vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
+
+-- Use system clipboard
+vim.o.clipboard = "unnamedplus"
+
+-- vim.g.clipboard = {
+-- 	name = 'OSC 52',
+-- 	copy = {
+-- 		['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+-- 		['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+-- 	},
+-- 	paste = {
+-- 		['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+-- 		['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+-- 	},
+-- }
