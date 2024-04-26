@@ -9,7 +9,7 @@ return {
 	config = function()
 		-- These can have more fields like cmd, settings and filetypes
 		local servers = {
-			--"bashls",
+			--bashls = {},
 			clangd = {},
 			rust_analyzer = {},
 			gopls = {},
@@ -239,13 +239,10 @@ return {
 				--})
 
 				-- Inlay hints
-				if not event.file:match("%.toml$") then
-					vim.lsp.inlay_hint.enable(event.buf, true)
-				end
+				vim.lsp.inlay_hint.enable(true)
 
 				vim.keymap.set("n", "<leader>ih", function()
-					local bufnr = vim.api.nvim_get_current_buf()
-					vim.lsp.inlay_hint.enable(bufnr, not vim.lsp.inlay_hint.is_enabled(bufnr))
+					vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 				end, { noremap = true, silent = true, desc = "LSP: Toggle inlay hints" })
 			end,
 		})
