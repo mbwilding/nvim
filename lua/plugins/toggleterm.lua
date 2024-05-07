@@ -28,7 +28,8 @@ return {
 		vim.keymap.set({ "n", "t" }, "<leader>tt", "<cmd>:2ToggleTerm direction=horizontal size=20<CR>")
 		vim.keymap.set({ "n", "t" }, "<leader>tn", "<cmd>:3ToggleTerm direction=horizontal size=20<CR>")
 		vim.keymap.set({ "n", "t" }, "<leader>ts", "<cmd>:4ToggleTerm direction=horizontal size=20<CR>")
-		vim.keymap.set({ "n", "t" }, "<leader>tf", "<cmd>:4ToggleTerm direction=float<CR>")
+		vim.keymap.set({ "n", "t" }, "<leader>tv", "<cmd>:5ToggleTerm direction=vertical size=100<CR>")
+		vim.keymap.set({ "n", "t" }, "<leader>tf", "<cmd>:6ToggleTerm direction=float<CR>")
 		vim.keymap.set({ "n", "t" }, "<leader>tc", "<cmd>:ToggleTermToggleAll<CR>")
 	end,
 }

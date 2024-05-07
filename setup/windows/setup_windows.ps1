@@ -8,48 +8,50 @@ function Get-GitHub-Release-Url-ByTag
         [string]$Tag
     )
 
-    $releasesUri = "https://api.github.com/repos/$GitHubRepository/releases/tags/$Tag";
-    $response = Invoke-RestMethod -Method "GET" -Uri $releasesUri;
-    $assets = $response.assets;
-    $specificReleases = $assets | Where-Object name -Match $FilenamePattern;
+    $releasesUri = "https://api.github.com/repos/$GitHubRepository/releases/tags/$Tag"
+    $response = Invoke-RestMethod -Method "GET" -Uri $releasesUri
+    $assets = $response.assets
+    $specificReleases = $assets | Where-Object name -Match $FilenamePattern
 
     if ($specificReleases.Count -eq 0)
     {
-        Write-Error "No releases found matching the pattern.";
-        return;
+        Write-Error "No releases found matching the pattern."
+        return
     } elseif ($specificReleases.Count -gt 1)
     {
-        Write-Warning "Multiple releases found. Using the first one.";
+        Write-Warning "Multiple releases found. Using the first one."
     }
 
-    $specificRelease = $specificReleases[0];
-    $downloadUrl = $specificRelease.browser_download_url;
-    $outputPath = "$env:TEMP\" + $specificRelease.name;
-    Invoke-WebRequest -Uri $downloadUrl -OutFile $outputPath;
+    $specificRelease = $specificReleases[0]
+    $downloadUrl = $specificRelease.browser_download_url
+    $outputPath = "$env:TEMP\" + $specificRelease.name
+    Invoke-WebRequest -Uri $downloadUrl -OutFile $outputPath
 
     if (!(Test-Path $outputPath))
     {
-        Write-Error "Failed to download the file.";
-        return;
+        Write-Error "Failed to download the file."
+        return
     }
 
     try
     {
-        $arguments = "/i `"$outputPath`" /quiet /norestart";
-        $process = Start-Process "msiexec.exe" -ArgumentList $arguments -Wait -PassThru;
+        $arguments = "/i "$outputPath" /quiet /norestart"
+        $process = Start-Process "msiexec.exe" -ArgumentList $arguments -Wait -PassThru
         if ($process.ExitCode -ne 0)
         {
-            Write-Error "Installation failed with exit code $($process.ExitCode).";
+            Write-Error "Installation failed with exit code $($process.ExitCode)."
         }
     } catch
     {
-        Write-Error "An error occurred during installation: $_";
+        Write-Error "An error occurred during installation: $_"
     }
 }
 
-Get-GitHub-Release-Url-ByTag -GitHubRepository "neovim/neovim" -FilenamePattern "nvim-win64.msi" -Tag "nightly";
+Get-GitHub-Release-Url-ByTag -GitHubRepository "neovim/neovim" -FilenamePattern "nvim-win64.msi" -Tag "nightly"
 
-winget install Kitware.CMake zig.zig BurntSushi.ripgrep.MSVC OpenJS.NodeJS JesseDuffield.lazygit JanDeDobbeleer.OhMyPosh Golang.Go JernejSimoncic.Wget GnuWin32.UnZip GnuWin32.Zip 7zip.7zip python3 RubyInstallerTeam.RubyWithDevKit.3.2 StrawberryPerl.StrawberryPerl stedolan.jq
+winget install Kitware.CMake zig.zig BurntSushi.ripgrep.MSVC OpenJS.NodeJS JesseDuffield.lazygit JanDeDobbeleer.OhMyPosh Golang.Go JernejSimoncic.Wget GnuWin32.UnZip GnuWin32.Zip 7zip.7zip python3 RubyInstallerTeam.RubyWithDevKit.3.2 StrawberryPerl.StrawberryPerl jqlang.jq
+
+$env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
 
 pip install cfn-lint
 gem install cfn-nag
