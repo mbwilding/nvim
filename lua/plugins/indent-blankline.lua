@@ -9,7 +9,7 @@ return {
 			enabled = isEnabled,
 		})
 
-		vim.keymap.set("n", "<leader>ir", function()
+		vim.keymap.set("n", "<leader>ib", function()
 			isEnabled = not isEnabled
 			ibl.setup({
 				enabled = isEnabled,
