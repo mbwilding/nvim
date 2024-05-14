@@ -9,7 +9,7 @@ return {
 	config = function()
 		-- These can have more fields like cmd, settings and filetypes
 		local servers = {
-			--bashls = {},
+			bashls = {},
 			clangd = {},
 			rust_analyzer = {},
 			gopls = {},
