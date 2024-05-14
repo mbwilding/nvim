@@ -3,7 +3,7 @@ return {
 	dependencies = {
 		"williamboman/mason.nvim",
 	},
-	build = ":MasonToolsUpdate",
+	--build = ":MasonToolsUpdate",
 	config = function()
 		require("mason-tool-installer").setup({
 			-- a list of all tools you want to ensure are installed upon
