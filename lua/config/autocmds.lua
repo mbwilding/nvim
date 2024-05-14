@@ -62,3 +62,10 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 		vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
 	end,
 })
+
+-- Set fileformat to unix for shell scripts
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	group = augroup("lf"),
+	pattern = "*.sh",
+	command = "set fileformat=unix"
+})
