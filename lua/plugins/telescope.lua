@@ -133,7 +133,15 @@ return {
 		})
 
 		-- Enable telescope extensions, if they are installed
-		local extensions = { "fzf", "ui-select", "advanced_git_search", "grapple", "noice", "undo" }
+		local extensions = {
+			"fzf",
+			"ui-select",
+			"advanced_git_search",
+			"grapple",
+			"noice",
+			"undo",
+			"package_info"
+		}
 		for _, ext in ipairs(extensions) do
 			pcall(require("telescope").load_extension, ext)
 		end
