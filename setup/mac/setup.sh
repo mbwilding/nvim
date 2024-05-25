@@ -1,3 +1,3 @@
 #!/bin/bash
 
-brew install neovim node python go
+brew install neovim node python go ripgrep fzf
