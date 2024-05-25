@@ -91,7 +91,7 @@ return {
 				end,
 				-- This function defines what will never be shown, even when `show_hidden` is set
 				is_always_hidden = function(name, bufnr)
-					return vim.startswith(name, "..")
+					return name == "." or name == ".."
 				end,
 				sort = {
 					-- sort order can be "asc" or "desc"
