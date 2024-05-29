@@ -19,6 +19,12 @@ vim.keymap.set("n", "<A-j>", "<cmd>horizontal resize +1<CR>", { silent = true })
 vim.keymap.set("n", "<A-h>", "<cmd>vertical resize -1<CR>", { silent = true })
 vim.keymap.set("n", "<A-l>", "<cmd>vertical resize +1<CR>", { silent = true })
 
+-- Window focus
+vim.keymap.set("n", "H", "<C-w>h", { silent = true })
+vim.keymap.set("n", "J", "<C-w>j", { silent = true })
+vim.keymap.set("n", "K", "<C-w>k", { silent = true })
+vim.keymap.set("n", "L", "<C-w>l", { silent = true })
+
 -- Tab close
 vim.keymap.set("n", "q", ":tabclose<CR>", { silent = true })
 
@@ -38,12 +44,6 @@ vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous dia
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
-
--- Window focus
-vim.keymap.set("n", "H", "<C-w>h", { silent = true })
-vim.keymap.set("n", "J", "<C-w>j", { silent = true })
-vim.keymap.set("n", "K", "<C-w>k", { silent = true })
-vim.keymap.set("n", "L", "<C-w>l", { silent = true })
 
 -- Toggles
 vim.keymap.set("n", "<leader>ir", function()
