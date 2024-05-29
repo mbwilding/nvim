@@ -2,10 +2,10 @@
 vim.keymap.set("n", ";", ":", { silent = true })
 
 -- Disable arrow navigation
--- vim.keymap.set({ "n", "i", "c" }, "<Up>", "<Nop>", { silent = true })
--- vim.keymap.set({ "n", "i", "c" }, "<Down>", "<Nop>", { silent = true })
--- vim.keymap.set({ "n", "i", "c" }, "<Left>", "<Nop>", { silent = true })
--- vim.keymap.set({ "n", "i", "c" }, "<Right>", "<Nop>", { silent = true })
+vim.keymap.set({ "n", "i", "c" }, "<Up>", "<Nop>", { silent = true })
+vim.keymap.set({ "n", "i", "c" }, "<Down>", "<Nop>", { silent = true })
+vim.keymap.set({ "n", "i", "c" }, "<Left>", "<Nop>", { silent = true })
+vim.keymap.set({ "n", "i", "c" }, "<Right>", "<Nop>", { silent = true })
 
 -- Allow hjkl navigation in non-normal mode
 vim.keymap.set({ "i", "c" }, "<C-k>", "<Up>", { silent = true })
@@ -22,7 +22,7 @@ vim.keymap.set("n", "<A-l>", "<cmd>vertical resize +1<CR>", { silent = true })
 -- Tab close
 vim.keymap.set("n", "q", ":tabclose<CR>", { silent = true })
 
--- Disables search highlight
+-- End search highlight
 vim.keymap.set("n", "<CR>", "<cmd>noh<CR>", { silent = true })
 vim.keymap.set("n", "<ESC>", "<cmd>noh<ESC>", { silent = true })
 
