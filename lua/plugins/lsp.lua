@@ -38,7 +38,6 @@ return {
 			pylsp = {},
 			jqls = {},
 			jsonls = {},
-			eslint = {},
 			glsl_analyzer = {},
 			yamlls = {
 				settings = {
