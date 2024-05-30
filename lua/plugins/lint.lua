@@ -1,9 +1,21 @@
 return {
 	"mfussenegger/nvim-lint",
 	lazy = true,
-	event = { "BufReadPre", "BufNewFile" }, -- to disable, comment this out
+	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		local lint = require("lint")
+
+		local eslint = lint.linters.eslint_d
+		eslint.args = {
+			"--no-warn-ignored",
+			"--format",
+			"json",
+			"--stdin",
+			"--stdin-filename",
+			function()
+				return vim.api.nvim_buf_get_name(0)
+			end,
+		}
 
 		lint.linters_by_ft = {
 			javascript = { "eslint_d" },
@@ -15,10 +27,8 @@ return {
 			yaml = { "cfn_lint", "cfn_nag" },
 		}
 
-		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
-
 		vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
-			group = lint_augroup,
+			group = vim.api.nvim_create_augroup("lint", { clear = true }),
 			callback = function()
 				lint.try_lint()
 			end,
