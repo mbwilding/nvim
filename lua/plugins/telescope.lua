@@ -13,8 +13,7 @@ return {
 				if vim.fn.executable("make") == 1 then
 					return "make"
 				elseif vim.fn.executable("cmake") == 1 then
-					return
-					"cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
+					return "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
 				else
 					error("Neither 'make' nor 'cmake' are available for building telescope-fzf-native.nvim")
 				end
@@ -98,6 +97,8 @@ return {
 					".idea\\",
 					".next/",
 					".next\\",
+					"package-lock.json",
+					"packages.lock.json",
 				},
 			},
 			extensions = {
@@ -140,7 +141,7 @@ return {
 			"grapple",
 			"noice",
 			"undo",
-			"package_info"
+			"package_info",
 		}
 		for _, ext in ipairs(extensions) do
 			pcall(require("telescope").load_extension, ext)
@@ -241,11 +242,6 @@ return {
 		)
 
 		-- Undo
-		vim.keymap.set(
-			"n",
-			"<leader>u",
-			"<cmd>Telescope undo<CR>",
-			{ silent = true, desc = "Telescope: Undo history" }
-		)
+		vim.keymap.set("n", "<leader>u", "<cmd>Telescope undo<CR>", { silent = true, desc = "Telescope: Undo history" })
 	end,
 }
