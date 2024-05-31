@@ -13,6 +13,7 @@ return {
 			clangd = {},
 			rust_analyzer = {},
 			gopls = {},
+			mesonlsp = {},
 			omnisharp = {
 				settings = {
 					omnisharp = {
