@@ -1,16 +1,10 @@
 return {
-	-- NOTE: Yes, you can install new plugins here!
 	"mfussenegger/nvim-dap",
-	-- NOTE: And you can specify dependencies as well
 	dependencies = {
-		-- Creates a beautiful debugger UI
 		"rcarriga/nvim-dap-ui",
-		-- Installs the debug adapters for you
 		"williamboman/mason.nvim",
 		"jay-babu/mason-nvim-dap.nvim",
-
-		-- Add debuggers here
-		-- 'leoluz/nvim-dap-go',
+		"leoluz/nvim-dap-go",
 	},
 	config = function()
 		local dap = require("dap")
@@ -28,14 +22,14 @@ return {
 			ensure_installed = {
 				-- Update this to ensure that you have the debuggers for the langs you want
 
-				--'delve', -- go
+				-- "delve", -- go
 				"coreclr", -- netcoredbg
 				"codelldb",
 			},
 		})
 
 		-- Basic debugging keymaps, feel free to change to your liking!
-		vim.keymap.set("n", "<F7>", dapui.toggle, { desc = "Debug: See last session result." })
+		vim.keymap.set("n", "<leader>dap", dapui.toggle, { desc = "Debug: See last session result." })
 		vim.keymap.set("n", "<F5>", dap.continue, { desc = "Debug: Start/Continue" })
 		vim.keymap.set("n", "<F1>", dap.step_into, { desc = "Debug: Step Into" })
 		vim.keymap.set("n", "<F2>", dap.step_over, { desc = "Debug: Step Over" })
@@ -44,6 +38,7 @@ return {
 		vim.keymap.set("n", "<leader>B", function()
 			dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
 		end, { desc = "Debug: Set Breakpoint" })
+		vim.keymap.set("n", "<leader>dc", dap.run_to_cursor, { desc = "Debug: Run To Cursor" })
 
 		-- Dap UI setup
 		-- For more information, see |:help nvim-dap-ui|

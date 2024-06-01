@@ -9,12 +9,21 @@ return {
 		"Issafalcon/neotest-dotnet",
 		"rouge8/neotest-rust",
 		"markemmons/neotest-deno",
+		"nvim-neotest/neotest-jest"
 	},
 	config = function()
 		require("neotest").setup({
 			adapters = {
 				require("neotest-rust"),
 				require("neotest-deno"),
+				require('neotest-jest')({
+					jestCommand = "npm test --",
+					jestConfigFile = "jest.config.js",
+					env = { CI = true },
+					cwd = function(_path)
+						return vim.fn.getcwd()
+					end,
+				}),
 				require("neotest-dotnet")({
 					dap = {
 						-- Extra arguments for nvim-dap configuration
