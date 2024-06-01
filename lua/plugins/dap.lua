@@ -41,7 +41,9 @@ return {
 		vim.keymap.set("n", "<leader>B", function()
 			dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
 		end, { desc = "Debug: Set Breakpoint" })
-		vim.keymap.set("n", "<leader>?", dap.eval(nil, { enter = true }), { desc = "Debug: Cursor Value" })
+		vim.keymap.set("n", "<leader>?", function()
+			dap.eval(nil, { enter = true })
+		end, { desc = "Debug: Cursor Value" })
 
 		-- Dap UI setup
 		-- For more information, see |:help nvim-dap-ui|
