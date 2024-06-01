@@ -13,7 +13,8 @@ return {
 				if vim.fn.executable("make") == 1 then
 					return "make"
 				elseif vim.fn.executable("cmake") == 1 then
-					return "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
+					return
+					"cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
 				else
 					error("Neither 'make' nor 'cmake' are available for building telescope-fzf-native.nvim")
 				end
@@ -151,10 +152,10 @@ return {
 		local builtin = require("telescope.builtin")
 		vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "Telescope: Search help" })
 		vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "Telescope: Search keymaps" })
+		vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "Telescope: Search by grep" })
 		vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "Telescope: Search files" })
 		vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "Telescope: Search Select" })
 		vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "Telescope: Search current word" })
-		vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "Telescope: Search by grep" })
 		vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "Telescope: Search diagnostics" })
 		vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "Telescope: Search resume" })
 		vim.keymap.set(
@@ -183,55 +184,15 @@ return {
 			})
 		end, { desc = "Telescope: Search in open files" })
 
+		-- Search Neovim config content
+		vim.keymap.set("n", "<leader>sn", function()
+			builtin.live_grep({ cwd = vim.fn.stdpath("config") })
+		end, { desc = "Telescope: Search Neovim content" })
+
 		-- Search Neovim config files
 		vim.keymap.set("n", "<leader>sN", function()
 			builtin.find_files({ cwd = vim.fn.stdpath("config") })
 		end, { desc = "Telescope: Search Neovim files" })
-
-		-- Search Neovim config content
-		vim.keymap.set("n", "<leader>sn", function()
-			builtin.live_grep({ cwd = vim.fn.stdpath("config") })
-		end, { desc = "Telescope: Search Neovim files" })
-
-		-- Search work ci files
-		vim.keymap.set("n", "<leader>sC", function()
-			builtin.find_files({ cwd = "F:\\rwwa\\common\\gitlab-ci-shared" })
-		end, { desc = "Telescope: Search work CI files" })
-
-		-- Search work ci content
-		vim.keymap.set("n", "<leader>sc", function()
-			builtin.live_grep({ cwd = "F:\\rwwa\\common\\gitlab-ci-shared" })
-		end, { desc = "Telescope: Search work CI content" })
-
-		-- Search work pe files
-		vim.keymap.set("n", "<leader>sE", function()
-			builtin.find_files({ cwd = "F:\\rwwa\\platform-enablement" })
-		end, { desc = "Telescope: Search work PE files" })
-
-		-- Search work pe content
-		vim.keymap.set("n", "<leader>se", function()
-			builtin.live_grep({ cwd = "F:\\rwwa\\platform-enablement" })
-		end, { desc = "Telescope: Search work PE content" })
-
-		-- Search work files
-		vim.keymap.set("n", "<leader>sW", function()
-			builtin.find_files({ cwd = "F:\\rwwa" })
-		end, { desc = "Telescope: Search work files" })
-
-		-- Search work content
-		vim.keymap.set("n", "<leader>sw", function()
-			builtin.live_grep({ cwd = "F:\\work" })
-		end, { desc = "Telescope: Search work content" })
-
-		-- Search language files
-		vim.keymap.set("n", "<leader>sL", function()
-			builtin.find_files({ cwd = "F:\\Languages" })
-		end, { desc = "Telescope: Search work files" })
-
-		-- Search language content
-		vim.keymap.set("n", "<leader>sl", function()
-			builtin.live_grep({ cwd = "F:\\Languages" })
-		end, { desc = "Telescope: Search work content" })
 
 		-- Advanced Git Search
 		vim.keymap.set(

@@ -18,6 +18,10 @@ vim.keymap.set("n", "<A-k>", "<cmd>horizontal resize -1<CR>", { silent = true })
 vim.keymap.set("n", "<A-j>", "<cmd>horizontal resize +1<CR>", { silent = true })
 vim.keymap.set("n", "<A-h>", "<cmd>vertical resize -1<CR>", { silent = true })
 vim.keymap.set("n", "<A-l>", "<cmd>vertical resize +1<CR>", { silent = true })
+vim.keymap.set("n", "<A-K>", "<cmd>horizontal resize -5<CR>", { silent = true })
+vim.keymap.set("n", "<A-J>", "<cmd>horizontal resize +5<CR>", { silent = true })
+vim.keymap.set("n", "<A-H>", "<cmd>vertical resize -5<CR>", { silent = true })
+vim.keymap.set("n", "<A-L>", "<cmd>vertical resize +5<CR>", { silent = true })
 
 -- Window focus
 vim.keymap.set("n", "H", "<C-w>h", { silent = true })
