@@ -44,7 +44,7 @@ return {
 			-- Send deleted files to the trash instead of permanently deleting them (:help oil-trash)
 			delete_to_trash = false,
 			-- Skip the confirmation popup for simple operations (:help oil.skip_confirm_for_simple_edits)
-			skip_confirm_for_simple_edits = true,
+			skip_confirm_for_simple_edits = false,
 			-- Selecting a new/moved/renamed file or directory will prompt you to save changes first
 			-- (:help prompt_save_on_select_new_entry)
 			prompt_save_on_select_new_entry = true,
@@ -102,7 +102,7 @@ return {
 			-- Configuration for the floating window in oil.open_float
 			float = {
 				-- Padding around the floating window
-				padding = 2,
+				padding = 15,
 				max_width = 0,
 				max_height = 0,
 				border = "rounded",
@@ -155,6 +155,8 @@ return {
 				},
 			},
 		})
+
 		vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+		vim.keymap.set("n", "<leader>-", require("oil").toggle_float, { desc = "Open parent directory - floating" })
 	end,
 }
