@@ -14,12 +14,13 @@ vim.keymap.set({ "i", "c" }, "<C-h>", "<Left>", { silent = true })
 vim.keymap.set({ "i", "c" }, "<C-l>", "<Right>", { silent = true })
 
 -- Window resize via Alt + hjkl
-vim.keymap.set("n", "<A-k>", "<cmd>horizontal resize -1<CR>", { silent = true })
 vim.keymap.set("n", "<A-j>", "<cmd>horizontal resize +1<CR>", { silent = true })
+vim.keymap.set("n", "<A-k>", "<cmd>horizontal resize -1<CR>", { silent = true })
 vim.keymap.set("n", "<A-h>", "<cmd>vertical resize -1<CR>", { silent = true })
 vim.keymap.set("n", "<A-l>", "<cmd>vertical resize +1<CR>", { silent = true })
-vim.keymap.set("n", "<A-K>", "<cmd>horizontal resize -5<CR>", { silent = true })
+
 vim.keymap.set("n", "<A-J>", "<cmd>horizontal resize +5<CR>", { silent = true })
+vim.keymap.set("n", "<A-K>", "<cmd>horizontal resize -5<CR>", { silent = true })
 vim.keymap.set("n", "<A-H>", "<cmd>vertical resize -5<CR>", { silent = true })
 vim.keymap.set("n", "<A-L>", "<cmd>vertical resize +5<CR>", { silent = true })
 
