@@ -202,7 +202,7 @@ return {
 				map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "LSP: Workspace symbols")
 
 				-- Rename the variable under your cursor [Disabled due to inc-rename]
-				--map('<leader>rn', vim.lsp.buf.rename, 'Rename')
+				-- map('<leader>rn', vim.lsp.buf.rename, 'LSP: Rename')
 
 				-- Execute a code action, usually your cursor needs to be on top of an error
 				-- or a suggestion from your LSP for this to activate.
