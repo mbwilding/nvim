@@ -59,6 +59,9 @@ vim.keymap.set('n', '<leader>iw', function()
 	vim.wo.wrap = not vim.wo.wrap
 end, { desc = "Toggle Word Wrap" })
 
+-- Redo
+vim.api.nvim_set_keymap('n', 'U', '<C-r>', { desc = "Redo" })
+
 -- Clipboard
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "Copy to clipboard" })
 vim.keymap.set({ "n", "v" }, "<leader>yy", '"+Y', { desc = "Copy to clipboard (line)" })

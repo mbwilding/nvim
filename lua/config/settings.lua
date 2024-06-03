@@ -39,8 +39,8 @@ vim.wo.signcolumn = "yes"
 vim.o.updatetime = 250
 
 -- Leader command timeout
-vim.o.timeout = false
-vim.o.timeoutlen = 300
+vim.o.timeout = true
+vim.o.timeoutlen = 800
 
 -- Set completion options
 vim.o.completeopt = "menuone,noselect"
