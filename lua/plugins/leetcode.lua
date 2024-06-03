@@ -80,15 +80,45 @@ return {
 			---@type fun(question: lc.ui.Question)[]
 			["question_enter"] = {
 				function()
-					os.execute "sleep 1"
-					local file_extension = vim.fn.expand "%:e"
+					local file_extension = vim.fn.expand("%:e")
 					if file_extension == "rs" then
-						local bash_script = tostring(vim.fn.stdpath "data" .. "/leetcode/rust_init.sh")
-						local success, error_message = os.execute(bash_script)
-						if success then
-							vim.cmd "LspRestart rust_analyzer"
+						local target_dir = vim.fn.stdpath("data") .. "/leetcode"
+						local output_file = target_dir .. "/rust-project.json"
+
+						if vim.fn.isdirectory(target_dir) == 1 then
+							local crates = ""
+							local next = ""
+
+							local rs_files = vim.fn.globpath(target_dir, "*.rs", false, true)
+							for _, f in ipairs(rs_files) do
+								local file_path = f
+								crates = crates ..
+									next ..
+									"{\"root_module\": \"" .. file_path .. "\",\"edition\": \"2021\",\"deps\": []}"
+								next = ","
+							end
+
+							if crates == "" then
+								print("No .rs files found in directory: " .. target_dir)
+								return
+							end
+
+							local sysroot_src = vim.fn.system("rustc --print sysroot"):gsub("\n", "") ..
+								"/lib/rustlib/src/rust/library"
+
+							local json_content = "{\"sysroot_src\": \"" ..
+								sysroot_src .. "\", \"crates\": [" .. crates .. "]}"
+
+							local file = io.open(output_file, "w")
+							if file then
+								file:write(json_content)
+								file:close()
+								vim.cmd "LspRestart rust_analyzer"
+							else
+								print("Failed to open file: " .. output_file)
+							end
 						else
-							print("Failed update rust-project.json. Error: " .. error_message)
+							print("Directory " .. target_dir .. " does not exist.")
 						end
 					end
 				end,
