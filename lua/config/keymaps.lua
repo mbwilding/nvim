@@ -59,5 +59,11 @@ vim.keymap.set('n', '<leader>iw', function()
 	vim.wo.wrap = not vim.wo.wrap
 end, { desc = "Toggle Word Wrap" })
 
+-- Clipboard
+vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { silent = true, desc = "Copy to clipboard" })
+vim.keymap.set({ "n", "v" }, "<leader>Y", '"+Y', { silent = true, desc = "Copy to clipboard (line)" })
+vim.keymap.set({ "n", "v" }, "<leader>p", '"+p', { silent = true, desc = "Paste from clipboard" })
+vim.keymap.set({ "n", "v" }, "<leader>P", '"+P', { silent = true, desc = "Paste from clipboard (before)" })
+
 -- Debug
 vim.keymap.set("n", "\\", "<cmd>Inspect<CR>", { silent = true, desc = "Theme: Inspect" })
