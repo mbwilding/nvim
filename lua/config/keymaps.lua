@@ -60,10 +60,10 @@ vim.keymap.set('n', '<leader>iw', function()
 end, { desc = "Toggle Word Wrap" })
 
 -- Clipboard
-vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { silent = true, desc = "Copy to clipboard" })
-vim.keymap.set({ "n", "v" }, "<leader>Y", '"+Y', { silent = true, desc = "Copy to clipboard (line)" })
-vim.keymap.set({ "n", "v" }, "<leader>p", '"+p', { silent = true, desc = "Paste from clipboard" })
-vim.keymap.set({ "n", "v" }, "<leader>P", '"+P', { silent = true, desc = "Paste from clipboard (before)" })
+vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "Copy to clipboard" })
+vim.keymap.set({ "n", "v" }, "<leader>yy", '"+Y', { desc = "Copy to clipboard (line)" })
+vim.keymap.set({ "n", "v" }, "<leader>p", '"+p', { desc = "Paste from clipboard" })
+vim.keymap.set({ "n", "v" }, "<leader>P", '"+P', { desc = "Paste from clipboard (before)" })
 
 -- Registers
 vim.keymap.set('n', 'x', '"_x')

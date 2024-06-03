@@ -113,7 +113,7 @@ return {
 							if file then
 								file:write(json_content)
 								file:close()
-								vim.cmd "LspRestart rust_analyzer"
+								-- vim.cmd "LspRestart rust_analyzer"
 							else
 								print("Failed to open file: " .. output_file)
 							end
