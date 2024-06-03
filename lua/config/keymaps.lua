@@ -65,5 +65,8 @@ vim.keymap.set({ "n", "v" }, "<leader>Y", '"+Y', { silent = true, desc = "Copy t
 vim.keymap.set({ "n", "v" }, "<leader>p", '"+p', { silent = true, desc = "Paste from clipboard" })
 vim.keymap.set({ "n", "v" }, "<leader>P", '"+P', { silent = true, desc = "Paste from clipboard (before)" })
 
+-- Registers
+vim.keymap.set('n', 'x', '"_x')
+
 -- Debug
 vim.keymap.set("n", "\\", "<cmd>Inspect<CR>", { silent = true, desc = "Theme: Inspect" })
