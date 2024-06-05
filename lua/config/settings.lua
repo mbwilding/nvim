@@ -40,7 +40,7 @@ vim.o.updatetime = 250
 
 -- Leader command timeout
 vim.o.timeout = true
-vim.o.timeoutlen = 800
+vim.o.timeoutlen = 300
 
 -- Set completion options
 vim.o.completeopt = "menuone,noselect"
@@ -84,6 +84,10 @@ vim.opt.fillchars:append({ eob = " " })
 -- Indentation
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
+
+-- Disable command bar elements
+vim.o.showmode = false
+vim.o.showcmd = false
 
 -- Icons
 vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" })

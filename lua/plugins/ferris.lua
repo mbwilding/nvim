@@ -43,7 +43,7 @@ return {
 		)
 		vim.keymap.set(
 			"n",
-			"<leader>rp",
+			"<leader>rq",
 			require("ferris.methods.open_parent_module"),
 			{ silent = true, desc = "Ferris: Open parent module" }
 		)

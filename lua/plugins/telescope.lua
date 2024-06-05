@@ -140,9 +140,9 @@ return {
 			"ui-select",
 			"advanced_git_search",
 			"grapple",
-			"noice",
 			"undo",
 			"package_info",
+			-- "noice",
 		}
 		for _, ext in ipairs(extensions) do
 			pcall(require("telescope").load_extension, ext)

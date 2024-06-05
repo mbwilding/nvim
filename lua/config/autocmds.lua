@@ -70,3 +70,27 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	pattern = "*.sh",
 	command = "set fileformat=unix"
 })
+
+-- Clear messages after 5 seconds
+local last_message_time = 0
+
+local function clear_messages()
+	if vim.fn.reltimefloat(vim.fn.reltime(last_message_time)) >= 5 then
+		vim.cmd('echo ""')
+	end
+end
+
+vim.api.nvim_create_autocmd("CmdlineLeave", {
+	group = augroup("clear_messages"),
+	callback = function()
+		last_message_time = vim.fn.reltime()
+		vim.defer_fn(clear_messages, 5000)
+	end,
+})
+
+vim.api.nvim_create_autocmd("CmdlineEnter", {
+	group = augroup("reset_message_time"),
+	callback = function()
+		last_message_time = vim.fn.reltime()
+	end,
+})
