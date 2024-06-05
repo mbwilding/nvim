@@ -25,7 +25,6 @@ vim.api.nvim_create_autocmd("FileType", {
 		"help",
 		"lspinfo",
 		"man",
-		"notify",
 		"qf",
 		"spectre_panel",
 		"startuptime",
@@ -35,6 +34,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		"neotest-summary",
 		"neotest-output-panel",
 		"oil",
+		-- "notify",
 	},
 	callback = function(event)
 		vim.bo[event.buf].buflisted = false
