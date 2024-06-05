@@ -71,5 +71,14 @@ vim.keymap.set({ "n", "v" }, "<leader>P", '"+P', { desc = "Paste from clipboard 
 -- Registers
 vim.keymap.set('n', 'x', '"_x')
 
+-- Quick config update commit
+vim.keymap.set("n", "<leader>gpu", function()
+	local git_dir = "~/.config/nvim"
+	local commit_message = "Update"
+	vim.cmd("!git -C " .. git_dir .. " add .")
+	vim.cmd("!git -C " .. git_dir .. " commit -m '" .. commit_message .. "'")
+	vim.cmd("!git -C " .. git_dir .. " push")
+end)
+
 -- Debug
 vim.keymap.set("n", "\\", "<cmd>Inspect<CR>", { silent = true, desc = "Theme: Inspect" })

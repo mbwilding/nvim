@@ -76,7 +76,7 @@ local last_message_time = 0
 
 local function clear_messages()
 	if vim.fn.reltimefloat(vim.fn.reltime(last_message_time)) >= 5 then
-		vim.cmd('echo ""')
+		vim.cmd("echo")
 	end
 end
 
