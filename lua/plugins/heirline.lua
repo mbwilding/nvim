@@ -84,7 +84,7 @@ return {
 				return "%2(" .. self.mode_info.name .. "%)"
 			end,
 			hl = function(self)
-				return { fg = self.mode_info.color, bg = colors.base.bg }
+				return { fg = self.mode_info.color, bg = colors.base.transparent }
 			end,
 			update = {
 				"ModeChanged",
@@ -102,7 +102,7 @@ return {
 				--self.show_name_ext_only = true
 			end,
 			hl = function()
-				return { fg = colors.base.fg, bg = colors.base.bg }
+				return { fg = colors.base.fg, bg = colors.base.transparent }
 			end,
 		}
 
@@ -118,7 +118,7 @@ return {
 				return self.icon and (self.icon .. " ")
 			end,
 			hl = function(self)
-				return { fg = self.icon_color, bg = colors.base.bg }
+				return { fg = self.icon_color, bg = colors.base.transparent }
 			end,
 		}
 
@@ -135,16 +135,16 @@ return {
 				return "[" .. filename .. "]"
 			end,
 			hl = function()
-				return { fg = colors.base.brown, bg = colors.base.bg, force = true }
+				return { fg = colors.base.brown, bg = colors.base.transparent, force = true }
 			end,
 		}
 
 		local file_name_modifier = {
 			hl = function()
 				if vim.bo.modified then
-					return { fg = colors.base.pink_dark, bg = colors.base.bg, force = true }
+					return { fg = colors.base.pink_dark, bg = colors.base.transparent, force = true }
 				elseif vim.bo.readonly or not vim.bo.modifiable then
-					return { fg = colors.base.red, bg = colors.base.bg, force = true }
+					return { fg = colors.base.red, bg = colors.base.transparent, force = true }
 				end
 			end,
 		}
@@ -162,7 +162,7 @@ return {
 				return string.upper(vim.bo.filetype)
 			end,
 			hl = function()
-				return { fg = mode_info().color, bg = colors.base.bg }
+				return { fg = mode_info().color, bg = colors.base.transparent }
 			end,
 		}
 
@@ -175,7 +175,7 @@ return {
 				end
 			end,
 			hl = function()
-				return { fg = colors.base.blue_dark, bg = colors.base.bg }
+				return { fg = colors.base.blue_dark, bg = colors.base.transparent }
 			end,
 		}
 
@@ -196,7 +196,7 @@ return {
 				end
 			end,
 			hl = function()
-				return { fg = colors.base.green, bg = colors.base.bg }
+				return { fg = colors.base.green, bg = colors.base.transparent }
 			end,
 		}
 
@@ -219,7 +219,7 @@ return {
 				return string.format(" %.2g%s", fsize / math.pow(1024, i), suffix[i + 1])
 			end,
 			hl = function()
-				return { fg = colors.base.orange_light, bg = colors.base.bg }
+				return { fg = colors.base.orange_light, bg = colors.base.transparent }
 			end,
 		}
 
@@ -230,7 +230,7 @@ return {
 				local ftime = vim.fn.getftime(vim.api.nvim_buf_get_name(0))
 				return (ftime > 0) and os.date("%c", ftime)
 			end,
-			hl = { bg = colors.base.bg },
+			hl = { bg = colors.base.transparent },
 		}
 
 		-- RULER
@@ -267,7 +267,7 @@ return {
 				return "[%c,%l/%L] " .. string.rep(self.sbar[i], 1) .. " "
 			end,
 			hl = function()
-				return { fg = colors.base.orange_light, bg = colors.base.bg }
+				return { fg = colors.base.orange_light, bg = colors.base.transparent }
 			end,
 		}
 
@@ -281,7 +281,7 @@ return {
 					or self.status_dict.changed ~= nil
 			end,
 
-			hl = { fg = colors.base.blue_light, bg = colors.base.bg },
+			hl = { fg = colors.base.blue_light, bg = colors.base.transparent },
 
 			{ -- git branch name
 				provider = function(self)
@@ -299,7 +299,7 @@ return {
 						end
 					end
 				end,
-				hl = { fg = utils.get_highlight("DiffAdd").fg },
+				hl = { fg = utils.get_highlight("DiffAdd").fg, bg = colors.base.transparent },
 			},
 			{
 				provider = function(self)
@@ -312,7 +312,7 @@ return {
 						end
 					end
 				end,
-				hl = { fg = utils.get_highlight("DiffDelete").fg },
+				hl = { fg = utils.get_highlight("DiffDelete").fg, bg = colors.base.transparent },
 			},
 			{
 				provider = function(self)
@@ -325,7 +325,7 @@ return {
 						end
 					end
 				end,
-				hl = { fg = utils.get_highlight("DiffChange").fg },
+				hl = { fg = utils.get_highlight("DiffChange").fg, bg = colors.base.transparent },
 			},
 		}
 
@@ -351,7 +351,7 @@ return {
 					end
 				end
 			end,
-			hl = { fg = colors.base.pink_dark, bg = colors.base.bg },
+			hl = { fg = colors.base.pink_dark, bg = colors.base.transparent },
 		}
 
 		-- DIAGNOSTICS
@@ -378,26 +378,26 @@ return {
 				provider = function(self)
 					return self.info > 0 and (self.info_icon .. self.info .. " ")
 				end,
-				hl = { fg = colors.base.green, bg = colors.base.bg },
+				hl = { fg = colors.base.green, bg = colors.base.transparent },
 			},
 			{
 				provider = function(self)
 					return self.hints > 0 and (" " .. self.hint_icon .. self.hints)
 				end,
-				hl = { fg = colors.base.blue_light, bg = colors.base.bg },
+				hl = { fg = colors.base.blue_light, bg = colors.base.transparent },
 			},
 			{
 				provider = function(self)
 					-- 0 is just another output, we can decide to print it or not!
 					return self.errors > 0 and (" " .. self.error_icon .. self.errors .. " ")
 				end,
-				hl = { fg = colors.base.red, bg = colors.base.bg },
+				hl = { fg = colors.base.red, bg = colors.base.transparent },
 			},
 			{
 				provider = function(self)
 					return self.warnings > 0 and (" " .. self.warn_icon .. self.warnings .. " ")
 				end,
-				hl = { fg = colors.base.orange_dark, bg = colors.base.bg },
+				hl = { fg = colors.base.orange_dark, bg = colors.base.transparent },
 			},
 		}
 
@@ -410,7 +410,7 @@ return {
 			provider = function()
 				return " " .. "[" .. require("dap").status() .. "]"
 			end,
-			hl = { fg = colors.base.blue_dark, bg = colors.base.bg },
+			hl = { fg = colors.base.blue_dark, bg = colors.base.transparent },
 		}
 
 		-- WORKING DIRECTORY
@@ -425,7 +425,7 @@ return {
 				local trail = cwd:sub(-1) == "/" and "" or "/"
 				return icon .. "[" .. cwd .. trail .. "]"
 			end,
-			hl = { fg = colors.base.purple_light, bg = colors.base.bg },
+			hl = { fg = colors.base.purple_light, bg = colors.base.transparent },
 		}
 
 		-- DATE TIME
@@ -433,7 +433,7 @@ return {
 		-- 	provider = function()
 		-- 		return os.date("%Y-%m-%d %I:%M:%S %p")
 		-- 	end,
-		-- 	hl = { fg = colors.base.purple_light, bg = colors.base.bg },
+		-- 	hl = { fg = colors.base.purple_light, bg = colors.base.transparent },
 		-- }
 		-- local function startTimerOnSecondDivisibleBy(updateRateInSeconds)
 		-- 	local currentTime = os.date("*t")
@@ -462,13 +462,13 @@ return {
 		-- 	condition = function()
 		-- 		return require("grapple").exists()
 		-- 	end,
-		-- 	hl = { fg = colors.base.purple_light, bg = colors.base.bg },
+		-- 	hl = { fg = colors.base.purple_light, bg = colors.base.transparent },
 		-- }
 
 		-- MEMES
 		local meme = {
 			provider = "Feet Pics: 57.6TB",
-			hl = { fg = colors.base.brown },
+			hl = { fg = colors.base.brown, bg = colors.base.transparent },
 		}
 
 		-- INIT
