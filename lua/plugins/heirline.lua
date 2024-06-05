@@ -99,12 +99,13 @@ return {
 		local file_name_block = {
 			init = function(self)
 				self.filename = vim.api.nvim_buf_get_name(0)
-				self.show_name_ext_only = true
+				--self.show_name_ext_only = true
 			end,
 			hl = function()
 				return { fg = colors.base.fg, bg = colors.base.bg }
 			end,
 		}
+
 
 		local file_icon = {
 			init = function(self)
@@ -123,7 +124,7 @@ return {
 
 		local file_name = {
 			provider = function(self)
-				local filename = vim.fn.fnamemodify(self.filename, ":.")
+				local filename = vim.fn.fnamemodify(self.filename, ":."):gsub("oil://", "")
 				if filename == "" then
 					return "[No Name]"
 				end
