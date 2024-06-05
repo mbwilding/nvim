@@ -99,6 +99,7 @@ return {
 		local file_name_block = {
 			init = function(self)
 				self.filename = vim.api.nvim_buf_get_name(0)
+				self.show_name_ext_only = true
 			end,
 			hl = function()
 				return { fg = colors.base.fg, bg = colors.base.bg }
@@ -169,7 +170,7 @@ return {
 			provider = function()
 				local x = vim.bo.fenc
 				if x ~= "" then
-					return " " .. x:upper()
+					return x:upper()
 				end
 			end,
 			hl = function()
@@ -181,18 +182,16 @@ return {
 		local file_format = {
 			provider = function()
 				local x = vim.bo.fileformat
-				-- Override, this is ambiguous
-				local icons = false
 				if x ~= "" then
 					if icons then
 						if x == "unix" then
-							return " "
+							return ""
 						else
-							return " "
+							return ""
 						end
 					end
 
-					return " " .. x:upper()
+					return x:upper()
 				end
 			end,
 			hl = function()
@@ -264,7 +263,7 @@ return {
 				local curr_line = vim.api.nvim_win_get_cursor(0)[1]
 				local lines = vim.api.nvim_buf_line_count(0)
 				local i = math.floor((curr_line - 1) / lines * #self.sbar) + 1
-				return "(%c) [%l/%L] " .. string.rep(self.sbar[i], 1) .. " "
+				return "[%c,%l/%L] " .. string.rep(self.sbar[i], 1) .. " "
 			end,
 			hl = function()
 				return { fg = colors.base.orange_light, bg = colors.base.bg }
@@ -376,7 +375,7 @@ return {
 
 			{
 				provider = function(self)
-					return self.info > 0 and (" " .. self.info_icon .. self.info .. " ")
+					return self.info > 0 and (self.info_icon .. self.info .. " ")
 				end,
 				hl = { fg = colors.base.green, bg = colors.base.bg },
 			},
@@ -429,41 +428,41 @@ return {
 		}
 
 		-- DATE TIME
-		local date_time = {
-			provider = function()
-				return os.date("%Y-%m-%d %I:%M:%S %p")
-			end,
-			hl = { fg = colors.base.purple_light, bg = colors.base.bg },
-		}
-		local function startTimerOnSecondDivisibleBy(updateRateInSeconds)
-			local currentTime = os.date("*t")
-			local currentSecond = currentTime.sec
-			local millisecondsTillNextDivisibleSecond = (
-				(updateRateInSeconds - (currentSecond % updateRateInSeconds)) % updateRateInSeconds
-			) * 1000
-			if millisecondsTillNextDivisibleSecond == 0 then
-				millisecondsTillNextDivisibleSecond = updateRateInSeconds * 1000
-			end
-			vim.fn.timer_start(millisecondsTillNextDivisibleSecond, function()
-				vim.cmd("redrawstatus")
-			end, { ["repeat"] = -1 })
-		end
-		startTimerOnSecondDivisibleBy(1)
+		-- local date_time = {
+		-- 	provider = function()
+		-- 		return os.date("%Y-%m-%d %I:%M:%S %p")
+		-- 	end,
+		-- 	hl = { fg = colors.base.purple_light, bg = colors.base.bg },
+		-- }
+		-- local function startTimerOnSecondDivisibleBy(updateRateInSeconds)
+		-- 	local currentTime = os.date("*t")
+		-- 	local currentSecond = currentTime.sec
+		-- 	local millisecondsTillNextDivisibleSecond = (
+		-- 		(updateRateInSeconds - (currentSecond % updateRateInSeconds)) % updateRateInSeconds
+		-- 	) * 1000
+		-- 	if millisecondsTillNextDivisibleSecond == 0 then
+		-- 		millisecondsTillNextDivisibleSecond = updateRateInSeconds * 1000
+		-- 	end
+		-- 	vim.fn.timer_start(millisecondsTillNextDivisibleSecond, function()
+		-- 		vim.cmd("redrawstatus")
+		-- 	end, { ["repeat"] = -1 })
+		-- end
+		-- startTimerOnSecondDivisibleBy(1)
 
 		-- GRAPPLE
-		local grapple = {
-			provider = function()
-				local value = require("grapple").name_or_index()
-				if value == "" then
-					return nil
-				end
-				return " " .. "[" .. value .. "]"
-			end,
-			condition = function()
-				return require("grapple").exists()
-			end,
-			hl = { fg = colors.base.purple_light, bg = colors.base.bg },
-		}
+		-- local grapple = {
+		-- 	provider = function()
+		-- 		local value = require("grapple").name_or_index()
+		-- 		if value == "" then
+		-- 			return nil
+		-- 		end
+		-- 		return " " .. "[" .. value .. "]"
+		-- 	end,
+		-- 	condition = function()
+		-- 		return require("grapple").exists()
+		-- 	end,
+		-- 	hl = { fg = colors.base.purple_light, bg = colors.base.bg },
+		-- }
 
 		-- MEMES
 		local meme = {
@@ -477,9 +476,9 @@ return {
 				spacer,
 				vim_mode,
 				spacer,
-				file_name_block,
-				spacer,
 				work_dir,
+				spacer,
+				file_name_block,
 				spacer,
 				file_size,
 				spacer,
@@ -495,13 +494,12 @@ return {
 				debug,
 				diagnostics,
 
-				align,
-				grapple,
-				spacer,
+				-- align,
+				-- grapple,
+				-- spacer,
 				ruler,
-				spacer,
-				date_time,
-				spacer,
+				-- date_time,
+				-- spacer,
 			},
 			winbar = nil,
 			--tabline = { ... },
