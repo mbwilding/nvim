@@ -33,12 +33,23 @@ return {
 			docker_compose_language_service = {},
 			dockerls = {},
 			tsserver = {},
-			tailwindcss = {},
 			taplo = {},
 			sqls = {},
 			pylsp = {},
 			jqls = {},
 			jsonls = {},
+			tailwindcss = {
+				settings = {
+					tailwindCSS = {
+						experimental = {
+							classRegex = {
+								{ "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+								{ "cx\\(([^)]*)\\)",  "(?:'|\"|`)([^']*)(?:'|\"|`)" }
+							},
+						},
+					},
+				},
+			},
 			glsl_analyzer = {},
 			yamlls = {
 				settings = {
