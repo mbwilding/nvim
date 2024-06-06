@@ -106,7 +106,6 @@ return {
 			end,
 		}
 
-
 		local file_icon = {
 			init = function(self)
 				local filename = self.filename
@@ -469,6 +468,12 @@ return {
 		local meme = {
 			provider = "Feet Pics: 57.6TB",
 			hl = { fg = colors.base.brown, bg = colors.base.transparent },
+		}
+
+		-- Auto-Session
+		local auto_session = {
+			provider = require("auto-session.lib").current_session_name,
+			hl = { fg = colors.base.red, bg = colors.base.transparent },
 		}
 
 		-- INIT

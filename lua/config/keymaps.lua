@@ -71,6 +71,12 @@ vim.keymap.set({ "n", "v" }, "<leader>P", '"+P', { desc = "Paste from clipboard 
 -- Registers
 vim.keymap.set("n", "x", '"_x')
 
+-- Replace the highlighted text with the input text
+vim.keymap.set("v", "<leader>RN", function()
+	vim.cmd("s/\\%V" .. vim.fn.escape(vim.fn.getreg("v"), "/") .. "/")
+	vim.cmd("startinsert!")
+end, { desc = "Visual Rename" })
+
 -- Debug
 vim.keymap.set("n", "\\", "<cmd>Inspect<CR>", { silent = true, desc = "Theme: Inspect" })
 
