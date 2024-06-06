@@ -55,12 +55,12 @@ vim.keymap.set("n", "<leader>ir", function()
 	vim.wo.relativenumber = not vim.wo.relativenumber
 end, { silent = true, desc = "Toggle relative line numbers" })
 
-vim.keymap.set('n', '<leader>iw', function()
+vim.keymap.set("n", "<leader>iw", function()
 	vim.wo.wrap = not vim.wo.wrap
 end, { desc = "Toggle Word Wrap" })
 
 -- Redo
-vim.api.nvim_set_keymap('n', 'U', '<C-r>', { desc = "Redo" })
+vim.api.nvim_set_keymap("n", "U", "<C-r>", { desc = "Redo" })
 
 -- Clipboard
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "Copy to clipboard" })
@@ -69,16 +69,21 @@ vim.keymap.set({ "n", "v" }, "<leader>p", '"+p', { desc = "Paste from clipboard"
 vim.keymap.set({ "n", "v" }, "<leader>P", '"+P', { desc = "Paste from clipboard (before)" })
 
 -- Registers
-vim.keymap.set('n', 'x', '"_x')
+vim.keymap.set("n", "x", '"_x')
 
--- Quick config update commit
+-- Debug
+vim.keymap.set("n", "\\", "<cmd>Inspect<CR>", { silent = true, desc = "Theme: Inspect" })
+
+-- Quick config
+local git_dir = "~/.config/nvim"
+
 vim.keymap.set("n", "<leader>gpu", function()
-	local git_dir = "~/.config/nvim"
 	local commit_message = "Update"
 	vim.cmd("!git -C " .. git_dir .. " add .")
 	vim.cmd("!git -C " .. git_dir .. " commit -m '" .. commit_message .. "'")
 	vim.cmd("!git -C " .. git_dir .. " push")
 end)
 
--- Debug
-vim.keymap.set("n", "\\", "<cmd>Inspect<CR>", { silent = true, desc = "Theme: Inspect" })
+vim.keymap.set("n", "<leader>gpd", function()
+	vim.cmd("!git -C " .. git_dir .. " pull")
+end)
