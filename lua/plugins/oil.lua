@@ -86,7 +86,22 @@ return {
 				show_hidden = false,
 				-- This function defines what is considered a "hidden" file
 				is_hidden_file = function(name, bufnr)
-					return vim.startswith(name, ".Trash") or name == ".DS_Store"
+					local contains_list = { ".Trash" }
+					local equals_list = { ".DS_Store", ".directory" }
+
+					for _, prefix in ipairs(contains_list) do
+						if vim.startswith(name, prefix) then
+							return true
+						end
+					end
+
+					for _, exact in ipairs(equals_list) do
+						if name == exact then
+							return true
+						end
+					end
+
+					return false
 				end,
 				-- This function defines what will never be shown, even when `show_hidden` is set
 				is_always_hidden = function(name, bufnr)
