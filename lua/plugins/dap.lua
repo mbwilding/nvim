@@ -93,7 +93,7 @@ return {
 		---- CSHARP
 		dap.adapters.coreclr = {
 			type = "executable",
-			command = "/usr/local/bin/netcoredbg/netcoredbg",
+			command = "/usr/bin/netcoredbg",
 			args = { "--interpreter=vscode" },
 		}
 
