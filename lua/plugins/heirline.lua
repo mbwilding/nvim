@@ -6,6 +6,10 @@ return {
 		"cbochs/grapple.nvim",
 	},
 	config = function()
+		-- Disable command bar elements
+		vim.o.showmode = false
+		vim.o.showcmd = false
+
 		local conditions = require("heirline.conditions")
 		local utils = require("heirline.utils")
 		local colors = require("gronk")

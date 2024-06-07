@@ -4,7 +4,7 @@ return {
 		require("actions-preview").setup()
 		vim.keymap.set(
 			{ "v", "n" },
-			"<leader>a",
+			"<leader><enter>",
 			require("actions-preview").code_actions,
 			{ silent = true, desc = "Action Preview" }
 		)

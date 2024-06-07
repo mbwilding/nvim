@@ -46,8 +46,8 @@ return {
 			},
 		}
 
-		vim.keymap.set("n", "<leader>af", "<CMD>A<CR>", { desc = "Projectionist: Alternate File" });
-		vim.keymap.set("n", "<leader>as", "<CMD>AS<CR>", { desc = "Projectionist: Alternate File Horizontal Split" });
-		vim.keymap.set("n", "<leader>av", "<CMD>AV<CR>", { desc = "Projectionist: Alternate File Vertial Split" });
-	end
+		vim.keymap.set("n", "<leader>af", "<CMD>A<CR>", { desc = "Projectionist: Alternate File" })
+		vim.keymap.set("n", "<leader>as", "<CMD>AS<CR>", { desc = "Projectionist: Alternate File Horizontal Split" })
+		vim.keymap.set("n", "<leader>av", "<CMD>AV<CR>", { desc = "Projectionist: Alternate File Vertical Split" })
+	end,
 }
