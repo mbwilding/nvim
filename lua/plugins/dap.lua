@@ -24,7 +24,7 @@ return {
 
 				-- "delve", -- go
 				"coreclr", -- netcoredbg
-				"codelldb",
+				"codelldb", -- cpp, rust
 			},
 		})
 
@@ -122,13 +122,14 @@ return {
 			end
 
 			print("codelldb not found")
-			return nil -- You might want to handle this case more gracefully
+
+			return nil
 		end
 
 		local function find_rust_target()
 			local metadata = vim.fn.json_decode(vim.fn.system("cargo metadata --no-deps --format-version 1"))
 			if metadata and metadata["packages"] then
-				local package = metadata["packages"][1] -- Assuming you want to debug the first package
+				local package = metadata["packages"][1]
 				if package and package["targets"] then
 					for _, target in ipairs(package["targets"]) do
 						if target["kind"] and vim.tbl_contains(target["kind"], "bin") then
