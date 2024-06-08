@@ -70,9 +70,3 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	pattern = "*.sh",
 	command = "set fileformat=unix",
 })
-
--- Clear cmdline on insert mode
-vim.api.nvim_create_autocmd({ "InsertEnter" }, {
-	group = augroup("cmdline"),
-	command = "echo",
-})

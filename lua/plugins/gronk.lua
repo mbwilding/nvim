@@ -1,12 +1,11 @@
 return {
 	"mbwilding/gronk.nvim",
-	--"dundargoc/fakedonalds.nvim",
+	priority = 1000,
 	config = function()
 		require("gronk").setup({
 			transparent = true,
 		})
 
 		vim.cmd([[colorscheme gronk]])
-		--vim.cmd([[colorscheme fakedonalds]])
 	end,
 }

@@ -33,9 +33,8 @@ vim.keymap.set("n", "L", "<C-w>l")
 -- Tab close
 vim.keymap.set("n", "q", ":tabclose<CR>")
 
--- End search highlight
-vim.keymap.set("n", "<CR>", "<cmd>noh<CR>")
-vim.keymap.set("n", "<ESC>", "<cmd>noh<ESC>")
+-- End search highlight and clear messages
+vim.keymap.set("n", "<Esc>", "<CMD>noh<CR><CMD>echo<CR><Esc>")
 
 -- Space do nothing
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>")
