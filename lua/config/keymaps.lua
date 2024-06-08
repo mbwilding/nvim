@@ -2,10 +2,10 @@
 vim.keymap.set("n", ";", ":")
 
 -- Disable arrow navigation
-vim.keymap.set("n", "<Up>", "<Nop>")
-vim.keymap.set("n", "<Down>", "<Nop>")
-vim.keymap.set("n", "<Left>", "<Nop>")
-vim.keymap.set("n", "<Right>", "<Nop>")
+-- vim.keymap.set("n", "<Up>", "<Nop>")
+-- vim.keymap.set("n", "<Down>", "<Nop>")
+-- vim.keymap.set("n", "<Left>", "<Nop>")
+-- vim.keymap.set("n", "<Right>", "<Nop>")
 
 -- Allow hjkl navigation in non-normal mode
 vim.keymap.set({ "i", "c" }, "<C-k>", "<Up>")
