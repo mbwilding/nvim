@@ -92,3 +92,6 @@ end)
 vim.keymap.set("n", "<leader>gpd", function()
 	vim.cmd("!git -C " .. git_dir .. " pull")
 end)
+
+-- Sort
+vim.keymap.set("v", "s", ":sort<CR>gv")

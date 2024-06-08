@@ -82,8 +82,8 @@ vim.opt.spelllang = "en"
 vim.opt.fillchars:append({ eob = " " })
 
 -- Indentation
-vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
 
 -- vim.g.clipboard = {
 -- 	name = 'OSC 52',
