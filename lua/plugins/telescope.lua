@@ -24,7 +24,7 @@ return {
 			end,
 		},
 		"nvim-tree/nvim-web-devicons",
-		"cbochs/grapple.nvim",
+		-- "cbochs/grapple.nvim",
 	},
 	config = function()
 		-- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -138,10 +138,10 @@ return {
 			"fzf",
 			"ui-select",
 			"advanced_git_search",
-			"grapple",
 			"undo",
 			"package_info",
 			-- "noice",
+			-- "grapple",
 		}
 		for _, ext in ipairs(extensions) do
 			pcall(require("telescope").load_extension, ext)

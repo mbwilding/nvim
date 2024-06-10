@@ -3,7 +3,7 @@ return {
 	event = "BufReadPre",
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
-		"cbochs/grapple.nvim",
+		-- "cbochs/grapple.nvim",
 	},
 	config = function()
 		-- Disable command bar elements
