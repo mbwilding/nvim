@@ -12,7 +12,7 @@ return {
 			profiles.select_profile()
 		end, { desc = "Profiles: Select Local" })
 
-		vim.keymap.set("n", "<leader>rP", function()
+		vim.keymap.set("n", "<leader>ry", function()
 			profiles.select_default_profile()
 		end, { desc = "Profiles: Select Default" })
 	end,
