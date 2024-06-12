@@ -332,10 +332,10 @@ return {
 			},
 		}
 
-		-- LSP
-		local lsp = {
+		-- LSP / LINT
+		local lsp_lint = {
 			condition = conditions.lsp_attached,
-			update = { "LspAttach", "LspDetach" },
+			update = { "LspAttach", "LspDetach", "BufEnter", "BufWritePost" },
 			provider = function()
 				local current_buf = vim.api.nvim_get_current_buf()
 				local clients = vim.lsp.get_clients()
@@ -347,8 +347,25 @@ return {
 					end
 				end
 
-				if #client_names > 0 then
-					return " " .. "[" .. table.concat(client_names, ", ") .. "]"
+				local ft = vim.bo[current_buf].filetype
+				local linters = require('lint').linters_by_ft[ft] or {}
+				local linter_names = table.concat(linters, ", ")
+
+				if #client_names > 0 or #linters > 0 then
+					local result = " ["
+					if #client_names > 0 then
+						result = result .. table.concat(client_names, ", ")
+					end
+					if #linters > 0 then
+						if #client_names > 0 then
+							result = result .. ", "
+						end
+						result = result .. linter_names
+					end
+					result = result .. "]"
+					return result
+				else
+					return ""
 				end
 			end,
 			hl = { fg = colors.base.pink_dark, bg = colors.base.transparent },
@@ -496,7 +513,7 @@ return {
 				align,
 				git,
 				spacer,
-				lsp,
+				lsp_lint,
 				spacer,
 				debug,
 				diagnostics,
