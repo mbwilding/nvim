@@ -131,9 +131,8 @@ return {
 				if filename == "" then
 					return "[No Name]"
 				end
-				-- See Flexible Components section for dynamic truncation
 				if not conditions.width_percent_below(#filename, 0.25) then
-					filename = vim.fn.pathshorten(filename)
+					filename = vim.fn.fnamemodify(filename, ":t")
 				end
 				return "[" .. filename .. "]"
 			end,
@@ -437,10 +436,9 @@ return {
 				local cwd = vim.fn.getcwd(0)
 				cwd = vim.fn.fnamemodify(cwd, ":~")
 				if not conditions.width_percent_below(#cwd, 0.25) then
-					cwd = vim.fn.pathshorten(cwd)
+					cwd = vim.fn.fnamemodify(cwd, ":t")
 				end
-				local trail = cwd:sub(-1) == "/" and "" or "/"
-				return icon .. "[" .. cwd .. trail .. "]"
+				return icon .. "[" .. cwd .. "]"
 			end,
 			hl = { fg = colors.base.purple_light, bg = colors.base.transparent },
 		}
