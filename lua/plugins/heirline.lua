@@ -336,22 +336,19 @@ return {
 		local lsp = {
 			condition = conditions.lsp_attached,
 			update = { "LspAttach", "LspDetach" },
-
-			-- You can keep it simple,
-			-- provider = " [LSP]",
-
-			-- Or complicate things a bit and get the servers names
 			provider = function()
-				local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
+				local current_buf = vim.api.nvim_get_current_buf()
 				local clients = vim.lsp.get_clients()
-				if next(clients) == nil then
-					return nil
-				end
+				local client_names = {}
+
 				for _, client in ipairs(clients) do
-					local filetypes = client.config.filetypes
-					if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-						return " " .. "[" .. client.name .. "]"
+					if vim.lsp.buf_is_attached(current_buf, client.id) then
+						table.insert(client_names, client.name)
 					end
+				end
+
+				if #client_names > 0 then
+					return " " .. "[" .. table.concat(client_names, ", ") .. "]"
 				end
 			end,
 			hl = { fg = colors.base.pink_dark, bg = colors.base.transparent },
