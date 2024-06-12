@@ -186,11 +186,17 @@ return {
 			provider = function()
 				local x = vim.bo.fileformat
 				if x ~= "" then
-					if icons then
+					if false then
 						if x == "unix" then
 							return ""
 						else
 							return ""
+						end
+					else
+						if x == "unix" then
+							return "LF"
+						else
+							return "CRLF"
 						end
 					end
 
@@ -218,7 +224,7 @@ return {
 					return fsize .. suffix[1]
 				end
 				local i = math.floor((math.log(fsize) / math.log(1024)))
-				return string.format(" %.2g%s", fsize / math.pow(1024, i), suffix[i + 1])
+				return string.format("%.2g%s", fsize / math.pow(1024, i), suffix[i + 1])
 			end,
 			hl = function()
 				return { fg = colors.base.orange_light, bg = colors.base.transparent }
@@ -305,19 +311,6 @@ return {
 			},
 			{
 				provider = function(self)
-					local count = self.status_dict.removed or 0
-					if count > 0 then
-						if icons then
-							return "  " .. count
-						else
-							return " - " .. count
-						end
-					end
-				end,
-				hl = { fg = utils.get_highlight("DiffDelete").fg, bg = colors.base.transparent },
-			},
-			{
-				provider = function(self)
 					local count = self.status_dict.changed or 0
 					if count > 0 then
 						if icons then
@@ -328,6 +321,19 @@ return {
 					end
 				end,
 				hl = { fg = utils.get_highlight("DiffChange").fg, bg = colors.base.transparent },
+			},
+			{
+				provider = function(self)
+					local count = self.status_dict.removed or 0
+					if count > 0 then
+						if icons then
+							return "  " .. count
+						else
+							return " - " .. count
+						end
+					end
+				end,
+				hl = { fg = utils.get_highlight("DiffDelete").fg, bg = colors.base.transparent },
 			},
 		}
 
@@ -498,6 +504,8 @@ return {
 				spacer,
 				vim_mode,
 				spacer,
+				git,
+				spacer,
 				work_dir,
 				spacer,
 				file_name_block,
@@ -507,19 +515,17 @@ return {
 				file_encoding,
 				spacer,
 				file_format,
+				spacer,
+				spacer,
+				debug,
 
 				align,
-				git,
+				diagnostics,
 				spacer,
 				lsp_lint,
 				spacer,
-				debug,
-				diagnostics,
-
-				-- align,
-				-- grapple,
-				-- spacer,
 				ruler,
+				-- grapple,
 				-- date_time,
 				-- spacer,
 			},
