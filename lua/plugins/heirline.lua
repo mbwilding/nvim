@@ -267,7 +267,7 @@ return {
 				local curr_line = vim.api.nvim_win_get_cursor(0)[1]
 				local lines = vim.api.nvim_buf_line_count(0)
 				local i = math.floor((curr_line - 1) / lines * #self.sbar) + 1
-				return "[%c,%l/%L] " .. string.rep(self.sbar[i], 1) .. " "
+				return "[%l/%L,%c] " .. string.rep(self.sbar[i], 1) .. " "
 			end,
 			hl = function()
 				return { fg = colors.base.orange_light, bg = colors.base.transparent }
