@@ -140,6 +140,7 @@ return {
 			"advanced_git_search",
 			"undo",
 			"package_info",
+			"persisted",
 			-- "noice",
 			-- "grapple",
 		}

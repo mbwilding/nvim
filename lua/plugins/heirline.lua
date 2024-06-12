@@ -475,10 +475,10 @@ return {
 		}
 
 		-- Auto-Session
-		local auto_session = {
-			provider = require("auto-session.lib").current_session_name,
-			hl = { fg = colors.base.red, bg = colors.base.transparent },
-		}
+		-- local auto_session = {
+		-- 	provider = require("auto-session.lib").current_session_name,
+		-- 	hl = { fg = colors.base.red, bg = colors.base.transparent },
+		-- }
 
 		-- INIT
 		require("heirline").setup({
