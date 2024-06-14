@@ -127,14 +127,20 @@ return {
 
 		local file_name = {
 			provider = function(self)
-				local filename = vim.fn.fnamemodify(self.filename, ":."):gsub("oil://", "")
+				local filename = vim.fn.fnamemodify(self.filename, ":.")
+				filename = filename:gsub("oil://", "")
 				if filename == "" then
 					return "[No Name]"
 				end
-				if not conditions.width_percent_below(#filename, 0.25) then
-					filename = vim.fn.fnamemodify(filename, ":t")
+
+				local cwd = vim.fn.getcwd(0)
+				local relative_filename = vim.fn.fnamemodify(filename, ":~:.")
+
+				if relative_filename:sub(1, #cwd) == cwd then
+					relative_filename = relative_filename:sub(#cwd + 2)
 				end
-				return "[" .. filename .. "]"
+
+				return "[" .. relative_filename .. "]"
 			end,
 			hl = function()
 				return { fg = colors.base.brown, bg = colors.base.transparent, force = true }
@@ -376,6 +382,23 @@ return {
 			hl = { fg = colors.base.pink_dark, bg = colors.base.transparent },
 		}
 
+		-- WORKING DIRECTORY
+		local work_dir = {
+			provider = function()
+				local icon = " "
+				local cwd = vim.fn.getcwd(0)
+				cwd = vim.fn.fnamemodify(cwd, ":~")
+				-- if not conditions.width_percent_below(#cwd, 0.25) then
+				-- 	cwd = vim.fn.fnamemodify(cwd, ":t")
+				-- end
+				if cwd ~= "/" then
+					cwd = cwd .. "/"
+				end
+				return icon .. "[" .. cwd .. "]"
+			end,
+			hl = { fg = colors.base.purple_light, bg = colors.base.transparent },
+		}
+
 		-- DIAGNOSTICS
 		local diagnostics = {
 			condition = conditions.has_diagnostics,
@@ -433,20 +456,6 @@ return {
 				return " " .. "[" .. require("dap").status() .. "]"
 			end,
 			hl = { fg = colors.base.blue_dark, bg = colors.base.transparent },
-		}
-
-		-- WORKING DIRECTORY
-		local work_dir = {
-			provider = function()
-				local icon = " "
-				local cwd = vim.fn.getcwd(0)
-				cwd = vim.fn.fnamemodify(cwd, ":~")
-				if not conditions.width_percent_below(#cwd, 0.25) then
-					cwd = vim.fn.fnamemodify(cwd, ":t")
-				end
-				return icon .. "[" .. cwd .. "]"
-			end,
-			hl = { fg = colors.base.purple_light, bg = colors.base.transparent },
 		}
 
 		-- DATE TIME
