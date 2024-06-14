@@ -38,13 +38,14 @@ return {
 			pylsp = {},
 			jqls = {},
 			jsonls = {},
+			typos_lsp = {},
 			tailwindcss = {
 				settings = {
 					tailwindCSS = {
 						experimental = {
 							classRegex = {
 								{ "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
-								{ "cx\\(([^)]*)\\)",  "(?:'|\"|`)([^']*)(?:'|\"|`)" }
+								{ "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
 							},
 						},
 					},

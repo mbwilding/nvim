@@ -353,7 +353,7 @@ return {
 				end
 
 				local ft = vim.bo[current_buf].filetype
-				local linters = require('lint').linters_by_ft[ft] or {}
+				local linters = require("lint").linters_by_ft[ft] or {}
 				local linter_names = table.concat(linters, ", ")
 
 				if #client_names > 0 or #linters > 0 then
