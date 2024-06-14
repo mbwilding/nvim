@@ -7,6 +7,8 @@ return {
 		"nvim-telescope/telescope.nvim",
 	},
 	config = function()
+		vim.g.OmniSharp_server_use_net6 = 1
+
 		-- These can have more fields like cmd, settings and filetypes
 		local servers = {
 			bashls = {},
