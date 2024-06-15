@@ -95,6 +95,7 @@ return {
 					},
 				},
 			},
+			mdx_analyzer = {},
 			lua_ls = {
 				settings = {
 					Lua = {
