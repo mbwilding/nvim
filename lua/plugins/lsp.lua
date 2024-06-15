@@ -17,14 +17,14 @@ return {
 			gopls = {},
 			mesonlsp = {},
 			omnisharp = {
-				settings = {
-					omnisharp = {
-						enableAsyncCompletion = true,
-						enableDecompilationSupport = true,
-						enableRoslynAnalyzers = true,
-						enableEditorConfigSupport = true,
-					},
-				},
+				-- settings = {
+				-- 	omnisharp = {
+				-- 		enableAsyncCompletion = true,
+				-- 		enableDecompilationSupport = true,
+				-- 		enableRoslynAnalyzers = true,
+				-- 		enableEditorConfigSupport = true,
+				-- 	},
+				-- },
 			},
 			powershell_es = {
 				init_options = {
@@ -47,7 +47,7 @@ return {
 						experimental = {
 							classRegex = {
 								{ "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
-								{ "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+								{ "cx\\(([^)]*)\\)",  "(?:'|\"|`)([^']*)(?:'|\"|`)" },
 							},
 						},
 					},

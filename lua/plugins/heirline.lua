@@ -140,6 +140,10 @@ return {
 					relative_filename = relative_filename:sub(#cwd + 2)
 				end
 
+				if not conditions.width_percent_below(#relative_filename, 0.25) then
+					relative_filename = vim.fn.fnamemodify(relative_filename, ":t")
+				end
+
 				return "[" .. relative_filename .. "]"
 			end,
 			hl = function()
@@ -388,9 +392,9 @@ return {
 				local icon = " "
 				local cwd = vim.fn.getcwd(0)
 				cwd = vim.fn.fnamemodify(cwd, ":~")
-				-- if not conditions.width_percent_below(#cwd, 0.25) then
-				-- 	cwd = vim.fn.fnamemodify(cwd, ":t")
-				-- end
+				if not conditions.width_percent_below(#cwd, 0.25) then
+					cwd = vim.fn.fnamemodify(cwd, ":t")
+				end
 				if cwd ~= "/" then
 					cwd = cwd .. "/"
 				end
@@ -513,8 +517,6 @@ return {
 				spacer,
 				vim_mode,
 				spacer,
-				git,
-				spacer,
 				work_dir,
 				spacer,
 				file_name_block,
@@ -529,11 +531,15 @@ return {
 				debug,
 
 				align,
+				ruler,
+
+				align,
 				diagnostics,
 				spacer,
 				lsp_lint,
 				spacer,
-				ruler,
+				git,
+				spacer,
 				-- grapple,
 				-- date_time,
 				-- spacer,
