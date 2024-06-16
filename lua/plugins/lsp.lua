@@ -9,12 +9,6 @@ return {
 	config = function()
 		vim.g.OmniSharp_server_use_net6 = 1
 
-		vim.filetype.add({
-			extension = {
-				mdx = "markdown",
-			}
-		})
-
 		-- These can have more fields like cmd, settings and filetypes
 		local servers = {
 			bashls = {},
@@ -101,7 +95,6 @@ return {
 					},
 				},
 			},
-			mdx_analyzer = {},
 			lua_ls = {
 				settings = {
 					Lua = {
