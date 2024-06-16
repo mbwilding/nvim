@@ -200,8 +200,7 @@ return {
 						}
 					}
 				}
-			}
-			,
+			},
 			tailwindcss = {
 				settings = {
 					tailwindCSS = {
