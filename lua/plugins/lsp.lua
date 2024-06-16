@@ -150,7 +150,7 @@ return {
 						-- maxProjectResults = 250,
 						-- minFindSymbolsFilterLength = 0,
 						-- monoPath = "",
-						-- organizeImportsOnFormat = false,
+						organizeImportsOnFormat = true,
 						-- projectFilesExcludePattern = "**/node_modules/**,**/.git/**,**/bower_components/**",
 						-- projectLoadTimeout = 60,
 						sdkIncludePrereleases = true,
