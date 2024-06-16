@@ -173,8 +173,10 @@ return {
 				},
 			},
 			powershell_es = {
-				powershell = {
-					enableProfileLoading = false,
+				settings = {
+					powershell = {
+						enableProfileLoading = false,
+					},
 				},
 			},
 			azure_pipelines_ls = {},
