@@ -96,3 +96,10 @@ vim.opt.tabstop = 4
 -- 		['*'] = require('vim.ui.clipboard.osc52').paste('*'),
 -- 	},
 -- }
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+	vim.lsp.handlers.hover, {
+		border = "single",
+		-- title = "hover"
+	}
+)
