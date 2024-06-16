@@ -482,19 +482,19 @@ return {
 		-- startTimerOnSecondDivisibleBy(1)
 
 		-- GRAPPLE
-		-- local grapple = {
-		-- 	provider = function()
-		-- 		local value = require("grapple").name_or_index()
-		-- 		if value == "" then
-		-- 			return nil
-		-- 		end
-		-- 		return " " .. "[" .. value .. "]"
-		-- 	end,
-		-- 	condition = function()
-		-- 		return require("grapple").exists()
-		-- 	end,
-		-- 	hl = { fg = colors.base.purple_light, bg = colors.base.transparent },
-		-- }
+		local grapple = {
+			provider = function()
+				local value = require("grapple").name_or_index()
+				if value == "" then
+					return nil
+				end
+				return " " .. "[" .. value .. "]"
+			end,
+			condition = function()
+				return require("grapple").exists()
+			end,
+			hl = { fg = colors.base.purple_light, bg = colors.base.transparent },
+		}
 
 		-- MEMES
 		local meme = {
@@ -524,8 +524,9 @@ return {
 				spacer,
 				file_format,
 				spacer,
-				spacer,
 				debug,
+				spacer,
+				grapple,
 
 				align,
 				ruler,
@@ -537,7 +538,6 @@ return {
 				spacer,
 				git,
 				spacer,
-				-- grapple,
 				-- date_time,
 				-- spacer,
 			},
