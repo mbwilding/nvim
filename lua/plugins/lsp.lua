@@ -195,9 +195,9 @@ return {
 						validation = {
 							filters = {
 								{
-									pattern = "**.csproj",
+									pattern = "**.*sproj",
 									noGrammar = "ignore",
-								}
+								},
 							}
 						}
 					}
