@@ -77,7 +77,8 @@ vim.keymap.set("v", "<leader>nr", function()
 end, { desc = "Visual Rename" })
 
 -- Debug
-vim.keymap.set("n", "\\", "<cmd>Inspect<CR>", { desc = "Theme: Inspect" })
+-- vim.keymap.set("n", "\\", "<cmd>Inspect<CR>", { desc = "Highlights: Inspect" })
+vim.keymap.set("n", "\\", "<cmd>messages<CR>", { desc = "Debug: Messages" })
 
 -- Quick config
 local git_dir = "~/.config/nvim"
