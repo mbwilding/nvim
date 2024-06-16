@@ -129,9 +129,6 @@ return {
 			provider = function(self)
 				local filename = vim.fn.fnamemodify(self.filename, ":.")
 				filename = filename:gsub("oil://", "")
-				if filename == "" then
-					return "[No Name]"
-				end
 
 				local cwd = vim.fn.getcwd(0)
 				local relative_filename = vim.fn.fnamemodify(filename, ":~:.")
