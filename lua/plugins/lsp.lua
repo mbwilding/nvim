@@ -187,6 +187,21 @@ return {
 			jqls = {},
 			jsonls = {},
 			typos_lsp = {},
+			lemminx = {
+				settings = {
+					xml = {
+						validation = {
+							filters = {
+								{
+									pattern = "**.csproj",
+									noGrammar = "ignore",
+								}
+							}
+						}
+					}
+				}
+			}
+			,
 			tailwindcss = {
 				settings = {
 					tailwindCSS = {
