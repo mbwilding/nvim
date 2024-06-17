@@ -5,6 +5,8 @@ return {
 		"neovim/nvim-lspconfig",
 		"b0o/schemastore.nvim",
 		"nvim-telescope/telescope.nvim",
+		"Issafalcon/lsp-overloads.nvim",
+		"Hoffs/omnisharp-extended-lsp.nvim",
 	},
 	config = function()
 		-- vim.g.OmniSharp_server_use_net6 = 1
@@ -198,10 +200,10 @@ return {
 									pattern = "**.*sproj",
 									noGrammar = "ignore",
 								},
-							}
-						}
-					}
-				}
+							},
+						},
+					},
+				},
 			},
 			tailwindcss = {
 				settings = {
@@ -209,7 +211,7 @@ return {
 						experimental = {
 							classRegex = {
 								{ "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
-								{ "cx\\(([^)]*)\\)",  "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+								{ "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
 							},
 						},
 					},
@@ -290,6 +292,7 @@ return {
 				end
 			end,
 		})
+
 		require("mason-lspconfig").setup({
 			automatic_installation = false,
 			-- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
@@ -340,17 +343,21 @@ return {
 			group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
 			callback = function(event)
 				local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+				if client and client.server_capabilities.signatureHelpProvider then
+					require("lsp-overloads").setup(client, {})
+				end
+
 				-- Function to create mappings
 				local function map(keys, func, desc)
 					vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 				end
 
 				if client and client.name == "omnisharp" then
-					map("gd", require('omnisharp_extended').telescope_lsp_definition, "Goto definition")
-					map("<leader>D", require('omnisharp_extended').telescope_lsp_type_definition,
-						"Type definition")
-					map("gr", require('omnisharp_extended').telescope_lsp_references, "Goto references")
-					map("gi", require('omnisharp_extended').telescope_lsp_implementation, "Goto implementation")
+					map("gd", require("omnisharp_extended").telescope_lsp_definition, "Goto definition")
+					map("<leader>D", require("omnisharp_extended").telescope_lsp_type_definition, "Type definition")
+					map("gr", require("omnisharp_extended").telescope_lsp_references, "Goto references")
+					map("gi", require("omnisharp_extended").telescope_lsp_implementation, "Goto implementation")
 				else
 					map("gd", require("telescope.builtin").lsp_definitions, "Goto definition")
 					map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type definition")
