@@ -7,6 +7,7 @@ return {
 		"nvim-telescope/telescope.nvim",
 		"Issafalcon/lsp-overloads.nvim",
 		"Hoffs/omnisharp-extended-lsp.nvim",
+		"https://gitlab.com/schrieveslaach/sonarlint.nvim",
 	},
 	config = function()
 		-- vim.g.OmniSharp_server_use_net6 = 1
@@ -328,6 +329,60 @@ return {
 						end,
 					})
 				end,
+			},
+		})
+
+		require("sonarlint").setup({
+			server = {
+				cmd = {
+					"sonarlint-language-server",
+					"-stdio",
+					"-analyzers",
+					vim.fn.expand(
+						"$HOME/.local/share/nvim/mason/packages/sonarlint-language-server/extension/analyzers/sonarcfamily.jar"
+					),
+					vim.fn.expand(
+						"$HOME/.local/share/nvim/mason/packages/sonarlint-language-server/extension/analyzers/sonargo.jar"
+					),
+					-- vim.fn.expand(
+					-- 	"$HOME/.local/share/nvim/mason/packages/sonarlint-language-server/extension/analyzers/sonarhtml.jar"
+					-- ),
+					-- vim.fn.expand(
+					-- 	"$HOME/.local/share/nvim/mason/packages/sonarlint-language-server/extension/analyzers/sonariac.jar"
+					-- ),
+					-- vim.fn.expand(
+					-- 	"$HOME/.local/share/nvim/mason/packages/sonarlint-language-server/extension/analyzers/sonarjava.jar"
+					-- ),
+					vim.fn.expand(
+						"$HOME/.local/share/nvim/mason/packages/sonarlint-language-server/extension/analyzers/sonarjs.jar"
+					),
+					vim.fn.expand(
+						"$HOME/.local/share/nvim/mason/packages/sonarlint-language-server/extension/analyzers/sonaromnisharp.jar"
+					),
+					-- vim.fn.expand(
+					-- 	"$HOME/.local/share/nvim/mason/packages/sonarlint-language-server/extension/analyzers/sonarphp.jar"
+					-- ),
+					vim.fn.expand(
+						"$HOME/.local/share/nvim/mason/packages/sonarlint-language-server/extension/analyzers/sonarpython.jar"
+					),
+					-- vim.fn.expand(
+					-- 	"$HOME/.local/share/nvim/mason/packages/sonarlint-language-server/extension/analyzers/sonartext.jar"
+					-- ),
+					vim.fn.expand(
+						"$HOME/.local/share/nvim/mason/packages/sonarlint-language-server/extension/analyzers/sonarxml.jar"
+					),
+				},
+			},
+			filetypes = {
+				"python",
+				"cpp",
+				"go",
+				"csharp",
+				"js",
+				"ts",
+				"xml",
+				-- "php",
+				-- "java",
 			},
 		})
 
