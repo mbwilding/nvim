@@ -32,5 +32,7 @@ return {
 				Test = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
 			},
 		})
+
+		vim.keymap.set("n", "<leader>td", ":TodoTelescope<CR>", { desc = "TODO: Telescope" })
 	end,
 }

@@ -6,7 +6,7 @@ return {
 
 		vim.keymap.set(
 			"n",
-			"<leader>td",
+			"<leader>tD",
 			":TroubleToggle document_diagnostics<CR>",
 			{ desc = "Trouble: Toggle Document Diagnostics" }
 		)
