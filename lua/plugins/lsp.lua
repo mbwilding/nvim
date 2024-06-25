@@ -14,7 +14,11 @@ return {
 
         -- These can have more fields like cmd, settings and filetypes
         local servers = {
-            bashls = {},
+            bashls = {
+                settings = {
+                    filetypes = { "sh", "zsh", "zshrc" },
+                }
+            },
             clangd = {},
             rust_analyzer = {},
             gopls = {},
