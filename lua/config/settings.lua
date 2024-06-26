@@ -94,3 +94,6 @@ vim.o.tabstop = 4
 -- Splits
 vim.o.splitright = true
 vim.o.splitbelow = true
+
+-- Single status line
+vim.o.laststatus = 3
