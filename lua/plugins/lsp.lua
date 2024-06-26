@@ -481,7 +481,7 @@ return {
                 map("gs", require("telescope.builtin").lsp_document_symbols, "Document symbols")
                 map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace symbols")
                 map("K", vim.lsp.buf.hover, "Hover documentation")
-                map("<C-k>", vim.lsp.buf.signature_help, "Signature documentation")
+                -- map("<C-k>", vim.lsp.buf.signature_help, "Signature documentation")
 
                 -- Navigation
                 vim.api.nvim_set_keymap("n", "<C-p>", "<C-t>", {})
