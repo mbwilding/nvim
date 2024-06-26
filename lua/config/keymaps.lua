@@ -29,6 +29,10 @@ vim.keymap.set("n", "<C-j>", "<C-w>j")
 vim.keymap.set("n", "<C-k>", "<C-w>k")
 vim.keymap.set("n", "<C-l>", "<C-w>l")
 
+-- Window split
+vim.keymap.set("n", "<C-S>", "<CMD>split<CR>")
+vim.keymap.set("n", "<C-V>", "<CMD>vsplit<CR>")
+
 -- Tab close
 vim.keymap.set("n", "q", ":tabclose<CR>")
 
