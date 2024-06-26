@@ -5,6 +5,9 @@ vim.loader.enable()
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Dark theme
+vim.o.background = "dark"
+
 -- Enable true color support
 vim.o.termguicolors = true
 
