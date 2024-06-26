@@ -80,19 +80,5 @@ end, { desc = "Visual Rename" })
 -- vim.keymap.set("n", "\\", "<cmd>Inspect<CR>", { desc = "Highlights: Inspect" })
 vim.keymap.set("n", "\\", "<cmd>messages<CR>", { desc = "Debug: Messages" })
 
--- Quick config
-local git_dir = "~/.config/nvim"
-
-vim.keymap.set("n", "<leader>gpu", function()
-	local commit_message = "Update"
-	vim.cmd("!git -C " .. git_dir .. " add .")
-	vim.cmd("!git -C " .. git_dir .. " commit -m '" .. commit_message .. "'")
-	vim.cmd("!git -C " .. git_dir .. " push")
-end)
-
-vim.keymap.set("n", "<leader>gpd", function()
-	vim.cmd("!git -C " .. git_dir .. " pull")
-end)
-
 -- Sort
 vim.keymap.set("v", "s", ":sort<CR>gv")
