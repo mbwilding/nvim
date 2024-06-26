@@ -49,53 +49,45 @@ vim.o.completeopt = "menuone,noselect"
 vim.o.backspace = "indent,eol,start"
 
 -- Enable smart indent
-vim.opt.smartindent = true
+vim.o.smartindent = true
 
 -- Enable text wrapping
-vim.opt.wrap = true
+vim.o.wrap = true
 
 -- Disable swap file
-vim.opt.swapfile = false
+vim.o.swapfile = false
 
 -- Disable backup file
-vim.opt.backup = false
+vim.o.backup = false
 
 -- Set undo levels
-vim.opt.undolevels = 30000
+vim.o.undolevels = 30000
 
 -- Set scroll offset
-vim.opt.scrolloff = 15
+vim.o.scrolloff = 15
 
 -- Update time for CursorHold
-vim.opt.updatetime = 50
+vim.o.updatetime = 50
 
 -- Enable auto write
-vim.opt.autowrite = true
+vim.o.autowrite = true
 
 -- Disable cursor line
-vim.opt.cursorline = false
+vim.o.cursorline = false
 
 -- Enable confirm dialog when leaving buffer
-vim.opt.confirm = true
+vim.o.confirm = true
 
 -- Set spell check language
-vim.opt.spelllang = "en"
+vim.o.spelllang = "en"
 
 -- Set fill characters after EOF
 vim.opt.fillchars:append({ eob = " " })
 
 -- Indentation
-vim.opt.shiftwidth = 4
-vim.opt.tabstop = 4
+vim.o.shiftwidth = 4
+vim.o.tabstop = 4
 
--- vim.g.clipboard = {
--- 	name = 'OSC 52',
--- 	copy = {
--- 		['+'] = require('vim.ui.clipboard.osc52').copy('+'),
--- 		['*'] = require('vim.ui.clipboard.osc52').copy('*'),
--- 	},
--- 	paste = {
--- 		['+'] = require('vim.ui.clipboard.osc52').paste('+'),
--- 		['*'] = require('vim.ui.clipboard.osc52').paste('*'),
--- 	},
--- }
+-- Splits
+vim.o.splitright = true
+vim.o.splitbelow = true
