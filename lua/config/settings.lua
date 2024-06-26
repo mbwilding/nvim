@@ -45,6 +45,9 @@ vim.o.timeoutlen = 300
 -- Set completion options
 vim.o.completeopt = "menuone,noselect"
 
+-- Allow backspacing over everything
+vim.o.backspace = "indent,eol,start"
+
 -- Enable smart indent
 vim.opt.smartindent = true
 
