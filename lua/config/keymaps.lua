@@ -85,3 +85,6 @@ vim.keymap.set("n", "\\", "<cmd>messages<CR>", { desc = "Debug: Messages" })
 
 -- Sort
 vim.keymap.set("v", "s", ":sort<CR>gv")
+
+-- Select all
+vim.keymap.set("n", "<C-a>", "ggVG", { desc = "Select all" })
