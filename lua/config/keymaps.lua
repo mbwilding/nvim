@@ -82,3 +82,7 @@ vim.keymap.set("v", "s", ":sort<CR>gv")
 
 -- Select all
 vim.keymap.set("n", "<C-a>", "ggVG", { desc = "Select all" })
+
+-- Mouse
+vim.keymap.set("v", "<RightMouse>", '"+y')
+vim.keymap.set("n", "<MiddleMouse>", '"+p')
