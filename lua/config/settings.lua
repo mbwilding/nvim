@@ -20,8 +20,8 @@ vim.wo.number = true
 -- Enable relative line numbers
 vim.wo.relativenumber = true
 
--- Enable mouse support
-vim.o.mouse = "a"
+-- Disable mouse support
+vim.o.mouse = ""
 
 -- Enable break indent
 vim.o.breakindent = true
