@@ -178,51 +178,51 @@ return {
 			end,
 		})
 
-		vim.keymap.set("n", "<leader>rt", crates.toggle, { silent = true, desc = "Crates: Toggle" })
-		vim.keymap.set("n", "<leader>rr", crates.reload, { silent = true, desc = "Crates: Reload" })
+		vim.keymap.set("n", "<leader>Rt", crates.toggle, { silent = true, desc = "Crates: Toggle" })
+		vim.keymap.set("n", "<leader>Rr", crates.reload, { silent = true, desc = "Crates: Reload" })
 
 		vim.keymap.set(
 			"n",
-			"<leader>rv",
+			"<leader>Rv",
 			crates.show_versions_popup,
 			{ silent = true, desc = "Crates: Versions popup" }
 		)
 		vim.keymap.set(
 			"n",
-			"<leader>rf",
+			"<leader>Rf",
 			crates.show_features_popup,
 			{ silent = true, desc = "Crates: Features popup" }
 		)
 		vim.keymap.set(
 			"n",
-			"<leader>rd",
+			"<leader>Rd",
 			crates.show_dependencies_popup,
 			{ silent = true, desc = "Crates: Dependencies Popup" }
 		)
 
-		vim.keymap.set("n", "<leader>ru", crates.update_crate, { silent = true, desc = "Crates: Update" })
-		vim.keymap.set("v", "<leader>ru", crates.update_crates, { silent = true, desc = "Crates: Update selected" })
-		vim.keymap.set("n", "<leader>ra", crates.update_all_crates, { silent = true, desc = "Crates: Update all" })
-		vim.keymap.set("n", "<leader>rU", crates.upgrade_crate, { silent = true, desc = "Crates: Upgrade" })
-		vim.keymap.set("v", "<leader>rU", crates.upgrade_crates, { silent = true, desc = "Crates: Upgrade selected" })
-		vim.keymap.set("n", "<leader>rA", crates.upgrade_all_crates, { silent = true, desc = "Crates: Upgrade all" })
+		vim.keymap.set("n", "<leader>Ru", crates.update_crate, { silent = true, desc = "Crates: Update" })
+		vim.keymap.set("v", "<leader>Ru", crates.update_crates, { silent = true, desc = "Crates: Update selected" })
+		vim.keymap.set("n", "<leader>Ra", crates.update_all_crates, { silent = true, desc = "Crates: Update all" })
+		vim.keymap.set("n", "<leader>RU", crates.upgrade_crate, { silent = true, desc = "Crates: Upgrade" })
+		vim.keymap.set("v", "<leader>RU", crates.upgrade_crates, { silent = true, desc = "Crates: Upgrade selected" })
+		vim.keymap.set("n", "<leader>RA", crates.upgrade_all_crates, { silent = true, desc = "Crates: Upgrade all" })
 
 		vim.keymap.set(
 			"n",
-			"<leader>rx",
+			"<leader>Rx",
 			crates.expand_plain_crate_to_inline_table,
 			{ silent = true, desc = "Crates: Expand to table" }
 		)
 		vim.keymap.set(
 			"n",
-			"<leader>rX",
+			"<leader>RX",
 			crates.extract_crate_into_table,
 			{ silent = true, desc = "Crates: Extract into table" }
 		)
 
-		--vim.keymap.set("n", "<leader>roh", crates.open_homepage, { silent = true, desc = "Crates: Homepage" })
-		--vim.keymap.set("n", "<leader>ror", crates.open_repository, { silent = true, desc = "Crates: Repository" })
-		--vim.keymap.set("n", "<leader>rod", crates.open_documentation, { silent = true, desc = "Crates: Documentation" })
-		--vim.keymap.set("n", "<leader>roc", crates.open_crates_io, { silent = true, desc = "Crates: IO" })
+		--vim.keymap.set("n", "<leader>Roh", crates.open_homepage, { silent = true, desc = "Crates: Homepage" })
+		--vim.keymap.set("n", "<leader>Ror", crates.open_repository, { silent = true, desc = "Crates: Repository" })
+		--vim.keymap.set("n", "<leader>Rod", crates.open_documentation, { silent = true, desc = "Crates: Documentation" })
+		--vim.keymap.set("n", "<leader>Roc", crates.open_crates_io, { silent = true, desc = "Crates: IO" })
 	end,
 }
