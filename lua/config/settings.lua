@@ -67,7 +67,7 @@ vim.o.backup = false
 vim.o.undolevels = 30000
 
 -- Set scroll offset
-vim.o.scrolloff = 15
+vim.o.scrolloff = 10
 
 -- Update time for CursorHold
 vim.o.updatetime = 50
