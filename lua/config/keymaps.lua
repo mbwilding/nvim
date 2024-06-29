@@ -14,20 +14,20 @@ vim.keymap.set({ "i", "c" }, "<C-h>", "<Left>")
 vim.keymap.set({ "i", "c" }, "<C-l>", "<Right>")
 
 -- Window resize via Alt + hjkl
-vim.keymap.set("n", "<A-j>", "<cmd>horizontal resize +1<CR>")
-vim.keymap.set("n", "<A-k>", "<cmd>horizontal resize -1<CR>")
-vim.keymap.set("n", "<A-h>", "<cmd>vertical resize -1<CR>")
-vim.keymap.set("n", "<A-l>", "<cmd>vertical resize +1<CR>")
-vim.keymap.set("n", "<A-J>", "<cmd>horizontal resize +5<CR>")
-vim.keymap.set("n", "<A-K>", "<cmd>horizontal resize -5<CR>")
-vim.keymap.set("n", "<A-H>", "<cmd>vertical resize -5<CR>")
-vim.keymap.set("n", "<A-L>", "<cmd>vertical resize +5<CR>")
+-- vim.keymap.set("n", "<A-j>", "<cmd>horizontal resize +1<CR>")
+-- vim.keymap.set("n", "<A-k>", "<cmd>horizontal resize -1<CR>")
+-- vim.keymap.set("n", "<A-h>", "<cmd>vertical resize -1<CR>")
+-- vim.keymap.set("n", "<A-l>", "<cmd>vertical resize +1<CR>")
+-- vim.keymap.set("n", "<A-J>", "<cmd>horizontal resize +5<CR>")
+-- vim.keymap.set("n", "<A-K>", "<cmd>horizontal resize -5<CR>")
+-- vim.keymap.set("n", "<A-H>", "<cmd>vertical resize -5<CR>")
+-- vim.keymap.set("n", "<A-L>", "<cmd>vertical resize +5<CR>")
 
 -- Window focus
-vim.keymap.set("n", "<C-h>", "<C-w>h")
-vim.keymap.set("n", "<C-j>", "<C-w>j")
-vim.keymap.set("n", "<C-k>", "<C-w>k")
-vim.keymap.set("n", "<C-l>", "<C-w>l")
+-- vim.keymap.set("n", "<C-h>", "<C-w>h")
+-- vim.keymap.set("n", "<C-j>", "<C-w>j")
+-- vim.keymap.set("n", "<C-k>", "<C-w>k")
+-- vim.keymap.set("n", "<C-l>", "<C-w>l")
 
 -- Window split
 -- vim.keymap.set("n", "<C-J>", "<CMD>split<CR>")
@@ -74,8 +74,8 @@ vim.keymap.set({ "n", "v" }, "<leader>P", '"+P', { desc = "Paste from clipboard 
 vim.keymap.set("n", "x", '"_x')
 
 -- Debug
-vim.keymap.set("n", "\\m", "<cmd>messages<CR>", { desc = "Debug: Messages" })
-vim.keymap.set("n", "\\i", "<cmd>Inspect<CR>", { desc = "Highlights: Inspect" })
+-- vim.keymap.set("n", "\\m", "<cmd>messages<CR>", { desc = "Debug: Messages" })
+-- vim.keymap.set("n", "\\i", "<cmd>Inspect<CR>", { desc = "Highlights: Inspect" })
 
 -- Sort
 vim.keymap.set("v", "s", ":sort<CR>gv")
