@@ -53,10 +53,6 @@ vim.keymap.set({ "n", "v" }, "<leader>P", '"+P', { desc = "Paste from clipboard 
 -- Registers
 vim.keymap.set("n", "x", '"_x')
 
--- Debug
--- vim.keymap.set("n", "\\m", "<cmd>messages<CR>", { desc = "Debug: Messages" })
--- vim.keymap.set("n", "\\i", "<cmd>Inspect<CR>", { desc = "Highlights: Inspect" })
-
 -- Sort
 vim.keymap.set("v", "s", ":sort<CR>gv")
 
@@ -66,3 +62,7 @@ vim.keymap.set("n", "<C-a>", "ggVG", { desc = "Select all" })
 -- Mouse
 vim.keymap.set("v", "<RightMouse>", '"+y')
 vim.keymap.set({ "n", "v" }, "<MiddleMouse>", '"+p')
+
+-- Debug
+-- vim.keymap.set("n", "\\m", "<cmd>messages<CR>", { desc = "Debug: Messages" })
+-- vim.keymap.set("n", "\\i", "<cmd>Inspect<CR>", { desc = "Highlights: Inspect" })

@@ -1,6 +1,6 @@
 return { -- Collection of various small independent plugins/modules
-	"echasnovski/mini.nvim",
-	config = function()
+    "echasnovski/mini.nvim",
+    config = function()
 		-- Better Around/Inside textobjects
 		--
 		-- Examples:
@@ -43,10 +43,10 @@ return { -- Collection of various small independent plugins/modules
 				up = '<M-k>',
 
 				-- Move current line in Normal mode
-				line_left = '<M-h>',
-				line_right = '<M-l>',
-				line_down = '<M-j>',
-				line_up = '<M-k>',
+                line_left = '',
+                line_right = '',
+                line_down = '',
+                line_up = '',
 			},
 
 			-- Options which control moving behavior
