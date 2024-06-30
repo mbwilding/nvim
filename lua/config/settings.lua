@@ -98,3 +98,6 @@ vim.o.splitbelow = true
 
 -- Single status line
 vim.o.laststatus = 3
+
+-- Rulers
+vim.o.colorcolumn = "81,121"
