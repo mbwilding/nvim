@@ -63,6 +63,16 @@ vim.keymap.set("n", "<C-a>", "ggVG", { desc = "Select all" })
 vim.keymap.set("v", "<RightMouse>", '"+y')
 vim.keymap.set({ "n", "v" }, "<MiddleMouse>", '"+p')
 
+-- Rulers
+local columns = "81,121"
+vim.keymap.set("n", '<leader>ic', function()
+  if vim.o.colorcolumn == columns then
+    vim.o.colorcolumn = ""
+  else
+    vim.o.colorcolumn = columns
+  end
+end, { desc = "Toggle column" })
+
 -- Debug
 -- vim.keymap.set("n", "\\m", "<cmd>messages<CR>", { desc = "Debug: Messages" })
 -- vim.keymap.set("n", "\\i", "<cmd>Inspect<CR>", { desc = "Highlights: Inspect" })
