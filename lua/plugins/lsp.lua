@@ -12,6 +12,7 @@ return {
     config = function()
         -- These can have more fields like cmd, settings and filetypes
         local servers = {
+            zls = {},
             bashls = {
                 filetypes = { "sh", "zsh", "zshrc" }
             },
