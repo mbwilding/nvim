@@ -6,6 +6,8 @@ return {
         "nvim-telescope/telescope-ui-select.nvim",
         "aaronhallaert/advanced-git-search.nvim",
         "debugloop/telescope-undo.nvim",
+        "nvim-telescope/telescope-media-files.nvim",
+        "nvim-tree/nvim-web-devicons",
         {
             "nvim-telescope/telescope-fzf-native.nvim",
             -- Build command adjusted to use 'make' if available, otherwise 'cmake'
@@ -24,33 +26,51 @@ return {
                 return vim.fn.executable("make") == 1 or vim.fn.executable("cmake") == 1
             end,
         },
-        "nvim-tree/nvim-web-devicons",
         -- "cbochs/grapple.nvim",
     },
     config = function()
-        -- Telescope is a fuzzy finder that comes with a lot of different things that
-        -- it can fuzzy find! It's more than just a "file finder", it can search
-        -- many different aspects of Neovim, your workspace, LSP, and more!
-        --
-        -- The easiest way to use telescope, is to start by doing something like:
-        --  :Telescope help_tags
-        --
-        -- After running this command, a window will open up and you're able to
-        -- type in the prompt window. You'll see a list of help_tags options and
-        -- a corresponding preview of the help.
-        --
-        -- Two important keymaps to use while in telescope are:
-        --  - Insert mode: <c-/>
-        --  - Normal mode: ?
-        --
-        -- This opens a window that shows you all of the keymaps for the current
-        -- telescope picker. This is really useful to discover what Telescope can
-        -- do as well as how to actually do it!
-
-        -- [[ Configure Telescope ]]
-        -- See `:help telescope` and `:help telescope.setup()`
-
         local actions = require("telescope.actions")
+
+        local extensions = {
+            ["fzf"] = {},
+            ["undo"] = {},
+            ["package_info"] = {},
+            ["persisted"] = {},
+            ["ui-select"] = {
+                require("telescope.themes").get_dropdown(),
+            },
+            ["advanced_git_search"] = {
+                -- fugitive or diffview
+                diff_plugin = "diffview",
+                -- customize git in previewer
+                -- e.g. flags such as { "--no-pager" }, or { "-c", "delta.side-by-side=false" }
+                git_flags = {},
+                -- customize git diff in previewer
+                -- e.g. flags such as { "--raw" }
+                git_diff_flags = {},
+                -- Show builtin git pickers when executing "show_custom_functions" or :AdvancedGitSearch
+                show_builtin_git_pickers = false,
+                entry_default_author_or_date = "author",     -- one of "author" or "date"
+
+                -- Telescope layout setup
+                telescope_theme = {
+                    function_name_1 = {
+                        -- Theme options
+                    },
+                    function_name_2 = "dropdown",
+                    -- e.g. realistic example
+                    show_custom_functions = {
+                        layout_config = { width = 0.4, height = 0.4 },
+                    },
+                },
+            },
+            ["media_files"] = {
+                filetypes = { "png", "webp", "jpg", "jpeg" },
+                find_cmd = "rg",
+            },
+            -- ["noice"] = {},
+            -- ["grapple"] = {},
+        }
 
         require("telescope").setup({
             pickers = {
@@ -105,51 +125,11 @@ return {
                     "packages.lock.json",
                 },
             },
-            extensions = {
-                ["ui-select"] = {
-                    require("telescope.themes").get_dropdown(),
-                },
-                ["advanced_git_search"] = {
-                    -- fugitive or diffview
-                    diff_plugin = "diffview",
-                    -- customize git in previewer
-                    -- e.g. flags such as { "--no-pager" }, or { "-c", "delta.side-by-side=false" }
-                    git_flags = {},
-                    -- customize git diff in previewer
-                    -- e.g. flags such as { "--raw" }
-                    git_diff_flags = {},
-                    -- Show builtin git pickers when executing "show_custom_functions" or :AdvancedGitSearch
-                    show_builtin_git_pickers = false,
-                    entry_default_author_or_date = "author", -- one of "author" or "date"
-
-                    -- Telescope layout setup
-                    telescope_theme = {
-                        function_name_1 = {
-                            -- Theme options
-                        },
-                        function_name_2 = "dropdown",
-                        -- e.g. realistic example
-                        show_custom_functions = {
-                            layout_config = { width = 0.4, height = 0.4 },
-                        },
-                    },
-                },
-            },
+            extensions = extensions
         })
 
-        -- Enable telescope extensions, if they are installed
-        local extensions = {
-            "fzf",
-            "ui-select",
-            "advanced_git_search",
-            "undo",
-            "package_info",
-            "persisted",
-            -- "noice",
-            -- "grapple",
-        }
-        for _, ext in ipairs(extensions) do
-            pcall(require("telescope").load_extension, ext)
+        for key, _ in pairs(extensions) do
+            pcall(require("telescope").load_extension, key)
         end
 
         -- See `:help telescope.builtin`
