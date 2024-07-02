@@ -35,7 +35,7 @@ return {
             ["fzf"] = {},
             ["undo"] = {},
             ["package_info"] = {},
-            ["persisted"] = {},
+            -- ["persisted"] = {},
             ["ui-select"] = {
                 require("telescope.themes").get_dropdown(),
             },
