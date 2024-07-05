@@ -73,6 +73,10 @@ vim.keymap.set("n", '<leader>ic', function()
   end
 end, { desc = "Toggle column" })
 
+vim.keymap.set("n", '<leader>ht', function()
+    vim.cmd("TOhtml")
+end, { desc = "HTML" })
+
 -- Debug
 -- vim.keymap.set("n", "\\m", "<cmd>messages<CR>", { desc = "Debug: Messages" })
 -- vim.keymap.set("n", "\\i", "<cmd>Inspect<CR>", { desc = "Highlights: Inspect" })
