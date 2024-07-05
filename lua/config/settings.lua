@@ -1,9 +1,8 @@
 -- Enable loading plugins faster
 vim.loader.enable()
 
--- Set leader keys to space
+-- Set leader key to space
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 
 -- Enable true color support
 vim.o.termguicolors = true
@@ -83,7 +82,7 @@ vim.o.cursorline = false
 vim.o.confirm = true
 
 -- Set spell check language
-vim.o.spelllang = "en"
+vim.o.spelllang = "en_us"
 
 -- Set fill characters after EOF
 vim.opt.fillchars:append({ eob = " " })
