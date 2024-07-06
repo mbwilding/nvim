@@ -80,9 +80,7 @@ vim.api.nvim_create_autocmd("ModeChanged", {
 		local color = gronk.mode[mode] or gronk.primary
 
 		vim.cmd(string.format("highlight LineNr guifg=%s", color))
-		vim.cmd(string.format("highlight Cursor guifg=%s guibg=%s", gronk.base.bg, color))
-		vim.cmd(string.format("highlight lCursor guifg=%s guibg=%s", gronk.base.bg, color))
-
-		vim.cmd("set termguicolors")
+		-- vim.cmd(string.format("highlight Cursor guifg=%s guibg=%s", gronk.base.bg, color))
+		-- vim.cmd(string.format("highlight lCursor guifg=%s guibg=%s", gronk.base.bg, color))
 	end
 })
