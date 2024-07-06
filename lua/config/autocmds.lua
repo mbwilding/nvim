@@ -70,3 +70,21 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	pattern = "*.sh",
 	command = "set fileformat=unix",
 })
+
+vim.api.nvim_create_autocmd("ModeChanged", {
+	group = augroup("mode_colors"),
+	pattern = "*",
+	callback = function()
+		local colors = require("gronk")
+		local mode_colors = require("config/colors-mode")
+
+		local mode = vim.api.nvim_get_mode().mode
+		local color = mode_colors[mode] or colors.primary
+
+		vim.cmd(string.format("highlight LineNr guifg=%s", color))
+		vim.cmd(string.format("highlight Cursor guifg=%s guibg=%s", color, color))
+		vim.cmd(string.format("highlight lCursor guifg=%s guibg=%s", color, color))
+
+		vim.cmd("set termguicolors")
+	end
+})
