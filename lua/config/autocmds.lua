@@ -75,11 +75,10 @@ vim.api.nvim_create_autocmd("ModeChanged", {
 	group = augroup("mode_colors"),
 	pattern = "*",
 	callback = function()
-		local colors = require("gronk")
-		local mode_colors = require("config/colors-mode")
-
+		local gronk = require("gronk")
+		local mode_colors = gronk.mode
 		local mode = vim.api.nvim_get_mode().mode
-		local color = mode_colors[mode] or colors.primary
+		local color = mode_colors[mode] or gronk.primary
 
 		vim.cmd(string.format("highlight LineNr guifg=%s", color))
 		vim.cmd(string.format("highlight Cursor guifg=%s guibg=%s", color, color))
