@@ -335,7 +335,9 @@ return {
             },
         }
 
-        require("mason").setup()
+        require("mason").setup({
+            max_concurrent_installers = 10,
+        })
 
         require("mason-lspconfig").setup_handlers({
             -- The first entry (without a key) will be the default handler
@@ -349,7 +351,7 @@ return {
         })
 
         require("mason-lspconfig").setup({
-            automatic_installation = false,
+            automatic_installation = true,
             -- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
             ensure_installed = vim.tbl_keys(servers),
             handlers = {
