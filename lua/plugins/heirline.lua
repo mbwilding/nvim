@@ -3,7 +3,6 @@ return {
     lazy = false,
     dependencies = {
         "nvim-tree/nvim-web-devicons",
-        -- "cbochs/grapple.nvim",
     },
     config = function()
         vim.o.showmode = false
@@ -524,13 +523,12 @@ return {
                 file_format,
                 spacer,
                 debug,
-                spacer,
-                grapple,
 
                 align,
                 ruler,
 
                 align,
+                grapple,
                 diagnostics,
                 spacer,
                 lsp_lint,
