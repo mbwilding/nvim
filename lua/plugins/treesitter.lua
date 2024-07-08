@@ -119,7 +119,7 @@ return {
                         ["]f"] = "@function.outer",
                         ["]]"] = { query = "@class.outer", desc = "Next class start" },
                         --
-                        -- You can use regex matching (i.e. lua pattern) and/or pass a list in a "query" key to group multiple queires.
+                        -- You can use regex matching (i.e. lua pattern) and/or pass a list in a "query" key to group multiple queries.
                         ["]l"] = "@loop.*",
                         -- ["]o"] = { query = { "@loop.inner", "@loop.outer" } }
                         --
@@ -172,7 +172,7 @@ return {
 
         require("treesitter-context").setup({
             enable = true,
-            mode = "topline" -- Also: cursor
+            mode = "topline", -- Also: cursor
         })
 
         vim.keymap.set("n", "<leader>ix", "<CMD>TSContextToggle<CR>", { desc = "Treesitter: Context Rows" })
