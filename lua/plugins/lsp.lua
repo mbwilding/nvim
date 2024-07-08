@@ -108,12 +108,13 @@ return {
                     tailwindCSS = {
                         experimental = {
                             classRegex = {
-                                { "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
-                                { "cx\\(([^)]*)\\)",  "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+                                { "cva\\(([^)]*)\\)", "[\"'`]?([^\"'`]*).*?[\"'`]?" },
+                                { "cx\\(([^)]*)\\)",  "[\"'`]?([^\"'`]*).*?[\"'`]?" }
                             },
                         },
                     },
                 },
+                filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
             },
             glsl_analyzer = {},
             yamlls = {

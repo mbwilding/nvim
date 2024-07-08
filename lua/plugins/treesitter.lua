@@ -174,5 +174,7 @@ return {
             enable = true,
             mode = "topline" -- Also: cursor
         })
+
+        vim.keymap.set("n", "<leader>ix", "<CMD>TSContextToggle<CR>", { desc = "Treesitter: Context Rows" })
     end,
 }

@@ -65,13 +65,13 @@ vim.keymap.set({ "n", "v" }, "<MiddleMouse>", '"+p')
 
 -- Rulers
 local columns = "81,121"
-vim.keymap.set("n", '<leader>ic', function()
+vim.keymap.set("n", "<leader>ic", function()
   if vim.o.colorcolumn == columns then
     vim.o.colorcolumn = ""
   else
     vim.o.colorcolumn = columns
   end
-end, { desc = "Toggle column" })
+end, { desc = "Toggle Columns" })
 
 vim.keymap.set("n", '<leader>ht', function()
     vim.cmd("TOhtml")
