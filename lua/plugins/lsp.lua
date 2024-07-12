@@ -11,7 +11,6 @@ return {
     config = function()
         -- These can have more fields like cmd, settings and filetypes
         local servers = {
-            ruby_lsp = {},
             zls = {},
             bashls = {
                 filetypes = { "sh", "zsh", "zshrc" }
