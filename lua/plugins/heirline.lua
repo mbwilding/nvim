@@ -403,10 +403,14 @@ return {
             condition = conditions.has_diagnostics,
 
             static = {
-                error_icon = vim.fn.sign_getdefined("DiagnosticSignError")[1].text,
-                warn_icon = vim.fn.sign_getdefined("DiagnosticSignWarn")[1].text,
-                info_icon = vim.fn.sign_getdefined("DiagnosticSignInfo")[1].text,
-                hint_icon = vim.fn.sign_getdefined("DiagnosticSignHint")[1].text,
+                error_icon = vim.fn.sign_getdefined("DiagnosticSignError")[1] and
+                vim.fn.sign_getdefined("DiagnosticSignError")[1].text or "E",
+                warn_icon = vim.fn.sign_getdefined("DiagnosticSignWarn")[1] and
+                vim.fn.sign_getdefined("DiagnosticSignWarn")[1].text or "W",
+                info_icon = vim.fn.sign_getdefined("DiagnosticSignInfo")[1] and
+                vim.fn.sign_getdefined("DiagnosticSignInfo")[1].text or "I",
+                hint_icon = vim.fn.sign_getdefined("DiagnosticSignHint")[1] and
+                vim.fn.sign_getdefined("DiagnosticSignHint")[1].text or "H",
             },
 
             init = function(self)
