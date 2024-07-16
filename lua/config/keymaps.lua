@@ -79,6 +79,8 @@ vim.keymap.set("n", '<leader>ht', function()
 end, { desc = "HTML" })
 
 -- (Un)indent
+vim.keymap.set("n", ">", ">>", { desc = "Indent" })
+vim.keymap.set("n", "<", "<<", { desc = "Unindent" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent" })
 vim.keymap.set("v", "<", "<gv", { desc = "Unindent" })
 
