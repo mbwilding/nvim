@@ -2,6 +2,7 @@ return {
     "folke/which-key.nvim",
     opts = {},
     config = function()
+        require("which-key").register()
         -- Normal
         -- require("which-key").register({
         -- 	["<leader>R"] = { name = "[R]ename", _ = "which_key_ignore" },
