@@ -73,9 +73,14 @@ vim.keymap.set("n", "<leader>ic", function()
   end
 end, { desc = "Toggle Columns" })
 
+-- HTML Generation
 vim.keymap.set("n", '<leader>ht', function()
     vim.cmd("TOhtml")
 end, { desc = "HTML" })
+
+-- (Un)indent
+vim.keymap.set("v", ">", ">gv", { desc = "Indent" })
+vim.keymap.set("v", "<", "<gv", { desc = "Unindent" })
 
 -- Debug
 -- vim.keymap.set("n", "\\m", "<cmd>messages<CR>", { desc = "Debug: Messages" })
