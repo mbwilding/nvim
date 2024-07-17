@@ -20,7 +20,7 @@ return {
 						return { "isort", "black" }
 					end
 				end,
-				-- Use the "*" filetype to run formatters on all filetypes, what this is.
+				-- Use the "*" filetype to run formatters on all filetypes
 				["*"] = { "typos" },
 				-- Use the "_" filetype to run formatters on filetypes that don't
 				-- have other formatters configured.
