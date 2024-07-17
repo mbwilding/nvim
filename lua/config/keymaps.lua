@@ -19,8 +19,8 @@ vim.keymap.set("n", "q", ":tabclose<CR>")
 -- End search highlight and clear messages
 vim.keymap.set("n", "<Esc>", "<CMD>noh<CR><CMD>echo<CR><Esc>")
 
--- Space do nothing
-vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>")
+-- Leader NOP
+vim.keymap.set({ "n", "v" }, "<leader>", "<Nop>")
 
 -- Remap for dealing with word wrap
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
