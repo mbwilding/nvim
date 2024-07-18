@@ -1,3 +1,5 @@
+-- Cellular Automaton provides a bunch of fun things to do with your text
+
 return {
     "eandrju/cellular-automaton.nvim",
     keys = {

@@ -1,3 +1,5 @@
+-- Aerial shows you all the symbols in the buffer and allows quick navigation
+
 return {
     "stevearc/aerial.nvim",
     dependencies = {

@@ -1,3 +1,5 @@
+-- ChatGPT integration
+
 return {
     "jackMort/ChatGPT.nvim",
     dependencies = {

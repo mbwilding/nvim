@@ -1,3 +1,5 @@
+-- Alpha is a start screen for neovim
+
 return {
     "goolord/alpha-nvim",
     requires = {
