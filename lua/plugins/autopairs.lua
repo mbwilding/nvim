@@ -9,19 +9,19 @@ return {
 		require("nvim-autopairs").setup({
 			check_ts = true, -- Enable treesitter
 			ts_config = {
-				lua = { "string" }, -- Don't add pairs in lua string treesitter nodes
-				javascript = { "template_string" }, -- Don't add pairs in JavaScript template_string treesitter nodes
+				lua = { "string" },
+				javascript = { "template_string" },
 				-- java = false, -- Don't check treesitter on Java
 			},
 		})
 
-		local npairs = require("nvim-autopairs")
-		local Rule = require("nvim-autopairs.rule")
+		local pairs = require("nvim-autopairs")
+		local rule = require("nvim-autopairs.rule")
 		local cond = require("nvim-autopairs.conds")
 
 		-- https://github.com/windwp/nvim-autopairs/wiki/Rules-API/
-		npairs.add_rules({
-			npairs.add_rule(Rule("<", ">"):with_pair(cond.not_before_regex(" ", 1))),
+		pairs.add_rules({
+			pairs.add_rule(rule("<", ">"):with_pair(cond.not_before_regex(" ", 1))),
 		})
 	end,
 }
