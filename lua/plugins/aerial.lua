@@ -14,7 +14,7 @@ return {
         {
             "<leader>S",
             "<CMD>AerialToggle! left<CR>",
-            desc = "Actions Preview",
+            desc = "Aerial: Toggle",
         },
     },
 }
