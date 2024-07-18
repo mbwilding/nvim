@@ -36,7 +36,7 @@ return {
             "<cmd>DiffviewRefresh<CR>",
             desc = "Diffview: Refresh",
         },
-    }
+    },
     opts = {
         hooks = {
             diff_buf_win_enter = function()
