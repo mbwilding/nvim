@@ -1,14 +1,11 @@
-return {
-    -- Comment visual regions/lines
-    "numToStr/Comment.nvim",
-    config = function()
-        vim.keymap.del('n', 'gc')
+-- Comment allows you to quickly comment out lines or blocks of code in many languages
 
-        require('Comment').setup({
-            toggler = {
-                line = "gc",
-                block = "gb",
-            }
-        })
-    end
+return {
+    "numToStr/Comment.nvim",
+    opts = {
+        toggler = {
+            line = "gc",
+            block = "gb",
+        }
+    },
 }
