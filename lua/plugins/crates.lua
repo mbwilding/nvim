@@ -1,3 +1,5 @@
+-- Crates is a plugin that provides information about Rust crates in your Cargo.toml file.
+
 return {
     "saecki/crates.nvim",
     event = { "BufRead Cargo.toml" },

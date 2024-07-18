@@ -1,3 +1,5 @@
+-- Dadbod is a plugin that provides a way for managing databases.
+
 return {
 	"kristijanhusak/vim-dadbod-ui",
 	dependencies = {
@@ -10,10 +12,20 @@ return {
 		"DBUIAddConnection",
 		"DBUIFindBuffer",
 	},
+    keys = {
+        {
+            "<leader>dbb",
+            "<CMD>DBUI<CR>",
+            desc = "Dadbod: UI",
+        },
+        {
+            "<leader>dbt",
+            "<CMD>DBUIToggle<CR>",
+            desc = "Dadbod: Toggle",
+        },
+    },
 	init = function()
 		vim.g.db_ui_use_nerd_fonts = 1
-		vim.keymap.set("n", "<leader>dbb", "<cmd>DBUI<CR>", { desc = "Dadbod: UI" })
-		vim.keymap.set("n", "<leader>dbt", "<cmd>DBUIToggle<CR>", { desc = "Dadbod: Toggle" })
 
 		require("cmp").setup.filetype({ "sql" }, {
 			sources = {

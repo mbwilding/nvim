@@ -1,4 +1,4 @@
--- Copilot integration
+-- Copilot integration.
 
 return {
     "zbirenbaum/copilot.lua",
