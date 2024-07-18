@@ -1,20 +1,22 @@
 return {
-	"goolord/alpha-nvim",
-	requires = { 'nvim-tree/nvim-web-devicons' },
-	config = function()
-		local alpha = require 'alpha'
-		local startify = require 'alpha.themes.startify'
+    "goolord/alpha-nvim",
+    requires = {
+        "nvim-tree/nvim-web-devicons"
+    },
+    config = function()
+        local alpha = require("alpha")
+        local startify = require("alpha.themes.startify")
 
-		startify.section.header.val = {
-			"                                                   ",
-			"██╗    ██╗██╗██╗     ██████╗ ██╗███╗   ██╗ ██████╗ ",
-			"██║    ██║██║██║     ██╔══██╗██║████╗  ██║██╔════╝ ",
-			"██║ █╗ ██║██║██║     ██║  ██║██║██╔██╗ ██║██║  ███╗",
-			"██║███╗██║██║██║     ██║  ██║██║██║╚██╗██║██║   ██║",
-			"╚███╔███╔╝██║███████╗██████╔╝██║██║ ╚████║╚██████╔╝",
-			" ╚══╝╚══╝ ╚═╝╚══════╝╚═════╝ ╚═╝╚═╝  ╚═══╝ ╚═════╝ ",
-		}
+        startify.section.header.val = {
+            "                                                   ",
+            "██╗    ██╗██╗██╗     ██████╗ ██╗███╗   ██╗ ██████╗ ",
+            "██║    ██║██║██║     ██╔══██╗██║████╗  ██║██╔════╝ ",
+            "██║ █╗ ██║██║██║     ██║  ██║██║██╔██╗ ██║██║  ███╗",
+            "██║███╗██║██║██║     ██║  ██║██║██║╚██╗██║██║   ██║",
+            "╚███╔███╔╝██║███████╗██████╔╝██║██║ ╚████║╚██████╔╝",
+            " ╚══╝╚══╝ ╚═╝╚══════╝╚═════╝ ╚═╝╚═╝  ╚═══╝ ╚═════╝ ",
+        }
 
-		alpha.setup(startify.config)
-	end
+        alpha.setup(startify.config)
+    end
 }
