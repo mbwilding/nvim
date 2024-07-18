@@ -8,7 +8,7 @@ return {
                 require("actions-preview").code_actions()
             end,
             desc = "Actions Preview",
-            mode = { "v", "n" },
+            mode = { "n", "v" },
         },
     },
 }
