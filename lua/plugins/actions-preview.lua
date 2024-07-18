@@ -1,6 +1,5 @@
 return {
     "aznhe21/actions-preview.nvim",
-    opts = {},
     keys = {
         {
             "<leader><enter>",
@@ -11,4 +10,5 @@ return {
             mode = { "n", "v" },
         },
     },
+    opts = {},
 }
