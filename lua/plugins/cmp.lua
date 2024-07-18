@@ -1,4 +1,4 @@
--- CMP provides autocomplete suggestions in a pop-up menu
+-- CMP provides autocomplete suggestions in a pop-up menu.
 
 return {
 	"hrsh7th/nvim-cmp",

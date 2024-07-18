@@ -1,4 +1,4 @@
--- Actions Preview will display a floating window with a preview of code actions
+-- Actions Preview will display a floating window with a preview of code actions.
 
 return {
     "aznhe21/actions-preview.nvim",

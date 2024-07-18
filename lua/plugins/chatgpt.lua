@@ -1,4 +1,4 @@
--- ChatGPT integration
+-- ChatGPT integration.
 
 return {
     "jackMort/ChatGPT.nvim",

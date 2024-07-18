@@ -1,4 +1,4 @@
--- Alpha is a start screen for neovim
+-- Alpha is a custom start screen. Only shown when nvim is launched without an argument.
 
 return {
     "goolord/alpha-nvim",

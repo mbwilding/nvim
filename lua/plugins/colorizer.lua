@@ -1,4 +1,4 @@
--- Colorizer highlights color codes with the respective color
+-- Colorizer highlights color codes with the respective color.
 
 return {
     "norcalli/nvim-colorizer.lua",

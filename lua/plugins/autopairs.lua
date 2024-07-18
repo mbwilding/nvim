@@ -1,4 +1,4 @@
--- Autopairs automatically closes brackets, quotes, etc and puts you in the middle of them
+-- Autopairs automatically closes brackets, quotes, etc and puts you in the middle of them.
 
 return {
 	"windwp/nvim-autopairs",
