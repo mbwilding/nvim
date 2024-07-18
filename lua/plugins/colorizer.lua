@@ -1,10 +1,7 @@
+-- Colorizer highlights color codes with the respective color
+
 return {
-	"norcalli/nvim-colorizer.lua",
-	config = function()
-		require("colorizer").setup({
-			"*",
-		}, {
-			names = false,
-		})
-	end,
+    "norcalli/nvim-colorizer.lua",
+    event = "BufEnter",
+    opts = { "*" },
 }

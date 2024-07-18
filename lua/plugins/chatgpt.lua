@@ -40,7 +40,7 @@ return {
             mode = { "n", "v" },
         },
         {
-            "<leader>cgg",
+            "<leader>cgi",
             "<CMD>ChatGPTEditWithInstructions<CR>",
             desc = "ChatGPT: Edit With Instructions",
             mode = { "n", "v" },
