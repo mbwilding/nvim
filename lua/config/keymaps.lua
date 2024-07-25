@@ -80,6 +80,12 @@ vim.keymap.set("n", '<leader>ht', function()
         vim.lsp.buf.format({ async = false })
     end, 200)
 end, { desc = "HTML" })
+vim.keymap.set("v", '<leader>ht', function()
+    vim.cmd("'<,'>TOhtml")
+    vim.defer_fn(function()
+        vim.lsp.buf.format({ async = false })
+    end, 200)
+end, { desc = "HTML" })
 
 -- (Un)indent
 vim.keymap.set("n", ">", ">>", { desc = "Indent" })
