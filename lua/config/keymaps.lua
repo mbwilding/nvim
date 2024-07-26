@@ -34,8 +34,16 @@ vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnos
 
 -- Toggles
 vim.keymap.set("n", "<leader>ir", function()
-	vim.wo.relativenumber = not vim.wo.relativenumber
+    if vim.o.statuscolumn == "%s %r " then
+        vim.o.statuscolumn = "%s %l "
+    else
+        vim.o.statuscolumn = "%s %r "
+    end
 end, { desc = "Toggle relative line numbers" })
+
+vim.keymap.set("n", "<leader>iR", function()
+    vim.o.statuscolumn = "%s %l %r "
+end, { desc = "Relative and absolute line numbers" })
 
 vim.keymap.set("n", "<leader>iw", function()
 	vim.wo.wrap = not vim.wo.wrap

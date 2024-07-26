@@ -13,11 +13,17 @@ vim.o.background = "dark"
 -- Highlight search results
 vim.o.hlsearch = true
 
--- Enable line numbers
+-- Gutter line numbers
 vim.wo.number = true
 
--- Enable relative line numbers
+-- Gutter relative line numbers
 vim.wo.relativenumber = true
+
+-- Gutter sign column
+vim.wo.signcolumn = "yes"
+
+-- Gutter layout
+vim.o.statuscolumn = "%s %r "
 
 -- Mouse mode
 vim.o.mouse = "a"
@@ -34,9 +40,6 @@ vim.o.ignorecase = true
 
 -- Enable smart case
 vim.o.smartcase = true
-
--- Always show sign column
-vim.wo.signcolumn = "yes"
 
 -- Set update time for diagnostics
 vim.o.updatetime = 250
