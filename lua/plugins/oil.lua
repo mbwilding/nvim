@@ -12,13 +12,13 @@ return {
             -- Id is automatically added at the beginning, and name at the end
             -- See :help oil-columns
             columns = {
-                --"birthtime",
-                --"mtime",
+                -- "birthtime",
+                -- "mtime",
                 "ctime",
-                --"atime",
-                "type",
-                "permissions",
+                -- "atime",
+                -- "type",
                 "size",
+                "permissions",
                 "icon",
             },
             -- Buffer-local options to use for oil buffers
