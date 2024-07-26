@@ -63,22 +63,26 @@ return {
             -- Set to `false` to remove a keymap
             -- See :help oil-actions for a list of all available actions
             keymaps = {
-                ["g?"] = "actions.show_help",
+                ["?"] = "actions.show_help",
                 ["<CR>"] = "actions.select",
-                ["<C-s>"] = "actions.select_vsplit",
-                ["<C-h>"] = "actions.select_split",
+                ["<C-v>"] = "actions.select_vsplit",
+                ["<C-s>"] = "actions.select_split",
                 ["<C-t>"] = "actions.select_tab",
                 ["<C-p>"] = "actions.preview",
-                ["<C-q>"] = "actions.close",
                 ["<C-r>"] = "actions.refresh",
+                ["<C-d>"] = "actions.preview_scroll_down",
+                ["<C-u>"] = "actions.preview_scroll_up",
+                ["<C-o>"] = "actions.close",
+                ["q"] = "actions.close",
                 ["-"] = "actions.parent",
                 ["_"] = "actions.open_cwd",
                 ["c"] = "actions.cd",
-                ["t"] = "actions.tcd",
-                ["gs"] = "actions.change_sort",
+                ["S"] = "actions.change_sort",
                 ["gx"] = "actions.open_external",
                 ["gh"] = "actions.toggle_hidden",
                 ["g\\"] = "actions.toggle_trash",
+                -- ["t"] = "actions.tcd",
+                -- ["T"] = "actions.open_terminal",
             },
             -- Set to false to disable all of the above keymaps
             use_default_keymaps = true,
@@ -172,8 +176,8 @@ return {
             },
         })
 
-        vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
-        vim.keymap.set("n", "<leader>-", require("oil").toggle_float, { desc = "Open parent directory - floating" })
+        vim.keymap.set("n", "<leader>-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+        vim.keymap.set("n", "-", require("oil").toggle_float, { desc = "Open parent directory - floating" })
 
         require("oil-git-status").setup({
             show_ignored = true,
