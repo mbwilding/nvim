@@ -86,7 +86,7 @@ return {
                 return "%2(" .. self.mode_info.name .. "%)"
             end,
             hl = function(self)
-                return { fg = self.mode_info.color, bg = colors.base.transparent }
+                return { fg = self.mode_info.color, bg = colors.base.transparent, bold = true }
             end,
             update = {
                 "ModeChanged",
