@@ -16,9 +16,9 @@ return {
                 --"mtime",
                 "ctime",
                 --"atime",
-                --"type",
-                "size",
+                "type",
                 "permissions",
+                "size",
                 "icon",
             },
             -- Buffer-local options to use for oil buffers
@@ -55,7 +55,7 @@ return {
             cleanup_delay_ms = 2000,
             -- Constrain the cursor to the editable parts of the oil buffer
             -- Set to `false` to disable, or "name" to keep it on the file names
-            constrain_cursor = "name",
+            constrain_cursor = false,
             -- Keymaps in oil buffer. Can be any value that `vim.keymap.set` accepts OR a table of keymap
             -- options with a `callback` (e.g. { callback = function() ... end, desc = "", mode = "n" })
             -- Additionally, if it is a string that matches "actions.<name>",
