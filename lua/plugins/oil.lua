@@ -85,7 +85,7 @@ return {
                 -- ["T"] = "actions.open_terminal",
             },
             -- Set to false to disable all of the above keymaps
-            use_default_keymaps = true,
+            use_default_keymaps = false,
             view_options = {
                 -- Show files and directories that start with "."
                 show_hidden = false,
@@ -122,7 +122,7 @@ return {
             -- Configuration for the floating window in oil.open_float
             float = {
                 -- Padding around the floating window
-                padding = 15,
+                padding = 2,
                 max_width = 0,
                 max_height = 0,
                 border = "rounded",
