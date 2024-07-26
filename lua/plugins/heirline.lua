@@ -424,7 +424,7 @@ return {
 
             {
                 provider = function(self)
-                    return self.info > 0 and (self.info_icon .. self.info .. " ")
+                    return self.info > 0 and (self.info_icon .. self.info)
                 end,
                 hl = { fg = colors.base.green, bg = colors.base.transparent },
             },
@@ -437,13 +437,13 @@ return {
             {
                 provider = function(self)
                     -- 0 is just another output, we can decide to print it or not!
-                    return self.errors > 0 and (" " .. self.error_icon .. self.errors .. " ")
+                    return self.errors > 0 and (" " .. self.error_icon .. self.errors)
                 end,
                 hl = { fg = colors.base.red, bg = colors.base.transparent },
             },
             {
                 provider = function(self)
-                    return self.warnings > 0 and (" " .. self.warn_icon .. self.warnings .. " ")
+                    return self.warnings > 0 and (" " .. self.warn_icon .. self.warnings)
                 end,
                 hl = { fg = colors.base.orange_dark, bg = colors.base.transparent },
             },
