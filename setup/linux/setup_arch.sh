@@ -21,6 +21,6 @@ source $HOME/.profile
 echo 'export PATH=~/.npm-global/bin:$PATH' >> $HOME/.profile
 source $HOME/.profile
 
-sudo pip install cfn-lint
-sudo gem install cfn-nag
+# sudo pip install cfn-lint
+# sudo gem install cfn-nag
 sudo npm install --global aws-azure-login

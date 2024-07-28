@@ -9,7 +9,7 @@ return {
 			-- a list of all tools you want to ensure are installed upon
 			-- start
 			ensure_installed = {
-				"cfn-lint",
+				-- "cfn-lint",
 				"yamllint",
 				"jsonlint",
 				"actionlint",

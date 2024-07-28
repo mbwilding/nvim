@@ -53,7 +53,7 @@ winget install Kitware.CMake zig.zig BurntSushi.ripgrep.MSVC OpenJS.NodeJS Jesse
 
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
 
-pip install cfn-lint
-gem install cfn-nag
+# pip install cfn-lint
+# gem install cfn-nag
 
 Write-Host "Done"

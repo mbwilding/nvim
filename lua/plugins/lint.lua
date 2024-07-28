@@ -24,7 +24,7 @@ return {
 			typescriptreact = { "eslint_d" },
 			svelte = { "eslint_d" },
 			python = { "pylint" },
-			yaml = { "yamllint", "cfn_lint", "cfn_nag" },
+			yaml = { "yamllint" }, -- "cfn_lint", "cfn_nag"
 		}
 
 		vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
