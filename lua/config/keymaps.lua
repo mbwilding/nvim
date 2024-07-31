@@ -34,23 +34,15 @@ vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnos
 
 -- Toggles
 vim.keymap.set("n", "<leader>ir", function()
-    if vim.o.statuscolumn == "%s %r " then
-        vim.o.statuscolumn = "%s %l "
-    else
-        vim.o.statuscolumn = "%s %r "
-    end
-end, { desc = "Toggle relative line numbers" })
-
-vim.keymap.set("n", "<leader>iR", function()
-    vim.o.statuscolumn = "%s %l %r "
-end, { desc = "Relative and absolute line numbers" })
+    vim.o.relativenumber = not vim.o.relativenumber
+end, { desc = "Toggle relative/absolute line numbers" })
 
 vim.keymap.set("n", "<leader>iw", function()
 	vim.wo.wrap = not vim.wo.wrap
 end, { desc = "Toggle Word Wrap" })
 
 -- Redo
-vim.api.nvim_set_keymap("n", "U", "<C-r>", { desc = "Redo" })
+vim.keymap.set("n", "U", "<C-r>", { desc = "Redo" })
 
 -- Clipboard
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "Copy to clipboard" })

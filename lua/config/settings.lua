@@ -22,9 +22,6 @@ vim.wo.relativenumber = true
 -- Gutter sign column
 vim.wo.signcolumn = "yes"
 
--- Gutter layout
-vim.o.statuscolumn = "%s %r "
-
 -- Mouse mode
 vim.o.mouse = "a"
 vim.o.mousemodel = ""
