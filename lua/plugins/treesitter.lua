@@ -27,6 +27,7 @@ return {
                 "json",
                 "html",
                 "go",
+                "vue"
             },
             modules = {},
             ignore_install = {},
