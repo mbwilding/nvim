@@ -26,6 +26,7 @@ return {
                 "http",
                 "json",
                 "html",
+                "css",
                 "go",
                 "vue"
             },
