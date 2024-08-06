@@ -33,6 +33,6 @@ return {
 			},
 		})
 
-		vim.keymap.set("n", "<leader>td", ":TodoTelescope<CR>", { desc = "TODO: Telescope" })
+		vim.keymap.set("n", "<leader>tD", ":TodoTelescope<CR>", { desc = "TODO: Telescope" })
 	end,
 }
