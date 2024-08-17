@@ -18,10 +18,6 @@ return {
         autoload = not manual,  -- automatically load the session for the cwd on Neovim startup
         silent = true,          -- No message on loading a session
         follow_cwd = true,      -- follow the cwd of the session file
-        -- allowed_dirs = {
-        --     "~/dev",
-        --     "~/dotfiles",
-        -- },
         should_autosave = function()
             return vim.bo.filetype ~= "alpha" and not manual
         end,

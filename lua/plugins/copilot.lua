@@ -37,7 +37,6 @@ return {
         panel = { enabled = true },
         filetypes = {
             yaml = false,
-            markdown = false,
             help = false,
             gitcommit = false,
             gitrebase = false,
@@ -45,6 +44,7 @@ return {
             svn = false,
             cvs = false,
             ["."] = false,
+            -- markdown = false,
         },
     },
 }
