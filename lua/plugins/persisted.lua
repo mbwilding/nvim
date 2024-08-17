@@ -19,7 +19,7 @@ return {
         silent = true,          -- No message on loading a session
         follow_cwd = true,      -- follow the cwd of the session file
         should_autosave = function()
-            return vim.bo.filetype ~= "alpha" and not manual
+            return vim.bo.filetype ~= "alpha" and not manual and vim.fn.getcwd() ~= os.getenv("HOME")
         end,
     }
 }
