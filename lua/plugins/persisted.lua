@@ -1,17 +1,29 @@
+-- Persisted is a session manager
+
+local manual = vim.tbl_contains(vim.v.argv, "+Man!")
+
 return {
     "olimorris/persisted.nvim",
     lazy = false,
-    config = function()
-        require("persisted").setup({
-            use_git_branch = false,     -- create session files based on the branch of a git enabled repository
-            autosave = true,            -- automatically save session files when exiting Neovim
-            autoload = true,            -- automatically load the session for the cwd on Neovim startup
-            silent = true,              -- No message on loading a session
-            ignored_branches = { "~" }, -- table of branch patterns that are ignored for auto-saving and auto-loading
-            should_autosave = function()
-                return vim.bo.filetype ~= "alpha"
-            end,
-        })
-        vim.keymap.set("n", "<leader>tp", "<CMD>Telescope persisted<CR>")
-    end,
+    keys = {
+        {
+            "<leader>tp",
+            "<CMD>Telescope persisted<CR>",
+            desc = "Persisted: Telescope",
+        },
+    },
+    opts = {
+        use_git_branch = false, -- create session files based on the branch of a git enabled repository
+        autosave = true,        -- automatically save session files when exiting Neovim
+        autoload = not manual,  -- automatically load the session for the cwd on Neovim startup
+        silent = true,          -- No message on loading a session
+        follow_cwd = true,      -- follow the cwd of the session file
+        -- allowed_dirs = {
+        --     "~/dev",
+        --     "~/dotfiles",
+        -- },
+        should_autosave = function()
+            return vim.bo.filetype ~= "alpha" and not manual
+        end,
+    }
 }
