@@ -1,4 +1,4 @@
--- CCC allows you to adjust colors and highlights them
+-- CCC allows you to adjust colors and highlights hex colors
 
 return {
     "uga-rosa/ccc.nvim",
