@@ -99,4 +99,4 @@ vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { desc = "Move line up" })
 
 -- Debug
 -- vim.keymap.set("n", "\\m", "<cmd>messages<CR>", { desc = "Debug: Messages" })
--- vim.keymap.set("n", "\\i", "<cmd>Inspect<CR>", { desc = "Highlights: Inspect" })
+vim.keymap.set("n", "\\i", "<cmd>Inspect<CR>", { desc = "Highlights: Inspect" })

@@ -1,14 +1,10 @@
+-- Markview shows a formatted version of markdown unless in insert mode.
+
 return {
     "OXY2DEV/markview.nvim",
-    lazy = false, -- Recommended
-    -- ft = "markdown" -- If you decide to lazy-load anyway
-
+    ft = "markdown",
     dependencies = {
-        -- You will not need this if you installed the
-        -- parsers manually
-        -- Or if the parsers are in your $RUNTIMEPATH
         "nvim-treesitter/nvim-treesitter",
-
         "nvim-tree/nvim-web-devicons"
     }
 }
