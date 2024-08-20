@@ -6,7 +6,7 @@ return {
         "b0o/schemastore.nvim",
         "nvim-telescope/telescope.nvim",
         "Issafalcon/lsp-overloads.nvim",
-        { "Decodetalkers/csharpls-extended-lsp.nvim", lazy = false },
+        "Decodetalkers/csharpls-extended-lsp.nvim",
         -- "Hoffs/omnisharp-extended-lsp.nvim",
     },
     config = function()
@@ -358,6 +358,18 @@ return {
             end,
         })
 
+        local capabilities = vim.tbl_deep_extend(
+            "force",
+            vim.lsp.protocol.make_client_capabilities(),
+            require("cmp_nvim_lsp").default_capabilities()
+        )
+
+        -- UFO (Folding)
+        capabilities.textDocument.foldingRange = {
+            dynamicRegistration = false,
+            lineFoldingOnly = true,
+        }
+
         require("mason-lspconfig").setup({
             automatic_installation = true,
             -- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
@@ -365,13 +377,6 @@ return {
             handlers = {
                 function(server_name)
                     local server = servers[server_name] or {}
-                    local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-                    -- UFO (Folding)
-                    capabilities.textDocument.foldingRange = {
-                        dynamicRegistration = false,
-                        lineFoldingOnly = true,
-                    }
 
                     require("lspconfig")[server_name].setup({
                         cmd = server.cmd,
@@ -381,11 +386,7 @@ return {
                         -- This handles overriding only values explicitly passed
                         -- by the server configuration above. Useful when disabling
                         -- certain features of an LSP (for example, turning off formatting for tsserver)
-                        capabilities = vim.tbl_deep_extend(
-                            "force",
-                            capabilities,
-                            require("cmp_nvim_lsp").default_capabilities()
-                        ),
+                        capabilities = capabilities,
                         on_attach = function(client, bufnr)
                             -- Enable inlay hints if supported
                             if client.server_capabilities.inlayHintProvider then
