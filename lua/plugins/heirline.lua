@@ -26,6 +26,10 @@ return {
 
         local c = { provider = "]" }
 
+        local function pad_right(str, len)
+            return str .. string.rep(" ", len - #str)
+        end
+
         -- MODE
         local mode_name = {
             n = "NORMAL",
@@ -255,32 +259,18 @@ return {
 
             static = {
                 --sbar = { "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" },
-                sbar = {
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                },
+                sbar = { "", "", "", "", "", "", "", "", "", "", "", "", "", "", "" },
             },
             provider = function(self)
                 local curr_line = vim.api.nvim_win_get_cursor(0)[1]
                 local lines = vim.api.nvim_buf_line_count(0)
                 local i = math.floor((curr_line - 1) / lines * #self.sbar) + 1
-                return "[%c-%l/%L] " .. string.rep(self.sbar[i], 1) .. " "
+                local icon = string.rep(self.sbar[i], 1)
+
+                return "%l/%L " .. icon .. " " .. pad_right("%c", 3)
             end,
             hl = function()
-                return { fg = colors.base.orange_light, bg = colors.base.transparent }
+                return { fg = mode_info().color, bg = colors.base.transparent }
             end,
         }
 
@@ -390,9 +380,6 @@ return {
                 if not conditions.width_percent_below(#cwd, 0.25) then
                     cwd = vim.fn.fnamemodify(cwd, ":t")
                 end
-                if cwd ~= "/" then
-                    cwd = cwd .. "/"
-                end
                 return icon .. "[" .. cwd .. "]"
             end,
             hl = { fg = colors.base.purple_light, bg = colors.base.transparent },
@@ -404,13 +391,13 @@ return {
 
             static = {
                 error_icon = vim.fn.sign_getdefined("DiagnosticSignError")[1] and
-                vim.fn.sign_getdefined("DiagnosticSignError")[1].text or "E",
+                    vim.fn.sign_getdefined("DiagnosticSignError")[1].text or "E",
                 warn_icon = vim.fn.sign_getdefined("DiagnosticSignWarn")[1] and
-                vim.fn.sign_getdefined("DiagnosticSignWarn")[1].text or "W",
+                    vim.fn.sign_getdefined("DiagnosticSignWarn")[1].text or "W",
                 info_icon = vim.fn.sign_getdefined("DiagnosticSignInfo")[1] and
-                vim.fn.sign_getdefined("DiagnosticSignInfo")[1].text or "I",
+                    vim.fn.sign_getdefined("DiagnosticSignInfo")[1].text or "I",
                 hint_icon = vim.fn.sign_getdefined("DiagnosticSignHint")[1] and
-                vim.fn.sign_getdefined("DiagnosticSignHint")[1].text or "H",
+                    vim.fn.sign_getdefined("DiagnosticSignHint")[1].text or "H",
             },
 
             init = function(self)
@@ -514,8 +501,12 @@ return {
         require("heirline").setup({
             statusline = {
                 spacer,
-                vim_mode,
                 spacer,
+                ruler,
+
+                align,
+                -- vim_mode,
+                -- spacer,
                 work_dir,
                 spacer,
                 file_name_block,
@@ -527,9 +518,6 @@ return {
                 file_format,
                 spacer,
                 debug,
-
-                align,
-                ruler,
 
                 align,
                 grapple,
