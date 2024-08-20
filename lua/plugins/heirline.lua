@@ -26,10 +26,6 @@ return {
 
         local c = { provider = "]" }
 
-        local function pad_right(str, len)
-            return str .. string.rep(" ", len - #str)
-        end
-
         -- MODE
         local mode_name = {
             n = "NORMAL",
@@ -267,7 +263,7 @@ return {
                 local i = math.floor((curr_line - 1) / lines * #self.sbar) + 1
                 local icon = string.rep(self.sbar[i], 1)
 
-                return "%l/%L " .. icon .. " " .. pad_right("%c", 3)
+                return "%c " .. icon .. " %l/%L"
             end,
             hl = function()
                 return { fg = mode_info().color, bg = colors.base.transparent }
@@ -500,11 +496,6 @@ return {
         -- INIT
         require("heirline").setup({
             statusline = {
-                spacer,
-                spacer,
-                ruler,
-
-                align,
                 -- vim_mode,
                 -- spacer,
                 work_dir,
@@ -518,6 +509,9 @@ return {
                 file_format,
                 spacer,
                 debug,
+
+                align,
+                ruler,
 
                 align,
                 grapple,
