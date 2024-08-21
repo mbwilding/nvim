@@ -432,7 +432,8 @@ return {
                                 vim.lsp.buf.format({ async = true })
                             end, "Format", bufnr)
                             map("gD", vim.lsp.buf.declaration, "Goto Declaration", bufnr)
-                            map("gs", require("telescope.builtin").lsp_document_symbols, "Telescope Document Symbols", bufnr)
+                            map("gs", require("telescope.builtin").lsp_document_symbols, "Telescope Document Symbols",
+                                bufnr)
                             map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols,
                                 "Telescope Workspace Symbols", bufnr)
                             map("K", vim.lsp.buf.hover, "Hover Documentation", bufnr)
