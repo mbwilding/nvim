@@ -515,6 +515,7 @@ return {
 
                 align,
                 grapple,
+                spacer,
                 diagnostics,
                 spacer,
                 lsp_lint,
