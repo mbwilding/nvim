@@ -509,13 +509,12 @@ return {
                 file_format,
                 spacer,
                 debug,
+                grapple,
 
                 align,
                 ruler,
 
                 align,
-                grapple,
-                spacer,
                 diagnostics,
                 spacer,
                 lsp_lint,
