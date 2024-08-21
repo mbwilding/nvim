@@ -411,6 +411,11 @@ return {
                             -- Enable inlay hints if supported
                             if client.server_capabilities.inlayHintProvider then
                                 vim.lsp.inlay_hint.enable(true)
+
+                                map("<leader>f", function()
+                                    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+                                end, "Inlay Hints", bufnr)
+
                             end
 
                             -- Set up mappings
@@ -432,12 +437,8 @@ return {
                             -- map("<C-k>", vim.lsp.buf.signature_help, "Signature documentation", bufnr)
 
                             -- Navigation
-                            vim.keymap.set("n", "<C-p>", "<C-t>", {})
-                            vim.keymap.set("n", "<C-n>", "<CMD>tag<CR>", {})
-
-                            vim.keymap.set("n", "<leader>ih", function()
-                                vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-                            end, { desc = "LSP: Toggle inlay hints" })
+                            map("<C-p>", "<C-t>", "Navigate Previous", bufnr)
+                            map("<C-n>", "<CMD>tag<CR>", "Navigate Next", bufnr)
 
                             -- Set up signature help overloads
                             if client.server_capabilities.signatureHelpProvider then
