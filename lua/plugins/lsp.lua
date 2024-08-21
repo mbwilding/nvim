@@ -189,9 +189,6 @@ return {
             --         ["textDocument/definition"] = require("csharpls_extended").handler,
             --         ["textDocument/typeDefinition"] = require("csharpls_extended").handler,
             --     },
-            --     on_attach = function(client, bufnr)
-            --         vim.keymap.set("n", "<leader>XQ", "<CMD>TEST<CR>", { buffer = bufnr, desc = "Thing" })
-            --     end,
             -- },
             omnisharp = {
                 settings = {
@@ -374,6 +371,7 @@ return {
             end,
         })
 
+        -- Capabilities
         local capabilities = vim.tbl_deep_extend(
             "force",
             vim.lsp.protocol.make_client_capabilities(),
@@ -440,7 +438,7 @@ return {
                                 require("lsp-overloads").setup(client, {})
                             end
 
-                            -- Call the server's on_attach if it exists
+                            -- Call the server's on_attach, if it exists
                             if server.on_attach then
                                 server.on_attach(client, bufnr)
                             end
