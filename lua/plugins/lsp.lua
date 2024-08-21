@@ -413,25 +413,25 @@ return {
                 end
 
                 if client and client.name == "omnisharp" then
-                    map("gd", require("omnisharp_extended").telescope_lsp_definition, "Goto definition")
-                    map("<leader>D", require("omnisharp_extended").telescope_lsp_type_definition, "Type definition")
-                    map("gr", require("omnisharp_extended").telescope_lsp_references, "Goto references")
-                    map("gi", require("omnisharp_extended").telescope_lsp_implementation, "Goto implementation")
+                    map("gd", require("omnisharp_extended").telescope_lsp_definition, "Telescope Definition")
+                    map("<leader>D", require("omnisharp_extended").telescope_lsp_type_definition, "Telescope Type Definition")
+                    map("gr", require("omnisharp_extended").telescope_lsp_references, "Telescope References")
+                    map("gi", require("omnisharp_extended").telescope_lsp_implementation, "Telescope Implementation")
                 else
-                    map("gd", require("telescope.builtin").lsp_definitions, "Goto definition")
-                    map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type definition")
-                    map("gr", require("telescope.builtin").lsp_references, "Goto references")
-                    map("gi", require("telescope.builtin").lsp_implementations, "Goto implementation")
+                    map("gd", require("telescope.builtin").lsp_definitions, "Telescope Definition")
+                    map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Telescope Type Definition")
+                    map("gr", require("telescope.builtin").lsp_references, "Telescope References")
+                    map("gi", require("telescope.builtin").lsp_implementations, "Telescope Implementation")
                 end
 
                 -- Common mappings
                 map("<leader>f", function()
                     vim.lsp.buf.format({ async = true })
                 end, "Format")
-                map("gD", vim.lsp.buf.declaration, "Goto declaration")
-                map("gs", require("telescope.builtin").lsp_document_symbols, "Document symbols")
-                map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace symbols")
-                map("K", vim.lsp.buf.hover, "Hover documentation")
+                map("gD", vim.lsp.buf.declaration, "Goto Declaration")
+                map("gs", require("telescope.builtin").lsp_document_symbols, "Telescope Document Symbols")
+                map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Telescope Workspace Symbols")
+                map("K", vim.lsp.buf.hover, "Hover Documentation")
                 -- map("<C-k>", vim.lsp.buf.signature_help, "Signature documentation")
 
                 -- Navigation
