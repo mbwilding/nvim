@@ -1,5 +1,8 @@
 -- CCC allows you to adjust colors and highlights hex colors
 
+-- Mappings
+-- i = Cycle input
+
 return {
     "uga-rosa/ccc.nvim",
     keys = {
@@ -27,6 +30,7 @@ return {
     opts = {
         highlighter = {
             auto_enable = true,
+            test = "#356382",
             lsp = true,
         },
     },
