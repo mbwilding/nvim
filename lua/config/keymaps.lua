@@ -74,29 +74,19 @@ vim.keymap.set("n", "<leader>ic", function()
 end, { desc = "Toggle Columns" })
 
 -- HTML Generation
-vim.keymap.set("n", '<leader>ht', function()
+vim.keymap.set("n", "<leader>ht", function()
     vim.cmd("TOhtml")
     vim.defer_fn(function()
         vim.lsp.buf.format({ async = false })
     end, 200)
 end, { desc = "HTML" })
-vim.keymap.set("v", '<leader>ht', function()
+vim.keymap.set("v", "<leader>ht", function()
     vim.cmd("'<,'>TOhtml")
     vim.defer_fn(function()
         vim.lsp.buf.format({ async = false })
     end, 200)
 end, { desc = "HTML" })
 
--- (Un)indent
-vim.keymap.set("n", ">", ">>", { desc = "Indent" })
-vim.keymap.set("n", "<", "<<", { desc = "Unindent" })
-vim.keymap.set("v", ">", ">gv", { desc = "Indent" })
-vim.keymap.set("v", "<", "<gv", { desc = "Unindent" })
-
--- Move line
-vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { desc = "Move line down" })
-vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { desc = "Move line up" })
-
 -- Debug
--- vim.keymap.set("n", "\\m", "<cmd>messages<CR>", { desc = "Debug: Messages" })
-vim.keymap.set("n", "\\i", "<cmd>Inspect<CR>", { desc = "Highlights: Inspect" })
+-- vim.keymap.set("n", "\\m", "<CMD>messages<CR>", { desc = "Debug: Messages" })
+vim.keymap.set("n", "\\i", "<CMD>Inspect<CR>", { desc = "Highlights: Inspect" })
