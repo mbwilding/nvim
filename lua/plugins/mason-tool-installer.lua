@@ -18,6 +18,7 @@ return {
 				"prettierd",
 				"eslint_d",
 				"xmlformatter",
+                "nixpkgs-fmt"
 				-- "sonarlint-language-server",
 			},
 			-- if set to true this will check each tool for updates. If updates

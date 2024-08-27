@@ -40,6 +40,8 @@ return {
             azure_pipelines_ls = {},
             docker_compose_language_service = {},
             dockerls = {},
+            -- nginx_language_server = {},
+            nil_ls = {},
             tsserver = {
                 settings = {
                     javascript = {
