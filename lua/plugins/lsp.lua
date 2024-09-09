@@ -12,10 +12,6 @@ return {
             vim.keymap.set("n", keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
         end
 
-        local rust = {
-            cmd = { "rust-analyzer" },
-        }
-
         local servers = {
             -- DONE
             rust_analyzer = {},
@@ -32,6 +28,9 @@ return {
             nil_ls = {},
             taplo = {},
             jqls = {},
+            pyright = {},
+            glsl_analyzer = {},
+            htmx = {},
             bashls = {
                 filetypes = { "sh", "zsh", "zshrc" }
             },
@@ -62,7 +61,6 @@ return {
                 },
                 filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
             },
-            glsl_analyzer = {},
             yamlls = {
                 settings = {
                     yaml = {
