@@ -42,7 +42,7 @@ return {
             dockerls = {},
             -- nginx_language_server = {},
             nil_ls = {},
-            tsserver = {
+            ts_ls = {
                 settings = {
                     javascript = {
                         inlayHints = {
