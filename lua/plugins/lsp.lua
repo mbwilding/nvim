@@ -1,8 +1,6 @@
 return {
-    "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
     dependencies = {
-        "williamboman/mason.nvim",
-        "neovim/nvim-lspconfig",
         "b0o/schemastore.nvim",
         "nvim-telescope/telescope.nvim",
         "Issafalcon/lsp-overloads.nvim",
@@ -10,12 +8,10 @@ return {
         "Decodetalkers/csharpls-extended-lsp.nvim",
     },
     config = function()
-        -- on_attach function to overwrite the default keymaps
         local function map(keys, func, desc, bufnr)
             vim.keymap.set("n", keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
         end
 
-        -- These can have more fields like cmd, settings and filetypes
         local servers = {
             arduino_language_server = {},
             volar = {},
@@ -40,7 +36,6 @@ return {
             azure_pipelines_ls = {},
             docker_compose_language_service = {},
             dockerls = {},
-            -- nginx_language_server = {},
             nil_ls = {},
             ts_ls = {
                 settings = {
@@ -362,22 +357,6 @@ return {
             },
         }
 
-        require("mason").setup({
-            max_concurrent_installers = 10,
-        })
-
-        require("mason-lspconfig").setup_handlers({
-            -- The first entry (without a key) will be the default handler
-            -- and will be called for each installed server that doesn't have
-            -- a dedicated handler.
-            function(server_name) -- default handler
-                if not servers[server_name] then
-                    require("lspconfig")[server_name].setup({})
-                end
-            end,
-        })
-
-        -- Capabilities
         local capabilities = vim.tbl_deep_extend(
             "force",
             vim.lsp.protocol.make_client_capabilities(),
@@ -390,74 +369,61 @@ return {
             lineFoldingOnly = true,
         }
 
-        require("mason-lspconfig").setup({
-            automatic_installation = true,
-            -- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
-            ensure_installed = vim.tbl_keys(servers),
-            handlers = {
-                function(server_name)
-                    local server = servers[server_name] or {}
+        for server_name, server in pairs(servers) do
+            if server.enabled == false then
+                return
+            end
 
-                    -- Early exit if disabled
-                    if server.enabled == false then
-                        return
+            require("lspconfig")[server_name].setup({
+                cmd = server.cmd,
+                settings = server.settings,
+                filetypes = server.filetypes,
+                handlers = server.handlers,
+                capabilities = capabilities,
+                on_attach = function(client, bufnr)
+                    -- Enable inlay hints if supported
+                    if client.server_capabilities.inlayHintProvider or server.forceInlayHints then
+                        vim.lsp.inlay_hint.enable(true)
+
+                        map("<leader>ih", function()
+                            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+                        end, "Inlay Hints", bufnr)
                     end
 
-                    require("lspconfig")[server_name].setup({
-                        cmd = server.cmd,
-                        settings = server.settings,
-                        filetypes = server.filetypes,
-                        handlers = server.handlers,
-                        -- This handles overriding only values explicitly passed
-                        -- by the server configuration above. Useful when disabling
-                        -- certain features of an LSP (for example, turning off formatting for tsserver)
-                        capabilities = capabilities,
-                        on_attach = function(client, bufnr)
-                            -- Enable inlay hints if supported
-                            if client.server_capabilities.inlayHintProvider or server.forceInlayHints then
-                                vim.lsp.inlay_hint.enable(true)
+                    -- Set up mappings
+                    map("gd", require("telescope.builtin").lsp_definitions, "Telescope Definition", bufnr)
+                    map("<leader>D", require("telescope.builtin").lsp_type_definitions,
+                        "Telescope Type Definition", bufnr)
+                    map("gr", require("telescope.builtin").lsp_references, "Telescope References", bufnr)
+                    map("gi", require("telescope.builtin").lsp_implementations, "Telescope Implementation", bufnr)
 
-                                map("<leader>ih", function()
-                                    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-                                end, "Inlay Hints", bufnr)
-                            end
+                    -- Common mappings
+                    map("<leader>f", function()
+                        vim.lsp.buf.format({ async = true })
+                    end, "Format", bufnr)
+                    map("gD", vim.lsp.buf.declaration, "Goto Declaration", bufnr)
+                    map("gs", require("telescope.builtin").lsp_document_symbols, "Telescope Document Symbols",
+                        bufnr)
+                    map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols,
+                        "Telescope Workspace Symbols", bufnr)
+                    map("K", vim.lsp.buf.hover, "Hover Documentation", bufnr)
+                    -- map("<C-k>", vim.lsp.buf.signature_help, "Signature documentation", bufnr)
 
-                            -- Set up mappings
-                            map("gd", require("telescope.builtin").lsp_definitions, "Telescope Definition", bufnr)
-                            map("<leader>D", require("telescope.builtin").lsp_type_definitions,
-                                "Telescope Type Definition", bufnr)
-                            map("gr", require("telescope.builtin").lsp_references, "Telescope References", bufnr)
-                            map("gi", require("telescope.builtin").lsp_implementations, "Telescope Implementation", bufnr)
+                    -- Navigation
+                    map("<C-p>", "<C-t>", "Navigate Previous", bufnr)
+                    map("<C-n>", "<CMD>tag<CR>", "Navigate Next", bufnr)
 
-                            -- Common mappings
-                            map("<leader>f", function()
-                                vim.lsp.buf.format({ async = true })
-                            end, "Format", bufnr)
-                            map("gD", vim.lsp.buf.declaration, "Goto Declaration", bufnr)
-                            map("gs", require("telescope.builtin").lsp_document_symbols, "Telescope Document Symbols",
-                                bufnr)
-                            map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols,
-                                "Telescope Workspace Symbols", bufnr)
-                            map("K", vim.lsp.buf.hover, "Hover Documentation", bufnr)
-                            -- map("<C-k>", vim.lsp.buf.signature_help, "Signature documentation", bufnr)
+                    -- Set up signature help overloads
+                    if client.server_capabilities.signatureHelpProvider then
+                        require("lsp-overloads").setup(client, {})
+                    end
 
-                            -- Navigation
-                            map("<C-p>", "<C-t>", "Navigate Previous", bufnr)
-                            map("<C-n>", "<CMD>tag<CR>", "Navigate Next", bufnr)
-
-                            -- Set up signature help overloads
-                            if client.server_capabilities.signatureHelpProvider then
-                                require("lsp-overloads").setup(client, {})
-                            end
-
-                            -- Call the server's on_attach, if it exists
-                            if server.on_attach then
-                                server.on_attach(client, bufnr)
-                            end
-                        end,
-                    })
+                    -- Call the server's on_attach, if it exists
+                    if server.on_attach then
+                        server.on_attach(client, bufnr)
+                    end
                 end,
-            },
-        })
-    end,
+            })
+        end
+    end
 }
