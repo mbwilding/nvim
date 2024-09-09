@@ -5,7 +5,7 @@ return {
         "nvim-telescope/telescope.nvim",
         "Issafalcon/lsp-overloads.nvim",
         "Hoffs/omnisharp-extended-lsp.nvim",
-        "Decodetalkers/csharpls-extended-lsp.nvim",
+        -- "Decodetalkers/csharpls-extended-lsp.nvim",
     },
     config = function()
         local function map(keys, func, desc, bufnr)
@@ -13,185 +13,12 @@ return {
         end
 
         local servers = {
-            arduino_language_server = {},
-            volar = {},
-            zls = {},
-            bashls = {
-                filetypes = { "sh", "zsh", "zshrc" }
-            },
-            clangd = {},
+            -- DONE
             rust_analyzer = {
-                forceInlayHints = true,
-            },
-            gopls = {},
-            mesonlsp = {},
-            powershell_es = {
-                settings = {
-                    powershell = {
-                        enableProfileLoading = false,
-                    },
-                },
-            },
-            html = {},
-            azure_pipelines_ls = {},
-            docker_compose_language_service = {},
-            dockerls = {},
-            nil_ls = {},
-            ts_ls = {
-                settings = {
-                    javascript = {
-                        inlayHints = {
-                            enumMemberValues = {
-                                enabled = true
-                            },
-                            functionLikeReturnTypes = {
-                                enabled = true
-                            },
-                            parameterNames = {
-                                enabled = true,
-                                suppressWhenArgumentMatchesName = true,
-                            },
-                            parameterTypes = {
-                                enabled = true,
-                            },
-                            propertyDeclarationTypes = {
-                                enabled = true,
-                            },
-                            variableTypes = {
-                                enabled = true,
-                                suppressWhenTypeMatchesName = true,
-                            },
-                        },
-                    },
-                    typescript = {
-                        inlayHints = {
-                            enumMemberValues = {
-                                enabled = true
-                            },
-                            functionLikeReturnTypes = {
-                                enabled = true
-                            },
-                            parameterNames = {
-                                enabled = true,
-                                suppressWhenArgumentMatchesName = true,
-                            },
-                            parameterTypes = {
-                                enabled = true,
-                            },
-                            propertyDeclarationTypes = {
-                                enabled = true,
-                            },
-                            variableTypes = {
-                                enabled = true,
-                                suppressWhenTypeMatchesName = true,
-                            },
-                        },
-                    },
-                },
-            },
-            taplo = {},
-            sqls = {},
-            pylsp = {},
-            jqls = {},
-            jsonls = {},
-            typos_lsp = {},
-            lemminx = {
-                settings = {
-                    xml = {
-                        validation = {
-                            filters = {
-                                {
-                                    pattern = "**.*sproj",
-                                    noGrammar = "ignore",
-                                },
-                            },
-                        },
-                    },
-                },
-            },
-            tailwindcss = {
-                settings = {
-                    tailwindCSS = {
-                        experimental = {
-                            classRegex = {
-                                { "cva\\(([^)]*)\\)", "[\"'`]?([^\"'`]*).*?[\"'`]?" },
-                                { "cx\\(([^)]*)\\)",  "[\"'`]?([^\"'`]*).*?[\"'`]?" }
-                            },
-                        },
-                    },
-                },
-                filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
-            },
-            glsl_analyzer = {},
-            yamlls = {
-                settings = {
-                    yaml = {
-                        customTags = {
-                            -- AWS CloudFormation
-                            "!Ref",
-                            "!If sequence",
-                            "!GetAtt",
-                            "!GetAZs",
-                            "!ImportValue",
-                            "!ImportValue mapping",
-                            "!Join sequence",
-                            "!Sub",
-                            "!Sub sequence",
-                            "!FindInMap sequence",
-                            "!Select sequence",
-                            "!Split sequence",
-                            "!Not sequence",
-                            "!Equals sequence",
-                            "!And sequence",
-                            "!Or sequence",
-                            "!Condition",
-                            "!Base64",
-                            "!Cidr",
-                            "!Ref sequence",
-                            "!If mapping",
-                            "!Join mapping",
-                            "!Select mapping",
-                            "!Split mapping",
-                            "!Not mapping",
-                            "!Equals mapping",
-                            "!And mapping",
-                            "!Or mapping",
-                            -- GitLab
-                            "!reference sequence",
-                        },
-                        schemas = require("schemastore").json.schemas(),
-                        validate = { enable = true },
-                    },
-                },
-            },
-            lua_ls = {
-                settings = {
-                    Lua = {
-                        runtime = { version = "LuaJIT" },
-                        workspace = {
-                            checkThirdParty = false,
-                            library = {
-                                "${3rd}/luv/library",
-                                unpack(vim.api.nvim_get_runtime_file("", true)),
-                            },
-                        },
-                        completion = {
-                            callSnippet = "Replace",
-                        },
-                        -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-                        -- diagnostics = { disable = { 'missing-fields' } },
-                    },
-                },
-            },
-            csharp_ls = {
-                enabled = false,
-                handlers = {
-                    ["textDocument/definition"] = require("csharpls_extended").handler,
-                    ["textDocument/typeDefinition"] = require("csharpls_extended").handler,
-                },
+                cmd = { "rust-analyzer" },
             },
             omnisharp = {
-                forceInlayHints = true,
+                cmd = { "OmniSharp" },
                 settings = {
                     csharp = {
                         inlayHints = {
@@ -355,6 +182,186 @@ return {
                         bufnr)
                 end,
             },
+            clangd = {
+                cmd = { "clangd" },
+            },
+
+            -- TODO
+
+            -- arduino_language_server = {},
+            -- volar = {},
+            -- zls = {},
+            -- bashls = {
+            --     filetypes = { "sh", "zsh", "zshrc" }
+            -- },
+            -- clangd = {},
+            -- gopls = {},
+            -- mesonlsp = {},
+            -- powershell_es = {
+            --     settings = {
+            --         powershell = {
+            --             enableProfileLoading = false,
+            --         },
+            --     },
+            -- },
+            -- html = {},
+            -- azure_pipelines_ls = {},
+            -- docker_compose_language_service = {},
+            -- dockerls = {},
+            -- nil_ls = {},
+            -- ts_ls = {
+            --     settings = {
+            --         javascript = {
+            --             inlayHints = {
+            --                 enumMemberValues = {
+            --                     enabled = true
+            --                 },
+            --                 functionLikeReturnTypes = {
+            --                     enabled = true
+            --                 },
+            --                 parameterNames = {
+            --                     enabled = true,
+            --                     suppressWhenArgumentMatchesName = true,
+            --                 },
+            --                 parameterTypes = {
+            --                     enabled = true,
+            --                 },
+            --                 propertyDeclarationTypes = {
+            --                     enabled = true,
+            --                 },
+            --                 variableTypes = {
+            --                     enabled = true,
+            --                     suppressWhenTypeMatchesName = true,
+            --                 },
+            --             },
+            --         },
+            --         typescript = {
+            --             inlayHints = {
+            --                 enumMemberValues = {
+            --                     enabled = true
+            --                 },
+            --                 functionLikeReturnTypes = {
+            --                     enabled = true
+            --                 },
+            --                 parameterNames = {
+            --                     enabled = true,
+            --                     suppressWhenArgumentMatchesName = true,
+            --                 },
+            --                 parameterTypes = {
+            --                     enabled = true,
+            --                 },
+            --                 propertyDeclarationTypes = {
+            --                     enabled = true,
+            --                 },
+            --                 variableTypes = {
+            --                     enabled = true,
+            --                     suppressWhenTypeMatchesName = true,
+            --                 },
+            --             },
+            --         },
+            --     },
+            -- },
+            -- taplo = {},
+            -- sqls = {},
+            -- pylsp = {},
+            -- jqls = {},
+            -- jsonls = {},
+            -- typos_lsp = {},
+            -- lemminx = {
+            --     settings = {
+            --         xml = {
+            --             validation = {
+            --                 filters = {
+            --                     {
+            --                         pattern = "**.*sproj",
+            --                         noGrammar = "ignore",
+            --                     },
+            --                 },
+            --             },
+            --         },
+            --     },
+            -- },
+            -- tailwindcss = {
+            --     settings = {
+            --         tailwindCSS = {
+            --             experimental = {
+            --                 classRegex = {
+            --                     { "cva\\(([^)]*)\\)", "[\"'`]?([^\"'`]*).*?[\"'`]?" },
+            --                     { "cx\\(([^)]*)\\)",  "[\"'`]?([^\"'`]*).*?[\"'`]?" }
+            --                 },
+            --             },
+            --         },
+            --     },
+            --     filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
+            -- },
+            -- glsl_analyzer = {},
+            -- yamlls = {
+            --     settings = {
+            --         yaml = {
+            --             customTags = {
+            --                 -- AWS CloudFormation
+            --                 "!Ref",
+            --                 "!If sequence",
+            --                 "!GetAtt",
+            --                 "!GetAZs",
+            --                 "!ImportValue",
+            --                 "!ImportValue mapping",
+            --                 "!Join sequence",
+            --                 "!Sub",
+            --                 "!Sub sequence",
+            --                 "!FindInMap sequence",
+            --                 "!Select sequence",
+            --                 "!Split sequence",
+            --                 "!Not sequence",
+            --                 "!Equals sequence",
+            --                 "!And sequence",
+            --                 "!Or sequence",
+            --                 "!Condition",
+            --                 "!Base64",
+            --                 "!Cidr",
+            --                 "!Ref sequence",
+            --                 "!If mapping",
+            --                 "!Join mapping",
+            --                 "!Select mapping",
+            --                 "!Split mapping",
+            --                 "!Not mapping",
+            --                 "!Equals mapping",
+            --                 "!And mapping",
+            --                 "!Or mapping",
+            --                 -- GitLab
+            --                 "!reference sequence",
+            --             },
+            --             schemas = require("schemastore").json.schemas(),
+            --             validate = { enable = true },
+            --         },
+            --     },
+            -- },
+            -- lua_ls = {
+            --     settings = {
+            --         Lua = {
+            --             runtime = { version = "LuaJIT" },
+            --             workspace = {
+            --                 checkThirdParty = false,
+            --                 library = {
+            --                     "${3rd}/luv/library",
+            --                     unpack(vim.api.nvim_get_runtime_file("", true)),
+            --                 },
+            --             },
+            --             completion = {
+            --                 callSnippet = "Replace",
+            --             },
+            --             -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+            --             -- diagnostics = { disable = { 'missing-fields' } },
+            --         },
+            --     },
+            -- },
+            -- csharp_ls = {
+            --     enabled = false,
+            --     handlers = {
+            --         ["textDocument/definition"] = require("csharpls_extended").handler,
+            --         ["textDocument/typeDefinition"] = require("csharpls_extended").handler,
+            --     },
+            -- },
         }
 
         local capabilities = vim.tbl_deep_extend(
@@ -382,9 +389,8 @@ return {
                 capabilities = capabilities,
                 on_attach = function(client, bufnr)
                     -- Enable inlay hints if supported
-                    if client.server_capabilities.inlayHintProvider or server.forceInlayHints then
-                        vim.lsp.inlay_hint.enable(true)
-
+                    vim.lsp.inlay_hint.enable(server.forceInlayHints == true)
+                    if client.server_capabilities.inlayHintProvider then
                         map("<leader>ih", function()
                             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
                         end, "Inlay Hints", bufnr)
