@@ -12,10 +12,17 @@ return {
             vim.keymap.set("n", keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
         end
 
+        local rust = {
+            cmd = { "rust-analyzer" },
+        }
+
         local servers = {
             -- DONE
             rust_analyzer = {
                 cmd = { "rust-analyzer" },
+            },
+            clangd = {
+                cmd = { "clangd" },
             },
             omnisharp = {
                 cmd = { "OmniSharp" },
@@ -28,90 +35,17 @@ return {
                             enableInlayHintsForTypes = true,
                         },
                         debug = {
-                            -- console = "internalConsole",
-                            -- enableStepFiltering = true,
-                            expressionEvaluationOptions = {
-                                -- allowFastEvaluate = true,
-                                -- allowImplicitFuncEval = true,
-                                -- allowToString = true,
-                                -- showRawValues = false,
-                            },
-                            -- justMyCode = true,
-                            logging = {
-                                -- browserStdOut = true,
-                                -- consoleUsageMessage = true,
-                                diagnosticsLog = {
-                                    -- debugEngineAPITracing = "none",
-                                    -- debugRuntimeEventTracing = false,
-                                    -- dispatcherMessages = "none",
-                                    -- expressionEvaluationTracing = false,
-                                    -- protocolMessages = false,
-                                    -- startDebuggingTracing = false,
-                                },
-                                -- elapsedTiming = false,
-                                -- engineLogging = false,
-                                -- exceptions = true,
-                                -- moduleLoad = true,
-                                -- processExit = true,
-                                -- programOutput = true,
-                                -- threadExit = false,
-                            },
-                            -- requireExactSource = true,
-                            -- sourceFileMap = {},
-                            -- stopAtEntry = false,
-                            -- suppressJITOptimizations = false,
                             symbolOptions = {
-                                -- cachePath = "",
-                                moduleFilter = {
-                                    -- excludedModules = {},
-                                    -- includeSymbolsNextToModules = true,
-                                    -- includeSymbolsOnDemand = true,
-                                    -- includedModules = {},
-                                    -- mode = "loadAllButExcluded",
-                                },
                                 searchMicrosoftSymbolServer = true,
                                 searchNuGetOrgSymbolServer = true,
-                                -- searchPaths = {},
                             },
                         },
                         format = {
-                            -- enable = true,
+                            enable = true,
                         },
-                        -- maxProjectFileCountForDiagnosticAnalysis = 1000,
-                        referencesCodeLens = {
-                            -- filteredSymbols = {},
-                        },
-                        -- semanticHighlighting.enabled = true,
-                        -- showOmnisharpLogOnError = true,
-                        -- suppressBuildAssetsNotification = false,
-                        -- suppressDotnetInstallWarning = false,
-                        -- suppressDotnetRestoreNotification = false,
-                        -- suppressHiddenDiagnostics = true,
-                        -- suppressProjectJsonWarning = false,
+                        maxProjectFileCountForDiagnosticAnalysis = 10000,
                     },
                     dotnet = {
-                        -- defaultSolution = "",
-                        backgroundAnalysis = {
-                            -- analyzerDiagnosticsScope = "openFiles",
-                            -- compilerDiagnosticsScope = "openFiles",
-                        },
-                        codeLens = {
-                            -- enableReferencesCodeLens = true,
-                            -- enableTestsCodeLens = true,
-                        },
-                        completion = {
-                            -- provideRegexCompletions = "true",
-                            -- showCompletionItemsFromUnimportedNamespaces = true,
-                            -- showNameCompletionSuggestions = "true",
-                        },
-                        highlighting = {
-                            -- highlightRelatedJsonComponents = "true",
-                            -- highlightRelatedRegexComponents = "true",
-                        },
-                        implementType = {
-                            -- insertionBehavior = "withOtherMembersOfTheSameKind",
-                            -- propertyGenerationBehavior = "preferThrowingProperties",
-                        },
                         inlayHints = {
                             enableInlayHintsForIndexerParameters = true,
                             enableInlayHintsForLiteralParameters = true,
@@ -122,55 +56,14 @@ return {
                             suppressInlayHintsForParametersThatMatchArgumentName = true,
                             suppressInlayHintsForParametersThatMatchMethodIntent = true,
                         },
-                        -- navigation.navigateToDecompiledSources = "true",
-                        -- quickInfo.showRemarksInQuickInfo = "true",
-                        -- symbolSearch.searchReferenceAssemblies = true,
-                        -- unitTestDebuggingOptions = {},
-                        -- unitTests.runSettingsPath = "",
-                        -- dotnetPath = "",
-                        -- enableXamlTools = true,
-                        -- preferCSharpExtension = false,
-                        -- projects.binaryLogPath = "",
-                        -- projects.enableAutomaticRestore = true,
-                        -- server.componentPaths = {},
-                        -- server.crashDumpPath = "",
-                        -- server.extensionPaths = {},
-                        -- server.path = "",
-                        -- server.startTimeout = 30000,
-                        -- server.suppressLspErrorToasts = false,
-                        -- server.trace = "Information",
-                        -- server.waitForDebugger = false,
                     },
                     omnisharp = {
                         enableAsyncCompletion = true,
                         enableDecompilationSupport = true,
-                        -- enableEditorConfigSupport = true,
+                        enableEditorConfigSupport = true,
                         enableLspDriver = true,
-                        -- enableMsBuildLoadProjectsOnDemand = false,
-                        -- loggingLevel = "information",
-                        -- maxFindSymbolsItems = 1000,
-                        -- maxProjectResults = 250,
-                        -- minFindSymbolsFilterLength = 0,
-                        -- monoPath = "",
                         organizeImportsOnFormat = true,
-                        -- projectFilesExcludePattern = "**/node_modules/**,**/.git/**,**/bower_components/**",
-                        -- projectLoadTimeout = 60,
                         sdkIncludePrereleases = true,
-                        -- sdkPath = "",
-                        -- sdkVersion = "",
-                        -- useEditorFormattingSettings = true,
-                        -- useModernNet = true,
-                    },
-                    razor = {
-                        -- languageServer.debug = false,
-                        -- languageServer.directory = "",
-                        -- languageServer.forceRuntimeCodeGeneration = false,
-                        -- server.trace = "Information",
-                        -- completion.commitElementsWithSpace = "false",
-                        -- devmode = false,
-                        -- format.codeBlockBraceOnNextLine = false,
-                        -- format.enable = true,
-                        -- plugin.path = "",
                     },
                 },
                 on_attach = function(client, bufnr)
@@ -181,9 +74,6 @@ return {
                     map("gi", require("omnisharp_extended").telescope_lsp_implementation, "Telescope Implementation",
                         bufnr)
                 end,
-            },
-            clangd = {
-                cmd = { "clangd" },
             },
 
             -- TODO
