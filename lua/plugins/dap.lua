@@ -4,32 +4,12 @@ return {
     "mfussenegger/nvim-dap",
     dependencies = {
         "rcarriga/nvim-dap-ui",
-        "williamboman/mason.nvim",
-        "jay-babu/mason-nvim-dap.nvim",
         "leoluz/nvim-dap-go",
-		"nvim-neotest/nvim-nio",
+        "nvim-neotest/nvim-nio",
     },
     config = function()
         local dap = require("dap")
         local dapui = require("dapui")
-
-        require("mason-nvim-dap").setup({
-            -- Makes a best effort to setup the various debuggers with
-            -- reasonable debug configurations
-            automatic_setup = true,
-            -- You can provide additional configuration to the handlers,
-            -- see mason-nvim-dap README for more information
-            handlers = {},
-            -- You'll need to check that you have the required things installed
-            -- online, please don't ask me how to install them :)
-            ensure_installed = {
-                -- Update this to ensure that you have the debuggers for the langs you want
-
-                -- "delve", -- go
-                "coreclr", -- netcoredbg
-                "codelldb", -- cpp, rust
-            },
-        })
 
         -- Basic debugging keymaps, feel free to change to your liking!
         vim.keymap.set("n", "<leader>dap", dapui.toggle, { desc = "Debug: See last session result." })
@@ -90,13 +70,27 @@ return {
             dapui.close()
         end
 
+        local function find_path(name, paths)
+            for _, path in ipairs(paths) do
+                if vim.fn.filereadable(path) == 1 then
+                    return path
+                end
+            end
+
+            print(name .. " not found")
+
+            return nil
+        end
+
         -- Install golang specific config
         -- require('dap-go').setup()
 
         ---- CSHARP
         dap.adapters.coreclr = {
             type = "executable",
-            command = "/usr/bin/netcoredbg",
+            command = find_path("netcoredbg", {
+                vim.env.HOME .. "/.local/state/nix/profiles/home-manager/home-path/bin/netcoredbg",
+            }),
             args = { "--interpreter=vscode" },
         }
 
@@ -112,23 +106,6 @@ return {
         }
 
         ---- RUST
-        local function find_codelldb_path()
-            local possible_paths = {
-                vim.env.HOME .. "/.local/share/nvim/mason/bin/codelldb",
-                vim.env.HOME .. "/AppData/Local/nvim-data/mason/packages/codelldb/extension/adapter/codelldb.exe",
-            }
-
-            for _, path in ipairs(possible_paths) do
-                if vim.fn.filereadable(path) == 1 then
-                    return path
-                end
-            end
-
-            print("codelldb not found")
-
-            return nil
-        end
-
         local function find_rust_target()
             local metadata = vim.fn.json_decode(vim.fn.system("cargo metadata --no-deps --format-version 1"))
             if metadata and metadata["packages"] then
@@ -150,7 +127,12 @@ return {
             type = "server",
             port = "${port}",
             executable = {
-                command = find_codelldb_path(),
+                command = find_path("codelldb", {
+                    vim.env.HOME ..
+                    "/.local/state/nix/profiles/home-manager/home-path/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb",
+                    -- vim.env.HOME .. "/.local/share/nvim/mason/bin/codelldb",
+                    -- vim.env.HOME .. "/AppData/Local/nvim-data/mason/packages/codelldb/extension/adapter/codelldb.exe",
+                }),
                 args = { "--port", "${port}" },
             },
         }
