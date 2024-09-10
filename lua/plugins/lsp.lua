@@ -115,8 +115,11 @@ return {
                         completion = {
                             callSnippet = "Replace",
                         },
-                        -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-                        -- diagnostics = { disable = { 'missing-fields' } },
+                        -- diagnostics = {
+                        --     disable = {
+                        --         "missing-fields"
+                        --     }
+                        -- },
                     },
                 },
             },
@@ -223,9 +226,7 @@ return {
                         bufnr)
                 end,
             },
-
-            -- TODO
-
+            ---- TODO
             -- html = {},
             -- azure_pipelines_ls = {},
             -- powershell_es = {
@@ -235,7 +236,6 @@ return {
             --         },
             --     },
             -- },
-
             -- csharp_ls = {
             --     enabled = false,
             --     handlers = {
