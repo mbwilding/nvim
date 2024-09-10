@@ -1,3 +1,5 @@
+-- Custom theme based on the Rider Dark theme
+
 return {
 	"mbwilding/gronk.nvim",
     lazy = false,

@@ -113,9 +113,9 @@ return {
                 section = { ">", "v" },
             },
             integrations = {
-                telescope = nil,
-                diffview = nil,
-                fzf_lua = nil,
+                telescope = true,
+                diffview = true,
+                fzf_lua = true,
             },
             sections = {
                 sequencer = {

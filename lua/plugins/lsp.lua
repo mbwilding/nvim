@@ -251,11 +251,11 @@ return {
             require("cmp_nvim_lsp").default_capabilities()
         )
 
-        -- UFO (Folding)
-        capabilities.textDocument.foldingRange = {
-            dynamicRegistration = false,
-            lineFoldingOnly = true,
-        }
+        ---- UFO (Folding)
+        -- capabilities.textDocument.foldingRange = {
+        --     dynamicRegistration = false,
+        --     lineFoldingOnly = true,
+        -- }
 
         for server_name, server in pairs(servers) do
             if server.enabled == false then

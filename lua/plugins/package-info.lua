@@ -3,4 +3,7 @@ return {
 	dependencies = {
 		"MunifTanjim/nui.nvim",
 	},
+    opts = {
+        package_manager = "bun"
+    }
 }

@@ -173,7 +173,7 @@ return {
         })
 
         require("treesitter-context").setup({
-            enable = false,
+            enable = true,
             mode = "topline", -- Also: cursor
         })
 

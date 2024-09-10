@@ -8,7 +8,7 @@ return {
         local WIDTH_RATIO = 0.5
 
         require("nvim-tree").setup({
-            disable_netrw = true,
+            -- disable_netrw = true, -- Oil
             hijack_netrw = false, -- Oil
             respect_buf_cwd = true,
             sort = {
