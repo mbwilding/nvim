@@ -13,7 +13,6 @@ return {
         end
 
         local servers = {
-            -- DONE
             rust_analyzer = {},
             clangd = {},
             typos_lsp = {},
