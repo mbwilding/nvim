@@ -16,7 +16,6 @@ return {
             rust_analyzer = {},
             clangd = {},
             typos_lsp = {},
-            mesonlsp = {},
             vuels = {},
             arduino_language_server = {},
             zls = {},
