@@ -29,6 +29,12 @@ return {
             pyright = {},
             glsl_analyzer = {},
             htmx = {},
+            jsonls = {
+                cmd = { "vscode-json-languageserver", "--stdio" },
+                on_attach = function(client, bufnr)
+                    map("<leader>f", "<CMD>!jsonfmt % --write<CR>", "Format", bufnr)
+                end,
+            },
             bashls = {
                 filetypes = { "sh", "zsh", "zshrc" }
             },
