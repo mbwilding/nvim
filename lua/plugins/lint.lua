@@ -1,15 +1,3 @@
--- TODO: Add linters to system then enable
-
--- "yamllint",
--- "jsonlint",
--- "actionlint",
--- "markdownlint",
--- "clang-format",
--- "prettierd",
--- "eslint_d",
--- "xmlformatter",
--- "nixpkgs-fmt"
-
 return {
 	"mfussenegger/nvim-lint",
 	lazy = true,
