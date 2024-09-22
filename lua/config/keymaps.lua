@@ -1,12 +1,6 @@
 -- Map ; to :
 vim.keymap.set("n", ";", ":")
 
--- Disable arrow navigation
--- vim.keymap.set({ "n", "i" }, "<Up>", "<Nop>")
--- vim.keymap.set({ "n", "i" }, "<Down>", "<Nop>")
--- vim.keymap.set({ "n", "i" }, "<Left>", "<Nop>")
--- vim.keymap.set({ "n", "i" }, "<Right>", "<Nop>")
-
 -- Allow hjkl navigation in non-normal mode
 vim.keymap.set({ "i", "c" }, "<C-k>", "<Up>")
 vim.keymap.set({ "i", "c" }, "<C-j>", "<Down>")
@@ -29,8 +23,6 @@ vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
--- vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
--- vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
 -- Toggles
 vim.keymap.set("n", "<leader>ir", function()
