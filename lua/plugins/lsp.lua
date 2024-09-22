@@ -24,9 +24,7 @@ return {
                 filetypes = { "sh", "zsh", "zshrc" }
             },
             clangd = {},
-            rust_analyzer = {
-                forceInlayHints = true,
-            },
+            rust_analyzer = {},
             gopls = {},
             mesonlsp = {},
             powershell_es = {
@@ -195,7 +193,6 @@ return {
                 },
             },
             omnisharp = {
-                forceInlayHints = true,
                 settings = {
                     csharp = {
                         inlayHints = {
@@ -412,10 +409,7 @@ return {
                         -- certain features of an LSP (for example, turning off formatting for tsserver)
                         capabilities = capabilities,
                         on_attach = function(client, bufnr)
-                            -- Enable inlay hints if supported
-                            if client.server_capabilities.inlayHintProvider or server.forceInlayHints then
-                                vim.lsp.inlay_hint.enable(true)
-
+                            if client.server_capabilities.inlayHintProvider then
                                 map("<leader>ih", function()
                                     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
                                 end, "Inlay Hints", bufnr)
