@@ -26,15 +26,35 @@ return {
                 return vim.fn.executable("make") == 1 or vim.fn.executable("cmake") == 1
             end,
         },
+        {
+            "isak102/telescope-git-file-history.nvim",
+            dependencies = { "tpope/vim-fugitive" }
+        },
         -- "cbochs/grapple.nvim",
     },
     config = function()
         local actions = require("telescope.actions")
+        local gfh_actions = require("telescope").extensions.git_file_history.actions
 
         local extensions = {
             ["fzf"] = {},
             ["undo"] = {},
             ["package_info"] = {},
+            ["git_file_history"] = {
+                -- Keymaps inside the picker
+                mappings = {
+                    i = {
+                        ["<leader>sH"] = gfh_actions.open_in_browser,
+                    },
+                    n = {
+                        ["<leader>sH"] = gfh_actions.open_in_browser,
+                    },
+                },
+
+                -- The command to use for opening the browser (nil or string)
+                -- If nil, it will check if xdg-open, open, start, wslview are available, in that order.
+                browser_command = nil,
+            },
             -- ["persisted"] = {},
             ["ui-select"] = {
                 require("telescope.themes").get_dropdown(),
@@ -50,7 +70,7 @@ return {
                 git_diff_flags = {},
                 -- Show builtin git pickers when executing "show_custom_functions" or :AdvancedGitSearch
                 show_builtin_git_pickers = false,
-                entry_default_author_or_date = "author",     -- one of "author" or "date"
+                entry_default_author_or_date = "author", -- one of "author" or "date"
 
                 -- Telescope layout setup
                 telescope_theme = {
