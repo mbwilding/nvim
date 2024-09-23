@@ -3,15 +3,47 @@ return {
     opts = {
         default_chat_agent = "ChatGPT4o",
         default_command_agent = "ChatGPT4o",
+        chat_confirm_delete = false,
         agents = {
             {
                 name = "ChatGPT4o",
                 chat = true,
                 model = { model = "gpt-4o", temperature = 1.0, top_p = 1 },
-                system_prompt = "Only display the code if it is related to coding or simply answer the question directly, without unnecessary talking.",
+                system_prompt =
+                "Only display the code if it is related to coding or simply answer the question directly, without unnecessary talking.",
             },
         },
-        chat_confirm_delete = false,
+        hooks = {
+            UnitTests = function(gp, params)
+                local template = "I have the following code from {{filename}}:\n\n"
+                    .. "```{{filetype}}\n{{selection}}\n```\n\n"
+                    .. "Please respond by writing table driven unit tests for the code above."
+                local agent = gp.get_command_agent()
+                gp.Prompt(params, gp.Target.vnew, agent, template)
+            end,
+
+            Explain = function(gp, params)
+                local template = "I have the following code from {{filename}}:\n\n"
+                    .. "```{{filetype}}\n{{selection}}\n```\n\n"
+                    .. "Please respond by explaining the code above."
+                local agent = gp.get_chat_agent()
+                gp.Prompt(params, gp.Target.popup, agent, template)
+            end,
+
+            BufferChatNew = function(gp, _)
+                -- call GpChatNew command in range mode on whole buffer
+                vim.api.nvim_command("%" .. gp.config.cmd_prefix .. "ChatNew")
+            end,
+
+            Translator = function(gp, params)
+                local chat_system_prompt = "You are a Translator, please translate to English."
+                gp.cmd.ChatNew(params, chat_system_prompt)
+
+                -- -- you can also create a chat with a specific fixed agent like this:
+                -- local agent = gp.get_chat_agent("ChatGPT4o")
+                -- gp.cmd.ChatNew(params, chat_system_prompt, agent)
+            end,
+        }
     },
     config = function(_, opts)
         require("gp").setup(opts)
