@@ -7,6 +7,12 @@ vim.keymap.set({ "i", "c" }, "<C-j>", "<Down>")
 vim.keymap.set({ "i", "c" }, "<C-h>", "<Left>")
 vim.keymap.set({ "i", "c" }, "<C-l>", "<Right>")
 
+-- Window focus
+vim.keymap.set("n", "<C-h>", "<C-w>h")
+vim.keymap.set("n", "<C-j>", "<C-w>j")
+vim.keymap.set("n", "<C-k>", "<C-w>k")
+vim.keymap.set("n", "<C-l>", "<C-w>l")
+
 -- Tab close
 vim.keymap.set("n", "q", ":tabclose<CR>")
 

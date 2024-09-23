@@ -27,35 +27,19 @@ return {
             end,
         },
         {
-            "isak102/telescope-git-file-history.nvim",
+            -- "isak102/telescope-git-file-history.nvim",
+            "mbwilding/telescope-git-file-history.nvim",
             dependencies = { "tpope/vim-fugitive" }
         },
         -- "cbochs/grapple.nvim",
     },
     config = function()
-        local actions = require("telescope.actions")
-        local gfh_actions = require("telescope").extensions.git_file_history.actions
-
         local extensions = {
             ["fzf"] = {},
             ["undo"] = {},
             ["package_info"] = {},
-            ["git_file_history"] = {
-                -- Keymaps inside the picker
-                mappings = {
-                    i = {
-                        ["<leader>sH"] = gfh_actions.open_in_browser,
-                    },
-                    n = {
-                        ["<leader>sH"] = gfh_actions.open_in_browser,
-                    },
-                },
-
-                -- The command to use for opening the browser (nil or string)
-                -- If nil, it will check if xdg-open, open, start, wslview are available, in that order.
-                browser_command = nil,
-            },
-            -- ["persisted"] = {},
+            ["git_file_history"] = {},
+            -- ["persisted"] = {}
             ["ui-select"] = {
                 require("telescope.themes").get_dropdown(),
             },
@@ -91,6 +75,8 @@ return {
             -- ["noice"] = {},
             -- ["grapple"] = {},
         }
+
+        local actions = require("telescope.actions")
 
         require("telescope").setup({
             pickers = {
@@ -169,6 +155,7 @@ return {
             { desc = 'Telescope: Search Recent Files ("." for repeat)' }
         )
         vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "Telescope: Find existing buffers" })
+        vim.keymap.set("n", "<leader>sH", "<CMD>Telescope git_file_history<CR>", { desc = "Telescope: Git File History" })
 
         -- Slightly advanced example of overriding default behavior and theme
         vim.keymap.set("n", "<leader>/", function()
