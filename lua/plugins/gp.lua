@@ -1,6 +1,8 @@
 return {
     "robitx/gp.nvim",
     opts = {
+        default_chat_agent = "ChatGPT4o",
+        default_command_agent = "ChatGPT4o",
         agents = {
             {
                 name = "ChatGPT4o",
