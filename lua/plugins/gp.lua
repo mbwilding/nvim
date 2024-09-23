@@ -4,10 +4,12 @@ return {
         agents = {
             {
                 name = "ChatGPT4o",
-                model = { model = "gpt-4o" },
+                chat = true,
+                model = { model = "gpt-4o", temperature = 1.0, top_p = 1 },
                 system_prompt = "Only display the code if it is related to coding or simply answer the question directly, without unnecessary talking.",
             },
         },
+        chat_confirm_delete = false,
     },
     config = function(_, opts)
         require("gp").setup(opts)
