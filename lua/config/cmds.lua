@@ -1,0 +1,6 @@
+vim.api.nvim_create_user_command("Push", function()
+  local handle = io.popen("git add . && git commit -m update && git push")
+  local result = handle:read("*a")
+  handle:close()
+  print(result)
+end, {})
