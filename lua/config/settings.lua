@@ -17,7 +17,7 @@ vim.o.hlsearch = true
 vim.wo.number = true
 
 -- Gutter relative line numbers
-vim.wo.relativenumber = true
+vim.wo.relativenumber = false
 
 -- Gutter sign column
 vim.wo.signcolumn = "yes"
