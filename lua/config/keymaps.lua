@@ -36,7 +36,7 @@ vim.keymap.set("n", "<leader>ir", function()
 end, { desc = "Toggle relative/absolute line numbers" })
 
 vim.keymap.set("n", "<leader>iw", function()
-	vim.wo.wrap = not vim.wo.wrap
+    vim.wo.wrap = not vim.wo.wrap
 end, { desc = "Toggle Word Wrap" })
 
 -- Redo
@@ -64,11 +64,11 @@ vim.keymap.set({ "n", "v" }, "<MiddleMouse>", '"+p')
 -- Rulers
 local columns = "81,121"
 vim.keymap.set("n", "<leader>ic", function()
-  if vim.o.colorcolumn == columns then
-    vim.o.colorcolumn = ""
-  else
-    vim.o.colorcolumn = columns
-  end
+    if vim.o.colorcolumn == columns then
+        vim.o.colorcolumn = ""
+    else
+        vim.o.colorcolumn = columns
+    end
 end, { desc = "Toggle Columns" })
 
 -- HTML Generation
