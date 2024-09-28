@@ -10,6 +10,6 @@ return {
             transparent = true,
         })
 
-        vim.cmd([[colorscheme gronk-rider]])
+        vim.cmd([[colorscheme gronk-wilding]])
     end,
 }

@@ -10,7 +10,7 @@ return {
 
         local conditions = require("heirline.conditions")
         local utils = require("heirline.utils")
-        local colors = require("gronk.colors.rider")
+        local colors = require("gronk.colors.wilding")
         require("heirline").load_colors(colors)
 
         local icons = true
