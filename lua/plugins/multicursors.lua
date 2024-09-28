@@ -36,7 +36,7 @@ return {
             end
         end)
 
-        vim.keymap.set("n", "<leader><esc>", function()
+        vim.keymap.set("n", "<ESC>", function()
             if not mc.cursorsEnabled() then
                 mc.enableCursors()
             elseif mc.hasCursors() then
