@@ -19,7 +19,7 @@
   "gitsigns.nvim": { "branch": "main", "commit": "863903631e676b33e8be2acb17512fdc1b80b4fb" },
   "gp.nvim": { "branch": "main", "commit": "2372d5323c6feaa2e9c19f7ccb537c615d878e18" },
   "grapple.nvim": { "branch": "main", "commit": "7aedc261b05a6c030397c4bc26416efbe746ebf1" },
-  "gronk.nvim": { "branch": "multi", "commit": "23bd04c423847fdc06f4d5305ea4727edbad75ed" },
+  "gronk.nvim": { "branch": "main", "commit": "e3627a3d0afeeae20238d5a20db3a4a399f204f5" },
   "heirline.nvim": { "branch": "master", "commit": "7a79753c1a42c3f52e89a6c42429e7f871e560cd" },
   "helpview.nvim": { "branch": "main", "commit": "857aec1dab331252910da158ab6cbfbc65239c71" },
   "inc-rename.nvim": { "branch": "main", "commit": "8ba77017ca468f3029bf88ef409c2d20476ea66b" },

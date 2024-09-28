@@ -2,7 +2,6 @@
 
 return {
     "mbwilding/gronk.nvim",
-    branch = "multi",
     lazy = false,
     priority = 1000,
     config = function()
