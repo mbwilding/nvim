@@ -30,9 +30,8 @@ vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Diagnostics: Goto previous diagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Diagnostics: Goto next diagnostic message" })
 vim.keymap.set("n", "<leader>id", function()
-    local current_config = vim.diagnostic.config() or {}
     vim.diagnostic.config({
-        virtual_text = not current_config.virtual_text
+        virtual_text = not vim.diagnostic.config().virtual_text
     })
 end, { desc = "Diagnostics: Toggle virtual text" })
 
