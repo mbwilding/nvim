@@ -10,7 +10,7 @@ return {
         require("neogit").setup({
             use_default_keymaps = false,
             disable_hint = false,
-            disable_context_highlighting = false,
+            disable_context_highlighting = true,
             disable_signs = false,
             graph_style = "ascii",
             filewatcher = {
