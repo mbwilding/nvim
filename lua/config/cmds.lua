@@ -2,12 +2,14 @@ vim.api.nvim_create_user_command("Push", function()
     vim.fn.jobstart("git add . && git commit -m update && git push", {
         on_stdout = function(_, data)
             if data then
-                print(table.concat(data, '\n'))
+                vim.api.nvim_out_write(table.concat(data, '\n') .. '\n')
             end
         end,
-        on_stderr = function(_, data)
-            if data then
-                print(table.concat(data, '\n'))
+        on_exit = function(_, code, _)
+            if code == 0 then
+                print("Push completed successfully.")
+            else
+                print("Push failed.")
             end
         end
     })
