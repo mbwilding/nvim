@@ -8,7 +8,6 @@ return {
                 enable = true,
             },
             shortcut = {
-                -- { desc = '󰊳 Lazy Update', group = '@property', action = 'Lazy update', key = 'u' },
                 {
                     icon = ' ',
                     icon_hl = '@variable',
@@ -25,6 +24,8 @@ return {
                     action = 'Telescope live_grep',
                     key = 'g',
                 },
+                { desc = '󰊳 Lazy Update', group = '@property', action = 'Lazy update', key = 'l' },
+                { desc = '󰊳 Mason Update', group = '@property', action = 'MasonUpdate', key = 'm' },
             },
         },
     },
