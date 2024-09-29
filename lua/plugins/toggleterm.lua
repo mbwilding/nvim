@@ -1,29 +1,24 @@
 return {
     "akinsho/nvim-toggleterm.lua",
-    config = function()
+    opts = {
+        auto_scroll = true,
+        close_on_exit = true,
+        hide_numbers = true,
+        insert_mappings = false,
+        persist_size = true,
+        shade_terminals = false,
+        start_in_insert = true,
+        terminal_mappings = false,
+    },
+    config = function(_, opts)
         local toggle_term = require("toggleterm")
 
-        local shell_command
+        -- Windows
         if vim.fn.has("win32") == 1 then
-            shell_command = "pwsh.exe -NoLogo"
-        else
-            shell_command = nil
+            opts.shell_command = "pwsh.exe -NoLogo"
         end
 
-        toggle_term.setup({
-            -- open_mapping = [[<c-\>]],
-            start_in_insert = true,
-            terminal_mappings = false,
-            insert_mappings = false,
-            -- direction = "float",
-            shell = shell_command,
-            auto_scroll = true,
-            -- persist_mode = false,
-            persist_size = true,
-            close_on_exit = true,
-            hide_numbers = true,
-            shade_terminals = false,
-        })
+        toggle_term.setup(opts)
 
         vim.keymap.set(
             "n",
