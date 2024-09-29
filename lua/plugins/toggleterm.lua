@@ -14,7 +14,7 @@ return {
             -- open_mapping = [[<c-\>]],
             start_in_insert = true,
             terminal_mappings = false,
-            -- insert_mappings = false,
+            insert_mappings = false,
             -- direction = "float",
             shell = shell_command,
             auto_scroll = true,
@@ -25,13 +25,13 @@ return {
             shade_terminals = false,
         })
 
-        vim.keymap.set("n", "<leader>th", "<cmd>:1ToggleTerm direction=horizontal<CR>")
-        vim.keymap.set("n", "<leader>tt", "<cmd>:2ToggleTerm direction=horizontal<CR>")
-        vim.keymap.set("n", "<leader>tn", "<cmd>:3ToggleTerm direction=horizontal<CR>")
-        vim.keymap.set("n", "<leader>ts", "<cmd>:4ToggleTerm direction=horizontal<CR>")
-        vim.keymap.set("n", "<leader>tv", "<cmd>:5ToggleTerm direction=vertical<CR>")
-        vim.keymap.set("n", "<leader>tf", "<cmd>:6ToggleTerm direction=float<CR>")
-        vim.keymap.set("n", "<leader>tc", "<cmd>:ToggleTermToggleAll<CR>")
+        vim.keymap.set("n", "<leader>th", "<CMD>:1ToggleTerm direction=horizontal<CR>")
+        vim.keymap.set("n", "<leader>tt", "<CMD>:2ToggleTerm direction=horizontal<CR>")
+        vim.keymap.set("n", "<leader>tn", "<CMD>:3ToggleTerm direction=horizontal<CR>")
+        vim.keymap.set("n", "<leader>ts", "<CMD>:4ToggleTerm direction=horizontal<CR>")
+        vim.keymap.set("n", "<leader>tv", "<CMD>:5ToggleTerm direction=vertical<CR>")
+        vim.keymap.set("n", "<leader>tf", "<CMD>:6ToggleTerm direction=float<CR>")
+        vim.keymap.set("n", "<leader>tc", "<CMD>:ToggleTermToggleAll<CR>")
 
         function _G.set_terminal_keymaps()
             local opts = { buffer = 0 }
