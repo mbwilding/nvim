@@ -301,9 +301,9 @@ return {
                 local curr_line = vim.api.nvim_win_get_cursor(0)[1]
                 local lines = vim.api.nvim_buf_line_count(0)
                 local i = math.floor((curr_line - 1) / lines * #self.sbar) + 1
-                local icon = string.rep(self.sbar[i], 1)
+                -- local icon = string.rep(self.sbar[i], 1)
 
-                return "%c " .. icon .. " %l/%L"
+                return "%c" .. --[[ icon ]] " %l/%L"
             end,
             hl = function()
                 return { fg = mode_info().color, bg = colors.none }
