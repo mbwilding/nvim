@@ -1,35 +1,50 @@
 return {
-	"akinsho/nvim-toggleterm.lua",
-	config = function()
-		local toggle_term = require("toggleterm")
+    "akinsho/nvim-toggleterm.lua",
+    config = function()
+        local toggle_term = require("toggleterm")
 
-		local shell_command
-		if vim.fn.has("win32") == 1 then
-			shell_command = "pwsh.exe -NoLogo"
-		else
-			shell_command = nil
-		end
+        local shell_command
+        if vim.fn.has("win32") == 1 then
+            shell_command = "pwsh.exe -NoLogo"
+        else
+            shell_command = nil
+        end
 
-		toggle_term.setup({
-			-- open_mapping = [[<c-\>]],
-			start_in_insert = true,
-			terminal_mappings = true,
-			-- direction = "float",
-			shell = shell_command,
-			auto_scroll = true,
-			persist_mode = false,
-			persist_size = true,
-			close_on_exit = true,
-			hide_numbers = true,
-			shade_terminals = true,
-		})
+        toggle_term.setup({
+            -- open_mapping = [[<c-\>]],
+            start_in_insert = true,
+            terminal_mappings = false,
+            -- insert_mappings = false,
+            -- direction = "float",
+            shell = shell_command,
+            auto_scroll = true,
+            -- persist_mode = false,
+            persist_size = true,
+            close_on_exit = true,
+            hide_numbers = true,
+            shade_terminals = false,
+        })
 
-		vim.keymap.set({ "n", "t" }, "<leader>th", "<cmd>:1ToggleTerm direction=horizontal size=20<CR>")
-		vim.keymap.set({ "n", "t" }, "<leader>tt", "<cmd>:2ToggleTerm direction=horizontal size=20<CR>")
-		vim.keymap.set({ "n", "t" }, "<leader>tn", "<cmd>:3ToggleTerm direction=horizontal size=20<CR>")
-		vim.keymap.set({ "n", "t" }, "<leader>ts", "<cmd>:4ToggleTerm direction=horizontal size=20<CR>")
-		vim.keymap.set({ "n", "t" }, "<leader>tv", "<cmd>:5ToggleTerm direction=vertical size=100<CR>")
-		vim.keymap.set({ "n", "t" }, "<leader>tf", "<cmd>:6ToggleTerm direction=float<CR>")
-		vim.keymap.set({ "n", "t" }, "<leader>tc", "<cmd>:ToggleTermToggleAll<CR>")
-	end,
+        vim.keymap.set("n", "<leader>th", "<cmd>:1ToggleTerm direction=horizontal<CR>")
+        vim.keymap.set("n", "<leader>tt", "<cmd>:2ToggleTerm direction=horizontal<CR>")
+        vim.keymap.set("n", "<leader>tn", "<cmd>:3ToggleTerm direction=horizontal<CR>")
+        vim.keymap.set("n", "<leader>ts", "<cmd>:4ToggleTerm direction=horizontal<CR>")
+        vim.keymap.set("n", "<leader>tv", "<cmd>:5ToggleTerm direction=vertical<CR>")
+        vim.keymap.set("n", "<leader>tf", "<cmd>:6ToggleTerm direction=float<CR>")
+        vim.keymap.set("n", "<leader>tc", "<cmd>:ToggleTermToggleAll<CR>")
+
+        function _G.set_terminal_keymaps()
+            local opts = { buffer = 0 }
+            vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
+            vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts)
+            vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
+            vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
+            vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)
+            vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
+            vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opts)
+        end
+
+        -- if you only want these mappings for toggle term use term://*toggleterm#* instead
+        vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+    end,
 }

@@ -91,7 +91,7 @@ return {
         local mode_info = function()
             local mode = vim.fn.mode(1)
             local letter = mode:sub(1, 1)
-            local name = mode_name[mode]
+            local name = mode_name[mode]:match("%S+")
             local color = mode_colors[mode]
 
             return {
@@ -520,8 +520,9 @@ return {
         -- INIT
         require("heirline").setup({
             statusline = {
-                -- vim_mode,
-                -- spacer,
+                spacer,
+                vim_mode,
+                spacer,
                 work_dir,
                 spacer,
                 file_name_block,
