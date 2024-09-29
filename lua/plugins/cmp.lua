@@ -67,23 +67,23 @@ return {
                 --
                 -- <c-l> will move you to the right of each of the expansion locations.
                 -- <c-h> is similar, except moving you backwards.
+                ["<C-l>"] = cmp.mapping(function()
+                    if luasnip.expand_or_locally_jumpable() then
+                        luasnip.expand_or_jump()
+                    end
+                end, { "i", "s" }),
 
-                -- ["<C-l>"] = cmp.mapping(function()
-                -- 	if luasnip.expand_or_locally_jumpable() then
-                -- 		luasnip.expand_or_jump()
-                -- 	end
-                -- end, { "i", "s" }),
-                -- ["<C-h>"] = cmp.mapping(function()
-                -- 	if luasnip.locally_jumpable(-1) then
-                -- 		luasnip.jump(-1)
-                -- 	end
-                -- end, { "i", "s" }),
+                ["<C-h>"] = cmp.mapping(function()
+                    if luasnip.locally_jumpable(-1) then
+                        luasnip.jump(-1)
+                    end
+                end, { "i", "s" }),
             },
             sources = {
+                { name = "luasnip", group_index = 1 },
                 { name = "nvim_lsp", group_index = 2 },
-                { name = "path", group_index = 2 },
-                { name = "luasnip", group_index = 2 },
-                -- { name = "copilot",  group_index = 2 },
+                { name = "path", group_index = 3 },
+                -- { name = "copilot",  group_index = 4 },
             },
             formatting = {
                 format = lspkind.cmp_format({
