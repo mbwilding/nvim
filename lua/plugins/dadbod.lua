@@ -1,17 +1,17 @@
 -- Dadbod is a plugin that provides a way for managing databases.
 
 return {
-	"kristijanhusak/vim-dadbod-ui",
-	dependencies = {
-		{ "tpope/vim-dadbod",                     lazy = true },
-		{ "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
-	},
-	cmd = {
-		"DBUI",
-		"DBUIToggle",
-		"DBUIAddConnection",
-		"DBUIFindBuffer",
-	},
+    "kristijanhusak/vim-dadbod-ui",
+    dependencies = {
+        { "tpope/vim-dadbod", lazy = true },
+        { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
+    },
+    cmd = {
+        "DBUI",
+        "DBUIToggle",
+        "DBUIAddConnection",
+        "DBUIFindBuffer",
+    },
     keys = {
         {
             "<leader>dbb",
@@ -24,18 +24,18 @@ return {
             desc = "Dadbod: Toggle",
         },
     },
-	init = function()
-		vim.g.db_ui_use_nerd_fonts = 1
+    init = function()
+        vim.g.db_ui_use_nerd_fonts = 1
 
-		require("cmp").setup.filetype({ "sql" }, {
-			sources = {
-				{ name = "vim-dadbod-completion" },
-				{ name = "buffer" },
-			}
-		})
+        require("cmp").setup.filetype({ "sql" }, {
+            sources = {
+                { name = "vim-dadbod-completion" },
+                { name = "buffer" },
+            },
+        })
 
-		vim.g.dbs = {
-			{ name = 'dev', url = 'postgres://postgres:Developer01@localhost:5432/_Namespace._CapabilityName' },
-		}
-	end,
+        vim.g.dbs = {
+            { name = "dev", url = "postgres://postgres:Developer01@localhost:5432/_Namespace._CapabilityName" },
+        }
+    end,
 }

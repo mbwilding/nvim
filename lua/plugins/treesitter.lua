@@ -28,7 +28,7 @@ return {
                 "html",
                 "css",
                 "go",
-                "vue"
+                "vue",
             },
             modules = {},
             ignore_install = {},
@@ -91,7 +91,7 @@ return {
                     -- mapping query_strings to modes.
                     selection_modes = {
                         ["@parameter.outer"] = "v", -- charwise
-                        ["@function.outer"] = "V",  -- linewise
+                        ["@function.outer"] = "V", -- linewise
                         ["@class.outer"] = "<c-q>", -- blockwise
                     },
                     -- If you set this to `true` (default is `false`) then any textobject is

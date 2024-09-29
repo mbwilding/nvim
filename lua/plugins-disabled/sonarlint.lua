@@ -59,5 +59,5 @@ return {
                 "java",
             },
         })
-    end
+    end,
 }

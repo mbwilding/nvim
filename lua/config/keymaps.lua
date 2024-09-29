@@ -31,7 +31,7 @@ vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Diagnostics: Goto 
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Diagnostics: Goto next diagnostic message" })
 vim.keymap.set("n", "<leader>id", function()
     vim.diagnostic.config({
-        virtual_text = not vim.diagnostic.config().virtual_text
+        virtual_text = not vim.diagnostic.config().virtual_text,
     })
 end, { desc = "Diagnostics: Toggle virtual text" })
 
@@ -48,13 +48,13 @@ end, { desc = "Toggle Word Wrap" })
 vim.keymap.set("n", "U", "<C-r>", { desc = "Redo" })
 
 -- Clipboard
-vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "Copy to clipboard" })
-vim.keymap.set({ "n", "v" }, "<leader>yy", '"+Y', { desc = "Copy to clipboard (line)" })
-vim.keymap.set({ "n", "v" }, "<leader>p", '"+p', { desc = "Paste from clipboard" })
-vim.keymap.set({ "n", "v" }, "<leader>P", '"+P', { desc = "Paste from clipboard (before)" })
+vim.keymap.set({ "n", "v" }, "<leader>y", "\"+y", { desc = "Copy to clipboard" })
+vim.keymap.set({ "n", "v" }, "<leader>yy", "\"+Y", { desc = "Copy to clipboard (line)" })
+vim.keymap.set({ "n", "v" }, "<leader>p", "\"+p", { desc = "Paste from clipboard" })
+vim.keymap.set({ "n", "v" }, "<leader>P", "\"+P", { desc = "Paste from clipboard (before)" })
 
 -- Registers
-vim.keymap.set("n", "x", '"_x')
+vim.keymap.set("n", "x", "\"_x")
 
 -- Sort
 vim.keymap.set("v", "s", ":sort<CR>gv")
@@ -63,8 +63,8 @@ vim.keymap.set("v", "s", ":sort<CR>gv")
 vim.keymap.set("n", "<C-a>", "ggVG", { desc = "Select all" })
 
 -- Mouse
-vim.keymap.set("v", "<RightMouse>", '"+y')
-vim.keymap.set({ "n", "v" }, "<MiddleMouse>", '"+p')
+vim.keymap.set("v", "<RightMouse>", "\"+y")
+vim.keymap.set({ "n", "v" }, "<MiddleMouse>", "\"+p")
 
 -- Rulers
 local columns = "81,121"

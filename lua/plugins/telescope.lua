@@ -15,8 +15,7 @@ return {
                 if vim.fn.executable("make") == 1 then
                     return "make"
                 elseif vim.fn.executable("cmake") == 1 then
-                    return
-                    "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
+                    return "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
                 else
                     error("Neither 'make' nor 'cmake' are available for building telescope-fzf-native.nvim")
                 end
@@ -28,7 +27,7 @@ return {
         },
         {
             "isak102/telescope-git-file-history.nvim",
-            dependencies = { "tpope/vim-fugitive" }
+            dependencies = { "tpope/vim-fugitive" },
         },
         -- "cbochs/grapple.nvim",
     },
@@ -86,11 +85,11 @@ return {
             defaults = {
                 mappings = {
                     n = {
-                        ['<C-d>'] = actions.delete_buffer
+                        ["<C-d>"] = actions.delete_buffer,
                     },
                     i = {
-                        ['<C-d>'] = actions.delete_buffer
-                    }
+                        ["<C-d>"] = actions.delete_buffer,
+                    },
                 },
                 vimgrep_arguments = {
                     "rg",
@@ -130,7 +129,7 @@ return {
                     "packages.lock.json",
                 },
             },
-            extensions = extensions
+            extensions = extensions,
         })
 
         for key, _ in pairs(extensions) do
@@ -151,10 +150,15 @@ return {
             "n",
             "<leader>s.",
             builtin.oldfiles,
-            { desc = 'Telescope: Search Recent Files ("." for repeat)' }
+            { desc = "Telescope: Search Recent Files (\".\" for repeat)" }
         )
         vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "Telescope: Find existing buffers" })
-        vim.keymap.set("n", "<leader>sH", "<CMD>Telescope git_file_history<CR>", { desc = "Telescope: Git File History" })
+        vim.keymap.set(
+            "n",
+            "<leader>sH",
+            "<CMD>Telescope git_file_history<CR>",
+            { desc = "Telescope: Git File History" }
+        )
 
         -- Slightly advanced example of overriding default behavior and theme
         vim.keymap.set("n", "<leader>/", function()

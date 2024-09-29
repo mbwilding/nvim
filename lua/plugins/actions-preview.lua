@@ -5,7 +5,9 @@ return {
     keys = {
         {
             "<leader><enter>",
-            function() require("actions-preview").code_actions() end,
+            function()
+                require("actions-preview").code_actions()
+            end,
             desc = "Actions Preview",
             mode = { "n", "v" },
         },

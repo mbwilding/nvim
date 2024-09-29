@@ -14,14 +14,12 @@ return {
     },
     opts = {
         use_git_branch = false, -- create session files based on the branch of a git enabled repository
-        autosave = true,        -- automatically save session files when exiting Neovim
-        autoload = not man,     -- automatically load the session for the cwd on Neovim startup
-        silent = true,          -- No message on loading a session
-        follow_cwd = true,      -- follow the cwd of the session file
+        autosave = true, -- automatically save session files when exiting Neovim
+        autoload = not man, -- automatically load the session for the cwd on Neovim startup
+        silent = true, -- No message on loading a session
+        follow_cwd = true, -- follow the cwd of the session file
         should_autosave = function()
-            return vim.bo.filetype ~= "alpha"
-                and vim.fn.getcwd() ~= os.getenv("HOME")
-                and not man
+            return vim.bo.filetype ~= "alpha" and vim.fn.getcwd() ~= os.getenv("HOME") and not man
         end,
-    }
+    },
 }

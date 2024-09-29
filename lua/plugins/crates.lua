@@ -6,69 +6,95 @@ return {
     keys = {
         {
             "<leader>Rt",
-            function() require('crates').toggle() end,
+            function()
+                require("crates").toggle()
+            end,
             desc = "Crates: Toggle",
         },
         {
             "<leader>Rr",
-            function() require('crates').reload() end,
+            function()
+                require("crates").reload()
+            end,
             desc = "Crates: Reload",
         },
         {
             "<leader>Rv",
-            function() require('crates').show_versions_popup() end,
+            function()
+                require("crates").show_versions_popup()
+            end,
             desc = "Crates: Versions popup",
         },
         {
             "<leader>Rf",
-            function() require('crates').show_features_popup() end,
+            function()
+                require("crates").show_features_popup()
+            end,
             desc = "Crates: Features popup",
         },
         {
             "<leader>Rd",
-            function() require('crates').show_dependencies_popup() end,
+            function()
+                require("crates").show_dependencies_popup()
+            end,
             desc = "Crates: Dependencies Popup",
         },
         {
             "<leader>Ru",
-            function() require('crates').update_crate() end,
+            function()
+                require("crates").update_crate()
+            end,
             desc = "Crates: Update",
         },
         {
             "<leader>Ru",
-            function() require('crates').update_crates() end,
+            function()
+                require("crates").update_crates()
+            end,
             desc = "Crates: Update selected",
             mode = "v",
         },
         {
             "<leader>Ra",
-            function() require('crates').update_all_crates() end,
+            function()
+                require("crates").update_all_crates()
+            end,
             desc = "Crates: Update all",
         },
         {
             "<leader>RU",
-            function() require('crates').upgrade_crate() end,
+            function()
+                require("crates").upgrade_crate()
+            end,
             desc = "Crates: Upgrade",
         },
         {
             "<leader>RU",
-            function() require('crates').upgrade_crates() end,
+            function()
+                require("crates").upgrade_crates()
+            end,
             desc = "Crates: Upgrade selected",
             mode = "v",
         },
         {
             "<leader>RA",
-            function() require('crates').upgrade_all_crates() end,
+            function()
+                require("crates").upgrade_all_crates()
+            end,
             desc = "Crates: Upgrade all",
         },
         {
             "<leader>Rx",
-            function() require('crates').expand_plain_crate_to_inline_table() end,
+            function()
+                require("crates").expand_plain_crate_to_inline_table()
+            end,
             desc = "Crates: Expand to table",
         },
         {
             "<leader>RX",
-            function() require('crates').extract_crate_into_table() end,
+            function()
+                require("crates").extract_crate_into_table()
+            end,
             desc = "Crates: Extract into table",
         },
     },
@@ -110,7 +136,7 @@ return {
         popup = {
             autofocus = true,
             hide_on_select = false,
-            copy_register = '"',
+            copy_register = "\"",
             style = "minimal",
             border = "none",
             show_version_date = false,
@@ -243,7 +269,7 @@ return {
             group = vim.api.nvim_create_augroup("CmpSourceCargo", { clear = true }),
             pattern = "Cargo.toml",
             callback = function()
-                require('cmp').setup.buffer({ sources = { { name = "crates" } } })
+                require("cmp").setup.buffer({ sources = { { name = "crates" } } })
             end,
         })
     end,

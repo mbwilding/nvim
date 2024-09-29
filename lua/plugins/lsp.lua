@@ -21,7 +21,7 @@ return {
             volar = {},
             zls = {},
             bashls = {
-                filetypes = { "sh", "zsh", "zshrc" }
+                filetypes = { "sh", "zsh", "zshrc" },
             },
             clangd = {},
             rust_analyzer = {},
@@ -44,10 +44,10 @@ return {
                     javascript = {
                         inlayHints = {
                             enumMemberValues = {
-                                enabled = true
+                                enabled = true,
                             },
                             functionLikeReturnTypes = {
-                                enabled = true
+                                enabled = true,
                             },
                             parameterNames = {
                                 enabled = true,
@@ -68,10 +68,10 @@ return {
                     typescript = {
                         inlayHints = {
                             enumMemberValues = {
-                                enabled = true
+                                enabled = true,
                             },
                             functionLikeReturnTypes = {
-                                enabled = true
+                                enabled = true,
                             },
                             parameterNames = {
                                 enabled = true,
@@ -117,7 +117,7 @@ return {
                         experimental = {
                             classRegex = {
                                 { "cva\\(([^)]*)\\)", "[\"'`]?([^\"'`]*).*?[\"'`]?" },
-                                { "cx\\(([^)]*)\\)",  "[\"'`]?([^\"'`]*).*?[\"'`]?" }
+                                { "cx\\(([^)]*)\\)", "[\"'`]?([^\"'`]*).*?[\"'`]?" },
                             },
                         },
                     },
@@ -349,11 +349,19 @@ return {
                 },
                 on_attach = function(client, bufnr)
                     map("gd", require("omnisharp_extended").telescope_lsp_definition, "Telescope Definition", bufnr)
-                    map("<leader>D", require("omnisharp_extended").telescope_lsp_type_definition,
-                        "Telescope Type Definition", bufnr)
+                    map(
+                        "<leader>D",
+                        require("omnisharp_extended").telescope_lsp_type_definition,
+                        "Telescope Type Definition",
+                        bufnr
+                    )
                     map("gr", require("omnisharp_extended").telescope_lsp_references, "Telescope References", bufnr)
-                    map("gi", require("omnisharp_extended").telescope_lsp_implementation, "Telescope Implementation",
-                        bufnr)
+                    map(
+                        "gi",
+                        require("omnisharp_extended").telescope_lsp_implementation,
+                        "Telescope Implementation",
+                        bufnr
+                    )
                 end,
             },
         }
@@ -417,20 +425,37 @@ return {
 
                             -- Set up mappings
                             map("gd", require("telescope.builtin").lsp_definitions, "Telescope Definition", bufnr)
-                            map("<leader>D", require("telescope.builtin").lsp_type_definitions,
-                                "Telescope Type Definition", bufnr)
+                            map(
+                                "<leader>D",
+                                require("telescope.builtin").lsp_type_definitions,
+                                "Telescope Type Definition",
+                                bufnr
+                            )
                             map("gr", require("telescope.builtin").lsp_references, "Telescope References", bufnr)
-                            map("gi", require("telescope.builtin").lsp_implementations, "Telescope Implementation", bufnr)
+                            map(
+                                "gi",
+                                require("telescope.builtin").lsp_implementations,
+                                "Telescope Implementation",
+                                bufnr
+                            )
 
                             -- Common mappings
                             map("<leader>f", function()
                                 vim.lsp.buf.format({ async = true })
                             end, "Format", bufnr)
                             map("gD", vim.lsp.buf.declaration, "Goto Declaration", bufnr)
-                            map("gs", require("telescope.builtin").lsp_document_symbols, "Telescope Document Symbols",
-                                bufnr)
-                            map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols,
-                                "Telescope Workspace Symbols", bufnr)
+                            map(
+                                "gs",
+                                require("telescope.builtin").lsp_document_symbols,
+                                "Telescope Document Symbols",
+                                bufnr
+                            )
+                            map(
+                                "<leader>ws",
+                                require("telescope.builtin").lsp_dynamic_workspace_symbols,
+                                "Telescope Workspace Symbols",
+                                bufnr
+                            )
                             map("K", vim.lsp.buf.hover, "Hover Documentation", bufnr)
                             -- map("<C-k>", vim.lsp.buf.signature_help, "Signature documentation", bufnr)
 

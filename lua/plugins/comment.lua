@@ -15,4 +15,3 @@ return {
         ft.set("vhs", "# %s")
     end,
 }
-
