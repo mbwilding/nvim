@@ -29,10 +29,29 @@ return {
     },
     config = function()
         local cmp = require("cmp")
-        local luasnip = require("luasnip")
         local lspkind = require("lspkind")
         require("luasnip.loaders.from_vscode").lazy_load()
+
+        -- LuaSnip
+        local luasnip = require("luasnip")
         luasnip.config.setup()
+        local s = luasnip.snippet
+        local sn = luasnip.snippet_node
+        local t = luasnip.text_node
+        local i = luasnip.insert_node
+        local f = luasnip.function_node
+        local c = luasnip.choice_node
+        local d = luasnip.dynamic_node
+        local r = luasnip.restore_node
+        luasnip.add_snippets("rust", {
+            -- s("struct", {
+            --     t({ "#[derive(Debug)]", "struct " }), i(1, "Name"), t({ " {", "\t" }), i(2, "field"), t({ ": "}), i(3, "Type"), t({ "", "}" }),
+            -- }),
+            s("impl-struct", {
+                t({ "impl " }), i(1, "Name"), t({ " {", "\tpub fn new() -> Self {",
+                "\t\tSelf {", "\t\t\t" }), i(2, "// init_fields"), t({ "", "\t\t}", "\t}", "}" }),
+            }),
+        })
 
         cmp.setup({
             snippet = {
@@ -80,9 +99,9 @@ return {
                 end, { "i", "s" }),
             },
             sources = {
-                { name = "luasnip", group_index = 1 },
+                { name = "luasnip",  group_index = 1 },
                 { name = "nvim_lsp", group_index = 2 },
-                { name = "path", group_index = 3 },
+                { name = "path",     group_index = 3 },
                 -- { name = "copilot",  group_index = 4 },
             },
             formatting = {
