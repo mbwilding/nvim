@@ -25,13 +25,11 @@ return {
             shade_terminals = false,
         })
 
-        vim.keymap.set("n", "<leader>th", "<CMD>:1ToggleTerm direction=horizontal<CR>")
-        vim.keymap.set("n", "<leader>tt", "<CMD>:2ToggleTerm direction=horizontal<CR>")
-        vim.keymap.set("n", "<leader>tn", "<CMD>:3ToggleTerm direction=horizontal<CR>")
-        vim.keymap.set("n", "<leader>ts", "<CMD>:4ToggleTerm direction=horizontal<CR>")
-        vim.keymap.set("n", "<leader>tv", "<CMD>:5ToggleTerm direction=vertical<CR>")
-        vim.keymap.set("n", "<leader>tf", "<CMD>:6ToggleTerm direction=float<CR>")
-        vim.keymap.set("n", "<leader>tc", "<CMD>:ToggleTermToggleAll<CR>")
+        vim.keymap.set("n", "<leader>th", "<CMD>:1ToggleTerm direction=horizontal<CR>", { desc = "ToggleTerm: Horizontal 1" })
+        vim.keymap.set("n", "<leader>tt", "<CMD>:2ToggleTerm direction=horizontal<CR>", { desc = "ToggleTerm: Horizontal 2" })
+        vim.keymap.set("n", "<leader>tn", "<CMD>:3ToggleTerm direction=horizontal<CR>", { desc = "ToggleTerm: Horizontal 3" })
+        vim.keymap.set("n", "<leader>ts", "<CMD>:4ToggleTerm direction=horizontal<CR>", { desc = "ToggleTerm: Horizontal 4" })
+        vim.keymap.set("n", "<leader>tc", "<CMD>:ToggleTermToggleAll<CR>", { desc = "ToggleTerm: Toggle All" })
 
         function _G.set_terminal_keymaps()
             local opts = { buffer = 0 }

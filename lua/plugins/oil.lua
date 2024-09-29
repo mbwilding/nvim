@@ -177,7 +177,7 @@ return {
         })
 
         vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
-        vim.keymap.set("n", "<leader>-", require("oil").toggle_float, { desc = "Open parent directory - floating" })
+        -- vim.keymap.set("n", "<leader>-", require("oil").toggle_float, { desc = "Open parent directory - floating" })
 
         require("oil-git-status").setup({
             show_ignored = true,
