@@ -48,8 +48,11 @@ return {
             --     t({ "#[derive(Debug)]", "struct " }), i(1, "Name"), t({ " {", "\t" }), i(2, "field"), t({ ": "}), i(3, "Type"), t({ "", "}" }),
             -- }),
             s("impl-struct", {
-                t({ "impl " }), i(1, "Name"), t({ " {", "\tpub fn new() -> Self {",
-                "\t\tSelf {", "\t\t\t" }), i(2, "// init_fields"), t({ "", "\t\t}", "\t}", "}" }),
+                t({ "impl " }),
+                i(1, "Name"),
+                t({ " {", "\tpub fn new() -> Self {", "\t\tSelf {", "\t\t\t" }),
+                i(2, "// init_fields"),
+                t({ "", "\t\t}", "\t}", "}" }),
             }),
         })
 
@@ -99,9 +102,9 @@ return {
                 end, { "i", "s" }),
             },
             sources = {
-                { name = "luasnip",  group_index = 1 },
+                { name = "luasnip", group_index = 1 },
                 { name = "nvim_lsp", group_index = 2 },
-                { name = "path",     group_index = 3 },
+                { name = "path", group_index = 3 },
                 -- { name = "copilot",  group_index = 4 },
             },
             formatting = {
