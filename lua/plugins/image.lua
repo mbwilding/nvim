@@ -61,13 +61,13 @@ return {
                         -- markdown extensions (ie. quarto) can go here
                         filetypes = { "markdown", "vimwiki" },
                     },
-                    neorg = {
-                        enabled = true,
-                        clear_in_insert_mode = false,
-                        download_remote_images = true,
-                        only_render_image_at_cursor = false,
-                        filetypes = { "norg" },
-                    },
+                    -- neorg = {
+                    --     enabled = true,
+                    --     clear_in_insert_mode = false,
+                    --     download_remote_images = true,
+                    --     only_render_image_at_cursor = true,
+                    --     filetypes = { "norg" },
+                    -- },
                     -- This is disabled by default
                     -- Detect and render images referenced in HTML files
                     -- Make sure you have an html treesitter parser installed
@@ -90,7 +90,7 @@ return {
                 -- This is what I changed to make my images look smaller, like a
                 -- thumbnail, the default value is 50
                 -- max_height_window_percentage = 20,
-                max_height_window_percentage = 40,
+                max_height_window_percentage = 50,
 
                 -- toggles images when windows are overlapped
                 window_overlap_clear_enabled = false,
