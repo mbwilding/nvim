@@ -7,7 +7,7 @@ vim.api.nvim_create_user_command("Push", function()
         end,
         on_exit = function(_, code, _)
             if code == 0 then
-                vim.api.nvim_out_write("Push successful" .. "\n")
+                vim.api.nvim_out_write("\27[32mPush successful\27[0m\n")
             else
                 vim.api.nvim_err_writeln("Push failed")
             end
