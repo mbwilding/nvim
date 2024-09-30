@@ -4,6 +4,9 @@ vim.loader.enable()
 -- Set leader key to space
 vim.g.mapleader = " "
 
+-- Nerd font
+vim.g.have_nerd_font = true
+
 -- Enable true color support
 vim.o.termguicolors = true
 
