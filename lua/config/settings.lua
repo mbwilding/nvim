@@ -57,8 +57,8 @@ vim.o.backspace = "indent,eol,start"
 -- Enable smart indent
 vim.o.smartindent = true
 
--- Enable text wrapping
-vim.o.wrap = true
+-- Text wrapping
+vim.o.wrap = false
 
 -- Disable swap file
 vim.o.swapfile = false
