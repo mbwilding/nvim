@@ -7,11 +7,13 @@ return {
         "nvim-treesitter/nvim-treesitter",
         -- Test suites
         "rouge8/neotest-rust",
+        "Issafalcon/neotest-dotnet",
     },
     config = function()
         require("neotest").setup({
             adapters = {
                 require("neotest-rust"),
+                require("neotest-dotnet"),
             },
         })
 
