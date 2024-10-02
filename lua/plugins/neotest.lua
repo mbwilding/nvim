@@ -13,7 +13,12 @@ return {
         require("neotest").setup({
             adapters = {
                 require("neotest-rust"),
-                require("neotest-dotnet"),
+                require("neotest-dotnet")({
+                    dap = {
+                        adapter_name = "netcoredbg"
+                    },
+                    discovery_root = "solution"
+                }),
             },
         })
 
