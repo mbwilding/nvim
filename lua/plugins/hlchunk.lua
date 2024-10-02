@@ -4,6 +4,9 @@ return {
   opts = {
       chunk = {
           enable = true,
+      },
+      line_num = {
+          enable = false,
       }
   },
 }
