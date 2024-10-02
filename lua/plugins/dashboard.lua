@@ -10,7 +10,7 @@ return {
             shortcut = {
                 {
                     icon = " ",
-                    icon_hl = "@variable",
+                    icon_hl = "Directory",
                     desc = "Files",
                     group = "Label",
                     action = "Telescope find_files",
@@ -18,14 +18,14 @@ return {
                 },
                 {
                     icon = " ",
-                    icon_hl = "@variable",
+                    icon_hl = "OilFile",
                     desc = "Content",
                     group = "Label",
                     action = "Telescope live_grep",
                     key = "g",
                 },
-                { desc = "󰊳 Lazy Update", group = "@property", action = "Lazy update", key = "l" },
-                { desc = "󰊳 Mason Update", group = "@property", action = "MasonUpdate", key = "m" },
+                -- { desc = "󰊳 Lazy Update", group = "@property", action = "Lazy update", key = "l" },
+                -- { desc = "󰊳 Mason Update", group = "@property", action = "MasonUpdate", key = "m" },
             },
         },
     },
