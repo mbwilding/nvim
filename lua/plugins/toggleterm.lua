@@ -13,6 +13,11 @@ return {
     config = function(_, opts)
         local toggle_term = require("toggleterm")
 
+        local uname = vim.loop.os_uname().sysname
+        if uname == "Windows_NT" then
+            opts.shell = "pwsh -NoLogo"
+        end
+
         toggle_term.setup(opts)
 
         vim.keymap.set(
