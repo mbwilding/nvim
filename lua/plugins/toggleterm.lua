@@ -13,11 +13,6 @@ return {
     config = function(_, opts)
         local toggle_term = require("toggleterm")
 
-        -- Windows
-        if vim.fn.has("win32") == 1 then
-            opts.shell_command = "pwsh.exe -NoLogo"
-        end
-
         toggle_term.setup(opts)
 
         vim.keymap.set(
