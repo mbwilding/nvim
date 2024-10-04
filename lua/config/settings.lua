@@ -89,7 +89,7 @@ vim.o.linebreak = true
 
 -- Spell checking
 vim.o.spelllang = "en_au"
-vim.o.spell = true
+-- vim.o.spell = true
 
 -- Set fill characters after EOF
 vim.opt.fillchars:append({ eob = " " })
