@@ -7,7 +7,7 @@ return {
         "nvim-telescope/telescope.nvim",
         "Issafalcon/lsp-overloads.nvim",
         "Hoffs/omnisharp-extended-lsp.nvim",
-        "Decodetalkers/csharpls-extended-lsp.nvim",
+        -- "Decodetalkers/csharpls-extended-lsp.nvim",
     },
     config = function()
         -- on_attach function to overwrite the default keymaps
@@ -185,13 +185,13 @@ return {
                     },
                 },
             },
-            csharp_ls = {
-                enabled = false,
-                handlers = {
-                    ["textDocument/definition"] = require("csharpls_extended").handler,
-                    ["textDocument/typeDefinition"] = require("csharpls_extended").handler,
-                },
-            },
+            -- csharp_ls = {
+            --     enabled = false,
+            --     handlers = {
+            --         ["textDocument/definition"] = require("csharpls_extended").handler,
+            --         ["textDocument/typeDefinition"] = require("csharpls_extended").handler,
+            --     },
+            -- },
             omnisharp = {
                 settings = {
                     csharp = {
