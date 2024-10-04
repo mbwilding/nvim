@@ -96,7 +96,7 @@ return {
             pylsp = {},
             jqls = {},
             jsonls = {},
-            typos_lsp = {},
+            -- typos_lsp = {},
             lemminx = {
                 settings = {
                     xml = {

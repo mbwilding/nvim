@@ -84,8 +84,12 @@ vim.o.cursorline = false
 -- Enable confirm dialog when leaving buffer
 vim.o.confirm = true
 
--- Set spell check language
-vim.o.spelllang = "en_us"
+-- Line break
+vim.o.linebreak = true
+
+-- Spell checking
+vim.o.spelllang = "en_au"
+vim.o.spell = true
 
 -- Set fill characters after EOF
 vim.opt.fillchars:append({ eob = " " })
