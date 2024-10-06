@@ -31,6 +31,7 @@ return {
         },
         -- "cbochs/grapple.nvim",
     },
+    lazy = true,
     config = function()
         local extensions = {
             ["fzf"] = {},
