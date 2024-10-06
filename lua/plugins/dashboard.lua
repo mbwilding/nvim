@@ -2,6 +2,7 @@ return {
     -- "nvimdev/dashboard-nvim",
     "mbwilding/dashboard-nvim",
     event = "VimEnter",
+    lazy = true,
     opts = {
         theme = "hyper",
         letter_list = "uhetonasidpgyfcrlxbmwqvz",
