@@ -6,6 +6,7 @@ return {
         { "tpope/vim-dadbod", lazy = true },
         { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
     },
+    lazy = true,
     cmd = {
         "DBUI",
         "DBUIToggle",
@@ -24,7 +25,7 @@ return {
             desc = "Dadbod: Toggle",
         },
     },
-    init = function()
+    config = function()
         vim.g.db_ui_use_nerd_fonts = 1
 
         require("cmp").setup.filetype({ "sql" }, {
