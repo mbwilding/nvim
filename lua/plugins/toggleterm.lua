@@ -1,5 +1,33 @@
 return {
     "akinsho/nvim-toggleterm.lua",
+    lazy = true,
+    keys = {
+        {
+            "<leader>th",
+            "<CMD>:1ToggleTerm direction=horizontal<CR>",
+            desc = "ToggleTerm: Horizontal 1",
+        },
+        {
+            "<leader>tt",
+            "<CMD>:2ToggleTerm direction=horizontal<CR>",
+            desc = "ToggleTerm: Horizontal 2",
+        },
+        {
+            "<leader>tn",
+            "<CMD>:3ToggleTerm direction=horizontal<CR>",
+            desc = "ToggleTerm: Horizontal 3",
+        },
+        {
+            "<leader>ts",
+            "<CMD>:4ToggleTerm direction=horizontal<CR>",
+            desc = "ToggleTerm: Horizontal 4",
+        },
+        {
+            "<leader>tc",
+            "<CMD>:ToggleTermToggleAll<CR>",
+            desc = "ToggleTerm: Toggle All",
+        },
+    },
     opts = {
         auto_scroll = true,
         close_on_exit = true,
@@ -19,32 +47,6 @@ return {
         end
 
         toggle_term.setup(opts)
-
-        vim.keymap.set(
-            "n",
-            "<leader>th",
-            "<CMD>:1ToggleTerm direction=horizontal<CR>",
-            { desc = "ToggleTerm: Horizontal 1" }
-        )
-        vim.keymap.set(
-            "n",
-            "<leader>tt",
-            "<CMD>:2ToggleTerm direction=horizontal<CR>",
-            { desc = "ToggleTerm: Horizontal 2" }
-        )
-        vim.keymap.set(
-            "n",
-            "<leader>tn",
-            "<CMD>:3ToggleTerm direction=horizontal<CR>",
-            { desc = "ToggleTerm: Horizontal 3" }
-        )
-        vim.keymap.set(
-            "n",
-            "<leader>ts",
-            "<CMD>:4ToggleTerm direction=horizontal<CR>",
-            { desc = "ToggleTerm: Horizontal 4" }
-        )
-        vim.keymap.set("n", "<leader>tc", "<CMD>:ToggleTermToggleAll<CR>", { desc = "ToggleTerm: Toggle All" })
 
         function _G.set_terminal_keymaps()
             local opts = { buffer = 0 }
