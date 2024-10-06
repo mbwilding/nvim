@@ -7,20 +7,26 @@ return {
         "nvim-tree/nvim-web-devicons",
     },
     lazy = true,
-    opts = {
-        block_quotes = {},
-        callbacks = {},
-        checkboxes = require("markview.presets").checkboxes.nerd,
-        code_blocks = {},
-        escaped = {},
-        footnotes = {},
-        -- headings = require("markview.presets").headings.arrowed,
-        horizontal_rules = require("markview.presets").horizontal_rules.thick,
-        html = {},
-        inline_codes = {},
-        latex = {},
-        links = {},
-        list_items = {},
-        tables = {}
-    },
+    event = "BufEnter",
+    ft = "markdown",
+    config = function()
+        local presets = require("markview.presets")
+
+        require("markview").setup({
+            block_quotes = {},
+            callbacks = {},
+            checkboxes = presets.checkboxes.nerd,
+            code_blocks = {},
+            escaped = {},
+            footnotes = {},
+            -- headings = presets.headings.arrowed,
+            horizontal_rules = presets.horizontal_rules.thick,
+            html = {},
+            inline_codes = {},
+            latex = {},
+            links = {},
+            list_items = {},
+            tables = {}
+        })
+    end
 }
