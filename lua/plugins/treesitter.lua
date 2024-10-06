@@ -3,17 +3,29 @@ return {
     build = ":TSUpdate",
     dependencies = {
         "nvim-treesitter/nvim-treesitter-textobjects",
-        -- "nvim-treesitter/nvim-treesitter-context",
         "windwp/nvim-ts-autotag",
+        {
+            "nvim-treesitter/nvim-treesitter-context",
+            lazy = true,
+            keys = {
+                {
+                    "<leader>ix",
+                    "<CMD>TSContextToggle<CR>",
+                    desc = "Treesitter: Context Rows",
+                },
+            },
+            opts = {},
+            config = function()
+                -- require("nvim-treesitter.configs").setup()
+
+                require("treesitter-context").setup({
+                    enable = false,
+                    mode = "topline", -- Also: cursor
+                })
+            end,
+        },
     },
     lazy = true,
-    -- keys = {
-    --     {
-    --         "<leader>ix",
-    --         "<CMD>TSContextToggle<CR>",
-    --         desc = "Treesitter: Context Rows",
-    --     },
-    -- },
     opts = {
         -- A list of parser names, or "all".
         ensure_installed = {
@@ -97,9 +109,9 @@ return {
                 -- and should return the mode ("v", "V", or "<c-v>") or a table
                 -- mapping query_strings to modes.
                 selection_modes = {
-                    ["@parameter.outer"] = "v",     -- charwise
-                    ["@function.outer"] = "V",      -- linewise
-                    ["@class.outer"] = "<c-q>",     -- blockwise
+                    ["@parameter.outer"] = "v", -- charwise
+                    ["@function.outer"] = "V",  -- linewise
+                    ["@class.outer"] = "<c-q>", -- blockwise
                 },
                 -- If you set this to `true` (default is `false`) then any textobject is
                 -- extended to include preceding or succeeding whitespace. Succeeding
@@ -123,7 +135,7 @@ return {
             },
             move = {
                 enable = true,
-                set_jumps = true,     -- whether to set jumps in the jumplist
+                set_jumps = true, -- whether to set jumps in the jumplist
                 goto_next_start = {
                     ["]f"] = "@function.outer",
                     ["]]"] = { query = "@class.outer", desc = "Next class start" },
@@ -178,14 +190,4 @@ return {
             enable = true,
         },
     },
-    -- config = function()
-    --     require("nvim-treesitter.configs").setup()
-    --
-    --     -- require("treesitter-context").setup({
-    --     --     enable = false,
-    --     --     mode = "topline", -- Also: cursor
-    --     -- })
-    --
-    --     vim.keymap.set("n", "<leader>ix", "<CMD>TSContextToggle<CR>", { desc = "Treesitter: Context Rows" })
-    -- end,
 }
