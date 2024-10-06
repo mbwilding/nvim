@@ -7,7 +7,7 @@ return {
         theme = "hyper",
         letter_list = "uhetonasidpgyfcrlxbmwqvz",
         config = {
-            disable_move = true,
+            disable_move = false,
             week_header = {
                 enable = true,
             },
