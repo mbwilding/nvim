@@ -5,7 +5,7 @@ return {
         config = function()
             require("kubectl").setup()
 
-            vim.keymap.set("n", "<leader>k", function()
+            vim.keymap.set("n", "<leader>kc", function()
                 require("kubectl").toggle()
             end, { desc = "Kubectl" })
         end,
