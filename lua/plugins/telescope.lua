@@ -160,7 +160,7 @@ return {
             builtin.oldfiles,
             { desc = "Telescope: Search Recent Files (\".\" for repeat)" }
         )
-        vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "Telescope: Find existing buffers" })
+        vim.keymap.set("n", "<leader><leader>", "<CMD>Telescope buffers sort_mru=true sort_lastused=true initial_mode=normal<CR>", { desc = "Telescope: Find existing buffers" })
         vim.keymap.set(
             "n",
             "<leader>sH",
