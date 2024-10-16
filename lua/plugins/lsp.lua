@@ -39,7 +39,9 @@ return {
             docker_compose_language_service = {},
             dockerls = {},
             -- nginx_language_server = {},
+            vtsls = {},
             ts_ls = {
+                enabled = false,
                 settings = {
                     javascript = {
                         inlayHints = {
@@ -397,7 +399,9 @@ return {
         require("mason-lspconfig").setup({
             automatic_installation = true,
             -- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
-            ensure_installed = vim.tbl_keys(servers),
+            ensure_installed = vim.tbl_filter(function(key)
+              return servers[key].enabled ~= false
+            end, vim.tbl_keys(servers)),
             handlers = {
                 function(server_name)
                     local server = servers[server_name] or {}
