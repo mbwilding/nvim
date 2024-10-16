@@ -15,7 +15,8 @@ return {
                 if vim.fn.executable("make") == 1 then
                     return "make"
                 elseif vim.fn.executable("cmake") == 1 then
-                    return "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
+                    return
+                    "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
                 else
                     error("Neither 'make' nor 'cmake' are available for building telescope-fzf-native.nvim")
                 end
@@ -78,12 +79,13 @@ return {
         local actions = require("telescope.actions")
 
         require("telescope").setup({
-            pickers = {
-                find_files = {
-                    hidden = true,
-                },
-            },
             defaults = {
+                layout_config = {
+                    width = { padding = 0 },
+                    height = { padding = 0 },
+                    prompt_position = "bottom",
+                    preview_cutoff = 120,
+                },
                 mappings = {
                     n = {
                         ["<C-d>"] = actions.delete_buffer,
@@ -128,6 +130,11 @@ return {
                     ".next\\",
                     "package-lock.json",
                     "packages.lock.json",
+                },
+            },
+            pickers = {
+                find_files = {
+                    hidden = true,
                 },
             },
             extensions = extensions,
