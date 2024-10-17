@@ -130,6 +130,7 @@ return {
                     ".next\\",
                     "package-lock.json",
                     "packages.lock.json",
+                    "Cargo.lock",
                 },
             },
             pickers = {
