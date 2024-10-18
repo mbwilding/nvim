@@ -1,79 +1,53 @@
 return {
     "jake-stewart/multicursor.nvim",
+    lazy = true,
+    event = "BufEnter",
     -- branch = "1.0",
+    keys = {
+        { "<up>",          function() require("multicursor-nvim").addCursor("k") end,  mode = { "n", "v" } },
+        { "<down>",        function() require("multicursor-nvim").addCursor("j") end,  mode = { "n", "v" } },
+        { "<c-n>",         function() require("multicursor-nvim").addCursor("*") end,  mode = { "n", "v" } },
+        { "<c-s>",         function() require("multicursor-nvim").skipCursor("*") end, mode = { "n", "v" } },
+        { "<left>",        function() require("multicursor-nvim").nextCursor() end,    mode = { "n", "v" } },
+        { "<right>",       function() require("multicursor-nvim").prevCursor() end,    mode = { "n", "v" } },
+        { "<leader>x",     function() require("multicursor-nvim").deleteCursor() end,  mode = { "n", "v" } },
+        { "<c-leftmouse>", function() require("multicursor-nvim").handleMouse() end,   mode = "n" },
+        {
+            "<c-q>",
+            function()
+                local mc = require("multicursor-nvim")
+                if mc.cursorsEnabled() then
+                    mc.disableCursors()
+                else
+                    mc.addCursor()
+                end
+            end,
+            mode = { "n", "v" }
+        },
+        {
+            "<ESC>",
+            function()
+                local mc = require("multicursor-nvim")
+                if not mc.cursorsEnabled() then
+                    mc.enableCursors()
+                elseif mc.hasCursors() then
+                    mc.clearCursors()
+                else
+                    -- Default <esc> handler.
+                end
+            end,
+            mode = "n"
+        },
+        { "<leader>a", function() require("multicursor-nvim").alignCursors() end,       mode = "n" },
+        { "S",         function() require("multicursor-nvim").splitCursors() end,       mode = "v" },
+        { "I",         function() require("multicursor-nvim").insertVisual() end,       mode = "v" },
+        { "A",         function() require("multicursor-nvim").appendVisual() end,       mode = "v" },
+        { "M",         function() require("multicursor-nvim").matchCursors() end,       mode = "v" },
+        { "<leader>t", function() require("multicursor-nvim").transposeCursors(1) end,  mode = "v" },
+        { "<leader>T", function() require("multicursor-nvim").transposeCursors(-1) end, mode = "v" },
+    },
     config = function()
-        local mc = require("multicursor-nvim")
-
-        mc.setup()
-
-        -- Add cursors above/below the main cursor.
-        vim.keymap.set({ "n", "v" }, "<up>", function()
-            mc.addCursor("k")
-        end)
-        vim.keymap.set({ "n", "v" }, "<down>", function()
-            mc.addCursor("j")
-        end)
-
-        -- Add a cursor and jump to the next word under cursor.
-        vim.keymap.set({ "n", "v" }, "<c-n>", function()
-            mc.addCursor("*")
-        end)
-
-        -- Jump to the next word under cursor but do not add a cursor.
-        vim.keymap.set({ "n", "v" }, "<c-s>", function()
-            mc.skipCursor("*")
-        end)
-
-        -- Rotate the main cursor.
-        vim.keymap.set({ "n", "v" }, "<left>", mc.nextCursor)
-        vim.keymap.set({ "n", "v" }, "<right>", mc.prevCursor)
-
-        -- Delete the main cursor.
-        vim.keymap.set({ "n", "v" }, "<leader>x", mc.deleteCursor)
-
-        -- Add and remove cursors with control + left click.
-        vim.keymap.set("n", "<c-leftmouse>", mc.handleMouse)
-
-        vim.keymap.set({ "n", "v" }, "<c-q>", function()
-            if mc.cursorsEnabled() then
-                -- Stop other cursors from moving.
-                -- This allows you to reposition the main cursor.
-                mc.disableCursors()
-            else
-                mc.addCursor()
-            end
-        end)
-
-        vim.keymap.set("n", "<ESC>", function()
-            if not mc.cursorsEnabled() then
-                mc.enableCursors()
-            elseif mc.hasCursors() then
-                mc.clearCursors()
-            else
-                -- Default <esc> handler.
-            end
-        end)
-
-        -- Align cursor columns.
-        vim.keymap.set("n", "<leader>a", mc.alignCursors)
-
-        -- Split visual selections by regex.
-        vim.keymap.set("v", "S", mc.splitCursors)
-
-        -- Append/insert for each line of visual selections.
-        vim.keymap.set("v", "I", mc.insertVisual)
-        vim.keymap.set("v", "A", mc.appendVisual)
-
-        -- match new cursors within visual selections by regex.
-        vim.keymap.set("v", "M", mc.matchCursors)
-
-        -- Rotate visual selection contents.
-        vim.keymap.set("v", "<leader>t", function()
-            mc.transposeCursors(1)
-        end)
-        vim.keymap.set("v", "<leader>T", function()
-            mc.transposeCursors(-1)
-        end)
+        require("multicursor-nvim").setup()
 
         -- Customize how cursors look.
         vim.api.nvim_set_hl(0, "MultiCursorCursor", { link = "Cursor" })

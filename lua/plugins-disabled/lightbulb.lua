@@ -1,5 +1,7 @@
 return {
     "kosayoda/nvim-lightbulb",
+    lazy = true,
+    event = { "LspAttach" },
     opts = {
         -- Priority of the lightbulb for all handlers except float.
         priority = 10,

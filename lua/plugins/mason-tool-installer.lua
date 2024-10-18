@@ -1,5 +1,7 @@
 return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
+    lazy = true,
+    cmd = { "MasonToolsUpdate", "MasonToolsInstall" },
     dependencies = {
         "williamboman/mason.nvim",
     },

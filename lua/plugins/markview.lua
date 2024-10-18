@@ -2,13 +2,13 @@
 
 return {
     "OXY2DEV/markview.nvim",
+    lazy = true,
+    event = "BufEnter",
+    ft = "markdown",
     dependencies = {
         "nvim-treesitter/nvim-treesitter",
         "nvim-tree/nvim-web-devicons",
     },
-    lazy = true,
-    event = "BufEnter",
-    ft = "markdown",
     config = function()
         local presets = require("markview.presets")
 

@@ -1,5 +1,7 @@
 return {
     "VidocqH/lsp-lens.nvim",
+    lazy = true,
+    event = "LspAttach",
     config = function()
         local SymbolKind = vim.lsp.protocol.SymbolKind
 
