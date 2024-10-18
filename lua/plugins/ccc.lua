@@ -6,6 +6,7 @@
 return {
     "uga-rosa/ccc.nvim",
     lazy = true,
+    event = { "BufEnter", "InsertEnter" },
     keys = {
         {
             "<leader>cct",
@@ -23,7 +24,6 @@ return {
             desc = "CCC: Pick",
         },
     },
-    event = { "BufEnter", "InsertEnter" },
     cmd = { "CccPick", "CccConvert", "CccHighlighterEnable", "CccHighlighterDisable", "CccHighlighterToggle" },
     specs = {
         { "NvChad/nvim-colorizer.lua", optional = true, enabled = false },

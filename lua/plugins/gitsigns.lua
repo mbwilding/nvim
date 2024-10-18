@@ -1,5 +1,7 @@
 return {
     "lewis6991/gitsigns.nvim",
+    lazy = true,
+    event = { "BufEnter" },
     opts = {
         -- See `:help gitsigns.txt`
         signs = {
