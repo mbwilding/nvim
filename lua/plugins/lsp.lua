@@ -18,7 +18,6 @@ return {
         -- These can have more fields like cmd, settings and filetypes
         local servers = {
             arduino_language_server = {},
-            volar = {},
             zls = {},
             bashls = {
                 filetypes = { "sh", "zsh", "zshrc" },
@@ -119,12 +118,12 @@ return {
                         experimental = {
                             classRegex = {
                                 { "cva\\(([^)]*)\\)", "[\"'`]?([^\"'`]*).*?[\"'`]?" },
-                                { "cx\\(([^)]*)\\)", "[\"'`]?([^\"'`]*).*?[\"'`]?" },
+                                { "cx\\(([^)]*)\\)",  "[\"'`]?([^\"'`]*).*?[\"'`]?" },
                             },
                         },
                     },
                 },
-                filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
+                filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "vue" },
             },
             glsl_analyzer = {},
             yamlls = {
@@ -400,7 +399,7 @@ return {
             automatic_installation = true,
             -- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
             ensure_installed = vim.tbl_filter(function(key)
-              return servers[key].enabled ~= false
+                return servers[key].enabled ~= false
             end, vim.tbl_keys(servers)),
             handlers = {
                 function(server_name)
