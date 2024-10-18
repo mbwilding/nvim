@@ -2,11 +2,11 @@
 
 return {
     "stevearc/aerial.nvim",
+    lazy = true,
     dependencies = {
         "nvim-treesitter/nvim-treesitter",
         "nvim-tree/nvim-web-devicons",
     },
-    lazy = true,
     keys = {
         {
             "<leader>S",

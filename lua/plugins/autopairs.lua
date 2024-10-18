@@ -2,9 +2,9 @@
 
 return {
     "windwp/nvim-autopairs",
-    dependencies = { "hrsh7th/nvim-cmp" },
     lazy = true,
     event = "InsertEnter",
+    dependencies = { "hrsh7th/nvim-cmp" },
     config = function()
         local cmp_autopairs = require("nvim-autopairs.completion.cmp")
         local cmp = require("cmp")

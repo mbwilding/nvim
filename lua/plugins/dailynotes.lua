@@ -1,5 +1,6 @@
 return {
     "kperath/dailynotes.nvim",
+    lazy = true,
     opts = {
         path = "~/notes/",
     },

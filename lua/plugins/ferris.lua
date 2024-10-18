@@ -1,5 +1,6 @@
 return {
     "vxpm/ferris.nvim",
+    lazy = true,
     config = function()
         require("ferris").setup()
 

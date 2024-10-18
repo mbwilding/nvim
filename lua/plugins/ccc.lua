@@ -5,6 +5,7 @@
 
 return {
     "uga-rosa/ccc.nvim",
+    lazy = true,
     keys = {
         {
             "<leader>cct",
@@ -30,7 +31,7 @@ return {
     opts = {
         highlighter = {
             auto_enable = true,
-            test = "#356382",
+            test = "#356482",
             lsp = true,
         },
     },
