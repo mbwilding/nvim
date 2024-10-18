@@ -1,9 +1,9 @@
 return {
     "Wansmer/treesj",
+    lazy = true,
     dependencies = {
         "nvim-treesitter/nvim-treesitter",
     },
-    lazy = true,
     keys = {
         {
             "<leader>sj",
