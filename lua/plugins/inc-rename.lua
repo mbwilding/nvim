@@ -1,5 +1,7 @@
 return {
     "smjonas/inc-rename.nvim",
+    lazy = true,
+    event = "LspAttach",
     config = function()
         require("inc_rename").setup({
             -- input_buffer_type = "dressing",
