@@ -8,7 +8,7 @@ return {
     config = function()
         local cmp_autopairs = require("nvim-autopairs.completion.cmp")
         local cmp = require("cmp")
-        local handlers = require('nvim-autopairs.completion.handlers')
+
         cmp.event:on(
             "confirm_done",
             cmp_autopairs.on_confirm_done({
@@ -17,6 +17,7 @@ return {
                 }
             })
         )
+
         require("nvim-autopairs").setup({
             check_ts = true, -- Enable treesitter
             ts_config = {
