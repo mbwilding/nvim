@@ -11,16 +11,15 @@ return {
             -- a list of all tools you want to ensure are installed upon
             -- start
             ensure_installed = {
-                -- "cfn-lint",
-                "yamllint",
-                "jsonlint",
                 "actionlint",
-                "markdownlint",
                 "clang-format",
-                "prettierd",
                 "eslint_d",
+                "jsonlint",
+                "markdownlint",
+                "prettierd",
                 "xmlformatter",
-                -- "sonarlint-language-server",
+                "yamllint",
+                "yq",
             },
             -- if set to true this will check each tool for updates. If updates
             -- are available the tool will be updated. This setting does not
