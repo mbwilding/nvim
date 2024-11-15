@@ -37,6 +37,7 @@ return {
 
         vim.g.dbs = {
             { name = "pg-docker", url = "postgres://postgres:Developer01@localhost:5432/_Namespace._CapabilityName" },
+            { name = "pg-truenas", url = "postgres://postgres:Developer01@192.168.0.10:5432/_Namespace._CapabilityName" },
         }
     end,
 }
