@@ -39,6 +39,7 @@ return {
             dockerls = {},
             -- nginx_language_server = {},
             vtsls = {},
+            volar = {},
             ts_ls = {
                 enabled = false,
                 settings = {
