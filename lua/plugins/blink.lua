@@ -98,8 +98,11 @@ return {
                     }
                 },
             },
-
-        }
+            documentation = {
+                auto_show = true,
+                auto_show_delay_ms = 500,
+            }
+        },
 
         -- experimental signature help support
         -- signature = { enabled = true }
