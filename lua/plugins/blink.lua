@@ -60,7 +60,13 @@ return {
         -- elsewhere in your config, without redefining it, via `opts_extend`
         sources = {
             completion = {
-                enabled_providers = { 'lsp', 'path', 'snippets', 'luasnip', 'buffer' },
+                enabled_providers = {
+                    "lsp",
+                    "path",
+                    "snippets",
+                    "luasnip",
+                    "buffer"
+                },
             },
         },
 
