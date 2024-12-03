@@ -3,6 +3,7 @@ return {
     dependencies = {
         "williamboman/mason.nvim",
         "neovim/nvim-lspconfig",
+        "saghen/blink.cmp",
         "b0o/schemastore.nvim",
         "nvim-telescope/telescope.nvim",
         "Issafalcon/lsp-overloads.nvim",
@@ -384,18 +385,7 @@ return {
             end,
         })
 
-        -- Capabilities
-        local capabilities = vim.tbl_deep_extend(
-            "force",
-            vim.lsp.protocol.make_client_capabilities(),
-            require("cmp_nvim_lsp").default_capabilities()
-        )
-
-        -- UFO (Folding)
-        capabilities.textDocument.foldingRange = {
-            dynamicRegistration = false,
-            lineFoldingOnly = true,
-        }
+        local blink_cmp = require("blink.cmp")
 
         require("mason-lspconfig").setup({
             automatic_installation = true,
@@ -411,6 +401,14 @@ return {
                     if server.enabled == false then
                         return
                     end
+
+                    local capabilities = blink_cmp.get_lsp_capabilities(server.capabilities)
+
+                    -- UFO (Folding)
+                    capabilities.textDocument.foldingRange = {
+                        dynamicRegistration = false,
+                        lineFoldingOnly = true,
+                    }
 
                     require("lspconfig")[server_name].setup({
                         cmd = server.cmd,
