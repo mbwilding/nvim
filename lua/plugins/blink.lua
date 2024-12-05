@@ -22,18 +22,19 @@ return {
         -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
         -- see the "default configuration" section below for full documentation on how to define
         -- your own keymap.
-        keymap = {
-            preset = 'default',
-            ["<A-1>"] = { function(cmp) cmp.accept({ index = 1 }) end },
-            ["<A-2>"] = { function(cmp) cmp.accept({ index = 2 }) end },
-            ["<A-3>"] = { function(cmp) cmp.accept({ index = 3 }) end },
-            ["<A-4>"] = { function(cmp) cmp.accept({ index = 4 }) end },
-            ["<A-5>"] = { function(cmp) cmp.accept({ index = 5 }) end },
-            ["<A-6>"] = { function(cmp) cmp.accept({ index = 6 }) end },
-            ["<A-7>"] = { function(cmp) cmp.accept({ index = 7 }) end },
-            ["<A-8>"] = { function(cmp) cmp.accept({ index = 8 }) end },
-            ["<A-9>"] = { function(cmp) cmp.accept({ index = 9 }) end },
-        },
+
+        -- keymap = {
+        --     preset = 'default',
+        --     ["<A-1>"] = { function(cmp) cmp.accept({ index = 1 }) end },
+        --     ["<A-2>"] = { function(cmp) cmp.accept({ index = 2 }) end },
+        --     ["<A-3>"] = { function(cmp) cmp.accept({ index = 3 }) end },
+        --     ["<A-4>"] = { function(cmp) cmp.accept({ index = 4 }) end },
+        --     ["<A-5>"] = { function(cmp) cmp.accept({ index = 5 }) end },
+        --     ["<A-6>"] = { function(cmp) cmp.accept({ index = 6 }) end },
+        --     ["<A-7>"] = { function(cmp) cmp.accept({ index = 7 }) end },
+        --     ["<A-8>"] = { function(cmp) cmp.accept({ index = 8 }) end },
+        --     ["<A-9>"] = { function(cmp) cmp.accept({ index = 9 }) end },
+        -- },
 
         appearance = {
             -- Sets the fallback highlight groups to nvim-cmp's highlight groups
@@ -79,10 +80,10 @@ return {
             },
             menu = {
                 draw = {
-                    treesitter = true,
+                    treesitter = false, -- Causes bad highlighting currently
                     columns = {
                         {
-                            "item_idx",
+                            -- "item_idx",
                             "kind_icon",
                             -- "kind",
                             "label",
