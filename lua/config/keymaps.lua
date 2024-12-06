@@ -98,3 +98,6 @@ end, { desc = "HTML" })
 -- Debug
 -- vim.keymap.set("n", "\\m", "<CMD>messages<CR>", { desc = "Debug: Messages" })
 vim.keymap.set("n", "\\i", "<CMD>Inspect<CR>", { desc = "Highlights: Inspect" })
+
+-- Custom
+vim.keymap.set("n", "yd", "yyp", { desc = "Duplicate line"})
