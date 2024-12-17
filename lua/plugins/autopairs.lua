@@ -4,26 +4,18 @@ return {
     "windwp/nvim-autopairs",
     lazy = true,
     event = "InsertEnter",
-    dependencies = { "hrsh7th/nvim-cmp" },
     config = function()
-        local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-        local cmp = require("cmp")
-
-        cmp.event:on(
-            "confirm_done",
-            cmp_autopairs.on_confirm_done({
-                filetypes = {
-                    rust = false,
-                }
-            })
-        )
-
         require("nvim-autopairs").setup({
             check_ts = true, -- Enable treesitter
             ts_config = {
                 lua = { "string" },
                 javascript = { "template_string" },
                 -- java = false, -- Don't check treesitter on Java
+            },
+            accept = {
+                auto_brackets = {
+                    enabled = true
+                }
             },
         })
 
