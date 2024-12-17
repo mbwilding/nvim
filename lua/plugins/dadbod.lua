@@ -5,16 +5,16 @@ return {
     lazy = true,
     dependencies = {
         { "tpope/vim-dadbod", lazy = true },
-        {
-            "kristijanhusak/vim-dadbod-completion",
-            lazy = true,
-            ft =
-            {
-                "sql",
-                "mysql",
-                "plsql"
-            },
-        },
+        -- {
+        --     "kristijanhusak/vim-dadbod-completion",
+        --     lazy = true,
+        --     ft =
+        --     {
+        --         "sql",
+        --         "mysql",
+        --         "plsql"
+        --     },
+        -- },
     },
     cmd = {
         "DBUI",

@@ -69,11 +69,11 @@ return {
                     "snippets",
                     "luasnip",
                     "buffer",
-                    "dadbod",
+                    -- "dadbod",
                 },
-                providers = {
-                    dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
-                },
+                -- providers = {
+                --     dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+                -- },
             },
         },
 
