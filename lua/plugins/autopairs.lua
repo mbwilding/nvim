@@ -12,11 +12,6 @@ return {
                 javascript = { "template_string" },
                 -- java = false, -- Don't check treesitter on Java
             },
-            accept = {
-                auto_brackets = {
-                    enabled = true
-                }
-            },
         })
 
         local pairs = require("nvim-autopairs")
