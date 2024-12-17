@@ -5,7 +5,16 @@ return {
     lazy = true,
     dependencies = {
         { "tpope/vim-dadbod", lazy = true },
-        -- { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
+        {
+            "kristijanhusak/vim-dadbod-completion",
+            lazy = true,
+            ft =
+            {
+                "sql",
+                "mysql",
+                "plsql"
+            },
+        },
     },
     cmd = {
         "DBUI",
@@ -36,7 +45,7 @@ return {
         -- })
 
         vim.g.dbs = {
-            { name = "pg-docker", url = "postgres://postgres:Developer01@localhost:5432/_Namespace._CapabilityName" },
+            { name = "pg-docker",  url = "postgres://postgres:Developer01@localhost:5432/_Namespace._CapabilityName" },
             { name = "pg-truenas", url = "postgres://postgres:Developer01@truenas:5432/_Namespace._CapabilityName" },
         }
     end,
