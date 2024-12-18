@@ -100,4 +100,4 @@ end, { desc = "HTML" })
 vim.keymap.set("n", "\\i", "<CMD>Inspect<CR>", { desc = "Highlights: Inspect" })
 
 -- Custom
-vim.keymap.set("n", "yd", "yyp", { desc = "Duplicate line"})
+vim.keymap.set("n", "yd", "yyp", { desc = "Duplicate line" })
