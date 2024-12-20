@@ -23,7 +23,7 @@ vim.wo.number = true
 vim.wo.relativenumber = false
 
 -- Gutter sign column
-vim.wo.signcolumn = "yes"
+vim.wo.signcolumn = "auto"
 
 -- Mouse mode
 vim.o.mouse = "a"

@@ -58,6 +58,16 @@ return {
         -- Constrain the cursor to the editable parts of the oil buffer
         -- Set to `false` to disable, or "name" to keep it on the file names
         constrain_cursor = false,
+        win_options = {
+            wrap = false,
+            signcolumn = "auto:2",
+            cursorcolumn = false,
+            foldcolumn = "0",
+            spell = false,
+            list = false,
+            conceallevel = 3,
+            concealcursor = "nvic",
+        },
         view_options = {
             -- Show files and directories that start with "."
             show_hidden = false,
