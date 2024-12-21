@@ -113,55 +113,63 @@ return {
         -- require('dap-go').setup()
 
         -- Configurations
-        dap.configurations.cs = {
-            {
-                name = "app",
-                type = "coreclr",
-                request = "launch",
-                program = function()
-                    return vim.fn.input("Path to dll", vim.fn.getcwd() .. "/bin/Debug/", "file")
-                end,
-            },
-        }
-
         -- dap.configurations.cs = {
         --     {
         --         name = "app",
         --         type = "coreclr",
         --         request = "launch",
         --         program = function()
-        --             vim.cmd("!dotnet build")
-        --
-        --             local function find_dll_path()
-        --                 local current_file = vim.fn.expand('%:p')
-        --                 local current_dir = vim.fn.fnamemodify(current_file, ':h')
-        --                 print("Current File: " .. current_file)
-        --                 while current_dir ~= "" do
-        --                     local bin_dir = current_dir .. "/bin"
-        --                     local obj_dir = current_dir .. "/obj"
-        --                     if vim.fn.isdirectory(bin_dir) == 1 and vim.fn.isdirectory(obj_dir) == 1 then
-        --                         for _, dir in ipairs({ bin_dir, obj_dir }) do
-        --                             print("Checking dir: " .. dir)
-        --                             local dll_files = vim.fn.glob(dir .. '/**/*.dll', false, true)
-        --                             for _, dll in ipairs(dll_files) do
-        --                                 if string.match(dll, vim.fn.expand("/*/")) then
-        --                                     return dll
-        --                                 end
-        --                             end
-        --                         end
-        --                     end
-        --                     current_dir = vim.fn.fnamemodify(current_dir, ':h')
-        --                 end
-        --                 print("DLL not found")
-        --                 return nil
-        --             end
-        --
-        --             return find_dll_path()
+        --             return vim.fn.input("Path to dll", vim.fn.getcwd() .. "/bin/Debug/", "file")
         --         end,
-        --         cwd = "${workspaceFolder}",
-        --         stopOnEntry = false,
         --     },
         -- }
+
+        dap.configurations.cs = {
+            {
+                name = "app",
+                type = "coreclr",
+                request = "launch",
+                program = function()
+                    local function build()
+                        local lines = vim.fn.systemlist("dotnet build")
+                        local output = table.concat(lines, "\n")
+
+                        if not output:find("Build succeeded") then
+                            return error("Failed to build")
+                        end
+                    end
+
+                    build()
+
+                    local function find_dll_path()
+                        local current_file = vim.fn.expand('%:p')
+                        local current_dir = vim.fn.fnamemodify(current_file, ':h')
+
+                        while current_dir ~= "" and current_dir ~= "/" do
+                            local bin_dir = current_dir .. "/bin"
+                            local obj_dir = current_dir .. "/obj"
+                            if vim.fn.isdirectory(bin_dir) == 1 and vim.fn.isdirectory(obj_dir) == 1 then
+                                local project_name = vim.fn.fnamemodify(current_dir, ":t")
+                                local dll_files = vim.fn.glob(current_dir .. '/**/' .. project_name .. '.dll', false, true)
+                                if #dll_files > 0 then
+                                    return dll_files[1]
+                                else
+                                    error("Project DLL file found")
+                                end
+                            end
+                            current_dir = vim.fn.fnamemodify(current_dir, ':h')
+                        end
+
+                        error("DLL not found and reached top directory")
+                        return nil
+                    end
+
+                    return find_dll_path()
+                end,
+                cwd = "${workspaceFolder}",
+                stopOnEntry = false,
+            },
+        }
 
         dap.configurations.rust = {
             {
@@ -169,7 +177,7 @@ return {
                 type = "codelldb",
                 request = "launch",
                 program = function()
-                    local function run_build(command)
+                    local function build(command)
                         local lines = vim.fn.systemlist(command)
                         local output = table.concat(lines, "\n")
                         local filename = output:match('^.*"executable":"(.*)",.*\n.*,"success":true}$')
@@ -191,7 +199,7 @@ return {
                         return nil
                     end
 
-                    return run_build("cargo build -q --message-format=json --bin " .. get_project_name())
+                    return build("cargo build -q --message-format=json --bin " .. get_project_name())
                 end,
                 cwd = "${workspaceFolder}",
                 stopOnEntry = false,
