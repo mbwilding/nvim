@@ -35,19 +35,13 @@ return {
         -- default list of enabled providers defined so that you can extend it
         -- elsewhere in your config, without redefining it, via `opts_extend`
         sources = {
-            completion = {
-                enabled_providers = {
-                    "lsp",
-                    "path",
-                    "snippets",
-                    "luasnip",
-                    "buffer",
-                    -- "dadbod",
-                },
-                -- providers = {
-                --     dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
-                -- },
-            },
+            default = {
+                "lsp",
+                "path",
+                "snippets",
+                "luasnip",
+                "buffer",
+            }
         },
 
         -- experimental auto-brackets support
@@ -79,7 +73,6 @@ return {
             },
             menu = {
                 draw = {
-                    treesitter = true, -- Causes bad highlighting currently
                     columns = {
                         {
                             -- "item_idx",
