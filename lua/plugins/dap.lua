@@ -27,7 +27,7 @@ return {
                 -- Update this to ensure that you have the debuggers for the langs you want
 
                 -- "delve", -- go
-                "coreclr", -- netcoredbg
+                "coreclr",  -- netcoredbg
                 "codelldb", -- cpp, rust
             },
         })
@@ -91,16 +91,28 @@ return {
             dapui.close()
         end
 
-        -- Install golang specific config
-        -- require('dap-go').setup()
+        -- Adapters
+        dap.adapters.codelldb = {
+            type = "server",
+            port = "${port}",
+            executable = {
+                command = vim.fn.exepath("codelldb"), -- install `lldb` && use :Mason to install codelldb & cpptools
+                args = { "--port", "${port}" },
+                detached = vim.fn.has('win32') == 0
+            },
+            name = "codelldb"
+        }
 
-        ---- CSHARP
         dap.adapters.coreclr = {
             type = "executable",
             command = "/usr/bin/netcoredbg",
             args = { "--interpreter=vscode" },
         }
 
+        -- Install golang specific config
+        -- require('dap-go').setup()
+
+        -- Configurations
         dap.configurations.cs = {
             {
                 type = "coreclr",
@@ -112,43 +124,44 @@ return {
             },
         }
 
-        ---- RUST
-        local function find_codelldb_path()
-            local possible_paths = {
-                vim.env.HOME .. "/.local/share/nvim/mason/bin/codelldb",
-                vim.env.HOME .. "/AppData/Local/nvim-data/mason/packages/codelldb/extension/adapter/codelldb.exe",
-            }
-
-            for _, path in ipairs(possible_paths) do
-                if vim.fn.filereadable(path) == 1 then
-                    return path
-                end
-            end
-
-            print("codelldb not found")
-
-            return nil
-        end
-
-        local function get_rust_project_name()
-            local current_file = vim.fn.expand('%:p')
-            local project_dir = string.match(current_file, "(.+)/src/.+")
-            if project_dir then
-                local project_name = vim.fn.fnamemodify(project_dir, ":t")
-                return project_name
-            end
-            print("Project name not found")
-            return nil
-        end
-
-        dap.adapters.codelldb = {
-            type = "server",
-            port = "${port}",
-            executable = {
-                command = find_codelldb_path(),
-                args = { "--port", "${port}" },
-            },
-        }
+        -- dap.configurations.cs = {
+        --     {
+        --         type = "coreclr",
+        --         name = "launch - netcoredbg",
+        --         request = "launch",
+        --         program = function()
+        --             vim.cmd("!dotnet build")
+        --
+        --             local function find_dll_path()
+        --                 local current_file = vim.fn.expand('%:p')
+        --                 local current_dir = vim.fn.fnamemodify(current_file, ':h')
+        --                 print("Current File: " .. current_file)
+        --                 while current_dir ~= "" do
+        --                     local bin_dir = current_dir .. "/bin"
+        --                     local obj_dir = current_dir .. "/obj"
+        --                     if vim.fn.isdirectory(bin_dir) == 1 and vim.fn.isdirectory(obj_dir) == 1 then
+        --                         for _, dir in ipairs({ bin_dir, obj_dir }) do
+        --                             print("Checking dir: " .. dir)
+        --                             local dll_files = vim.fn.glob(dir .. '/**/*.dll', false, true)
+        --                             for _, dll in ipairs(dll_files) do
+        --                                 if string.match(dll, vim.fn.expand("/*/")) then
+        --                                     return dll
+        --                                 end
+        --                             end
+        --                         end
+        --                     end
+        --                     current_dir = vim.fn.fnamemodify(current_dir, ':h')
+        --                 end
+        --                 print("DLL not found")
+        --                 return nil
+        --             end
+        --
+        --             return find_dll_path()
+        --         end,
+        --         cwd = "${workspaceFolder}",
+        --         stopOnEntry = false,
+        --     },
+        -- }
 
         dap.configurations.rust = {
             {
@@ -157,6 +170,17 @@ return {
                 request = "launch",
                 program = function()
                     vim.cmd("!cargo build")
+
+                    local function get_rust_project_name()
+                        local current_file = vim.fn.expand('%:p')
+                        local project_dir = string.match(current_file, "(.+)/src/.+")
+                        if project_dir then
+                            return vim.fn.fnamemodify(project_dir, ":t")
+                        end
+                        print("Project name not found")
+                        return nil
+                    end
+
                     return vim.fn.getcwd() .. "/target/debug/" .. get_rust_project_name()
                 end,
                 cwd = "${workspaceFolder}",
