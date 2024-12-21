@@ -8,7 +8,6 @@ return {
         "rafamadriz/friendly-snippets",
         "L3MON4D3/LuaSnip",
     },
-
     version = "v0.*",
 
     ---@module "blink.cmp"
@@ -32,8 +31,6 @@ return {
             jump = function(direction) require("luasnip").jump(direction) end,
         },
 
-        -- default list of enabled providers defined so that you can extend it
-        -- elsewhere in your config, without redefining it, via `opts_extend`
         sources = {
             default = {
                 "lsp",
@@ -41,10 +38,9 @@ return {
                 "snippets",
                 "luasnip",
                 "buffer",
-            }
+            },
         },
 
-        -- experimental auto-brackets support
         completion = {
             accept = {
                 -- Create an undo point when accepting a completion item
