@@ -150,7 +150,7 @@ return {
                             local obj_dir = current_dir .. "/obj"
                             if vim.fn.isdirectory(bin_dir) == 1 and vim.fn.isdirectory(obj_dir) == 1 then
                                 local project_name = vim.fn.fnamemodify(current_dir, ":t")
-                                local dll_files = vim.fn.glob(current_dir .. '/**/' .. project_name .. '.dll', false, true)
+                                local dll_files = vim.fn.glob(bin_dir .. '/Debug/*/' .. project_name .. '.dll', false, true)
                                 if #dll_files > 0 then
                                     return dll_files[1]
                                 else
