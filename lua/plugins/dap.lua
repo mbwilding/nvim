@@ -99,7 +99,7 @@ return {
             executable = {
                 command = vim.fn.exepath("codelldb"),
                 args = { "--port", "${port}" },
-                detached = vim.fn.has('win32') == 0
+                detached = vim.fn.has("win32") == 0
             }
         }
 
