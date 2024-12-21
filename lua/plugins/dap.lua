@@ -92,7 +92,6 @@ return {
 
         -- Adapters
         dap.adapters.codelldb = {
-            name = "codelldb",
             type = "server",
             port = "${port}",
             executable = {
@@ -110,7 +109,7 @@ return {
 
         dap.configurations.cs = {
             {
-                name = "app",
+                name = "Debug",
                 type = "coreclr",
                 request = "launch",
                 program = function()
@@ -126,26 +125,22 @@ return {
                     build()
 
                     local function find_dll_path()
-                        local current_file = vim.fn.expand('%:p')
-                        local current_dir = vim.fn.fnamemodify(current_file, ':h')
+                        local current_dir = vim.fn.fnamemodify(vim.fn.expand('%:p'), ':h')
 
                         while current_dir ~= "" and current_dir ~= "/" do
-                            local bin_dir = current_dir .. "/bin"
-                            local obj_dir = current_dir .. "/obj"
+                            local bin_dir, obj_dir = current_dir .. "/bin", current_dir .. "/obj"
                             if vim.fn.isdirectory(bin_dir) == 1 and vim.fn.isdirectory(obj_dir) == 1 then
                                 local project_name = vim.fn.fnamemodify(current_dir, ":t")
-                                local dll_files = vim.fn.glob(bin_dir .. '/Debug/*/' .. project_name .. '.dll', false, true)
-                                if #dll_files > 0 then
-                                    return dll_files[1]
-                                else
-                                    error("Project DLL file found")
+                                local dll_pattern = bin_dir .. '/Debug/*/' .. project_name .. '.dll'
+                                for _, dll in ipairs(vim.fn.glob(dll_pattern, false, true)) do
+                                    return dll
                                 end
+                                error("Project DLL not found")
                             end
                             current_dir = vim.fn.fnamemodify(current_dir, ':h')
                         end
 
                         error("DLL not found and reached top directory")
-                        return nil
                     end
 
                     return find_dll_path()
@@ -157,7 +152,7 @@ return {
 
         dap.configurations.rust = {
             {
-                name = "bin",
+                name = "Debug",
                 type = "codelldb",
                 request = "launch",
                 program = function()
