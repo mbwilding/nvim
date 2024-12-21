@@ -162,6 +162,7 @@ return {
                 type = "codelldb",
                 request = "launch",
                 program = function()
+                    vim.cmd("!cargo build")
                     return vim.fn.getcwd() .. "/target/debug/" .. find_rust_target()
                 end,
                 cwd = "${workspaceFolder}",
