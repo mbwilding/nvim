@@ -169,7 +169,7 @@ return {
                 type = "codelldb",
                 request = "launch",
                 program = function()
-                    vim.cmd("!cargo build")
+                    vim.cmd("!cargo build -q --message-format=json")
 
                     local function get_rust_project_name()
                         local current_file = vim.fn.expand('%:p')
@@ -185,6 +185,7 @@ return {
                 end,
                 cwd = "${workspaceFolder}",
                 stopOnEntry = false,
+                showDisassembly = "never"
             },
         }
     end,
