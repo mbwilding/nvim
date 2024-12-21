@@ -26,7 +26,6 @@ return {
             ensure_installed = {
                 -- Update this to ensure that you have the debuggers for the langs you want
 
-                -- "delve", -- go
                 "coreclr",  -- netcoredbg
                 "codelldb", -- cpp, rust
             },
@@ -45,7 +44,7 @@ return {
         vim.keymap.set("n", "<leader>B", function()
             dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
         end, { desc = "Debug: Set Breakpoint" })
-        vim.keymap.set("n", "<leader>?", function()
+        vim.keymap.set("n", "<leader>cv", function()
             dap.eval(nil, { enter = true })
         end, { desc = "Debug: Cursor Value" })
 
@@ -108,21 +107,6 @@ return {
             command = vim.fn.exepath("netcoredbg"),
             args = { "--interpreter=vscode" },
         }
-
-        -- Install golang specific config
-        -- require('dap-go').setup()
-
-        -- Configurations
-        -- dap.configurations.cs = {
-        --     {
-        --         name = "app",
-        --         type = "coreclr",
-        --         request = "launch",
-        --         program = function()
-        --             return vim.fn.input("Path to dll", vim.fn.getcwd() .. "/bin/Debug/", "file")
-        --         end,
-        --     },
-        -- }
 
         dap.configurations.cs = {
             {
