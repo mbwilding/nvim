@@ -130,20 +130,14 @@ return {
             return nil
         end
 
-        local function find_rust_target()
-            local metadata = vim.fn.json_decode(vim.fn.system("cargo metadata --no-deps --format-version 1"))
-            if metadata and metadata["packages"] then
-                local package = metadata["packages"][1]
-                if package and package["targets"] then
-                    for _, target in ipairs(package["targets"]) do
-                        if target["kind"] and vim.tbl_contains(target["kind"], "bin") then
-                            return target["name"]
-                        end
-                    end
-                end
+        local function get_rust_project_name()
+            local current_file = vim.fn.expand('%:p')
+            local project_dir = string.match(current_file, "(.+)/src/.+")
+            if project_dir then
+                local project_name = vim.fn.fnamemodify(project_dir, ":t")
+                return project_name
             end
-
-            print("Rust target not found")
+            print("Project name not found")
             return nil
         end
 
@@ -163,7 +157,7 @@ return {
                 request = "launch",
                 program = function()
                     vim.cmd("!cargo build")
-                    return vim.fn.getcwd() .. "/target/debug/" .. find_rust_target()
+                    return vim.fn.getcwd() .. "/target/debug/" .. get_rust_project_name()
                 end,
                 cwd = "${workspaceFolder}",
                 stopOnEntry = false,
