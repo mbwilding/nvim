@@ -115,8 +115,8 @@ return {
         -- Configurations
         dap.configurations.cs = {
             {
-                type = "coreclr",
                 name = "launch - netcoredbg",
+                type = "coreclr",
                 request = "launch",
                 program = function()
                     return vim.fn.input("Path to dll", vim.fn.getcwd() .. "/bin/Debug/", "file")
@@ -126,8 +126,8 @@ return {
 
         -- dap.configurations.cs = {
         --     {
-        --         type = "coreclr",
         --         name = "launch - netcoredbg",
+        --         type = "coreclr",
         --         request = "launch",
         --         program = function()
         --             vim.cmd("!dotnet build")
@@ -165,12 +165,10 @@ return {
 
         dap.configurations.rust = {
             {
-                name = "Launch",
+                name = "Rust",
                 type = "codelldb",
                 request = "launch",
                 program = function()
-                    vim.cmd("!cargo build -q --message-format=json")
-
                     local function get_rust_project_name()
                         local current_file = vim.fn.expand('%:p')
                         local project_dir = string.match(current_file, "(.+)/src/.+")
@@ -181,12 +179,24 @@ return {
                         return nil
                     end
 
-                    return vim.fn.getcwd() .. "/target/debug/" .. get_rust_project_name()
+                    local function run_build(command)
+                        local lines = vim.fn.systemlist(command)
+                        local output = table.concat(lines, "\n")
+                        local filename = output:match('^.*"executable":"(.*)",.*\n.*,"success":true}$')
+
+                        if filename == nil then
+                            return error("Failed to build cargo project")
+                        end
+
+                        return filename
+                    end
+
+                    return run_build("cargo build -q --message-format=json --bin " .. get_rust_project_name())
                 end,
                 cwd = "${workspaceFolder}",
                 stopOnEntry = false,
                 showDisassembly = "never"
-            },
+            }
         }
     end,
 }
