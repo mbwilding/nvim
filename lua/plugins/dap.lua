@@ -96,7 +96,7 @@ return {
             type = "server",
             port = "${port}",
             executable = {
-                command = vim.fn.exepath("codelldb"), -- install `lldb` && use :Mason to install codelldb & cpptools
+                command = vim.fn.exepath("codelldb"),
                 args = { "--port", "${port}" },
                 detached = vim.fn.has('win32') == 0
             },
@@ -115,7 +115,7 @@ return {
         -- Configurations
         dap.configurations.cs = {
             {
-                name = "launch - netcoredbg",
+                name = "app",
                 type = "coreclr",
                 request = "launch",
                 program = function()
@@ -126,7 +126,7 @@ return {
 
         -- dap.configurations.cs = {
         --     {
-        --         name = "launch - netcoredbg",
+        --         name = "app",
         --         type = "coreclr",
         --         request = "launch",
         --         program = function()
@@ -165,20 +165,10 @@ return {
 
         dap.configurations.rust = {
             {
-                name = "Rust",
+                name = "bin",
                 type = "codelldb",
                 request = "launch",
                 program = function()
-                    local function get_rust_project_name()
-                        local current_file = vim.fn.expand('%:p')
-                        local project_dir = string.match(current_file, "(.+)/src/.+")
-                        if project_dir then
-                            return vim.fn.fnamemodify(project_dir, ":t")
-                        end
-                        print("Project name not found")
-                        return nil
-                    end
-
                     local function run_build(command)
                         local lines = vim.fn.systemlist(command)
                         local output = table.concat(lines, "\n")
@@ -191,7 +181,17 @@ return {
                         return filename
                     end
 
-                    return run_build("cargo build -q --message-format=json --bin " .. get_rust_project_name())
+                    local function get_project_name()
+                        local current_file = vim.fn.expand('%:p')
+                        local project_dir = string.match(current_file, "(.+)/src/.+")
+                        if project_dir then
+                            return vim.fn.fnamemodify(project_dir, ":t")
+                        end
+                        print("Project name not found")
+                        return nil
+                    end
+
+                    return run_build("cargo build -q --message-format=json --bin " .. get_project_name())
                 end,
                 cwd = "${workspaceFolder}",
                 stopOnEntry = false,
