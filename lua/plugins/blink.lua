@@ -7,13 +7,62 @@ return {
     dependencies = {
         "rafamadriz/friendly-snippets",
         "L3MON4D3/LuaSnip",
+        "kristijanhusak/vim-dadbod-completion",
     },
     version = "v0.*",
 
     ---@module "blink.cmp"
     ---@type blink.cmp.Config
     opts = {
-        keymap = { preset = "default" },
+        sources = {
+            default = { "lsp", "path", "snippets", "buffer", "luasnip", "dadbod" },
+            providers = {
+                lsp = {
+                    name = "lsp",
+                    enabled = true,
+                    module = "blink.cmp.sources.lsp",
+                    score_offset = 1000,
+                },
+                path = {
+                    name = "path",
+                    enabled = true,
+                    module = "blink.cmp.sources.path",
+                    score_offset = 990,
+                },
+                luasnip = {
+                    name = "luasnip",
+                    enabled = true,
+                    module = "blink.cmp.sources.luasnip",
+                    score_offset = 950,
+                },
+                snippets = {
+                    name = "snippets",
+                    enabled = true,
+                    module = "blink.cmp.sources.snippets",
+                    score_offset = 900,
+                },
+                dadbod = {
+                    name = "Dadbod",
+                    module = "vim_dadbod_completion.blink",
+                    score_offset = 950,
+                },
+            },
+        },
+
+        keymap = {
+            preset = "default",
+            ["<Tab>"] = { "snippet_forward", "fallback" },
+            ["<S-Tab>"] = { "snippet_backward", "fallback" },
+
+            ["<C-p>"] = { "select_prev", "fallback" },
+            ["<C-n>"] = { "select_next", "fallback" },
+
+            ["<C-b>"] = { "scroll_documentation_up", "fallback" },
+            ["<C-f>"] = { "scroll_documentation_down", "fallback" },
+
+            ["K"] = { "show", "show_documentation", "hide_documentation" },
+            ["<C-e>"] = { "hide", "fallback" },
+        },
 
         appearance = {
             use_nvim_cmp_as_default = false,
@@ -21,24 +70,18 @@ return {
         },
 
         snippets = {
-            expand = function(snippet) require("luasnip").lsp_expand(snippet) end,
+            expand = function(snippet)
+                require("luasnip").lsp_expand(snippet)
+            end,
             active = function(filter)
                 if filter and filter.direction then
                     return require("luasnip").jumpable(filter.direction)
                 end
                 return require("luasnip").in_snippet()
             end,
-            jump = function(direction) require("luasnip").jump(direction) end,
-        },
-
-        sources = {
-            default = {
-                "path",
-                "lsp",
-                "snippets",
-                "luasnip",
-                "buffer",
-            },
+            jump = function(direction)
+                require("luasnip").jump(direction)
+            end,
         },
 
         completion = {
