@@ -153,18 +153,11 @@ return {
                 local filename = vim.fn.fnamemodify(self.filename, ":.")
                 filename = filename:gsub("oil://", "")
 
-                local cwd = vim.fn.getcwd(0)
-                local relative_filename = vim.fn.fnamemodify(filename, ":~:.")
-
-                if relative_filename:sub(1, #cwd) == cwd then
-                    relative_filename = relative_filename:sub(#cwd + 2)
+                if not conditions.width_percent_below(#filename, 0.25) then
+                    filename = vim.fn.fnamemodify(filename, ":t")
                 end
 
-                if not conditions.width_percent_below(#relative_filename, 0.25) then
-                    relative_filename = vim.fn.fnamemodify(relative_filename, ":t")
-                end
-
-                return "[" .. relative_filename .. "]"
+                return "[" .. filename .. "]"
             end,
             hl = function()
                 return { fg = colors.string, bg = colors.none, force = true }
@@ -528,7 +521,7 @@ return {
 
         -- MEMES
         local meme = {
-            provider = "Feet Pics: 57.6TB",
+            provider = "Feet Pics: 3.6TB",
             hl = { fg = colors.string, bg = colors.none },
         }
 
