@@ -147,7 +147,7 @@ return {
                 end,
                 cwd = "${workspaceFolder}",
                 stopOnEntry = false,
-            },
+            }
         }
 
         dap.configurations.rust = {
