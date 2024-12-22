@@ -210,8 +210,7 @@ return {
                             return error("Project directory not found")
                         end
 
-                        local result = vim.fn.systemlist("cargo read-manifest --manifest-path " ..
-                            project_dir .. "/Cargo.toml")
+                        local result = vim.fn.systemlist("cargo read-manifest --manifest-path " .. project_dir .. "/Cargo.toml")
                         if vim.v.shell_error ~= 0 then
                             return error("Failed to read Cargo.toml")
                         end
@@ -220,8 +219,6 @@ return {
                         for _, target in ipairs(manifest.targets) do
                             if target.crate_types[1] == "bin" then
                                 return target.name
-                            else
-                                -- Telescope floating ui to ask which binary in workspace
                             end
                         end
 
