@@ -202,17 +202,32 @@ return {
                         return filename
                     end
 
-                    local function get_project_name()
+                    local function get_crate_target()
                         local current_file = vim.fn.expand('%:p')
                         local project_dir = string.match(current_file, "(.+)/src/.+")
-                        if project_dir then
-                            return vim.fn.fnamemodify(project_dir, ":t")
+
+                        if not project_dir then
+                            return error("Project directory not found")
                         end
 
-                        return error("Project name not found")
+                        local result = vim.fn.systemlist("cargo read-manifest --manifest-path " .. project_dir .. "/Cargo.toml")
+                        if vim.v.shell_error ~= 0 then
+                            return error("Failed to read Cargo.toml")
+                        end
+
+                        local manifest = vim.fn.json_decode(table.concat(result, "\n"))
+                        for _, target in ipairs(manifest.targets) do
+                            if target.crate_types[1] == "bin" then
+                                return target.name
+                            else
+                                -- Telescope floating ui to ask which binary in workspace
+                            end
+                        end
+
+                        return error("No binary target found")
                     end
 
-                    return build("cargo build -q --message-format=json --bin " .. get_project_name())
+                    return build("cargo build -q --message-format=json --bin " .. get_crate_target())
                 end,
                 cwd = "${workspaceFolder}",
                 stopOnEntry = false,
