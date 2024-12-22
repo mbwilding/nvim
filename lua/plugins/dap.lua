@@ -107,6 +107,7 @@ return {
             args = { "--interpreter=vscode" },
         }
 
+        -- Configurations
         dap.configurations.cs = {
             {
                 name = "Debug",
@@ -135,12 +136,11 @@ return {
                                 for _, dll in ipairs(vim.fn.glob(dll_pattern, false, true)) do
                                     return dll
                                 end
-                                error("Project DLL not found")
                             end
                             current_dir = vim.fn.fnamemodify(current_dir, ':h')
                         end
 
-                        error("DLL not found and reached top directory")
+                        return error("Debug binary not found")
                     end
 
                     return find_dll_path()
@@ -174,8 +174,8 @@ return {
                         if project_dir then
                             return vim.fn.fnamemodify(project_dir, ":t")
                         end
-                        print("Project name not found")
-                        return nil
+
+                        return error("Project name not found")
                     end
 
                     return build("cargo build -q --message-format=json --bin " .. get_project_name())
