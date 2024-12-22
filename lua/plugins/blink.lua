@@ -33,8 +33,8 @@ return {
 
         sources = {
             default = {
-                "lsp",
                 "path",
+                "lsp",
                 "snippets",
                 "luasnip",
                 "buffer",
