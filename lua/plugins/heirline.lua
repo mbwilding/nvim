@@ -150,8 +150,14 @@ return {
 
         local file_name = {
             provider = function(self)
+                local home = vim.fn.expand("~")
                 local filename = vim.fn.fnamemodify(self.filename, ":.")
+
                 filename = filename:gsub("oil://", "")
+
+                if filename:sub(1, #home) == home then
+                    filename = "~" .. filename:sub(#home + 1)
+                end
 
                 if not conditions.width_percent_below(#filename, 0.25) then
                     filename = vim.fn.fnamemodify(filename, ":t")
