@@ -72,7 +72,8 @@ return {
         vim.keymap.set("n", "<F3>", dap.step_over, { desc = "Debug: Step Over" })
         vim.keymap.set("n", "<F4>", dap.step_out, { desc = "Debug: Step Out" })
         vim.keymap.set("n", "<F5>", dap.step_back, { desc = "Debug: Step Back" })
-        vim.keymap.set("n", "<F6>", function() dap.disconnect({ terminateDebuggee = true }) end, { desc = "Debug: Terminate" })
+        vim.keymap.set("n", "<F6>", function() dap.disconnect({ terminateDebuggee = true }) end,
+            { desc = "Debug: Terminate" })
         vim.keymap.set("n", "<F7>", dap.run_to_cursor, { desc = "Debug: Run To Cursor" })
 
         vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint, { desc = "Debug: Toggle Breakpoint" })
@@ -161,21 +162,35 @@ return {
                     build()
 
                     local function find_dll_path()
-                        local current_dir = vim.fn.fnamemodify(vim.fn.expand('%:p'), ':h')
-
-                        while current_dir ~= "" and current_dir ~= "/" do
-                            local bin_dir, obj_dir = current_dir .. "/bin", current_dir .. "/obj"
-                            if vim.fn.isdirectory(bin_dir) == 1 and vim.fn.isdirectory(obj_dir) == 1 then
-                                local project_name = vim.fn.fnamemodify(current_dir, ":t")
-                                local dll_pattern = bin_dir .. '/Debug/*/' .. project_name .. '.dll'
-                                for _, dll in ipairs(vim.fn.glob(dll_pattern, false, true)) do
-                                    return dll
+                        local function find_project_name()
+                            local current_file_dir = vim.fn.expand('%:p:h')
+                            while current_file_dir do
+                                for _, file in ipairs(vim.fn.glob(current_file_dir .. '/*.csproj', false, true)) do
+                                    if vim.fn.filereadable(file) == 1 then
+                                        return vim.fn.fnamemodify(file, ":t:r")
+                                    end
                                 end
+                                local parent_dir = vim.fn.fnamemodify(current_file_dir, ":h")
+                                if parent_dir == current_file_dir then
+                                    break
+                                end
+                                current_file_dir = parent_dir
                             end
-                            current_dir = vim.fn.fnamemodify(current_dir, ':h')
+
+                            return error("csproj file not found in directory tree")
                         end
 
-                        return error("Debug binary not found")
+                        local project_name = find_project_name()
+                        local current_dir = vim.fn.getcwd()
+                        local dll_pattern = current_dir .. "/**/" .. project_name .. ".dll"
+
+                        for _, dll in ipairs(vim.fn.glob(dll_pattern, false, true)) do
+                            if vim.fn.filereadable(dll) == 1 then
+                                return dll
+                            end
+                        end
+
+                        return error("Debug binary not found in current directory or its subdirectories")
                     end
 
                     return find_dll_path()
@@ -211,7 +226,8 @@ return {
                             return error("Project directory not found")
                         end
 
-                        local result = vim.fn.systemlist("cargo read-manifest --manifest-path " .. project_dir .. "/Cargo.toml")
+                        local result = vim.fn.systemlist("cargo read-manifest --manifest-path " ..
+                            project_dir .. "/Cargo.toml")
                         if vim.v.shell_error ~= 0 then
                             return error("Failed to read Cargo.toml")
                         end
