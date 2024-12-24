@@ -24,7 +24,17 @@ return {
                 filetypes = { "sh", "zsh", "zshrc" },
             },
             clangd = {},
-            rust_analyzer = {},
+            rust_analyzer = {
+                settings = {
+                    ["rust-analyzer"] = {
+                        inlayHints = {
+                            reborrowHints = { enable = "always" },
+                            lifetimeElisionHints = { enable = "always" },
+                            implicitDrops = { enable = true },
+                        }
+                    }
+                }
+            },
             gopls = {},
             mesonlsp = {},
             powershell_es = {
