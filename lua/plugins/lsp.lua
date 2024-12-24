@@ -385,7 +385,7 @@ return {
             end,
         })
 
-        local cmp = require("blink.cmp")
+        local blink_cmp = require("blink.cmp")
 
         require("mason-lspconfig").setup({
             automatic_installation = true,
@@ -402,7 +402,7 @@ return {
                         return
                     end
 
-                    local capabilities = cmp.get_lsp_capabilities(server.capabilities)
+                    local capabilities = blink_cmp.get_lsp_capabilities(server.capabilities)
 
                     -- UFO (Folding)
                     capabilities.textDocument.foldingRange = {
@@ -420,15 +420,10 @@ return {
                         -- certain features of an LSP (for example, turning off formatting for tsserver)
                         capabilities = capabilities,
                         on_attach = function(client, bufnr)
-                            if client.server_capabilities.inlayHintProvider then
-                                vim.lsp.inlay_hint.enable(true)
-
-                                map("<leader>ih", function()
-                                    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-                                end, "Inlay Hints", bufnr)
-                            end
-
                             -- Set up mappings
+                            map("<leader>ih", function()
+                                vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+                            end, "Inlay Hints", bufnr)
                             map("gd", require("telescope.builtin").lsp_definitions, "Telescope Definition", bufnr)
                             map(
                                 "<leader>D",
