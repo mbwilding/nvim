@@ -20,6 +20,8 @@ return {
     opts = {
         -- Shows info on where you are in the file
         show_navic = true,
+        -- Exclude filetypes, HACK: "" is for toggleterm as it loads as blank filetype
+        exclude_filetypes = { "netrw", "toggleterm", "" }
     },
     config = function(_, opts)
         require("barbecue").setup(opts)
