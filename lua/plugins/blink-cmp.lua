@@ -11,8 +11,6 @@ return {
     },
     version = "v0.*",
 
-    ---@module "blink.cmp"
-    ---@type blink.cmp.Config
     opts = {
         sources = {
             default = { "lsp", "path", "snippets", "buffer", "luasnip", "dadbod" },
@@ -63,12 +61,10 @@ return {
             -- ["K"] = { "show", "show_documentation", "hide_documentation" },
             -- ["<C-e>"] = { "hide", "fallback" },
         },
-
         appearance = {
             use_nvim_cmp_as_default = false,
             nerd_font_variant = "mono"
         },
-
         snippets = {
             expand = function(snippet)
                 require("luasnip").lsp_expand(snippet)
@@ -83,7 +79,6 @@ return {
                 require("luasnip").jump(direction)
             end,
         },
-
         completion = {
             accept = {
                 -- Create an undo point when accepting a completion item
@@ -135,7 +130,6 @@ return {
                 auto_show_delay_ms = 0,
             }
         },
-
         signature = {
             enabled = true
         },
