@@ -267,18 +267,29 @@ return {
 
         dap.configurations.zig = {
             {
-                name = "Launch",
+                name = "Zig Run",
                 type = "codelldb",
                 request = "launch",
                 program = function()
-                    return vim.fn.input(
-                        "Path to executable: ",
-                        vim.fn.getcwd() .. "/zig-out/bin/",
-                        "file"
-                    )
+                    os.execute("zig build")
+                    local command = "find ! -type d -path './zig-out/bin/*' | grep -v 'Test' | sed 's#.*/##'"
+                    local bin_location = io.popen(command, "r")
+                    if bin_location ~= nil then
+                        return "zig-out/bin/" .. bin_location:read("*a"):gsub("[\n\r]", "")
+                    else
+                        return ""
+                    end
                 end,
                 cwd = "${workspaceFolder}",
-                console = "integratedTerminal",
+                stopOnEntry = false,
+                -- args = function()
+                --     local argv = {}
+                --     arg = vim.fn.input(string.format("Arguments: "))
+                --     for a in string.gmatch(arg, "%S+") do
+                --         table.insert(argv, a)
+                --     end
+                --     return argv
+                -- end,
             },
         }
 
