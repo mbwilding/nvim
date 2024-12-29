@@ -282,8 +282,7 @@ return {
         -- Python
         dap.adapters.python = {
             type = "executable",
-            command = "/bin/python",
-            args = { "-m", "debugpy.adapter" },
+            command = vim.fn.exepath("debugpy-adapter"),
         }
 
         dap.configurations.python = {
@@ -293,7 +292,12 @@ return {
                 name = "Launch file",
                 program = "${file}",
                 pythonPath = function()
-                    return "/usr/bin/python"
+                    local os_name = vim.loop.os_uname().sysname
+                    if os_name == "Darwin" then
+                        return "/usr/bin/python3"
+                    else
+                        return "/usr/bin/python"
+                    end
                 end,
             },
         }
