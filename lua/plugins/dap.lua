@@ -15,20 +15,13 @@ return {
         local dapui = require("dapui")
 
         require("mason-nvim-dap").setup({
-            -- Makes a best effort to setup the various debuggers with
-            -- reasonable debug configurations
-            automatic_setup = true,
-            -- You can provide additional configuration to the handlers,
-            -- see mason-nvim-dap README for more information
-            handlers = {},
-            -- You'll need to check that you have the required things installed
-            -- online, please don't ask me how to install them :)
+            automatic_installation = true,
             ensure_installed = {
-                -- Update this to ensure that you have the debuggers for the langs you want
-
                 "coreclr",  -- netcoredbg
                 "codelldb", -- cpp, rust
+                "delve",    -- go
             },
+            handlers = nil,
         })
 
         require("nvim-dap-virtual-text").setup({
@@ -126,24 +119,14 @@ return {
             dapui.close()
         end
 
-        -- Adapters
-        dap.adapters.codelldb = {
-            type = "server",
-            port = "${port}",
-            executable = {
-                command = vim.fn.exepath("codelldb"),
-                args = { "--port", "${port}" },
-                detached = vim.fn.has("win32") == 0
-            }
-        }
-
+        -- CSharp
         dap.adapters.coreclr = {
+            -- CSharp
             type = "executable",
             command = vim.fn.exepath("netcoredbg"),
             args = { "--interpreter=vscode" },
         }
 
-        -- Configurations
         dap.configurations.cs = {
             {
                 name = "Debug",
@@ -200,6 +183,18 @@ return {
             },
         }
 
+        -- LLVM
+        dap.adapters.codelldb = {
+            -- LLVM
+            type = "server",
+            port = "${port}",
+            executable = {
+                command = vim.fn.exepath("codelldb"),
+                args = { "--port", "${port}" },
+                detached = vim.fn.has("win32") == 0
+            }
+        }
+
         dap.configurations.rust = {
             {
                 name = "Debug",
@@ -248,6 +243,39 @@ return {
                 stopOnEntry = false,
                 showDisassembly = "never"
             }
+        }
+
+        -- GO
+        dap.adapters.delve = {
+            type = "server",
+            port = "${port}",
+            executable = {
+                command = vim.fn.exepath("dlv"),
+                args = { "dap", "-l", "127.0.0.1:${port}" },
+            },
+        }
+
+        dap.configurations.go = {
+            {
+                type = "delve",
+                name = "Debug",
+                request = "launch",
+                program = "${file}",
+            },
+            {
+                type = "delve",
+                name = "Debug Test",
+                request = "launch",
+                mode = "test",
+                program = "${file}",
+            },
+            {
+                type = "delve",
+                name = "Debug Test (go.mod)",
+                request = "launch",
+                mode = "test",
+                program = "./${relativeFileDirname}",
+            },
         }
     end,
 }
