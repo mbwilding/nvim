@@ -182,8 +182,8 @@ return {
 
         file_name_block = utils.insert(
             file_name_block,
-            file_icon,
-            utils.insert(file_name_modifier, file_name),
+            -- file_icon,
+            -- utils.insert(file_name_modifier, file_name),
             { provider = "%<" } -- this means that the statusline is cut here when there's not enough space
         )
 
