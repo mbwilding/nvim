@@ -20,6 +20,7 @@ return {
                 "coreclr",  -- netcoredbg
                 "codelldb", -- cpp, rust
                 "delve",    -- go
+                "python",   -- python
             },
             handlers = nil,
         })
@@ -275,6 +276,25 @@ return {
                 request = "launch",
                 mode = "test",
                 program = "./${relativeFileDirname}",
+            },
+        }
+
+        -- Python
+        dap.adapters.python = {
+            type = "executable",
+            command = "/bin/python",
+            args = { "-m", "debugpy.adapter" },
+        }
+
+        dap.configurations.python = {
+            {
+                type = "python",
+                request = "launch",
+                name = "Launch file",
+                program = "${file}",
+                pythonPath = function()
+                    return "/usr/bin/python"
+                end,
             },
         }
     end,
