@@ -546,7 +546,6 @@ return {
                 work_dir,
                 spacer,
                 file_name_block,
-                spacer,
                 file_size,
                 spacer,
                 file_encoding,
@@ -560,9 +559,8 @@ return {
                 ruler,
 
                 align,
-                diagnostics,
-                spacer,
                 lsp_lint,
+                diagnostics,
                 spacer,
                 git,
                 spacer,
