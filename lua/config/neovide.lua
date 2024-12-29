@@ -10,6 +10,10 @@ else
     vim.g.neovide_refresh_rate = 120
 end
 
+
+vim.g.neovide_position_animation_length = 0.1
+vim.g.neovide_scroll_animation_length = 0.1
+
 vim.g.neovide_cursor_animation_length = 0.04
 vim.g.neovide_cursor_trail_size = 0.2
 vim.g.neovide_cursor_vfx_mode = "" -- railgun, torpedo, pixiedust, sonicboom, ripple, wireframe

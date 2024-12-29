@@ -19,7 +19,7 @@ return {
     -- },
     opts = {
         -- Shows info on where you are in the file
-        show_navic = true,
+        show_navic = false,
         -- Exclude filetypes, HACK: "" is for toggleterm as it loads as blank filetype
         exclude_filetypes = { "", "netrw", "toggleterm" }
     },
