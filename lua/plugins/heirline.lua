@@ -19,6 +19,8 @@ return {
         -- HELPERS
         local spacer = { provider = " " }
 
+        local vspacer = { provider = " | " }
+
         local align = { provider = "%=" }
 
         local cut = { provider = "%<" }
@@ -298,16 +300,13 @@ return {
                 },
             },
             provider = function(self)
-                local curr_line = vim.api.nvim_win_get_cursor(0)[1]
-                local lines = vim.api.nvim_buf_line_count(0)
-                local i = math.floor((curr_line - 1) / lines * #self.sbar) + 1
+                -- local curr_line = vim.api.nvim_win_get_cursor(0)[1]
+                -- local lines = vim.api.nvim_buf_line_count(0)
+                -- local i = math.floor((curr_line - 1) / lines * #self.sbar) + 1
                 -- local icon = string.rep(self.sbar[i], 1)
-
-                return "%c" .. --[[ icon ]] " %l/%L"
+                return " %P %c [%l/%L]"
             end,
-            hl = function()
-                return { fg = mode_info().color, bg = colors.none }
-            end,
+            hl = { fg = colors.string, bg = colors.none },
         }
 
         -- GIT
@@ -542,7 +541,11 @@ return {
             statusline = {
                 spacer,
                 vim_mode,
-                spacer,
+
+                align,
+                ruler,
+
+                align,
                 work_dir,
                 spacer,
                 file_name_block,
@@ -551,19 +554,20 @@ return {
                 file_encoding,
                 spacer,
                 file_format,
-                spacer,
+
+                align,
                 debug,
                 grapple,
 
                 align,
-                ruler,
-
-                align,
                 lsp_lint,
                 diagnostics,
-                spacer,
+
+                align,
                 git,
                 spacer,
+
+                -- align,
                 -- date_time,
                 -- spacer,
             },
