@@ -60,7 +60,7 @@ return {
         constrain_cursor = false,
         win_options = {
             wrap = false,
-            signcolumn = "auto:2",
+            signcolumn = "yes:2",
             cursorcolumn = false,
             foldcolumn = "0",
             spell = false,
