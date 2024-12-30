@@ -304,7 +304,7 @@ return {
                 -- local lines = vim.api.nvim_buf_line_count(0)
                 -- local i = math.floor((curr_line - 1) / lines * #self.sbar) + 1
                 -- local icon = string.rep(self.sbar[i], 1)
-                return " %P %c [%l/%L]"
+                return "%P %L [%l,%c]"
             end,
             hl = { fg = colors.string, bg = colors.none },
         }
@@ -541,8 +541,7 @@ return {
             statusline = {
                 spacer,
                 vim_mode,
-
-                align,
+                spacer,
                 ruler,
 
                 align,
@@ -556,15 +555,15 @@ return {
                 file_format,
 
                 align,
+                git,
+
+                align,
                 debug,
                 grapple,
 
                 align,
                 lsp_lint,
                 diagnostics,
-
-                align,
-                git,
                 spacer,
 
                 -- align,
