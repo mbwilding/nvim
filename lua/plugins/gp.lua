@@ -88,8 +88,8 @@ return {
         { "<C-g>x",     "<CMD>GpContext<CR>",              mode = "i", desc = "Toggle GpContext" },
     },
     opts = {
-        default_chat_agent = "ollama-phi-4",
-        default_command_agent = "ollama-phi-4",
+        default_chat_agent = "chatgpt-4o",
+        default_command_agent = "chatgpt-4o",
         chat_confirm_delete = false,
         agents = {
             {
