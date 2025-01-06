@@ -118,6 +118,7 @@ return {
             },
             ollama = {
                 endpoint = "https://ollama.mattwilding.com/v1/chat/completions",
+                secret = os.getenv("OLLAMA_API_KEY"),
             },
         },
         hooks = {
