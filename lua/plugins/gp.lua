@@ -117,7 +117,7 @@ return {
                 secret = os.getenv("OPENAI_API_KEY"),
             },
             ollama = {
-                endpoint = "http://mattwilding.com:1337/v1/chat/completions",
+                endpoint = "https://ollama.mattwilding.com/v1/chat/completions",
             },
         },
         hooks = {
