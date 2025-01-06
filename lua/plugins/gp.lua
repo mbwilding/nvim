@@ -88,16 +88,36 @@ return {
         { "<C-g>x",     "<CMD>GpContext<CR>",              mode = "i", desc = "Toggle GpContext" },
     },
     opts = {
-        default_chat_agent = "ChatGPT4o",
-        default_command_agent = "ChatGPT4o",
+        default_chat_agent = "ollama-phi-4",
+        default_command_agent = "ollama-phi-4",
         chat_confirm_delete = false,
         agents = {
             {
-                name = "ChatGPT4o",
+                name = "chatgpt-4o",
+                provider = "openai",
                 chat = true,
+                command = true,
                 model = { model = "gpt-4o", temperature = 1.0, top_p = 1 },
                 system_prompt =
                 "Only display the code if it is related to coding or simply answer the question directly, without unnecessary talking.",
+            },
+            {
+                name = "ollama-phi-4",
+                provider = "ollama",
+                chat = true,
+                command = true,
+                model = { model = "vanilj/Phi-4:latest" },
+                system_prompt =
+                "Only display the code if it is related to coding or simply answer the question directly, without unnecessary talking.",
+            },
+        },
+        providers = {
+            openai = {
+                endpoint = "https://api.openai.com/v1/chat/completions",
+                secret = os.getenv("OPENAI_API_KEY"),
+            },
+            ollama = {
+                endpoint = "http://mattwilding.com:1337/v1/chat/completions",
             },
         },
         hooks = {
