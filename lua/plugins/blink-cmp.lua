@@ -51,7 +51,7 @@ return {
         },
         appearance = {
             use_nvim_cmp_as_default = false,
-            nerd_font_variant = "mono"
+            nerd_font_variant = "mono",
         },
         snippets = {
             expand = function(snippet)
@@ -76,13 +76,13 @@ return {
                     -- Whether to auto-insert brackets for functions
                     enabled = true,
                     -- Default brackets to use for unknown languages
-                    default_brackets = { '(', ')' },
+                    default_brackets = { "(", ")" },
                     -- Overrides the default blocked filetypes
                     override_brackets_for_filetypes = {},
                     -- Synchronously use the kind of the item to determine if brackets should be added
                     kind_resolution = {
                         enabled = true,
-                        blocked_filetypes = { 'typescriptreact', 'javascriptreact', 'vue' },
+                        blocked_filetypes = { "typescriptreact", "javascriptreact", "vue" },
                     },
                     -- Asynchronously use semantic token to determine if brackets should be added
                     semantic_token_resolution = {
@@ -106,14 +106,16 @@ return {
                             "kind",
                             "label",
                             "label_description",
-                            gap = 1
+                            gap = 1,
                         },
                     },
                     components = {
                         item_idx = {
-                            text = function(ctx) return tostring(ctx.idx) end,
-                            highlight = "BlinkCmpItemIdx"
-                        }
+                            text = function(ctx)
+                                return tostring(ctx.idx)
+                            end,
+                            highlight = "BlinkCmpItemIdx",
+                        },
                     },
                     treesitter = { "lsp" },
                 },
@@ -121,10 +123,10 @@ return {
             documentation = {
                 auto_show = true,
                 auto_show_delay_ms = 0,
-            }
+            },
         },
         signature = {
-            enabled = true
+            enabled = true,
         },
     },
 }

@@ -26,7 +26,7 @@ return {
             latex = {},
             links = {},
             list_items = {},
-            tables = {}
+            tables = {},
         })
-    end
+    end,
 }

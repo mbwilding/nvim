@@ -10,7 +10,6 @@ else
     vim.g.neovide_refresh_rate = 120
 end
 
-
 vim.g.neovide_position_animation_length = 0.1
 vim.g.neovide_scroll_animation_length = 0.1
 

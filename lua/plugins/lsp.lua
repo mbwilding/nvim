@@ -31,9 +31,9 @@ return {
                             reborrowHints = { enable = "always" },
                             lifetimeElisionHints = { enable = "always" },
                             implicitDrops = { enable = true },
-                        }
-                    }
-                }
+                        },
+                    },
+                },
             },
             gopls = {},
             mesonlsp = {},
@@ -131,7 +131,7 @@ return {
                         experimental = {
                             classRegex = {
                                 { "cva\\(([^)]*)\\)", "[\"'`]?([^\"'`]*).*?[\"'`]?" },
-                                { "cx\\(([^)]*)\\)",  "[\"'`]?([^\"'`]*).*?[\"'`]?" },
+                                { "cx\\(([^)]*)\\)", "[\"'`]?([^\"'`]*).*?[\"'`]?" },
                             },
                         },
                     },

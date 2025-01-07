@@ -52,7 +52,7 @@ return {
                 label = "Recent",
                 cwd_only = true,
             },
-            footer = {}
+            footer = {},
         },
     },
     dependencies = {

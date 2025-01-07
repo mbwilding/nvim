@@ -16,8 +16,8 @@ return {
                 local current_setting = vim.diagnostic.config().virtual_lines.only_current_line
                 vim.diagnostic.config({
                     virtual_lines = {
-                        only_current_line = not current_setting
-                    }
+                        only_current_line = not current_setting,
+                    },
                 })
             end,
             desc = "LSP Lines: Current Line Toggle",

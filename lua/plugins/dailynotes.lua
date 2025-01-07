@@ -31,21 +31,32 @@ return {
             group = group,
             pattern = vim.fn.expand(opts.path) .. "**",
             callback = function()
-                vim.fn.jobstart('git -C ' .. vim.fn.expand(opts.path) .. ' add . && git -C ' .. vim.fn.expand(opts.path) .. ' commit -m "' .. os.date('%Y-%m-%d-%H-%M-%S') .. '" && git -C ' .. vim.fn.expand(opts.path) .. ' push', {
-                    on_stdout = function(_, data)
-                        if data then
-                            vim.api.nvim_out_write(table.concat(data, "\n") .. "\n")
-                        end
-                    end,
-                    on_exit = function(_, code, _)
-                        if code == 0 then
-                            vim.api.nvim_out_write("Push successful\n")
-                        else
-                            vim.api.nvim_err_writeln("Push failed")
-                        end
-                    end,
-                })
+                vim.fn.jobstart(
+                    "git -C "
+                        .. vim.fn.expand(opts.path)
+                        .. " add . && git -C "
+                        .. vim.fn.expand(opts.path)
+                        .. " commit -m \""
+                        .. os.date("%Y-%m-%d-%H-%M-%S")
+                        .. "\" && git -C "
+                        .. vim.fn.expand(opts.path)
+                        .. " push",
+                    {
+                        on_stdout = function(_, data)
+                            if data then
+                                vim.api.nvim_out_write(table.concat(data, "\n") .. "\n")
+                            end
+                        end,
+                        on_exit = function(_, code, _)
+                            if code == 0 then
+                                vim.api.nvim_out_write("Push successful\n")
+                            else
+                                vim.api.nvim_err_writeln("Push failed")
+                            end
+                        end,
+                    }
+                )
             end,
         })
-    end
+    end,
 }

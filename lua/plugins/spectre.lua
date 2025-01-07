@@ -19,7 +19,7 @@ return {
             "<leader>rw",
             "<ESC><CMD>lua require('spectre').open_visual()<CR>",
             desc = "Spectre: Search current word",
-            mode = "v"
+            mode = "v",
         },
         {
             "<leader>rf",

@@ -15,8 +15,7 @@ return {
                 if vim.fn.executable("make") == 1 then
                     return "make"
                 elseif vim.fn.executable("cmake") == 1 then
-                    return
-                    "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
+                    return "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
                 else
                     error("Neither 'make' nor 'cmake' are available for building telescope-fzf-native.nvim")
                 end
@@ -161,7 +160,12 @@ return {
             builtin.oldfiles,
             { desc = "Telescope: Search Recent Files (\".\" for repeat)" }
         )
-        vim.keymap.set("n", "<leader><leader>", "<CMD>Telescope buffers sort_mru=true sort_lastused=true initial_mode=normal<CR>", { desc = "Telescope: Find existing buffers" })
+        vim.keymap.set(
+            "n",
+            "<leader><leader>",
+            "<CMD>Telescope buffers sort_mru=true sort_lastused=true initial_mode=normal<CR>",
+            { desc = "Telescope: Find existing buffers" }
+        )
         vim.keymap.set(
             "n",
             "<leader>sH",

@@ -73,9 +73,9 @@ return {
                 require("neotest-rust"),
                 require("neotest-dotnet")({
                     dap = {
-                        adapter_name = "netcoredbg"
+                        adapter_name = "netcoredbg",
                     },
-                    discovery_root = "solution"
+                    discovery_root = "solution",
                 }),
             },
         })
