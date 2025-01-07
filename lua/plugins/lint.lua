@@ -4,6 +4,15 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     config = function()
         local lint = require("lint")
+        local util = require("lint.util")
+
+        -- NOTE: Fixes line 1 error about no config found
+        lint.linters.eslint_d = util.wrap(lint.linters.eslint_d, function(diagnostic)
+            if diagnostic.message:find("Error: Could not find config file") then
+                return nil
+            end
+            return diagnostic
+        end)
 
         local eslint = lint.linters.eslint_d
         eslint.args = {
@@ -36,6 +45,6 @@ return {
 
         vim.keymap.set("n", "<leader>l", function()
             lint.try_lint()
-        end, { desc = "Trigger linting for current file" })
+        end, { desc = "Lint: Current file" })
     end,
 }
