@@ -114,7 +114,8 @@ return {
                             text = function(ctx) return tostring(ctx.idx) end,
                             highlight = "BlinkCmpItemIdx"
                         }
-                    }
+                    },
+                    treesitter = { "lsp" },
                 },
             },
             documentation = {
