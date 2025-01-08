@@ -5,7 +5,7 @@ return {
     },
     config = function()
         local HEIGHT_RATIO = 0.8
-        local WIDTH_RATIO = 0.2
+        local WIDTH_RATIO = 0.3
 
         require("nvim-tree").setup({
             disable_netrw = true, -- Oil
@@ -16,7 +16,7 @@ return {
             },
             view = {
                 relativenumber = false,
-                number = true,
+                number = false,
                 width = function()
                     return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
                 end,
