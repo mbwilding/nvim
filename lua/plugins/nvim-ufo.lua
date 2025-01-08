@@ -20,4 +20,13 @@ return {
         },
     },
     opts = {},
+    config = function(_, opts)
+        vim.o.foldenable = true
+        vim.o.foldcolumn = "1"
+        vim.o.fillchars = "eob: ,fold: ,foldopen:,foldsep: ,foldclose:"
+        vim.o.foldlevel = 99999999
+        vim.o.foldlevelstart = 99999999
+
+        require("ufo").setup(opts)
+    end
 }
