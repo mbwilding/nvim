@@ -13,7 +13,7 @@ return {
 
     opts = {
         sources = {
-            default = { "lsp", "path", "snippets", "buffer", "luasnip", "dadbod" },
+            default = { "lsp", "path", "snippets", "buffer", "dadbod" },
             providers = {
                 lsp = {
                     name = "lsp",
@@ -27,10 +27,9 @@ return {
                     module = "blink.cmp.sources.path",
                     score_offset = 990,
                 },
-                luasnip = {
-                    name = "luasnip",
-                    enabled = true,
-                    module = "blink.cmp.sources.luasnip",
+                dadbod = {
+                    name = "Dadbod",
+                    module = "vim_dadbod_completion.blink",
                     score_offset = 950,
                 },
                 snippets = {
@@ -38,11 +37,6 @@ return {
                     enabled = true,
                     module = "blink.cmp.sources.snippets",
                     score_offset = 900,
-                },
-                dadbod = {
-                    name = "Dadbod",
-                    module = "vim_dadbod_completion.blink",
-                    score_offset = 950,
                 },
             },
         },
@@ -54,18 +48,7 @@ return {
             nerd_font_variant = "mono",
         },
         snippets = {
-            expand = function(snippet)
-                require("luasnip").lsp_expand(snippet)
-            end,
-            active = function(filter)
-                if filter and filter.direction then
-                    return require("luasnip").jumpable(filter.direction)
-                end
-                return require("luasnip").in_snippet()
-            end,
-            jump = function(direction)
-                require("luasnip").jump(direction)
-            end,
+            preset = "luasnip"
         },
         completion = {
             accept = {
