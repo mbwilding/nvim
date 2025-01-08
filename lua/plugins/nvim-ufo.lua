@@ -5,10 +5,10 @@ return {
     },
     config = function()
         vim.o.foldenable = true
-        -- vim.o.foldcolumn = "auto:9"
-        -- vim.o.fillchars = "eob: ,fold: ,foldopen:,foldsep:│,foldclose:"
-        vim.o.fillchars = "eob: ,fold: ,foldopen:,foldsep: ,foldclose:"
         vim.o.foldcolumn = "1"
+        -- vim.o.foldcolumn = "auto:9"
+        vim.o.fillchars = "eob: ,fold: ,foldopen:,foldsep: ,foldclose:"
+        -- vim.o.fillchars = "eob: ,fold: ,foldopen:,foldsep:│,foldclose:"
         vim.o.foldlevel = 99999999
         vim.o.foldlevelstart = 99999999
 
