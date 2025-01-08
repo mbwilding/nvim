@@ -131,7 +131,7 @@ return {
                         experimental = {
                             classRegex = {
                                 { "cva\\(([^)]*)\\)", "[\"'`]?([^\"'`]*).*?[\"'`]?" },
-                                { "cx\\(([^)]*)\\)",  "[\"'`]?([^\"'`]*).*?[\"'`]?" },
+                                { "cx\\(([^)]*)\\)", "[\"'`]?([^\"'`]*).*?[\"'`]?" },
                             },
                         },
                     },
@@ -415,7 +415,7 @@ return {
                     local capabilities = blink_cmp.get_lsp_capabilities(server.capabilities)
 
                     -- UFO (Folding)
-                    if pcall(require, 'ufo') then
+                    if pcall(require, "ufo") then
                         capabilities.textDocument.foldingRange = {
                             dynamicRegistration = false,
                             lineFoldingOnly = true,

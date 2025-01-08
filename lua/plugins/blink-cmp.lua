@@ -47,7 +47,7 @@ return {
             nerd_font_variant = "mono",
         },
         snippets = {
-            preset = "luasnip"
+            preset = "luasnip",
         },
         completion = {
             accept = {
