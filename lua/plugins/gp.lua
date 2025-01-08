@@ -1,3 +1,13 @@
+-- local model = "ollama-phi-4"
+local model = "chatgpt-4o"
+-- local model = "chatgpt-o1"
+-- local model = "chatgpt-o1-mini"
+
+local temperature = 0.0 -- Lower is less random
+local top_p = 0.1 -- percentage of probability mass considered
+local prompt =
+    "Only display the code if it is related to coding or simply answer the question directly, without unnecessary talking."
+
 return {
     "robitx/gp.nvim",
     lazy = true,
@@ -88,8 +98,8 @@ return {
         { "<C-g>x", "<CMD>GpContext<CR>", mode = "i", desc = "Toggle GpContext" },
     },
     opts = {
-        default_chat_agent = "chatgpt-4o",
-        default_command_agent = "chatgpt-4o",
+        default_chat_agent = model,
+        default_command_agent = model,
         chat_confirm_delete = false,
         agents = {
             {
@@ -97,16 +107,48 @@ return {
                 provider = "openai",
                 chat = true,
                 command = true,
-                model = { model = "gpt-4o", temperature = 1.0, top_p = 1 },
-                system_prompt = "Only display the code if it is related to coding or simply answer the question directly, without unnecessary talking.",
+                model = {
+                    model = "gpt-4o-2024-11-20",
+                    temperature = temperature,
+                    top_p = top_p,
+                },
+                system_prompt = prompt,
+            },
+            {
+                name = "chatgpt-o1",
+                provider = "openai",
+                chat = true,
+                command = true,
+                model = {
+                    model = "o1-preview",
+                    temperature = temperature,
+                    top_p = top_p,
+                },
+                system_prompt = prompt,
+            },
+            {
+                name = "chatgpt-o1-mini",
+                provider = "openai",
+                chat = true,
+                command = true,
+                model = {
+                    model = "o1-mini",
+                    temperature = temperature,
+                    top_p = top_p,
+                },
+                system_prompt = prompt,
             },
             {
                 name = "ollama-phi-4",
                 provider = "ollama",
                 chat = true,
                 command = true,
-                model = { model = "vanilj/Phi-4:latest" },
-                system_prompt = "Only display the code if it is related to coding or simply answer the question directly, without unnecessary talking.",
+                model = {
+                    model = "vanilj/Phi-4:latest",
+                    temperature = temperature,
+                    top_p = top_p,
+                },
+                system_prompt = prompt,
             },
         },
         providers = {
