@@ -1,10 +1,10 @@
 -- Dadbod is a plugin that provides a way for managing databases.
 
 return {
-    "kristijanhusak/vim-dadbod-ui",
+    "tpope/vim-dadbod",
     lazy = true,
     dependencies = {
-        { "tpope/vim-dadbod", lazy = true },
+        { "kristijanhusak/vim-dadbod-ui", lazy = true },
         -- {
         --     "kristijanhusak/vim-dadbod-completion",
         --     lazy = true,
