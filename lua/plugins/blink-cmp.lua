@@ -6,11 +6,10 @@ return {
     -- optional: provides snippets for the snippet source
     dependencies = {
         "rafamadriz/friendly-snippets",
-        "L3MON4D3/LuaSnip",
         "kristijanhusak/vim-dadbod-completion",
+        { 'L3MON4D3/LuaSnip', version = 'v2.*' },
     },
-    version = "v0.*",
-
+    version = "*",
     opts = {
         sources = {
             default = { "lsp", "path", "snippets", "buffer", "dadbod" },
