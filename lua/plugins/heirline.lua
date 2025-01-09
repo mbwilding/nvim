@@ -375,6 +375,7 @@ return {
             eslint = "󰱺 ",
             eslint_d = "󰱺 ",
             rust_analyzer = "󱘗 ",
+            gopls = "󰟓 ",
         }
 
         local lsp_lint_seperator = ","
