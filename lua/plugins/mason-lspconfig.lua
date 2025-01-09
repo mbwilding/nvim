@@ -101,6 +101,9 @@ return {
                 enabled = false,
                 settings = {
                     javascript = {
+                        preferences = {
+                            quoteStyle = "single",
+                        },
                         inlayHints = {
                             enumMemberValues = {
                                 enabled = true,
@@ -125,6 +128,12 @@ return {
                         },
                     },
                     typescript = {
+                        format = {
+                            semicolons = "insert",
+                        },
+                        preferences = {
+                            quoteStyle = "single",
+                        },
                         inlayHints = {
                             enumMemberValues = {
                                 enabled = true,
