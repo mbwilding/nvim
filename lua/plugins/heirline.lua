@@ -369,9 +369,11 @@ return {
 
         -- LSP / LINT
         local lsp_lint_icons = {
+            actionlint = "󰊤 ",
             arduino_language_server = " ",
             azure_pipelines_ls = " ",
             bashls = " ",
+            ["clang-format"] = "󰯳 ",
             clangd = " ",
             csharp_ls = "󰌛 ",
             docker_compose_language_service = " ",
@@ -382,12 +384,15 @@ return {
             gopls = "󰟓 ",
             html = " ",
             jqls = "󰡽 ",
+            jsonlint = "󰘦 ",
             jsonls = " ",
             lemminx = "󰗀 ",
             lua_ls = "󰢱 ",
+            markdownlint = "󰍔 ",
             mesonlsp = " ",
             omnisharp = "󰌛 ",
             powershell_es = "󰨊 ",
+            prettierd = " ",
             pylsp = " ",
             rust_analyzer = "󱘗 ",
             sqls = "󰆼 ",
@@ -396,6 +401,8 @@ return {
             ts_ls = " ",
             vtsls = " ",
             vuels = " ",
+            xmlformatter = " ",
+            yamllint = "󰔐 ",
             yamlls = " ",
             zls = " ",
         }
