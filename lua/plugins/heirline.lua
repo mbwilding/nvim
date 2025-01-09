@@ -376,9 +376,18 @@ return {
             eslint_d = "󰱺 ",
             rust_analyzer = "󱘗 ",
             gopls = "󰟓 ",
+            omnisharp = "󰌛 ",
+            zls = " ",
+            clangd = " ",
+            bashls = " ",
+            arduino_language_server = " ",
+            powershell_es = "󰨊 ",
+            docker_compose_language_service = " ",
+            dockerls = " ",
+            azure_pipelines_ls = " ",
         }
 
-        local lsp_lint_seperator = ","
+        local lsp_lint_seperator = ""
 
         local lsp_lint = {
             condition = conditions.lsp_attached,
