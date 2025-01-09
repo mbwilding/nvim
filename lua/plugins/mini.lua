@@ -1,4 +1,6 @@
-return { -- Collection of various small independent plugins/modules
+-- Collection of various small independent plugins/modules
+
+return {
     "echasnovski/mini.nvim",
     lazy = true,
     event = "BufEnter",
@@ -13,47 +15,27 @@ return { -- Collection of various small independent plugins/modules
 
         -- Add/delete/replace surroundings (brackets, quotes, etc.)
         --
-        -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
-        -- - sd'   - [S]urround [D]elete [']quotes
-        -- - sr)'  - [S]urround [R]eplace [)] [']
+        -- Examples:
+        --  - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
+        --  - sd'   - [S]urround [D]elete [']quotes
+        --  - sr)'  - [S]urround [R]eplace [)] [']
         require("mini.surround").setup()
 
-        -- Simple and easy statusline.
-        --  You could remove this setup call if you don't like it,
-        --  and try some other statusline plugin
-        --        local statusline = require 'mini.statusline'
-        --        statusline.setup()
-
-        -- You can configure sections in the statusline by overriding their
-        -- default behavior. For example, here we set the section for
-        -- cursor location to LINE:COLUMN
-        --        ---@diagnostic disable-next-line: duplicate-set-field
-        --        statusline.section_location = function()
-        --            return '%2l:%-2v'
-        --        end
-
-        -- ... and there is more!
-        --  Check out: https://github.com/echasnovski/mini.nvim
-
+        -- Allows moving lines or chunks while reindenting
         require("mini.move").setup({
-            -- Module mappings. Use `''` (empty string) to disable one.
             mappings = {
-                -- Move visual selection in Visual mode. Defaults are Alt (Meta) + hjkl.
-                left = "<M-h>",
-                right = "<M-l>",
-                down = "<M-j>",
-                up = "<M-k>",
-
-                -- Move current line in Normal mode
+                -- Normal
                 line_left = "<M-h>",
                 line_right = "<M-l>",
                 line_down = "<M-j>",
                 line_up = "<M-k>",
+                -- Visual
+                left = "<M-h>",
+                right = "<M-l>",
+                down = "<M-j>",
+                up = "<M-k>",
             },
-
-            -- Options which control moving behavior
             options = {
-                -- Automatically reindent selection during linewise vertical move
                 reindent_linewise = true,
             },
         })
