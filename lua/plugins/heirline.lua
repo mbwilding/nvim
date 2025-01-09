@@ -400,7 +400,7 @@ return {
             zls = " ",
         }
 
-        local lsp_lint_seperator = ""
+        local lsp_lint_seperator = " "
 
         local lsp_lint = {
             condition = conditions.lsp_attached,
