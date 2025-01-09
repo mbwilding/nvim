@@ -49,7 +49,52 @@ return {
             docker_compose_language_service = {},
             dockerls = {},
             -- nginx_language_server = {},
-            vtsls = {},
+            vtsls = {
+                settings = {
+                    javascript = {
+                        inlayHints = {
+                            functionLikeReturnTypes = {
+                                enabled = true,
+                            },
+                            parameterNames = {
+                                enabled = "all",
+                                suppressWhenArgumentMatchesName = true,
+                            },
+                            parameterTypes = {
+                                enabled = true,
+                            },
+                            propertyDeclarationTypes = {
+                                enabled = true,
+                            },
+                            variableTypes = {
+                                enabled = true,
+                                suppressWhenTypeMatchesName = true,
+                            },
+                        }
+                    },
+                    typescript = {
+                        inlayHints = {
+                            functionLikeReturnTypes = {
+                                enabled = true,
+                            },
+                            parameterNames = {
+                                enabled = "all",
+                                suppressWhenArgumentMatchesName = true,
+                            },
+                            parameterTypes = {
+                                enabled = true,
+                            },
+                            propertyDeclarationTypes = {
+                                enabled = true,
+                            },
+                            variableTypes = {
+                                enabled = true,
+                                suppressWhenTypeMatchesName = true,
+                            },
+                        }
+                    }
+                }
+            },
             -- volar = {},
             vuels = {},
             ts_ls = {
@@ -131,7 +176,7 @@ return {
                         experimental = {
                             classRegex = {
                                 { "cva\\(([^)]*)\\)", "[\"'`]?([^\"'`]*).*?[\"'`]?" },
-                                { "cx\\(([^)]*)\\)", "[\"'`]?([^\"'`]*).*?[\"'`]?" },
+                                { "cx\\(([^)]*)\\)",  "[\"'`]?([^\"'`]*).*?[\"'`]?" },
                             },
                         },
                     },
