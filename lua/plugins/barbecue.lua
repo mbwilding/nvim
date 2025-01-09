@@ -1,5 +1,6 @@
 return {
-    "utilyre/barbecue.nvim",
+    -- "utilyre/barbecue.nvim",
+    "mbwilding/barbecue.nvim",
     name = "barbecue",
     version = "*",
     dependencies = {
@@ -22,6 +23,7 @@ return {
         show_navic = false,
         -- Exclude filetypes, HACK: "" is for toggleterm as it loads as blank filetype
         exclude_filetypes = { "", "netrw", "toggleterm" },
+        icon_position = "after",
     },
     config = function(_, opts)
         require("barbecue").setup(opts)
