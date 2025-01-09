@@ -70,7 +70,7 @@ return {
                                 enabled = true,
                                 suppressWhenTypeMatchesName = true,
                             },
-                        }
+                        },
                     },
                     typescript = {
                         inlayHints = {
@@ -91,9 +91,9 @@ return {
                                 enabled = true,
                                 suppressWhenTypeMatchesName = true,
                             },
-                        }
-                    }
-                }
+                        },
+                    },
+                },
             },
             -- volar = {},
             vuels = {},
@@ -176,7 +176,7 @@ return {
                         experimental = {
                             classRegex = {
                                 { "cva\\(([^)]*)\\)", "[\"'`]?([^\"'`]*).*?[\"'`]?" },
-                                { "cx\\(([^)]*)\\)",  "[\"'`]?([^\"'`]*).*?[\"'`]?" },
+                                { "cx\\(([^)]*)\\)", "[\"'`]?([^\"'`]*).*?[\"'`]?" },
                             },
                         },
                     },
