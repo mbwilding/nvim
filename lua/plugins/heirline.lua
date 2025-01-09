@@ -368,7 +368,7 @@ return {
         }
 
         -- LSP / LINT
-        local icons = {
+        local lsp_lint_icons = {
             lua_ls = "󰢱 ",
             vtsls = " ",
             tailwindcss = "󱏿 ",
@@ -391,7 +391,7 @@ return {
                 for _, client in ipairs(clients) do
                     if vim.lsp.buf_is_attached(current_buf, client.id) then
                         local name = client.name
-                        local icon = icons[name] or ""
+                        local icon = lsp_lint_icons[name] or ""
                         local combined = icon .. " " .. name
                         if lsp_lint_icons_only then
                             table.insert(lsp_client_names, icon)
@@ -404,7 +404,7 @@ return {
                 local ft = vim.bo[current_buf].filetype
                 local linters_by_ft = require("lint").linters_by_ft[ft] or {}
                 for _, name in ipairs(linters_by_ft) do
-                    local icon = icons[name] or ""
+                    local icon = lsp_lint_icons[name] or ""
                     local combined = icon .. " " .. name
                     if lsp_lint_icons_only then
                         table.insert(linter_client_names, icon)
