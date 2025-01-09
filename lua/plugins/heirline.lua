@@ -368,32 +368,60 @@ return {
         }
 
         -- LSP / LINT
+        local icons = {
+            lua_ls = "󰢱 ",
+            vtsls = " ",
+            tailwindcss = "󱏿 ",
+            eslint = "󰱺 ",
+            eslint_d = "󰱺 ",
+        }
+
+        local lsp_lint_icons_only = true
+        local lsp_lint_seperator = ","
+
         local lsp_lint = {
             condition = conditions.lsp_attached,
             update = { "LspAttach", "LspDetach", "BufEnter", "BufWritePost" },
             provider = function()
                 local current_buf = vim.api.nvim_get_current_buf()
                 local clients = vim.lsp.get_clients()
-                local client_names = {}
+                local lsp_client_names = {}
+                local linter_client_names = {}
 
                 for _, client in ipairs(clients) do
                     if vim.lsp.buf_is_attached(current_buf, client.id) then
-                        table.insert(client_names, client.name)
+                        local name = client.name
+                        local icon = icons[name] or ""
+                        local combined = icon .. " " .. name
+                        if lsp_lint_icons_only then
+                            table.insert(lsp_client_names, icon)
+                        else
+                            table.insert(lsp_client_names, combined)
+                        end
                     end
                 end
 
                 local ft = vim.bo[current_buf].filetype
-                local linters = require("lint").linters_by_ft[ft] or {}
-                local linter_names = table.concat(linters, ", ")
-
-                if #client_names > 0 or #linters > 0 then
-                    local result = " ["
-                    if #client_names > 0 then
-                        result = result .. table.concat(client_names, ", ")
+                local linters_by_ft = require("lint").linters_by_ft[ft] or {}
+                for _, name in ipairs(linters_by_ft) do
+                    local icon = icons[name] or ""
+                    local combined = icon .. " " .. name
+                    if lsp_lint_icons_only then
+                        table.insert(linter_client_names, icon)
+                    else
+                        table.insert(linter_client_names, combined)
                     end
-                    if #linters > 0 then
-                        if #client_names > 0 then
-                            result = result .. ", "
+                end
+                local linter_names = table.concat(linter_client_names, lsp_lint_seperator)
+
+                if #lsp_client_names > 0 or #linters_by_ft > 0 then
+                    local result = " ["
+                    if #lsp_client_names > 0 then
+                        result = result .. table.concat(lsp_client_names, lsp_lint_seperator)
+                    end
+                    if #linters_by_ft > 0 then
+                        if #lsp_client_names > 0 then
+                            result = result .. lsp_lint_seperator
                         end
                         result = result .. linter_names
                     end
