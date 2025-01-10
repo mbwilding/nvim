@@ -612,7 +612,7 @@ return {
 
                 align,
                 debug,
-                grapple,
+                -- grapple,
 
                 align,
                 lsp_lint,
