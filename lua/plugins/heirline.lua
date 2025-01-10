@@ -367,7 +367,7 @@ return {
             },
         }
 
-        -- LSP / LINT
+        -- LSP / Lint
         local lsp_icons = {
             arduino_language_server = " ",
             azure_pipelines_ls = " ",
