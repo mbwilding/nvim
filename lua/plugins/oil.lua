@@ -1,8 +1,16 @@
 return {
     "stevearc/oil.nvim",
     dependencies = {
-        "https://github.com/refractalize/oil-git-status.nvim",
         "nvim-tree/nvim-web-devicons",
+        "refractalize/oil-git-status.nvim",
+        "JezerM/oil-lsp-diagnostics.nvim",
+    },
+    keys = {
+        {
+            "-",
+            "<CMD>Oil<CR>",
+            desc = "Oil: Open parent directory",
+        },
     },
     opts = {
         keymaps = {
@@ -105,11 +113,10 @@ return {
     config = function(_, opts)
         require("oil").setup(opts)
 
-        vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
-        -- vim.keymap.set("n", "<leader>-", require("oil").toggle_float, { desc = "Open parent directory - floating" })
-
         require("oil-git-status").setup({
             show_ignored = true,
         })
+
+        require("oil-lsp-diagnostics").setup()
     end,
 }
