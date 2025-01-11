@@ -29,11 +29,6 @@ return {
                 local ft = vim.bo[buf].ft
                 local bt = vim.bo[buf].bt
 
-                -- if true then
-                --     print("filetype: " .. ft)
-                --     print("buftype: " .. bt)
-                -- end
-
                 if
                     not vim.api.nvim_buf_is_valid(buf)
                     or not vim.api.nvim_win_is_valid(win)
@@ -46,6 +41,11 @@ return {
                 then
                     return false
                 end
+
+                -- print("----------")
+                -- print("ft: " .. ft)
+                -- print("bt: " .. bt)
+                -- print("----------")
 
                 local stat = vim.uv.fs_stat(vim.api.nvim_buf_get_name(buf))
                 if stat and stat.size > 1024 * 1024 then
