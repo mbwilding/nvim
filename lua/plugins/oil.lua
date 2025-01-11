@@ -32,11 +32,7 @@ return {
             ["g\\"] = { "actions.toggle_trash", mode = "n" },
         },
         use_default_keymaps = false,
-        -- Oil will take over directory buffers (e.g. `vim .` or `:e src/`)
-        -- Set to false if you still want to use netrw.
         default_file_explorer = true,
-        -- Id is automatically added at the beginning, and name at the end
-        -- See :help oil-columns
         columns = {
             -- "birthtime",
             -- "mtime",
@@ -48,23 +44,12 @@ return {
             "icon",
         },
         lsp_file_methods = {
-            -- Set to true to autosave buffers that are updated with LSP willRenameFiles
-            -- Set to "unmodified" to only save unmodified buffers
             autosave_changes = true,
         },
-        -- Send deleted files to the trash instead of permanently deleting them (:help oil-trash)
         delete_to_trash = false,
-        -- Skip the confirmation popup for simple operations (:help oil.skip_confirm_for_simple_edits)
         skip_confirm_for_simple_edits = false,
-        -- Selecting a new/moved/renamed file or directory will prompt you to save changes first
-        -- (:help prompt_save_on_select_new_entry)
         prompt_save_on_select_new_entry = true,
-        -- Oil will automatically delete hidden buffers after this delay
-        -- You can set the delay to false to disable cleanup entirely
-        -- Note that the cleanup process only starts when none of the oil buffers are currently displayed
         cleanup_delay_ms = 2000,
-        -- Constrain the cursor to the editable parts of the oil buffer
-        -- Set to `false` to disable, or "name" to keep it on the file names
         constrain_cursor = false,
         win_options = {
             wrap = false,
@@ -77,10 +62,8 @@ return {
             concealcursor = "nvic",
         },
         view_options = {
-            -- Show files and directories that start with "."
             show_hidden = false,
-            -- This function defines what is considered a "hidden" file
-            is_hidden_file = function(name, bufnr)
+            is_hidden_file = function(name, _)
                 local contains_list = { ".Trash" }
                 local equals_list = { ".DS_Store", ".directory" }
 
@@ -98,13 +81,10 @@ return {
 
                 return false
             end,
-            -- This function defines what will never be shown, even when `show_hidden` is set
-            is_always_hidden = function(name, bufnr)
+            is_always_hidden = function(name, _)
                 return name == "." or name == ".."
             end,
             sort = {
-                -- sort order can be "asc" or "desc"
-                -- see :help oil-columns to see which columns are sortable
                 { "type", "asc" },
                 { "name", "asc" },
             },
