@@ -368,51 +368,6 @@ return {
         }
 
         -- LSP / Lint
-        local lsp_icons = {
-            arduino_language_server = " ",
-            azure_pipelines_ls = " ",
-            bashls = " ",
-            clangd = " ",
-            csharp_ls = "󰌛 ",
-            docker_compose_language_service = " ",
-            dockerls = " ",
-            glsl_analyzer = " ",
-            gopls = "󰟓 ",
-            html = " ",
-            jqls = "󰡽 ",
-            jsonls = " ",
-            lemminx = "󰗀 ",
-            lua_ls = "󰢱 ",
-            mesonlsp = " ",
-            omnisharp = "󰌛 ",
-            powershell_es = "󰨊 ",
-            pylsp = " ",
-            rust_analyzer = "󱘗 ",
-            sqls = "󰆼 ",
-            tailwindcss = "󱏿 ",
-            taplo = " ",
-            ts_ls = " ",
-            vtsls = " ",
-            vuels = " ",
-            yamlls = " ",
-            zls = " ",
-        }
-
-        local lint_icons = {
-            actionlint = "󰊤 ",
-            ["clang-format"] = "󰯳 ",
-            eslint = "󰱺 ",
-            eslint_d = "󰱺 ",
-            jsonlint = "󰘦 ",
-            markdownlint = "󰍔 ",
-            prettier = " ",
-            prettierd = " ",
-            xmlformatter = " ",
-            yamllint = "󰔐 ",
-        }
-
-        local lsp_lint_seperator = " "
-
         local lsp_lint = {
             condition = conditions.lsp_attached,
             update = { "LspAttach", "LspDetach", "BufEnter", "BufWritePost" },
@@ -421,10 +376,11 @@ return {
                 local current_buf = vim.api.nvim_get_current_buf()
                 local lsp_clients = vim.lsp.get_clients()
                 local lsp_client_names = {}
+                local separator = ", "
 
                 for _, client in ipairs(lsp_clients) do
                     if vim.lsp.buf_is_attached(current_buf, client.id) then
-                        table.insert(lsp_client_names, lsp_icons[client.name] or client.name)
+                        table.insert(lsp_client_names, client.name)
                     end
                 end
 
@@ -434,19 +390,19 @@ return {
                 local linter_clients = {}
 
                 for _, name in ipairs(linters_by_ft) do
-                    table.insert(linter_clients, lint_icons[name] or name)
+                    table.insert(linter_clients, name)
                 end
-                local linter_names = table.concat(linter_clients, lsp_lint_seperator)
+                local linter_names = table.concat(linter_clients, separator)
 
                 -- Combine
                 if #lsp_client_names > 0 or #linters_by_ft > 0 then
                     local result = " ["
                     if #lsp_client_names > 0 then
-                        result = result .. table.concat(lsp_client_names, lsp_lint_seperator)
+                        result = result .. table.concat(lsp_client_names, separator)
                     end
                     if #linters_by_ft > 0 then
                         if #lsp_client_names > 0 then
-                            result = result .. lsp_lint_seperator
+                            result = result .. separator
                         end
                         result = result .. linter_names
                     end
