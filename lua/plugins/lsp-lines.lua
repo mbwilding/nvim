@@ -29,7 +29,7 @@ return {
         vim.diagnostic.config({
             virtual_text = false, -- Disables in-built
             virtual_lines = {
-                only_current_line = true,
+                only_current_line = false,
                 highlight_whole_line = false,
             },
         })
