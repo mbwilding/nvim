@@ -1,6 +1,5 @@
 return {
     "akinsho/nvim-toggleterm.lua",
-    dev = true,
     lazy = true,
     keys = {
         {
