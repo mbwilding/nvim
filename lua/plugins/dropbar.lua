@@ -1,7 +1,7 @@
 return {
     -- "Bekaboo/dropbar.nvim",
     "mbwilding/dropbar.nvim",
-    -- dev = true,
+    dev = true,
     dependencies = {
         "nvim-tree/nvim-web-devicons",
         {
@@ -27,6 +27,7 @@ return {
         sources = {
             path = {
                 max_depth = 16,
+                oil = true,
             },
             treesitter = {
                 max_depth = 0,
