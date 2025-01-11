@@ -8,6 +8,7 @@ return {
         "nvim-telescope/telescope.nvim",
         "Issafalcon/lsp-overloads.nvim",
         "Hoffs/omnisharp-extended-lsp.nvim",
+        "kevinhwang91/nvim-ufo",
         -- "Decodetalkers/csharpls-extended-lsp.nvim",
     },
     config = function()
@@ -185,7 +186,7 @@ return {
                         experimental = {
                             classRegex = {
                                 { "cva\\(([^)]*)\\)", "[\"'`]?([^\"'`]*).*?[\"'`]?" },
-                                { "cx\\(([^)]*)\\)", "[\"'`]?([^\"'`]*).*?[\"'`]?" },
+                                { "cx\\(([^)]*)\\)",  "[\"'`]?([^\"'`]*).*?[\"'`]?" },
                             },
                         },
                     },
