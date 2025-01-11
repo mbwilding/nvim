@@ -1,7 +1,7 @@
 return {
     -- "Bekaboo/dropbar.nvim",
     "mbwilding/dropbar.nvim",
-    dev = true,
+    -- dev = true,
     dependencies = {
         "nvim-tree/nvim-web-devicons",
         {
