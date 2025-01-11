@@ -1,7 +1,5 @@
 return {
-    -- "akinsho/nvim-toggleterm.lua",
-    "mbwilding/nvim-toggleterm.lua",
-    dev = true,
+    "akinsho/nvim-toggleterm.lua",
     lazy = true,
     keys = {
         {
