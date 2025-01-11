@@ -1,5 +1,5 @@
 return {
-    "Bekaboo/dropbar.nvim",
+    -- "Bekaboo/dropbar.nvim",
     "mbwilding/dropbar.nvim",
     -- dev = true,
     dependencies = {
