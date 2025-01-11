@@ -20,6 +20,8 @@ return {
     opts = {
         -- Shows info on where you are in the file
         show_navic = false,
+        -- Enable for oil
+        include_buftypes = { "acwrite" },
         -- Exclude filetypes, HACK: "" is for toggleterm as it loads as blank filetype
         exclude_filetypes = { "", "netrw", "toggleterm" },
         icon_position = "after",
