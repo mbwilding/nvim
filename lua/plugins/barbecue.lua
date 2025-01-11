@@ -23,8 +23,6 @@ return {
         -- Shows info on where you are in the file
         show_navic = false,
         icon_position = "after",
-        -- include_buftypes = { "", "acwrite" },
-        -- exclude_filetypes = { "netrw", "toggleterm" },
     },
     config = function(_, opts)
         require("barbecue").setup(opts)
