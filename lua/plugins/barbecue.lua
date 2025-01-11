@@ -1,5 +1,4 @@
 return {
-    -- "utilyre/barbecue.nvim",
     "mbwilding/barbecue.nvim",
     name = "barbecue",
     version = "*",
