@@ -12,72 +12,47 @@ return {
         -- "rcarriga/nvim-notify",
     },
     opts = {
-        ---@type string
         arg = "leetcode.nvim",
-
-        ---@type lc.lang
         lang = "rust",
-
-        cn = { -- leetcode.cn
-            enabled = false, ---@type boolean
-            translator = true, ---@type boolean
-            translate_problems = true, ---@type boolean
+        cn = {
+            enabled = false,
+            translator = true,
+            translate_problems = true,
         },
-
-        ---@type lc.storage
         storage = {
             home = vim.fn.stdpath("data") .. "/leetcode",
             cache = vim.fn.stdpath("cache") .. "/leetcode",
         },
-
-        ---@type table<string, boolean>
         plugins = {
             non_standalone = false,
         },
-
-        ---@type boolean
         logging = true,
-
-        injector = {}, ---@type table<lc.lang, lc.inject>
-
+        injector = {},
         cache = {
-            update_interval = 60 * 60 * 24 * 7, ---@type integer 7 days
+            update_interval = 60 * 60 * 24 * 7,
         },
-
         console = {
-            open_on_runcode = true, ---@type boolean
-
-            dir = "row", ---@type lc.direction
-
-            size = { ---@type lc.size
+            open_on_runcode = true,
+            dir = "row",
+            size = {
                 width = "90%",
                 height = "75%",
             },
-
             result = {
-                size = "60%", ---@type lc.size
+                size = "60%",
             },
-
             testcase = {
-                virt_text = true, ---@type boolean
-
-                size = "40%", ---@type lc.size
+                virt_text = true,
+                size = "40%",
             },
         },
-
         description = {
-            position = "left", ---@type lc.position
-
-            width = "40%", ---@type lc.size
-
-            show_stats = true, ---@type boolean
+            position = "left",
+            width = "40%",
+            show_stats = true,
         },
-
         hooks = {
-            ---@type fun()[]
             ["enter"] = {},
-
-            ---@type fun(question: lc.ui.Question)[]
             ["question_enter"] = {
                 function()
                     local file_extension = vim.fn.expand("%:e")
@@ -140,25 +115,17 @@ return {
                     end
                 end,
             },
-
-            ---@type fun()[]
             ["leave"] = {},
         },
-
         keys = {
-            toggle = { "q" }, ---@type string|string[]
-            confirm = { "<CR>" }, ---@type string|string[]
-
-            reset_testcases = "r", ---@type string
-            use_testcase = "U", ---@type string
-            focus_testcases = "H", ---@type string
-            focus_result = "L", ---@type string
+            toggle = { "q" },
+            confirm = { "<CR>" },
+            reset_testcases = "r",
+            use_testcase = "U",
+            focus_testcases = "H",
+            focus_result = "L",
         },
-
-        ---@type lc.highlights
         theme = {},
-
-        ---@type boolean
         image_support = false,
     },
 }
