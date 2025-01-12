@@ -534,8 +534,6 @@ return {
                             if client.server_capabilities.signatureHelpProvider then
                                 ---@diagnostic disable-next-line: missing-fields
                                 require("lsp-overloads").setup(client, {})
-                                vim.api.nvim_set_keymap("n", "<A-s>", ":LspOverloadsSignature<CR>",
-                                    { noremap = true, silent = true, buffer = bufnr })
                             end
 
                             -- Call the server's on_attach, if it exists
