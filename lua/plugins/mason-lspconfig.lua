@@ -20,7 +20,9 @@ return {
         -- These can have more fields like cmd, settings and filetypes
         local servers = {
             arduino_language_server = {},
-            zls = {},
+            zls = {
+                cmd = function() return "" end,
+            },
             bashls = {
                 filetypes = { "sh", "zsh", "zshrc" },
             },
