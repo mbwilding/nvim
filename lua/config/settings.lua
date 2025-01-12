@@ -48,7 +48,7 @@ o.ignorecase = true
 o.smartcase = true
 
 -- Set update time for diagnostics
-o.updatetime = 250
+o.updatetime = 100
 
 -- Leader command timeout
 o.timeout = true

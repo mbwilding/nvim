@@ -1,38 +1,29 @@
 local virtual_text = true
+local only_current_line = true
 
 return {
-    -- "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    "mbwilding/lsp_lines.nvim",
-    -- dev = true,
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     lazy = true,
     event = "LspAttach",
     keys = {
-        -- {
-        --     "<leader>ilt",
-        --     function()
-        --         require("lsp_lines").toggle()
-        --     end,
-        --     desc = "LSP Lines: Toggle",
-        -- },
         {
             "<leader>ilt",
             function()
                 virtual_text = not virtual_text
                 vim.diagnostic.config({
                     virtual_text = virtual_text,
-                    virtual_lines = {
-                        show_lines = not vim.diagnostic.config().virtual_lines.show_lines,
-                    },
                 })
+                require("lsp_lines").toggle()
             end,
             desc = "LSP Lines: Toggle",
         },
         {
             "<leader>ilc",
             function()
+                only_current_line = not only_current_line
                 vim.diagnostic.config({
                     virtual_lines = {
-                        only_current_line = not vim.diagnostic.config().virtual_lines.only_current_line,
+                        only_current_line = only_current_line,
                     },
                 })
             end,
@@ -43,12 +34,13 @@ return {
         vim.diagnostic.config({
             virtual_text = virtual_text,
             virtual_lines = {
-                show_lines = false,
-                only_current_line = false,
+                only_current_line = only_current_line,
                 highlight_whole_line = false,
             },
         })
 
-        require("lsp_lines").setup()
+        local ll = require("lsp_lines")
+        ll.setup()
+        ll.toggle()
     end,
 }
