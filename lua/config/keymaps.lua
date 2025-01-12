@@ -108,4 +108,4 @@ end, { desc = "Diagnostics: Toggle" })
 
 vim.keymap.set("n", "<leader>k", function()
     vim.diagnostic.open_float(nil, { scope = "line" })
-end, { desc = "Diagnostics: View" })
+end, { desc = "Diagnostics: View float" })
