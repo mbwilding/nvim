@@ -186,7 +186,7 @@ return {
                         experimental = {
                             classRegex = {
                                 { "cva\\(([^)]*)\\)", "[\"'`]?([^\"'`]*).*?[\"'`]?" },
-                                { "cx\\(([^)]*)\\)", "[\"'`]?([^\"'`]*).*?[\"'`]?" },
+                                { "cx\\(([^)]*)\\)",  "[\"'`]?([^\"'`]*).*?[\"'`]?" },
                             },
                         },
                     },
@@ -416,7 +416,7 @@ return {
                         -- plugin.path = "",
                     },
                 },
-                on_attach = function(client, bufnr)
+                on_attach = function(_, bufnr)
                     map("gd", require("omnisharp_extended").telescope_lsp_definition, "Telescope Definition", bufnr)
                     map(
                         "<leader>D",
@@ -532,7 +532,10 @@ return {
 
                             -- Set up signature help overloads
                             if client.server_capabilities.signatureHelpProvider then
+                                ---@diagnostic disable-next-line: missing-fields
                                 require("lsp-overloads").setup(client, {})
+                                vim.api.nvim_set_keymap("n", "<A-s>", ":LspOverloadsSignature<CR>",
+                                    { noremap = true, silent = true, buffer = bufnr })
                             end
 
                             -- Call the server's on_attach, if it exists

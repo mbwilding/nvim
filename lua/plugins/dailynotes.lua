@@ -44,14 +44,14 @@ return {
                     {
                         on_stdout = function(_, data)
                             if data then
-                                vim.api.nvim_out_write(table.concat(data, "\n") .. "\n")
+                                vim.notify(table.concat(data, "\n"), vim.log.levels.INFO)
                             end
                         end,
                         on_exit = function(_, code, _)
                             if code == 0 then
-                                vim.api.nvim_out_write("Push successful\n")
+                                vim.notify("Push successful", vim.log.levels.INFO)
                             else
-                                vim.api.nvim_err_writeln("Push failed")
+                                vim.notify("Push failed", vim.log.levels.ERROR)
                             end
                         end,
                     }

@@ -36,13 +36,7 @@ return {
             all_references = true, -- show virtual text on all all references of the variable (not only definitions)
             clear_on_continue = false, -- clear virtual text on "continue" (might cause flickering when stepping)
             --- A callback that determines how a variable is displayed or whether it should be omitted
-            --- @param variable Variable https://microsoft.github.io/debug-adapter-protocol/specification#Types_Variable
-            --- @param buf number
-            --- @param stackframe dap.StackFrame https://microsoft.github.io/debug-adapter-protocol/specification#Types_StackFrame
-            --- @param node userdata tree-sitter node identified as variable definition of reference (see `:h tsnode`)
-            --- @param options nvim_dap_virtual_text_options Current options for nvim-dap-virtual-text
-            --- @return string|nil A text how the virtual text should be displayed or nil, if this variable shouldn't be displayed
-            display_callback = function(variable, buf, stackframe, node, options)
+            display_callback = function(variable, _, _, _, options)
                 -- by default, strip out new line characters
                 if options.virt_text_pos == "inline" then
                     return " = " .. variable.value:gsub("%s+", " ")
