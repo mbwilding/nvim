@@ -102,6 +102,13 @@ return {
             show_ignored = true,
         })
 
-        require("oil-lsp-diagnostics").setup()
+        require("oil-lsp-diagnostics").setup({
+            diagnostic_symbols = {
+                error = "",
+                warn = "",
+                info = "",
+                hint = "󰌶",
+            }
+        })
     end,
 }
