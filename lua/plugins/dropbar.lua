@@ -11,8 +11,7 @@ return {
                 if vim.fn.executable("make") == 1 then
                     return "make"
                 elseif vim.fn.executable("cmake") == 1 then
-                    return
-                    "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
+                    return "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
                 else
                     error("Neither 'make' nor 'cmake' are available for building telescope-fzf-native.nvim")
                 end
@@ -31,10 +30,10 @@ return {
                 if
                     not vim.api.nvim_buf_is_valid(buf)
                     or not vim.api.nvim_win_is_valid(win)
-                    or vim.fn.win_gettype(win) ~= ''
-                    or vim.wo[win].winbar ~= ''
-                    or ft == 'help'
-                    or ft == 'noice'
+                    or vim.fn.win_gettype(win) ~= ""
+                    or vim.wo[win].winbar ~= ""
+                    or ft == "help"
+                    or ft == "noice"
                 then
                     return false
                 end

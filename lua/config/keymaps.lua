@@ -26,20 +26,6 @@ vim.keymap.set({ "n", "v" }, "<leader>", "<Nop>")
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
--- Diagnostic keymaps
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Diagnostics: Goto previous diagnostic message" })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Diagnostics: Goto next diagnostic message" })
-
-vim.keymap.set("n", "<leader>iv", function()
-    vim.diagnostic.config({
-        virtual_text = not vim.diagnostic.config().virtual_text,
-    })
-end, { desc = "Diagnostics: Toggle virtual text" })
-
-vim.keymap.set("n", "<leader>id", function()
-    vim.diagnostic.enable(not vim.diagnostic.is_enabled(), {})
-end, { desc = "Diagnostics: Toggle" })
-
 -- Toggles
 vim.keymap.set("n", "<leader>ir", function()
     vim.o.relativenumber = not vim.o.relativenumber
@@ -101,3 +87,25 @@ vim.keymap.set("n", "\\i", "<CMD>Inspect<CR>", { desc = "Highlights: Inspect" })
 
 -- Custom
 vim.keymap.set("n", "yd", "yyp", { desc = "Duplicate line" })
+
+-- Diagnostic keymaps
+vim.keymap.set("n", "[d", function()
+    vim.diagnostic.jump({ count = -1, float = true })
+end, { desc = "Diagnostics: Goto previous diagnostic message" })
+vim.keymap.set("n", "]d", function()
+    vim.diagnostic.jump({ count = 1, float = true })
+end, { desc = "Diagnostics: Goto next diagnostic message" })
+
+vim.keymap.set("n", "<leader>iv", function()
+    vim.diagnostic.config({
+        virtual_text = not vim.diagnostic.config().virtual_text,
+    })
+end, { desc = "Diagnostics: Toggle virtual text" })
+
+vim.keymap.set("n", "<leader>id", function()
+    vim.diagnostic.enable(not vim.diagnostic.is_enabled(), {})
+end, { desc = "Diagnostics: Toggle" })
+
+vim.keymap.set("n", "<leader>k", function()
+    vim.diagnostic.open_float(nil, { scope = "line" })
+end, { desc = "Diagnostics: View" })

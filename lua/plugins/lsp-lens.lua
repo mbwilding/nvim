@@ -30,10 +30,10 @@ return {
                 end,
                 -- git_authors = false,
                 git_authors = function(latest_author, count)
-                	if latest_author == "Not Committed Yet" then
-                		latest_author = "uncommitted"
-                	end
-                	return "  " .. latest_author .. (count - 1 == 0 and "" or (" + " .. count - 1))
+                    if latest_author == "Not Committed Yet" then
+                        latest_author = "uncommitted"
+                    end
+                    return "  " .. latest_author .. (count - 1 == 0 and "" or (" + " .. count - 1))
                 end,
             },
             ignore_filetype = {
