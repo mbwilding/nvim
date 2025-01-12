@@ -5,26 +5,18 @@ return {
     event = "InsertEnter",
     keys = {
         {
-            "<leader>cpt",
+            "<leader>iC",
             "<CMD>Copilot toggle<CR>",
             desc = "Copilot: Toggle",
         },
-        {
-            "<leader>cpe",
-            "<CMD>Copilot enable<CR>",
-            desc = "Copilot: Enable",
-        },
-        {
-            "<leader>cpd",
-            "<CMD>Copilot disable<CR>",
-            desc = "Copilot: Disable",
-        },
     },
     opts = {
+        panel = {
+            enable = false,
+        },
         suggestion = {
             enabled = true,
             auto_trigger = true,
-            debounce = 75,
             keymap = {
                 accept = "<C-y>",
                 accept_word = false,
@@ -34,7 +26,6 @@ return {
                 dismiss = "<C-Esc>",
             },
         },
-        panel = { enabled = true },
         filetypes = {
             yaml = false,
             help = false,
