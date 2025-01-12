@@ -64,7 +64,7 @@ o.backspace = "indent,eol,start"
 o.smartindent = true
 
 -- Text wrapping
-o.wrap = true
+o.wrap = false
 
 -- Disable swap file
 o.swapfile = false

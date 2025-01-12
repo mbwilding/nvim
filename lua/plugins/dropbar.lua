@@ -27,7 +27,6 @@ return {
         bar = {
             enable = function(buf, win, _)
                 local ft = vim.bo[buf].ft
-                local bt = vim.bo[buf].bt
 
                 if
                     not vim.api.nvim_buf_is_valid(buf)
@@ -58,18 +57,18 @@ return {
                 max_depth = 16,
                 oil = true,
             },
-            treesitter = {
-                max_depth = 0,
-            },
-            lsp = {
-                max_depth = 0,
-            },
-            markdown = {
-                max_depth = 0,
-            },
-            terminal = {
-                show_current = false,
-            },
+            -- treesitter = {
+            --     max_depth = 0,
+            -- },
+            -- lsp = {
+            --     max_depth = 0,
+            -- },
+            -- markdown = {
+            --     max_depth = 0,
+            -- },
+            -- terminal = {
+            --     show_current = false,
+            -- },
         },
     },
 }
