@@ -108,7 +108,7 @@ return {
                 warn = "",
                 info = "",
                 hint = "󰌶",
-            }
+            },
         })
     end,
 }
