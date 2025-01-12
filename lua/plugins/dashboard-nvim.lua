@@ -3,6 +3,9 @@ return {
     "mbwilding/dashboard-nvim",
     lazy = true,
     event = "VimEnter",
+    dependencies = {
+        "nvim-tree/nvim-web-devicons",
+    },
     opts = {
         theme = "hyper",
         letter_list = "uhetonasidpgyfcrlxbmwqvz",
@@ -54,8 +57,5 @@ return {
             },
             footer = {},
         },
-    },
-    dependencies = {
-        "nvim-tree/nvim-web-devicons",
     },
 }
