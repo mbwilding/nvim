@@ -46,9 +46,9 @@ return {
 
         -- These can have more fields like cmd, settings and filetypes
         local servers = {
-            roslyn = {
-                custom = true,
-            },
+            -- roslyn = {
+            --     custom = true,
+            -- },
             arduino_language_server = {},
             zls = {},
             bashls = {
@@ -468,10 +468,10 @@ return {
 
         require("mason").setup({
             max_concurrent_installers = 10,
-            registries = {
-                "github:mason-org/mason-registry",
-                "github:crashdummyy/mason-registry",
-            },
+            -- registries = {
+            --     "github:mason-org/mason-registry",
+            --     "github:crashdummyy/mason-registry",
+            -- },
         })
 
         require("mason-lspconfig").setup_handlers({
