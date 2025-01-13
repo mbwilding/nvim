@@ -7,44 +7,52 @@ return {
         "b0o/schemastore.nvim",
         "nvim-telescope/telescope.nvim",
         "Issafalcon/lsp-overloads.nvim",
-        "Hoffs/omnisharp-extended-lsp.nvim",
         "kevinhwang91/nvim-ufo",
+        -- "Hoffs/omnisharp-extended-lsp.nvim",
         -- "Decodetalkers/csharpls-extended-lsp.nvim",
 
-        -- {
-        --     "seblj/roslyn.nvim",
-        --     ft = "cs",
-        --     opts = {
-        --         config = {
-        --             settings = {
-        --                 ["csharp|inlay_hints"] = {
-        --                     csharp_enable_inlay_hints_for_implicit_object_creation = true,
-        --                     csharp_enable_inlay_hints_for_implicit_variable_types = true,
-        --                     csharp_enable_inlay_hints_for_lambda_parameter_types = true,
-        --                     csharp_enable_inlay_hints_for_types = true,
-        --                     dotnet_enable_inlay_hints_for_indexer_parameters = true,
-        --                     dotnet_enable_inlay_hints_for_literal_parameters = true,
-        --                     dotnet_enable_inlay_hints_for_object_creation_parameters = true,
-        --                     dotnet_enable_inlay_hints_for_other_parameters = true,
-        --                     dotnet_enable_inlay_hints_for_parameters = true,
-        --                     dotnet_suppress_inlay_hints_for_parameters_that_differ_only_by_suffix = true,
-        --                     dotnet_suppress_inlay_hints_for_parameters_that_match_argument_name = true,
-        --                     dotnet_suppress_inlay_hints_for_parameters_that_match_method_intent = true,
-        --                 },
-        --                 ["csharp|code_lens"] = {
-        --                     dotnet_enable_references_code_lens = true,
-        --                 },
-        --             },
-        --         },
-        --     },
-        -- },
+        {
+            "seblj/roslyn.nvim",
+            ft = "cs",
+            opts = {
+                config = {
+                    capabilities = (function()
+                        local capabilities = require("blink.cmp").get_lsp_capabilities()
+
+                        -- UFO (Folding)
+                        if pcall(require, "ufo") then
+                            capabilities.textDocument.foldingRange = {
+                                dynamicRegistration = false,
+                                lineFoldingOnly = true,
+                            }
+                        end
+
+                        return capabilities
+                    end)(),
+                    settings = {
+                        ["csharp|inlay_hints"] = {
+                            csharp_enable_inlay_hints_for_implicit_object_creation = true,
+                            csharp_enable_inlay_hints_for_implicit_variable_types = true,
+                            csharp_enable_inlay_hints_for_lambda_parameter_types = true,
+                            csharp_enable_inlay_hints_for_types = true,
+                            dotnet_enable_inlay_hints_for_indexer_parameters = true,
+                            dotnet_enable_inlay_hints_for_literal_parameters = true,
+                            dotnet_enable_inlay_hints_for_object_creation_parameters = true,
+                            dotnet_enable_inlay_hints_for_other_parameters = true,
+                            dotnet_enable_inlay_hints_for_parameters = true,
+                            dotnet_suppress_inlay_hints_for_parameters_that_differ_only_by_suffix = true,
+                            dotnet_suppress_inlay_hints_for_parameters_that_match_argument_name = true,
+                            dotnet_suppress_inlay_hints_for_parameters_that_match_method_intent = true,
+                        },
+                        ["csharp|code_lens"] = {
+                            dotnet_enable_references_code_lens = true,
+                        },
+                    },
+                },
+            },
+        },
     },
     config = function()
-        -- on_attach function to overwrite the default keymaps
-        local function map(keys, func, desc, bufnr)
-            vim.keymap.set("n", keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
-        end
-
         -- These can have more fields like cmd, settings and filetypes
         local servers = {
             arduino_language_server = {},
@@ -214,7 +222,7 @@ return {
                         experimental = {
                             classRegex = {
                                 { "cva\\(([^)]*)\\)", "[\"'`]?([^\"'`]*).*?[\"'`]?" },
-                                { "cx\\(([^)]*)\\)", "[\"'`]?([^\"'`]*).*?[\"'`]?" },
+                                { "cx\\(([^)]*)\\)",  "[\"'`]?([^\"'`]*).*?[\"'`]?" },
                             },
                         },
                     },
@@ -282,211 +290,199 @@ return {
                     },
                 },
             },
-            -- roslyn = {
-            --     custom = true,
-            -- },
+            roslyn = {
+                enabled = true,
+                custom = true,
+            },
             -- csharp_ls = {
-            --     enabled = true,
+            --     enabled = false,
             --     handlers = {
             --         ["textDocument/definition"] = require("csharpls_extended").handler,
             --         ["textDocument/typeDefinition"] = require("csharpls_extended").handler,
             --     },
             -- },
-            omnisharp = {
-                enabled = true,
-                settings = {
-                    csharp = {
-                        inlayHints = {
-                            enableInlayHintsForImplicitObjectCreation = true,
-                            enableInlayHintsForImplicitVariableTypes = true,
-                            enableInlayHintsForLambdaParameterTypes = true,
-                            enableInlayHintsForTypes = true,
-                        },
-                        debug = {
-                            -- console = "internalConsole",
-                            -- enableStepFiltering = true,
-                            expressionEvaluationOptions = {
-                                -- allowFastEvaluate = true,
-                                -- allowImplicitFuncEval = true,
-                                -- allowToString = true,
-                                -- showRawValues = false,
-                            },
-                            -- justMyCode = true,
-                            logging = {
-                                -- browserStdOut = true,
-                                -- consoleUsageMessage = true,
-                                diagnosticsLog = {
-                                    -- debugEngineAPITracing = "none",
-                                    -- debugRuntimeEventTracing = false,
-                                    -- dispatcherMessages = "none",
-                                    -- expressionEvaluationTracing = false,
-                                    -- protocolMessages = false,
-                                    -- startDebuggingTracing = false,
-                                },
-                                -- elapsedTiming = false,
-                                -- engineLogging = false,
-                                -- exceptions = true,
-                                -- moduleLoad = true,
-                                -- processExit = true,
-                                -- programOutput = true,
-                                -- threadExit = false,
-                            },
-                            -- requireExactSource = true,
-                            -- sourceFileMap = {},
-                            -- stopAtEntry = false,
-                            -- suppressJITOptimizations = false,
-                            symbolOptions = {
-                                -- cachePath = "",
-                                moduleFilter = {
-                                    -- excludedModules = {},
-                                    -- includeSymbolsNextToModules = true,
-                                    -- includeSymbolsOnDemand = true,
-                                    -- includedModules = {},
-                                    -- mode = "loadAllButExcluded",
-                                },
-                                searchMicrosoftSymbolServer = true,
-                                searchNuGetOrgSymbolServer = true,
-                                -- searchPaths = {},
-                            },
-                        },
-                        format = {
-                            -- enable = true,
-                        },
-                        -- maxProjectFileCountForDiagnosticAnalysis = 1000,
-                        referencesCodeLens = {
-                            -- filteredSymbols = {},
-                        },
-                        -- semanticHighlighting.enabled = true,
-                        -- showOmnisharpLogOnError = true,
-                        -- suppressBuildAssetsNotification = false,
-                        -- suppressDotnetInstallWarning = false,
-                        -- suppressDotnetRestoreNotification = false,
-                        -- suppressHiddenDiagnostics = true,
-                        -- suppressProjectJsonWarning = false,
-                    },
-                    dotnet = {
-                        -- defaultSolution = "",
-                        backgroundAnalysis = {
-                            -- analyzerDiagnosticsScope = "openFiles",
-                            -- compilerDiagnosticsScope = "openFiles",
-                        },
-                        codeLens = {
-                            -- enableReferencesCodeLens = true,
-                            -- enableTestsCodeLens = true,
-                        },
-                        completion = {
-                            -- provideRegexCompletions = "true",
-                            -- showCompletionItemsFromUnimportedNamespaces = true,
-                            -- showNameCompletionSuggestions = "true",
-                        },
-                        highlighting = {
-                            -- highlightRelatedJsonComponents = "true",
-                            -- highlightRelatedRegexComponents = "true",
-                        },
-                        implementType = {
-                            -- insertionBehavior = "withOtherMembersOfTheSameKind",
-                            -- propertyGenerationBehavior = "preferThrowingProperties",
-                        },
-                        inlayHints = {
-                            enableInlayHintsForIndexerParameters = true,
-                            enableInlayHintsForLiteralParameters = true,
-                            enableInlayHintsForObjectCreationParameters = true,
-                            enableInlayHintsForOtherParameters = true,
-                            enableInlayHintsForParameters = true,
-                            suppressInlayHintsForParametersThatDifferOnlyBySuffix = true,
-                            suppressInlayHintsForParametersThatMatchArgumentName = true,
-                            suppressInlayHintsForParametersThatMatchMethodIntent = true,
-                        },
-                        -- navigation.navigateToDecompiledSources = "true",
-                        -- quickInfo.showRemarksInQuickInfo = "true",
-                        -- symbolSearch.searchReferenceAssemblies = true,
-                        -- unitTestDebuggingOptions = {},
-                        -- unitTests.runSettingsPath = "",
-                        -- dotnetPath = "",
-                        -- enableXamlTools = true,
-                        -- preferCSharpExtension = false,
-                        -- projects.binaryLogPath = "",
-                        -- projects.enableAutomaticRestore = true,
-                        -- server.componentPaths = {},
-                        -- server.crashDumpPath = "",
-                        -- server.extensionPaths = {},
-                        -- server.path = "",
-                        -- server.startTimeout = 30000,
-                        -- server.suppressLspErrorToasts = false,
-                        -- server.trace = "Information",
-                        -- server.waitForDebugger = false,
-                    },
-                    omnisharp = {
-                        enableAsyncCompletion = true,
-                        enableDecompilationSupport = true,
-                        -- enableEditorConfigSupport = true,
-                        enableLspDriver = true,
-                        -- enableMsBuildLoadProjectsOnDemand = false,
-                        -- loggingLevel = "information",
-                        -- maxFindSymbolsItems = 1000,
-                        -- maxProjectResults = 250,
-                        -- minFindSymbolsFilterLength = 0,
-                        -- monoPath = "",
-                        organizeImportsOnFormat = true,
-                        -- projectFilesExcludePattern = "**/node_modules/**,**/.git/**,**/bower_components/**",
-                        -- projectLoadTimeout = 60,
-                        sdkIncludePrereleases = true,
-                        -- sdkPath = "",
-                        -- sdkVersion = "",
-                        -- useEditorFormattingSettings = true,
-                        -- useModernNet = true,
-                    },
-                    razor = {
-                        -- languageServer.debug = false,
-                        -- languageServer.directory = "",
-                        -- languageServer.forceRuntimeCodeGeneration = false,
-                        -- server.trace = "Information",
-                        -- completion.commitElementsWithSpace = "false",
-                        -- devmode = false,
-                        -- format.codeBlockBraceOnNextLine = false,
-                        -- format.enable = true,
-                        -- plugin.path = "",
-                    },
-                },
-                on_attach = function(_, bufnr)
-                    map("gd", require("omnisharp_extended").telescope_lsp_definition, "Telescope Definition", bufnr)
-                    map(
-                        "<leader>D",
-                        require("omnisharp_extended").telescope_lsp_type_definition,
-                        "Telescope Type Definition",
-                        bufnr
-                    )
-                    map("gr", require("omnisharp_extended").telescope_lsp_references, "Telescope References", bufnr)
-                    map(
-                        "gi",
-                        require("omnisharp_extended").telescope_lsp_implementation,
-                        "Telescope Implementation",
-                        bufnr
-                    )
-                end,
-            },
+            -- omnisharp = {
+            --     enabled = false,
+            --     settings = {
+            --         csharp = {
+            --             inlayHints = {
+            --                 enableInlayHintsForImplicitObjectCreation = true,
+            --                 enableInlayHintsForImplicitVariableTypes = true,
+            --                 enableInlayHintsForLambdaParameterTypes = true,
+            --                 enableInlayHintsForTypes = true,
+            --             },
+            --             debug = {
+            --                 -- console = "internalConsole",
+            --                 -- enableStepFiltering = true,
+            --                 expressionEvaluationOptions = {
+            --                     -- allowFastEvaluate = true,
+            --                     -- allowImplicitFuncEval = true,
+            --                     -- allowToString = true,
+            --                     -- showRawValues = false,
+            --                 },
+            --                 -- justMyCode = true,
+            --                 logging = {
+            --                     -- browserStdOut = true,
+            --                     -- consoleUsageMessage = true,
+            --                     diagnosticsLog = {
+            --                         -- debugEngineAPITracing = "none",
+            --                         -- debugRuntimeEventTracing = false,
+            --                         -- dispatcherMessages = "none",
+            --                         -- expressionEvaluationTracing = false,
+            --                         -- protocolMessages = false,
+            --                         -- startDebuggingTracing = false,
+            --                     },
+            --                     -- elapsedTiming = false,
+            --                     -- engineLogging = false,
+            --                     -- exceptions = true,
+            --                     -- moduleLoad = true,
+            --                     -- processExit = true,
+            --                     -- programOutput = true,
+            --                     -- threadExit = false,
+            --                 },
+            --                 -- requireExactSource = true,
+            --                 -- sourceFileMap = {},
+            --                 -- stopAtEntry = false,
+            --                 -- suppressJITOptimizations = false,
+            --                 symbolOptions = {
+            --                     -- cachePath = "",
+            --                     moduleFilter = {
+            --                         -- excludedModules = {},
+            --                         -- includeSymbolsNextToModules = true,
+            --                         -- includeSymbolsOnDemand = true,
+            --                         -- includedModules = {},
+            --                         -- mode = "loadAllButExcluded",
+            --                     },
+            --                     searchMicrosoftSymbolServer = true,
+            --                     searchNuGetOrgSymbolServer = true,
+            --                     -- searchPaths = {},
+            --                 },
+            --             },
+            --             format = {
+            --                 -- enable = true,
+            --             },
+            --             -- maxProjectFileCountForDiagnosticAnalysis = 1000,
+            --             referencesCodeLens = {
+            --                 -- filteredSymbols = {},
+            --             },
+            --             -- semanticHighlighting.enabled = true,
+            --             -- showOmnisharpLogOnError = true,
+            --             -- suppressBuildAssetsNotification = false,
+            --             -- suppressDotnetInstallWarning = false,
+            --             -- suppressDotnetRestoreNotification = false,
+            --             -- suppressHiddenDiagnostics = true,
+            --             -- suppressProjectJsonWarning = false,
+            --         },
+            --         dotnet = {
+            --             -- defaultSolution = "",
+            --             backgroundAnalysis = {
+            --                 -- analyzerDiagnosticsScope = "openFiles",
+            --                 -- compilerDiagnosticsScope = "openFiles",
+            --             },
+            --             codeLens = {
+            --                 -- enableReferencesCodeLens = true,
+            --                 -- enableTestsCodeLens = true,
+            --             },
+            --             completion = {
+            --                 -- provideRegexCompletions = "true",
+            --                 -- showCompletionItemsFromUnimportedNamespaces = true,
+            --                 -- showNameCompletionSuggestions = "true",
+            --             },
+            --             highlighting = {
+            --                 -- highlightRelatedJsonComponents = "true",
+            --                 -- highlightRelatedRegexComponents = "true",
+            --             },
+            --             implementType = {
+            --                 -- insertionBehavior = "withOtherMembersOfTheSameKind",
+            --                 -- propertyGenerationBehavior = "preferThrowingProperties",
+            --             },
+            --             inlayHints = {
+            --                 enableInlayHintsForIndexerParameters = true,
+            --                 enableInlayHintsForLiteralParameters = true,
+            --                 enableInlayHintsForObjectCreationParameters = true,
+            --                 enableInlayHintsForOtherParameters = true,
+            --                 enableInlayHintsForParameters = true,
+            --                 suppressInlayHintsForParametersThatDifferOnlyBySuffix = true,
+            --                 suppressInlayHintsForParametersThatMatchArgumentName = true,
+            --                 suppressInlayHintsForParametersThatMatchMethodIntent = true,
+            --             },
+            --             -- navigation.navigateToDecompiledSources = "true",
+            --             -- quickInfo.showRemarksInQuickInfo = "true",
+            --             -- symbolSearch.searchReferenceAssemblies = true,
+            --             -- unitTestDebuggingOptions = {},
+            --             -- unitTests.runSettingsPath = "",
+            --             -- dotnetPath = "",
+            --             -- enableXamlTools = true,
+            --             -- preferCSharpExtension = false,
+            --             -- projects.binaryLogPath = "",
+            --             -- projects.enableAutomaticRestore = true,
+            --             -- server.componentPaths = {},
+            --             -- server.crashDumpPath = "",
+            --             -- server.extensionPaths = {},
+            --             -- server.path = "",
+            --             -- server.startTimeout = 30000,
+            --             -- server.suppressLspErrorToasts = false,
+            --             -- server.trace = "Information",
+            --             -- server.waitForDebugger = false,
+            --         },
+            --         omnisharp = {
+            --             enableAsyncCompletion = true,
+            --             enableDecompilationSupport = true,
+            --             -- enableEditorConfigSupport = true,
+            --             enableLspDriver = true,
+            --             -- enableMsBuildLoadProjectsOnDemand = false,
+            --             -- loggingLevel = "information",
+            --             -- maxFindSymbolsItems = 1000,
+            --             -- maxProjectResults = 250,
+            --             -- minFindSymbolsFilterLength = 0,
+            --             -- monoPath = "",
+            --             organizeImportsOnFormat = true,
+            --             -- projectFilesExcludePattern = "**/node_modules/**,**/.git/**,**/bower_components/**",
+            --             -- projectLoadTimeout = 60,
+            --             sdkIncludePrereleases = true,
+            --             -- sdkPath = "",
+            --             -- sdkVersion = "",
+            --             -- useEditorFormattingSettings = true,
+            --             -- useModernNet = true,
+            --         },
+            --         razor = {
+            --             -- languageServer.debug = false,
+            --             -- languageServer.directory = "",
+            --             -- languageServer.forceRuntimeCodeGeneration = false,
+            --             -- server.trace = "Information",
+            --             -- completion.commitElementsWithSpace = "false",
+            --             -- devmode = false,
+            --             -- format.codeBlockBraceOnNextLine = false,
+            --             -- format.enable = true,
+            --             -- plugin.path = "",
+            --         },
+            --     },
+            --     on_attach = function(_, bufnr)
+            --         map("gd", require("omnisharp_extended").telescope_lsp_definition, "Telescope Definition", bufnr)
+            --         map(
+            --             "<leader>D",
+            --             require("omnisharp_extended").telescope_lsp_type_definition,
+            --             "Telescope Type Definition",
+            --             bufnr
+            --         )
+            --         map("gr", require("omnisharp_extended").telescope_lsp_references, "Telescope References", bufnr)
+            --         map(
+            --             "gi",
+            --             require("omnisharp_extended").telescope_lsp_implementation,
+            --             "Telescope Implementation",
+            --             bufnr
+            --         )
+            --     end,
+            -- },
         }
 
         require("mason").setup({
             max_concurrent_installers = 10,
-            -- registries = {
-            --     "github:mason-org/mason-registry",
-            --     "github:crashdummyy/mason-registry",
-            -- },
+            registries = {
+                "github:mason-org/mason-registry",
+                "github:crashdummyy/mason-registry",
+            },
         })
-
-        require("mason-lspconfig").setup_handlers({
-            -- The first entry (without a key) will be the default handler
-            -- and will be called for each installed server that doesn't have
-            -- a dedicated handler.
-            function(server_name)
-                if not servers[server_name] then
-                    require("lspconfig")[server_name].setup()
-                end
-            end,
-        })
-
-        local blink_cmp = require("blink.cmp")
 
         require("mason-lspconfig").setup({
             automatic_installation = true,
@@ -503,7 +499,7 @@ return {
                         return
                     end
 
-                    local capabilities = blink_cmp.get_lsp_capabilities(server.capabilities)
+                    local capabilities = require("blink.cmp").get_lsp_capabilities(server.capabilities)
 
                     -- UFO (Folding)
                     if pcall(require, "ufo") then
@@ -518,61 +514,8 @@ return {
                         settings = server.settings,
                         filetypes = server.filetypes,
                         handlers = server.handlers,
-                        -- This handles overriding only values explicitly passed
-                        -- by the server configuration above. Useful when disabling
-                        -- certain features of an LSP (for example, turning off formatting for tsserver)
                         capabilities = capabilities,
                         on_attach = function(client, bufnr)
-                            -- Set up mappings
-                            map("<leader>ih", function()
-                                vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-                            end, "Inlay Hints", bufnr)
-                            map("gd", require("telescope.builtin").lsp_definitions, "Telescope Definition", bufnr)
-                            map(
-                                "<leader>D",
-                                require("telescope.builtin").lsp_type_definitions,
-                                "Telescope Type Definition",
-                                bufnr
-                            )
-                            map("gr", require("telescope.builtin").lsp_references, "Telescope References", bufnr)
-                            map(
-                                "gi",
-                                require("telescope.builtin").lsp_implementations,
-                                "Telescope Implementation",
-                                bufnr
-                            )
-
-                            -- Common mappings
-                            map("<leader>f", function()
-                                vim.lsp.buf.format({ async = true })
-                            end, "Format", bufnr)
-                            map("gD", vim.lsp.buf.declaration, "Goto Declaration", bufnr)
-                            map(
-                                "gs",
-                                require("telescope.builtin").lsp_document_symbols,
-                                "Telescope Document Symbols",
-                                bufnr
-                            )
-                            map(
-                                "<leader>ws",
-                                require("telescope.builtin").lsp_dynamic_workspace_symbols,
-                                "Telescope Workspace Symbols",
-                                bufnr
-                            )
-                            map("K", vim.lsp.buf.hover, "Hover Documentation", bufnr)
-                            -- map("<C-k>", vim.lsp.buf.signature_help, "Signature documentation", bufnr)
-
-                            -- Navigation
-                            map("<C-p>", "<C-t>", "Navigate Previous", bufnr)
-                            map("<C-n>", "<CMD>tag<CR>", "Navigate Next", bufnr)
-
-                            -- Set up signature help overloads
-                            if client.server_capabilities.signatureHelpProvider then
-                                ---@diagnostic disable-next-line: missing-fields
-                                require("lsp-overloads").setup(client, {})
-                            end
-
-                            -- Call the server's on_attach, if it exists
                             if server.on_attach then
                                 server.on_attach(client, bufnr)
                             end
@@ -580,6 +523,97 @@ return {
                     })
                 end,
             },
+        })
+
+        vim.api.nvim_create_autocmd('LspAttach', {
+            group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
+            callback = function(event)
+                local client = vim.lsp.get_client_by_id(event.data.client_id)
+                if not client then
+                    return
+                end
+
+                -- Set up signature help overloads
+                if client.server_capabilities.signatureHelpProvider then
+                    ---@diagnostic disable-next-line: missing-fields
+                    require("lsp-overloads").setup(client, {})
+                end
+
+                -- NOTE: Remember that Lua is a real programming language, and as such it is possible
+                -- to define small helper and utility functions so you don't have to repeat yourself.
+                --
+                -- In this case, we create a function that lets us more easily define mappings specific
+                -- for LSP related items. It sets the mode, buffer and description for us each time.
+                local map = function(keys, func, desc, mode)
+                    mode = mode or 'n'
+                    vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+                end
+
+                -- Jump to the definition of the word under your cursor.
+                --  This is where a variable was first declared, or where a function is defined, etc.
+                --  To jump back, press <C-t>.
+                map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+
+                -- Find references for the word under your cursor.
+                map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+
+                -- Jump to the implementation of the word under your cursor.
+                --  Useful when your language has ways of declaring types without an actual implementation.
+                map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+
+                -- Jump to the type of the word under your cursor.
+                --  Useful when you're not sure what type a variable is and you want to see
+                --  the definition of its *type*, not where it was *defined*.
+                map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
+
+                -- Fuzzy find all the symbols in your current document.
+                --  Symbols are things like variables, functions, types, etc.
+                map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+
+                -- Fuzzy find all the symbols in your current workspace.
+                --  Similar to document symbols, except searches over your entire project.
+                map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+
+                -- -- Rename the variable under your cursor.
+                -- --  Most Language Servers support renaming across files, etc.
+                -- map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+
+                -- -- Execute a code action, usually your cursor needs to be on top of an error
+                -- -- or a suggestion from your LSP for this to activate.
+                -- map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
+
+                -- WARN: This is not Goto Definition, this is Goto Declaration.
+                --  For example, in C this would take you to the header.
+                map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+
+                -- The following two autocommands are used to highlight references of the
+                -- word under your cursor when your cursor rests there for a little while.
+                --    See `:help CursorHold` for information about when this is executed
+                --
+                -- When you move your cursor, the highlights will be cleared (the second autocommand).
+                if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+                    local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
+                    vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+                        buffer = event.buf,
+                        group = highlight_augroup,
+                        callback = vim.lsp.buf.document_highlight,
+                    })
+
+                    vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+                        buffer = event.buf,
+                        group = highlight_augroup,
+                        callback = vim.lsp.buf.clear_references,
+                    })
+
+                    vim.api.nvim_create_autocmd('LspDetach', {
+                        group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
+                        callback = function(event2)
+                            vim.lsp.buf.clear_references()
+                            vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = event2.buf }
+                        end,
+                    })
+                end
+            end,
         })
     end,
 }
