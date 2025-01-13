@@ -81,6 +81,13 @@ vim.keymap.set("v", "<leader>ht", function()
     end, 200)
 end, { desc = "HTML" })
 
+
+-- Format
+vim.keymap.set("n", "<leader>f", function()
+    vim.notify("Formatting", vim.log.levels.INFO)
+    vim.lsp.buf.format({ async = true })
+end, { desc = "Format" })
+
 -- Debug
 -- vim.keymap.set("n", "\\m", "<CMD>messages<CR>", { desc = "Debug: Messages" })
 vim.keymap.set("n", "\\i", "<CMD>Inspect<CR>", { desc = "Highlights: Inspect" })
