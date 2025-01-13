@@ -8,29 +8,72 @@ return {
         "rafamadriz/friendly-snippets",
         "kristijanhusak/vim-dadbod-completion",
         "L3MON4D3/LuaSnip",
-        -- "giuxtaposition/blink-cmp-copilot",
+        {
+            "zbirenbaum/copilot.lua",
+            enabled = false,
+            cmd = "Copilot",
+            event = "InsertEnter",
+            keys = {
+                {
+                    "<leader>iC",
+                    "<CMD>Copilot toggle<CR>",
+                    desc = "Copilot: Toggle",
+                },
+            },
+            opts = {
+                panel = {
+                    enable = false,
+                },
+                suggestion = {
+                    enabled = false,
+                    auto_trigger = true,
+                    hide_during_completion = true,
+                    debounce = 75,
+                    keymap = {
+                        accept = "<C-y>",
+                        accept_word = false,
+                        accept_line = false,
+                        next = "<C-n>",
+                        prev = "<C-p>",
+                        dismiss = "<C-Esc>",
+                    },
+                },
+                filetypes = {
+                    yaml = false,
+                    help = false,
+                    gitcommit = false,
+                    gitrebase = false,
+                    hgcommit = false,
+                    svn = false,
+                    cvs = false,
+                    ["."] = false,
+                    -- markdown = false,
+                },
+            },
+        },
+        "giuxtaposition/blink-cmp-copilot",
     },
     version = "*",
     opts = {
         sources = {
-            default = { "lsp", "path", "snippets", "buffer", "dadbod" }, -- copilot
+            default = { "lsp", "path", "snippets", "buffer", "dadbod", "copilot" }, -- copilot
             providers = {
-                -- copilot = {
-                --     name = "copilot",
-                --     enabled = true,
-                --     module = "blink-cmp-copilot",
-                --     score_offset = 100,
-                --     async = true,
-                --     transform_items = function(_, items)
-                --         local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
-                --         local kind_idx = #CompletionItemKind + 1
-                --         CompletionItemKind[kind_idx] = "Copilot"
-                --         for _, item in ipairs(items) do
-                --             item.kind = kind_idx
-                --         end
-                --         return items
-                --     end,
-                -- },
+                copilot = {
+                    name = "copilot",
+                    enabled = true,
+                    module = "blink-cmp-copilot",
+                    score_offset = 100,
+                    async = true,
+                    transform_items = function(_, items)
+                        local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
+                        local kind_idx = #CompletionItemKind + 1
+                        CompletionItemKind[kind_idx] = "Copilot"
+                        for _, item in ipairs(items) do
+                            item.kind = kind_idx
+                        end
+                        return items
+                    end,
+                },
                 lsp = {
                     name = "lsp",
                     enabled = true,
