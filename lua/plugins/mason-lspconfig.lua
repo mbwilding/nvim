@@ -46,6 +46,9 @@ return {
 
         -- These can have more fields like cmd, settings and filetypes
         local servers = {
+            roslyn = {
+                custom = true,
+            },
             arduino_language_server = {},
             zls = {},
             bashls = {
@@ -488,7 +491,7 @@ return {
             automatic_installation = true,
             -- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
             ensure_installed = vim.tbl_filter(function(key)
-                return servers[key].enabled ~= false
+                return servers[key].enabled ~= false and servers[key].custom ~= true
             end, vim.tbl_keys(servers)),
             handlers = {
                 function(server_name)
