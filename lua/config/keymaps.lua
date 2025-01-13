@@ -29,10 +29,12 @@ vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 -- Toggles
 vim.keymap.set("n", "<leader>ir", function()
     vim.o.relativenumber = not vim.o.relativenumber
+    vim.notify("Relative Numbers: " .. tostring(vim.o.relativenumber), vim.log.levels.INFO)
 end, { desc = "Toggle relative/absolute line numbers" })
 
 vim.keymap.set("n", "<leader>iw", function()
     vim.wo.wrap = not vim.wo.wrap
+    vim.notify("Wrap: " .. tostring(vim.wo.wrap), vim.log.levels.INFO)
 end, { desc = "Toggle Word Wrap" })
 
 -- Redo
@@ -58,13 +60,15 @@ vim.keymap.set("v", "<RightMouse>", "\"+y")
 vim.keymap.set({ "n", "v" }, "<MiddleMouse>", "\"+p")
 
 -- Rulers
-local columns = "81,121"
+local columns = "80,120"
 vim.keymap.set("n", "<leader>ic", function()
     if vim.o.colorcolumn == columns then
         vim.o.colorcolumn = ""
     else
         vim.o.colorcolumn = columns
     end
+    local boundaries = vim.o.colorcolumn ~= "" and vim.o.colorcolumn or "disabled"
+    vim.notify("Boundaries: " .. boundaries, vim.log.levels.INFO)
 end, { desc = "Toggle Columns" })
 
 -- HTML Generation
@@ -80,13 +84,6 @@ vim.keymap.set("v", "<leader>ht", function()
         vim.lsp.buf.format({ async = false })
     end, 200)
 end, { desc = "HTML" })
-
-
--- Format
-vim.keymap.set("n", "<leader>f", function()
-    vim.notify("Formatting", vim.log.levels.INFO)
-    vim.lsp.buf.format({ async = true })
-end, { desc = "Format" })
 
 -- Debug
 -- vim.keymap.set("n", "\\m", "<CMD>messages<CR>", { desc = "Debug: Messages" })
@@ -107,10 +104,12 @@ vim.keymap.set("n", "<leader>iv", function()
     vim.diagnostic.config({
         virtual_text = not vim.diagnostic.config().virtual_text,
     })
+    vim.notify("Virtual Text: " .. tostring(vim.diagnostic.config().virtual_text), vim.log.levels.INFO)
 end, { desc = "Diagnostics: Toggle virtual text" })
 
 vim.keymap.set("n", "<leader>id", function()
     vim.diagnostic.enable(not vim.diagnostic.is_enabled(), {})
+    vim.notify("Diagnostics: " .. tostring(vim.diagnostic.is_enabled()), vim.log.levels.INFO)
 end, { desc = "Diagnostics: Toggle" })
 
 vim.keymap.set("n", "<leader>k", function()

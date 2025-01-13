@@ -75,7 +75,6 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 vim.diagnostic.config({
     virtual_text = false,
 })
-
 local ns = vim.api.nvim_create_namespace("CurlineDiag")
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)

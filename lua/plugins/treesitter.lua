@@ -1,3 +1,5 @@
+local toggled = false
+
 return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
@@ -177,6 +179,10 @@ return {
             mode = "topline", -- Also: cursor
         })
 
-        vim.keymap.set("n", "<leader>ix", "<CMD>TSContextToggle<CR>", { desc = "Treesitter: Context Rows" })
+        vim.keymap.set("n", "<leader>ix", function()
+          require("treesitter-context").toggle()
+          toggled = not toggled
+          vim.notify("Treesitter Context: " .. tostring(toggled), vim.log.levels.INFO)
+        end, { desc = "Treesitter: Context Rows" })
     end,
 }
