@@ -587,8 +587,11 @@ return {
                 --  For example, in C this would take you to the header.
                 map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
-                map("ih", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end,
-                    "Toggle [I]nlay [H]ints")
+                map("ih", function()
+                    local enabled = not vim.lsp.inlay_hint.is_enabled()
+                    vim.lsp.inlay_hint.enable(enabled)
+                    vim.notify("Inlay Hints: " .. tostring(enabled), vim.log.levels.INFO)
+                end, "Toggle [I]nlay [H]ints")
 
                 -- The following two autocommands are used to highlight references of the
                 -- word under your cursor when your cursor rests there for a little while.
