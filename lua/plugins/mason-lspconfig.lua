@@ -47,9 +47,6 @@ return {
 
         -- These can have more fields like cmd, settings and filetypes
         local servers = {
-            -- roslyn = {
-            --     custom = true,
-            -- },
             arduino_language_server = {},
             zls = {},
             bashls = {
@@ -285,8 +282,11 @@ return {
                     },
                 },
             },
+            -- roslyn = {
+            --     custom = true,
+            -- },
             -- csharp_ls = {
-            --     enabled = false,
+            --     enabled = true,
             --     handlers = {
             --         ["textDocument/definition"] = require("csharpls_extended").handler,
             --         ["textDocument/typeDefinition"] = require("csharpls_extended").handler,
