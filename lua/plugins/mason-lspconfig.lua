@@ -262,6 +262,7 @@ return {
             --     },
             -- },
             omnisharp = {
+                enabled = false,
                 settings = {
                     csharp = {
                         inlayHints = {
