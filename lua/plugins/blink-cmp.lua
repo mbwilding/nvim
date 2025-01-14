@@ -15,11 +15,35 @@ return {
         sources = {
             default = { "lsp", "path", "snippets", "buffer", "dadbod", "copilot" }, -- copilot
             providers = {
+                lsp = {
+                    name = "lsp",
+                    enabled = true,
+                    module = "blink.cmp.sources.lsp",
+                    score_offset = 5,
+                },
+                path = {
+                    name = "path",
+                    enabled = true,
+                    module = "blink.cmp.sources.path",
+                    score_offset = 4,
+                },
+                dadbod = {
+                    name = "Dadbod",
+                    enabled = true,
+                    module = "vim_dadbod_completion.blink",
+                    score_offset = 3,
+                },
+                snippets = {
+                    name = "snippets",
+                    enabled = true,
+                    module = "blink.cmp.sources.snippets",
+                    score_offset = 2,
+                },
                 copilot = {
                     name = "copilot",
                     enabled = true,
                     module = "blink-cmp-copilot",
-                    score_offset = 100,
+                    score_offset = 1,
                     async = true,
                     transform_items = function(_, items)
                         local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
@@ -30,30 +54,6 @@ return {
                         end
                         return items
                     end,
-                },
-                lsp = {
-                    name = "lsp",
-                    enabled = true,
-                    module = "blink.cmp.sources.lsp",
-                    score_offset = 90,
-                },
-                path = {
-                    name = "path",
-                    enabled = true,
-                    module = "blink.cmp.sources.path",
-                    score_offset = 80,
-                },
-                dadbod = {
-                    name = "Dadbod",
-                    enabled = true,
-                    module = "vim_dadbod_completion.blink",
-                    score_offset = 70,
-                },
-                snippets = {
-                    name = "snippets",
-                    enabled = true,
-                    module = "blink.cmp.sources.snippets",
-                    score_offset = 60,
                 },
             },
         },
