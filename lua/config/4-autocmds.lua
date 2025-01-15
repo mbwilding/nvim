@@ -68,7 +68,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     group = augroup("lf"),
     pattern = "*.sh",
-    command = "set fileformat=unix",
+    command = "setlocal fileformat=unix",
 })
 
 -- Virtual text only on current line
