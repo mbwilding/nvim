@@ -1,6 +1,6 @@
 return {
-    -- "Bekaboo/dropbar.nvim",
-    "mbwilding/dropbar.nvim",
+    "Bekaboo/dropbar.nvim",
+    -- "mbwilding/dropbar.nvim",
     -- dev = true,
     dependencies = {
         "nvim-tree/nvim-web-devicons",
@@ -57,18 +57,18 @@ return {
                 max_depth = 16,
                 oil = true,
             },
-            -- treesitter = {
-            --     max_depth = 0,
-            -- },
-            -- lsp = {
-            --     max_depth = 0,
-            -- },
-            -- markdown = {
-            --     max_depth = 0,
-            -- },
-            -- terminal = {
-            --     show_current = false,
-            -- },
+            treesitter = {
+                max_depth = 0,
+            },
+            lsp = {
+                max_depth = 0,
+            },
+            markdown = {
+                max_depth = 0,
+            },
+            terminal = {
+                show_current = false,
+            },
         },
     },
 }
