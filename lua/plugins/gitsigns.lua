@@ -7,9 +7,9 @@ return {
         signs = {
             add = { text = "+" },
             change = { text = "~" },
-            delete = { text = "_" },
+            delete = { text = "-" },
             topdelete = { text = "‾" },
-            changedelete = { text = "~" },
+            changedelete = { text = "_" },
         },
         on_attach = function(bufnr)
             local gs = package.loaded.gitsigns
