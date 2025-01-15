@@ -33,7 +33,7 @@ wo.signcolumn = "yes:2"
 
 -- Mouse mode
 o.mouse = "a"
-o.mousemodel = ""
+o.mousemodel = "extend"
 
 -- Enable break indent
 o.breakindent = true
