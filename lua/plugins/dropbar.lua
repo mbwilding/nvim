@@ -1,7 +1,5 @@
 return {
     "Bekaboo/dropbar.nvim",
-    -- "mbwilding/dropbar.nvim",
-    -- dev = true,
     dependencies = {
         "nvim-tree/nvim-web-devicons",
         {
@@ -11,7 +9,8 @@ return {
                 if vim.fn.executable("make") == 1 then
                     return "make"
                 elseif vim.fn.executable("cmake") == 1 then
-                    return "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
+                    return
+                    "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
                 else
                     error("Neither 'make' nor 'cmake' are available for building telescope-fzf-native.nvim")
                 end
@@ -37,19 +36,13 @@ return {
                     or ft == "dashboard"
                 then
                     return false
+                else
+                    -- print("----------")
+                    -- print("ft: " .. ft)
+                    -- print("bt: " .. bt)
+                    -- print("----------")
+                    return true
                 end
-
-                local stat = vim.uv.fs_stat(vim.api.nvim_buf_get_name(buf))
-                if stat and stat.size > 1024 * 1024 then
-                    return false
-                end
-
-                -- print("----------")
-                -- print("ft: " .. ft)
-                -- print("bt: " .. bt)
-                -- print("----------")
-
-                return true
             end,
         },
         sources = {
