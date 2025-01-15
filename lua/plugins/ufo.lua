@@ -19,8 +19,7 @@ return {
             desc = "UFO Folds: Collapse All",
         },
     },
-    opts = {},
-    config = function(_, opts)
+    config = function()
         vim.o.foldenable = true
         -- vim.o.foldcolumn = "1"
         vim.o.foldcolumn = "0"
@@ -28,6 +27,6 @@ return {
         vim.o.foldlevel = 99999999
         vim.o.foldlevelstart = 99999999
 
-        require("ufo").setup(opts)
+        require("ufo").setup()
     end,
 }
