@@ -29,7 +29,7 @@ wo.number = true
 wo.relativenumber = false
 
 -- Gutter sign column
-wo.signcolumn = "yes:2"
+wo.signcolumn = "auto:2"
 
 -- Mouse mode
 o.mouse = "a"
