@@ -97,8 +97,34 @@ return {
     config = function(_, opts)
         require("oil").setup(opts)
 
-        require("oil-git-status").setup({
+        require('oil-git-status').setup({
             show_ignored = true,
+            symbols = {
+                index = {
+                    ["!"] = "!",
+                    ["?"] = "?",
+                    ["A"] = "A",
+                    ["C"] = "C",
+                    ["D"] = "D",
+                    ["M"] = "~", -- M
+                    ["R"] = "R",
+                    ["T"] = "T",
+                    ["U"] = "U",
+                    [" "] = " ",
+                },
+                working_tree = {
+                    ["!"] = "!",
+                    ["?"] = "?",
+                    ["A"] = "A",
+                    ["C"] = "C",
+                    ["D"] = "D",
+                    ["M"] = "~", -- M
+                    ["R"] = "R",
+                    ["T"] = "T",
+                    ["U"] = "U",
+                    [" "] = " ",
+                },
+            },
         })
 
         require("oil-lsp-diagnostics").setup({
