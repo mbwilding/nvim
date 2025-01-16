@@ -7,8 +7,14 @@ local signs = {
     { "DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" } },
     { "DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo" } },
     { "DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" } },
-    { "DapBreakpointCondition", { text = "ﳁ", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" } },
-    { "DapBreakpointRejected", { text = "", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" } },
+    {
+        "DapBreakpointCondition",
+        { text = "ﳁ", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" },
+    },
+    {
+        "DapBreakpointRejected",
+        { text = "", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" },
+    },
     { "DapLogPoint", { text = "", texthl = "DapLogPoint", linehl = "DapLogPoint", numhl = "DapLogPoint" } },
     { "DapStopped", { text = "", texthl = "DapStopped", linehl = "DapStopped", numhl = "DapStopped" } },
     { "DapBreakpoint", { text = "⦿", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" } },

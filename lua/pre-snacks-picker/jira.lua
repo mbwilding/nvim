@@ -16,9 +16,9 @@ return {
         git_branch_prefix = "feature/", -- The prefix for your feature branches
     },
     config = function(_, opts)
-        require("jira").setup(opts)
+        require("lua.pre-snacks-picker.jira").setup(opts)
 
-        local t = require("telescope")
+        local t = require("lua.pre-snacks-picker.telescope")
         vim.keymap.set("n", "<leader>jv", "<cmd>Jira issue view<cr>", { desc = "Jira: Issue view" })
         vim.keymap.set("n", "<leader>jt", t.extensions.jira.transitions, { desc = "Jira: Transitions" })
         vim.keymap.set("n", "<leader>jc", "<cmd>Jira issue create<cr>", { desc = "Jira: Issue create" })

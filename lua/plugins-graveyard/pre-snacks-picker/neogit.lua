@@ -4,6 +4,7 @@ return {
     dependencies = {
         "nvim-lua/plenary.nvim",
         "sindrets/diffview.nvim",
+        "nvim-telescope/telescope.nvim",
     },
     lazy = true,
     keys = {
@@ -117,7 +118,7 @@ return {
             section = { ">", "v" },
         },
         integrations = {
-            telescope = false,
+            telescope = true,
             diffview = true,
             fzf_lua = true,
         },

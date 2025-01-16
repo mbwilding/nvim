@@ -180,9 +180,9 @@ return {
         })
 
         vim.keymap.set("n", "<leader>ix", function()
-          require("treesitter-context").toggle()
-          toggled = not toggled
-          vim.notify("Treesitter Context: " .. tostring(toggled), vim.log.levels.INFO)
+            require("treesitter-context").toggle()
+            toggled = not toggled
+            vim.notify("Treesitter Context: " .. tostring(toggled), vim.log.levels.INFO)
         end, { desc = "Treesitter: Context Rows" })
     end,
 }
