@@ -3,7 +3,6 @@ return {
     -- lazy = true,
     dependencies = {
         "nvim-lua/plenary.nvim",
-        "nvim-telescope/telescope.nvim",
     },
     opts = {
         jira_api = {
@@ -18,9 +17,7 @@ return {
     config = function(_, opts)
         require("lua.pre-snacks-picker.jira").setup(opts)
 
-        local t = require("lua.pre-snacks-picker.telescope")
         vim.keymap.set("n", "<leader>jv", "<cmd>Jira issue view<cr>", { desc = "Jira: Issue view" })
-        vim.keymap.set("n", "<leader>jt", t.extensions.jira.transitions, { desc = "Jira: Transitions" })
         vim.keymap.set("n", "<leader>jc", "<cmd>Jira issue create<cr>", { desc = "Jira: Issue create" })
     end,
 }
