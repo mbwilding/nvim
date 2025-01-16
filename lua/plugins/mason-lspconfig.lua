@@ -549,7 +549,7 @@ return {
                     vim.lsp.buf.format({ async = true })
                 end, "Format")
 
-                map("ih", function()
+                map("<leader>ih", function()
                     local enabled = not vim.lsp.inlay_hint.is_enabled()
                     vim.lsp.inlay_hint.enable(enabled)
                     vim.notify("Inlay Hints: " .. tostring(enabled), vim.log.levels.INFO)
