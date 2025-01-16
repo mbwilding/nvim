@@ -3,8 +3,8 @@ local model = "chatgpt-4o"
 -- local model = "chatgpt-o1"
 -- local model = "chatgpt-o1-mini"
 
-local temperature = 0.0 -- Lower is less random
-local top_p = 0.1 -- percentage of probability mass considered
+local temperature = 0.5 -- Lower is less random
+local top_p = 0.5 -- percentage of probability mass considered
 local prompt =
     "Only display the code if it is related to coding or simply answer the question directly, without unnecessary talking."
 
