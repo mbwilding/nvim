@@ -35,6 +35,7 @@ return {
         {
             "<leader>st",
             function()
+                ---@diagnostic disable-next-line: undefined-global
                 Snacks.picker.todo_comments(vim.tbl_keys(keywords))
             end,
             desc = "Todo",

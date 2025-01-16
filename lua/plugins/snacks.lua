@@ -31,13 +31,6 @@ return {
             end,
             desc = "Find Files",
         },
-        {
-            "<leader>sf",
-            function()
-                Snacks.picker.files()
-            end,
-            desc = "Find Files",
-        },
         -- find
         {
             "<leader>fb",
