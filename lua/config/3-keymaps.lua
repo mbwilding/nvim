@@ -41,8 +41,9 @@ end, { desc = "Toggle Word Wrap" })
 vim.keymap.set("n", "U", "<C-r>", { desc = "Redo" })
 
 -- Clipboard
-vim.keymap.set({ "n", "v" }, "<leader>y", "\"+y", { desc = "Copy to clipboard" })
-vim.keymap.set({ "n", "v" }, "<leader>yy", "\"+Y", { desc = "Copy to clipboard (line)" })
+-- Check autocmds
+-- vim.keymap.set({ "n", "v" }, "<leader>y", "\"+y", { desc = "Copy to clipboard" })
+-- vim.keymap.set({ "n", "v" }, "<leader>yy", "\"+Y", { desc = "Copy to clipboard (line)" })
 vim.keymap.set({ "n", "v" }, "<leader>p", "\"+p", { desc = "Paste from clipboard" })
 vim.keymap.set({ "n", "v" }, "<leader>P", "\"+P", { desc = "Paste from clipboard (before)" })
 

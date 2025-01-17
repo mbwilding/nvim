@@ -186,3 +186,34 @@ vim.api.nvim_create_autocmd("LspAttach", {
         -- end
     end,
 })
+
+-- Keep the cursor position when yanking or pasting
+local cursorPreAction
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+    callback = function()
+        if vim.v.event.operator == "y" and cursorPreAction then
+            vim.api.nvim_win_set_cursor(0, cursorPreAction)
+        end
+    end,
+})
+
+vim.keymap.set({ "n", "x" }, "y", function()
+    cursorPreAction = vim.api.nvim_win_get_cursor(0)
+    return "y"
+end, { expr = true })
+
+vim.keymap.set("n", "Y", function()
+    cursorPreAction = vim.api.nvim_win_get_cursor(0)
+    return "y$"
+end, { expr = true })
+
+vim.keymap.set({ "n", "x" }, "<leader>y", function()
+    cursorPreAction = vim.api.nvim_win_get_cursor(0)
+    return "\"+y"
+end, { expr = true })
+
+vim.keymap.set("n", "<leader>yy", function()
+    cursorPreAction = vim.api.nvim_win_get_cursor(0)
+    return "\"+yy"
+end, { expr = true })
