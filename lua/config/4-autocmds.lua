@@ -110,6 +110,12 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     end,
 })
 
+-- Auto resize splits when the terminal's window is resized
+vim.api.nvim_create_autocmd("VimResized", {
+    group = augroup("splits-resize"),
+    command = "wincmd =",
+})
+
 -- LSP
 vim.api.nvim_create_autocmd("LspAttach", {
     group = augroup("lsp-attach"),
