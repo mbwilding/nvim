@@ -205,7 +205,7 @@ end, { expr = true })
 
 vim.keymap.set("n", "Y", function()
     cursorPreAction = vim.api.nvim_win_get_cursor(0)
-    return "y$"
+    return "yg_"
 end, { expr = true })
 
 vim.keymap.set({ "n", "x" }, "<leader>y", function()
