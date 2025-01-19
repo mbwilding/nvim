@@ -40,7 +40,29 @@ return {
             },
         })
 
-        require("mini.pairs").setup()
+        -- Inserts ending bracket and/or quotes
+        require("mini.pairs").setup({
+            modes = { insert = true, command = true, terminal = false },
+
+            mappings = {
+                ['"'] = { action = 'closeopen', pair = '""', neigh_pattern = '[^\\].', register = { cr = false } },
+                ["'"] = { action = 'closeopen', pair = "''", neigh_pattern = '[^%a\\].', register = { cr = false } },
+                ['`'] = { action = 'closeopen', pair = '``', neigh_pattern = '[^\\].', register = { cr = false } },
+
+                ['('] = { action = 'open', pair = '()', neigh_pattern = '[^\\].' },
+                [')'] = { action = 'close', pair = '()', neigh_pattern = '[^\\].' },
+
+                ['['] = { action = 'open', pair = '[]', neigh_pattern = '[^\\].' },
+                [']'] = { action = 'close', pair = '[]', neigh_pattern = '[^\\].' },
+
+                ['{'] = { action = 'open', pair = '{}', neigh_pattern = '[^\\].' },
+                ['}'] = { action = 'close', pair = '{}', neigh_pattern = '[^\\].' },
+
+                ['<'] = { action = 'open', pair = '<>', neigh_pattern = '[^%s\\].' },
+                ['>'] = { action = 'close', pair = '<>', neigh_pattern = '[^%s\\].' },
+            },
+        })
+
         require("mini.bracketed").setup()
     end,
 }
