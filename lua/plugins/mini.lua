@@ -39,5 +39,8 @@ return {
                 reindent_linewise = true,
             },
         })
+
+        require("mini.pairs").setup()
+        require("mini.bracketed").setup()
     end,
 }
