@@ -4,37 +4,99 @@ return {
     "mfussenegger/nvim-dap",
     lazy = true,
     dependencies = {
-        "rcarriga/nvim-dap-ui",
         "williamboman/mason.nvim",
         "jay-babu/mason-nvim-dap.nvim",
         "nvim-neotest/nvim-nio",
         "theHamsta/nvim-dap-virtual-text",
+        -- {
+        --     "igorlfs/nvim-dap-view",
+        --     opts = {
+        --         winbar = {
+        --             show = true,
+        --             sections = { "watches", "exceptions", "breakpoints" },
+        --             -- Must be one of the sections declared above
+        --             default_section = "breakpoints",
+        --         },
+        --         windows = {
+        --             height = 12,
+        --         },
+        --     },
+        -- },
+        {
+            "rcarriga/nvim-dap-ui",
+            opts = {
+                -- Set icons to characters that are more likely to work in every terminal.
+                --    Feel free to remove or use ones that you like more! :)
+                --    Don't feel like these are good choices.
+                icons = { expanded = "▾", collapsed = "▸", current_frame = "*" },
+                controls = {
+                    icons = {
+                        pause = "",
+                        play = "",
+                        step_into = "",
+                        step_over = "",
+                        step_out = "",
+                        step_back = "",
+                        run_last = "",
+                        terminate = "",
+                        disconnect = "",
+                    },
+                },
+            },
+            config = function(_, opts)
+                local dap = require("dap")
+                local dapui = require("dapui")
+
+                dapui.setup(opts)
+
+                vim.keymap.set("n", "<leader>dap", dapui.toggle, { desc = "Debug: See last session result." })
+
+                dap.listeners.before.attach.dapui_config = function()
+                    dapui.open()
+                end
+
+                dap.listeners.before.launch.dapui_config = function()
+                    dapui.open()
+                end
+
+                dap.listeners.after.event_initialized.dapui_config = function()
+                    dapui.open()
+                end
+
+                dap.listeners.before.event_terminated.dapui_config = function()
+                    dapui.close()
+                end
+
+                dap.listeners.before.event_exited.dapui_config = function()
+                    dapui.close()
+                end
+            end
+        }
     },
     config = function()
         local dap = require("dap")
-        local dapui = require("dapui")
 
         require("mason-nvim-dap").setup({
             automatic_installation = true,
             ensure_installed = {
-                "coreclr", -- netcoredbg
+                "coreclr",  -- netcoredbg
                 "codelldb", -- cpp, rust
-                "delve", -- go
-                "python", -- python
+                "delve",    -- go
+                "python",   -- python
             },
             handlers = nil,
         })
 
         require("nvim-dap-virtual-text").setup({
-            enabled = true, -- enable this plugin (the default)
-            enabled_commands = true, -- create commands DapVirtualTextEnable, DapVirtualTextDisable, DapVirtualTextToggle, (DapVirtualTextForceRefresh for refreshing when debug adapter did not notify its termination)
+            enabled = true,                     -- enable this plugin (the default)
+            enabled_commands = true,            -- create commands DapVirtualTextEnable, DapVirtualTextDisable, DapVirtualTextToggle, (DapVirtualTextForceRefresh for refreshing when debug adapter did not notify its termination)
             highlight_changed_variables = true, -- highlight changed values with NvimDapVirtualTextChanged, else always NvimDapVirtualText
-            highlight_new_as_changed = false, -- highlight new variables in the same way as changed variables (if highlight_changed_variables)
-            show_stop_reason = true, -- show stop reason when stopped for exceptions
-            commented = false, -- prefix virtual text with comment string
-            only_first_definition = false, -- only show virtual text at first definition (if there are multiple)
-            all_references = true, -- show virtual text on all all references of the variable (not only definitions)
-            clear_on_continue = false, -- clear virtual text on "continue" (might cause flickering when stepping)
+            highlight_new_as_changed = false,   -- highlight new variables in the same way as changed variables (if highlight_changed_variables)
+            show_stop_reason = true,            -- show stop reason when stopped for exceptions
+            commented = false,                  -- prefix virtual text with comment string
+            only_first_definition = false,      -- only show virtual text at first definition (if there are multiple)
+            all_references = true,              -- show virtual text on all all references of the variable (not only definitions)
+            clear_on_continue = false,          -- clear virtual text on "continue" (might cause flickering when stepping)
             --- A callback that determines how a variable is displayed or whether it should be omitted
             display_callback = function(variable, _, _, _, options)
                 -- by default, strip out new line characters
@@ -48,13 +110,12 @@ return {
             virt_text_pos = vim.fn.has("nvim-0.10") == 1 and "inline" or "eol",
 
             -- experimental features:
-            all_frames = false, -- show virtual text for all stack frames not only current. Only works for debugpy on my machine.
-            virt_lines = false, -- show virtual lines instead of virtual text (will flicker!)
+            all_frames = false,     -- show virtual text for all stack frames not only current. Only works for debugpy on my machine.
+            virt_lines = false,     -- show virtual lines instead of virtual text (will flicker!)
             virt_text_win_col = 80, -- position the virtual text at a fixed window column (starting from the first text column)
         })
 
         -- Basic debugging keymaps, feel free to change to your liking!
-        vim.keymap.set("n", "<leader>dap", dapui.toggle, { desc = "Debug: See last session result." })
         vim.keymap.set("n", "<F1>", dap.continue, { desc = "Debug: Start/Continue" })
         vim.keymap.set("n", "<F2>", dap.step_into, { desc = "Debug: Step Into" })
         vim.keymap.set("n", "<F3>", dap.step_over, { desc = "Debug: Step Over" })
@@ -72,48 +133,6 @@ return {
         vim.keymap.set("n", "<leader>cv", function()
             dap.eval(nil, { enter = true })
         end, { desc = "Debug: Cursor Value" })
-
-        -- Dap UI setup
-        -- For more information, see |:help nvim-dap-ui|
-        dapui.setup({
-            -- Set icons to characters that are more likely to work in every terminal.
-            --    Feel free to remove or use ones that you like more! :)
-            --    Don't feel like these are good choices.
-            icons = { expanded = "▾", collapsed = "▸", current_frame = "*" },
-            controls = {
-                icons = {
-                    pause = "",
-                    play = "",
-                    step_into = "",
-                    step_over = "",
-                    step_out = "",
-                    step_back = "",
-                    run_last = "",
-                    terminate = "",
-                    disconnect = "",
-                },
-            },
-        })
-
-        dap.listeners.before.attach.dapui_config = function()
-            dapui.open()
-        end
-
-        dap.listeners.before.launch.dapui_config = function()
-            dapui.open()
-        end
-
-        dap.listeners.after.event_initialized.dapui_config = function()
-            dapui.open()
-        end
-
-        dap.listeners.before.event_terminated.dapui_config = function()
-            dapui.close()
-        end
-
-        dap.listeners.before.event_exited.dapui_config = function()
-            dapui.close()
-        end
 
         -- CSharp
         dap.adapters.coreclr = {
