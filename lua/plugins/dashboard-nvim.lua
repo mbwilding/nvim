@@ -31,7 +31,7 @@ return {
                 limit = 8,
                 icon = "  ",
                 label = "Projects",
-                action = "Telescope find_files cwd=",
+                action = "SnacksPickerFindFiles ",
             },
             mru = {
                 limit = 8,
@@ -42,4 +42,11 @@ return {
             footer = {},
         },
     },
+    config = function(_, opts)
+        vim.api.nvim_create_user_command("SnacksPickerFindFiles", function(picker_opts)
+            require("snacks").picker.files({ cwd = picker_opts.args })
+        end, { nargs = 1 })
+
+        require("dashboard").setup(opts)
+    end
 }
