@@ -1,6 +1,5 @@
 return {
-    -- "nvimdev/dashboard-nvim",
-    "mbwilding/dashboard-nvim",
+    "nvimdev/dashboard-nvim",
     lazy = true,
     event = "VimEnter",
     dependencies = {
