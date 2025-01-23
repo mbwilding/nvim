@@ -54,9 +54,9 @@ return {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
-        -- options = {
-        --     theme = "tokyonight",
-        -- },
+        options = {
+            theme = "tokyonight",
+        },
         sections = {
             lualine_a = { "mode" },
             lualine_b = { "branch", "diff", "diagnostics" },

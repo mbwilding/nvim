@@ -203,8 +203,9 @@ return {
         local file_encoding = {
             provider = function()
                 local x = vim.bo.fenc
+                local has_bom = vim.bo.bomb and " BOM" or ""
                 if x ~= "" then
-                    return x:upper()
+                    return x:upper() .. has_bom
                 end
             end,
             hl = function()
@@ -215,23 +216,13 @@ return {
         -- FILE FORMAT
         local file_format = {
             provider = function()
-                local x = vim.bo.fileformat
-                if x ~= "" then
-                    if false then
-                        if x == "unix" then
-                            return ""
-                        else
-                            return ""
-                        end
-                    else
-                        if x == "unix" then
-                            return "LF"
-                        else
-                            return "CRLF"
-                        end
-                    end
-
-                    return x:upper()
+                local format = vim.bo.fileformat
+                if format == "unix" then
+                    return "LF"
+                elseif format == "dos" then
+                    return "CRLF"
+                else
+                    return format:upper()
                 end
             end,
             hl = function()
@@ -304,7 +295,7 @@ return {
                 -- local lines = vim.api.nvim_buf_line_count(0)
                 -- local i = math.floor((curr_line - 1) / lines * #self.sbar) + 1
                 -- local icon = string.rep(self.sbar[i], 1)
-                return "%P %L [%l,%c]"
+                return "%P %l/%L %c"
             end,
             hl = { fg = colors.string, bg = colors.none },
         }
@@ -554,14 +545,14 @@ return {
                 ruler,
 
                 align,
-                work_dir,
-                spacer,
-                file_name_block,
                 file_size,
                 spacer,
                 file_encoding,
                 spacer,
                 file_format,
+
+                align,
+                work_dir,
 
                 align,
                 git,
