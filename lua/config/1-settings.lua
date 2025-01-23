@@ -100,6 +100,26 @@ o.spelllang = "en_au"
 -- Set fill characters after EOF
 o.fillchars:append({ eob = " " })
 
+o.list = true
+-- List characters
+-- o.listchars:append {
+--   tab = "░\\",
+--   trail = "·",
+--   extends = "»",
+--   precedes = "«",
+--   nbsp = "⣿"
+-- }
+
+-- List characters
+local space = "·"
+o.listchars:append {
+	tab = "│─",
+	multispace = "aoeu",
+	lead = space,
+	trail = space,
+	nbsp = space
+}
+
 -- Indentation
 o.shiftwidth = 4
 o.tabstop = 4
