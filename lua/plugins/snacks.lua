@@ -18,6 +18,13 @@ return {
             desc = "Grep",
         },
         {
+            "<leader><leader>",
+            function()
+                Snacks.picker.files()
+            end,
+            desc = "Find Files",
+        },
+        {
             "<leader>:",
             function()
                 Snacks.picker.command_history()
@@ -25,34 +32,12 @@ return {
             desc = "Command History",
         },
         {
-            "<leader><space>",
+            "<leader>ec",
             function()
-                Snacks.picker.files()
-            end,
-            desc = "Find Files",
-        },
-        -- find
-        {
-            "<leader>fb",
-            function()
-                Snacks.picker.buffers()
-            end,
-            desc = "Buffers",
-        },
-        ---@diagnostic disable-next-line: missing-fields, assign-type-mismatch
-        {
-            "<leader>fc",
-            function()
+                ---@diagnostic disable-next-line: missing-fields, assign-type-mismatch
                 Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
             end,
             desc = "Find Config File",
-        },
-        {
-            "<leader>ff",
-            function()
-                Snacks.picker.files()
-            end,
-            desc = "Find Files",
         },
         {
             "<leader>fg",
@@ -127,13 +112,6 @@ return {
                 Snacks.picker.autocmds()
             end,
             desc = "Autocmds",
-        },
-        {
-            "<leader>sc",
-            function()
-                Snacks.picker.command_history()
-            end,
-            desc = "Command History",
         },
         {
             "<leader>sC",
