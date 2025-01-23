@@ -43,7 +43,11 @@ return {
     },
     config = function(_, opts)
         vim.api.nvim_create_user_command("SnacksPickerFindFiles", function(picker_opts)
-            require("snacks").picker.files({ cwd = picker_opts.args })
+            require("snacks").picker.files({
+                cwd = picker_opts.args,
+                hidden = true,
+                follow = true,
+            })
         end, { nargs = 1 })
 
         require("dashboard").setup(opts)
