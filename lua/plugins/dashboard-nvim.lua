@@ -47,5 +47,5 @@ return {
         end, { nargs = 1 })
 
         require("dashboard").setup(opts)
-    end
+    end,
 }

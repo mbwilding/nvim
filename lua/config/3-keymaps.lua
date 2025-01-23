@@ -93,6 +93,13 @@ vim.keymap.set("n", "\\i", "<CMD>Inspect<CR>", { desc = "Highlights: Inspect" })
 -- Custom
 vim.keymap.set("n", "yd", "yyp", { desc = "Duplicate line" })
 
+-- Whitespace
+local whitespace = false
+vim.keymap.set("n", "<leader>iW", function()
+    whitespace = not whitespace
+    vim.opt.list = whitespace
+end, { desc = "Toggle Whitespace Visuals" })
+
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", function()
     vim.diagnostic.jump({ count = -1, float = true })
