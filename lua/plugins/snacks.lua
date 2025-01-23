@@ -265,6 +265,15 @@ return {
         },
     },
     opts = {
-        picker = {},
+        picker = {
+            sources = {
+                files = {
+                    hidden = true
+                },
+                grep = {
+                    hidden = true
+                },
+            },
+        },
     },
 }
