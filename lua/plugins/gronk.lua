@@ -3,7 +3,7 @@
 return {
     "mbwilding/gronk.nvim",
     lazy = false,
-    dev = false,
+    dev = true,
     priority = 1000,
     config = function()
         require("gronk").setup({
