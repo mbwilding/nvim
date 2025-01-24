@@ -274,6 +274,7 @@ return {
                 },
                 function()
                     local in_git = Snacks.git.get_root() ~= nil
+                    local is_gh = vim.fn.system("git config --get remote.origin.url"):match("github.com") ~= nil
                     local cmds = {
                         {
                             title = "Notifications",
@@ -284,7 +285,7 @@ return {
                             key = "n",
                             icon = " ",
                             height = 5,
-                            enabled = true,
+                            enabled = is_gh,
                         },
                         {
                             title = "Open Issues",
@@ -295,6 +296,7 @@ return {
                             end,
                             icon = " ",
                             height = 7,
+                            enabled = is_gh,
                         },
                         {
                             icon = " ",
@@ -305,6 +307,7 @@ return {
                                 vim.fn.jobstart("gh pr list --web", { detach = true })
                             end,
                             height = 7,
+                            enabled = is_gh,
                         },
                         {
                             icon = " ",
