@@ -137,7 +137,7 @@ return {
 
         local file_icon = {
             init = function(self)
-                local path = vim.fn.expand('%:p')
+                local path = vim.fn.expand("%:p")
                 local devicons_ok, devicons = pcall(require, "nvim-web-devicons")
                 if not devicons_ok then
                     self.icon = " " -- Default icon
@@ -146,11 +146,8 @@ return {
                 end
 
                 -- Try to find icon using the filename
-                local icon, icon_color = devicons.get_icon_color(
-                    vim.fs.basename(path),
-                    vim.fn.fnamemodify(path, ":e"),
-                    { default = false }
-                )
+                local icon, icon_color =
+                    devicons.get_icon_color(vim.fs.basename(path), vim.fn.fnamemodify(path, ":e"), { default = false })
 
                 -- If no icon is found, try finding it using the filetype
                 if not icon then
