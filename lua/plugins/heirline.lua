@@ -203,7 +203,7 @@ return {
         local file_encoding = {
             provider = function()
                 local x = vim.bo.fenc
-                local has_bom = vim.bo.bomb and "[BOM]" or ""
+                local has_bom = vim.bo.bomb and "-BOM" or ""
                 if x ~= "" then
                     return x:upper() .. has_bom
                 end
