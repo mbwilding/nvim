@@ -1,5 +1,6 @@
+-- local model = "ollama-deepseek-r1"
 -- local model = "ollama-phi-4"
-local model = "chatgpt-4o"
+-- local model = "chatgpt-4o"
 -- local model = "chatgpt-o1"
 -- local model = "chatgpt-o1-mini"
 
@@ -145,6 +146,18 @@ return {
                 command = true,
                 model = {
                     model = "vanilj/Phi-4:latest",
+                    temperature = temperature,
+                    top_p = top_p,
+                },
+                system_prompt = prompt,
+            },
+            {
+                name = "ollama-deepseek-r1",
+                provider = "ollama",
+                chat = true,
+                command = true,
+                model = {
+                    model = "deepseek-r1:32b",
                     temperature = temperature,
                     top_p = top_p,
                 },
