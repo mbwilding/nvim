@@ -25,9 +25,9 @@ return {
 
         local cut = { provider = "%<" }
 
-        local o = { provider = "[" }
+        local open = { provider = "[" }
 
-        local c = { provider = "]" }
+        local close = { provider = "]" }
 
         -- MODE
         local mode_name = {
@@ -110,7 +110,7 @@ return {
                 self.mode_info = mode_info()
             end,
             provider = function(self)
-                return "%2(" .. self.mode_info.name .. "%)"
+                return " %2(" .. self.mode_info.name .. "%)"
             end,
             hl = function(self)
                 return { fg = self.mode_info.color, bg = colors.none, bold = true }
@@ -137,13 +137,38 @@ return {
 
         local file_icon = {
             init = function(self)
-                local filename = self.filename
-                local extension = vim.fn.fnamemodify(filename, ":e")
-                self.icon, self.icon_color =
-                    require("nvim-web-devicons").get_icon_color(filename, extension, { default = true })
+                local path = vim.fn.expand('%:p')
+                local devicons_ok, devicons = pcall(require, "nvim-web-devicons")
+                if not devicons_ok then
+                    self.icon = " " -- Default icon
+                    self.icon_color = "#6d8086" -- Default color
+                    return
+                end
+
+                -- Try to find icon using the filename
+                local icon, icon_color = devicons.get_icon_color(
+                    vim.fs.basename(path),
+                    vim.fn.fnamemodify(path, ":e"),
+                    { default = false }
+                )
+
+                -- If no icon is found, try finding it using the filetype
+                if not icon then
+                    local buf = vim.iter(vim.api.nvim_list_bufs()):find(function(buf)
+                        return vim.api.nvim_buf_get_name(buf) == path
+                    end)
+                    if buf then
+                        local filetype = vim.api.nvim_get_option_value("filetype", { buf = buf })
+                        icon, icon_color = devicons.get_icon_by_filetype(filetype)
+                    end
+                end
+
+                -- Fallback to default icon if none is found
+                self.icon = icon and icon .. " " or " "
+                self.icon_color = icon_color or "#6d8086"
             end,
             provider = function(self)
-                return self.icon and (self.icon .. " ")
+                return self.icon
             end,
             hl = function(self)
                 return { fg = self.icon_color, bg = colors.none }
@@ -255,6 +280,18 @@ return {
             end,
         }
 
+        local file_block = {
+            spacer,
+            file_icon,
+            open,
+            file_size,
+            spacer,
+            file_format,
+            spacer,
+            file_encoding,
+            close,
+        }
+
         -- FILE LAST MODIFIED
         local file_last_modified = {
             -- did you know? Vim is full of functions!
@@ -297,7 +334,7 @@ return {
                 -- local lines = vim.api.nvim_buf_line_count(0)
                 -- local i = math.floor((curr_line - 1) / lines * #self.sbar) + 1
                 -- local icon = string.rep(self.sbar[i], 1)
-                return "%P %l/%L %c"
+                return " [%P %l/%L %c]"
             end,
             hl = { fg = colors.string, bg = colors.none },
         }
@@ -316,7 +353,7 @@ return {
 
             { -- git branch name
                 provider = function(self)
-                    return " " .. "[" .. self.status_dict.head .. "]"
+                    return "  " .. "[" .. self.status_dict.head .. "]"
                 end,
             },
             {
@@ -389,7 +426,7 @@ return {
 
                 -- Combine
                 if #lsp_client_names > 0 or #linters_by_ft > 0 then
-                    local result = " ["
+                    local result = "  ["
                     if #lsp_client_names > 0 then
                         result = result .. table.concat(lsp_client_names, separator)
                     end
@@ -417,7 +454,7 @@ return {
                 if not conditions.width_percent_below(#cwd, 0.25) then
                     cwd = vim.fn.fnamemodify(cwd, ":t")
                 end
-                return icon .. "[" .. cwd .. "]"
+                return " " .. icon .. "[" .. cwd .. "]"
             end,
             hl = { fg = colors.struct, bg = colors.none },
         }
@@ -528,8 +565,8 @@ return {
 
         -- MEMES
         local meme = {
-            provider = "Feet Pics: 3.6TB",
-            hl = { fg = colors.string, bg = colors.none },
+            provider = " [Penger Pics: 3.6TB]",
+            hl = { fg = colors.error, bg = colors.none },
         }
 
         -- Auto-Session
@@ -541,36 +578,24 @@ return {
         -- INIT
         require("heirline").setup({
             statusline = {
-                spacer,
                 vim_mode,
-                spacer,
-                ruler,
-
-                align,
-                file_size,
-                spacer,
-                file_encoding,
-                spacer,
-                file_format,
 
                 align,
                 work_dir,
 
                 align,
-                git,
+                file_block,
 
                 align,
-                debug,
-                -- grapple,
+                git,
 
                 align,
                 lsp_lint,
                 diagnostics,
-                spacer,
 
-                -- align,
-                -- date_time,
-                -- spacer,
+                align,
+                debug,
+                ruler,
             },
             winbar = nil,
             --tabline = { ... },
