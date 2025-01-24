@@ -1,9 +1,5 @@
 local chat_model = "ollama-deepseek-r1"
-local cmd_model = "chatgpt-4o"
--- local model = "ollama-phi-4"
--- local model = "chatgpt-4o"
--- local model = "chatgpt-o1"
--- local model = "chatgpt-o1-mini"
+local cmd_model = "chatgpt-o1"
 
 local temperature = 0.6 -- Lower is less random
 local top_p = 1.0 -- percentage of probability mass considered
