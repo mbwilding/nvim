@@ -297,6 +297,7 @@ return {
                     action = function()
                         Snacks.gitbrowse()
                     end,
+                    enabled = vim.fn.isdirectory(".git") == 1
                 },
                 function()
                     local in_git = Snacks.git.get_root() ~= nil
@@ -304,11 +305,10 @@ return {
                     local is_gh = origin:match("github.com") ~= nil
                     local is_azdo = origin:match("dev.azure.com") ~= nil
 
-                    local organization, project, repository
+                    local organization, project, repository = "", "", ""
                     if is_azdo then
                         organization, project, repository = origin:match("v3/([^/]+)/([^/]+)/([^/]+)")
                     elseif is_gh then
-                        project = ""
                         organization, repository = origin:match("github.com[:/]([^/]+)/([^/]+)")
                     end
                     local cmds = {
