@@ -1,4 +1,9 @@
-local configs = vim.fn.readdir(vim.fn.stdpath("config") .. "/lua/config")
-for _, config in ipairs(configs) do
-    require("config." .. config:match("([^/]+)%.lua$"))
-end
+require("config/settings")
+require("config/signs")
+require("config/keymaps")
+require("config/autocmds")
+require("config/cmds")
+require("config/filetypes")
+require("config/platform")
+require("config/neovide")
+require("config/lazy")
