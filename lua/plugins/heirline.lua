@@ -230,7 +230,7 @@ return {
                 local file_encoding = vim.bo.fenc
                 if file_encoding ~= "" then
                     local has_bom = vim.bo.bomb and "-BOM" or ""
-                    return file_encoding:upper() .. has_bom
+                    return " " .. file_encoding:upper() .. has_bom
                 end
             end,
             hl = function()
@@ -243,13 +243,13 @@ return {
             provider = function()
                 local format = vim.bo.fileformat
                 if format == "unix" then
-                    return "LF"
+                    return " LF"
                 elseif format == "dos" then
-                    return "CRLF"
+                    return " CRLF"
                 elseif format == "mac" then
-                    return "CR"
+                    return " CR"
                 else
-                    return format:upper()
+                    return " " .. format:upper()
                 end
             end,
             hl = function()
@@ -273,23 +273,11 @@ return {
                     return fsize .. suffix[1]
                 end
                 local i = math.floor((math.log(fsize) / math.log(1024)))
-                return string.format("%.2g%s", fsize / math.pow(1024, i), suffix[i + 1])
+                return string.format(" %.2g%s", fsize / math.pow(1024, i), suffix[i + 1])
             end,
             hl = function()
                 return { fg = colors.module, bg = colors.none }
             end,
-        }
-
-        local file_block = {
-            spacer,
-            file_icon,
-            open,
-            file_size,
-            spacer,
-            file_format,
-            spacer,
-            file_encoding,
-            close,
         }
 
         -- FILE LAST MODIFIED
@@ -334,7 +322,7 @@ return {
                 -- local lines = vim.api.nvim_buf_line_count(0)
                 -- local i = math.floor((curr_line - 1) / lines * #self.sbar) + 1
                 -- local icon = string.rep(self.sbar[i], 1)
-                return " [%P %l/%L %c]"
+                return " %P %l/%L %c"
             end,
             hl = { fg = colors.string, bg = colors.none },
         }
@@ -584,7 +572,9 @@ return {
                 work_dir,
 
                 align,
-                file_block,
+                file_size,
+                file_format,
+                file_encoding,
 
                 align,
                 git,
@@ -596,6 +586,8 @@ return {
                 align,
                 debug,
                 ruler,
+
+                spacer,
             },
             winbar = nil,
             --tabline = { ... },
