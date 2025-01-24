@@ -2,7 +2,7 @@ return {
     -- "kid-icarus/jira.nvim",
     "mbwilding/jira.nvim",
     -- lazy = true,
-    dev = true,
+    dev = false,
     dependencies = {
         "nvim-lua/plenary.nvim",
     },
