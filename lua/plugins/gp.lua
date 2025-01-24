@@ -1,11 +1,12 @@
-local model = "ollama-deepseek-r1"
+local chat_model = "ollama-deepseek-r1"
+local cmd_model = "chatgpt-4o"
 -- local model = "ollama-phi-4"
 -- local model = "chatgpt-4o"
 -- local model = "chatgpt-o1"
 -- local model = "chatgpt-o1-mini"
 
-local temperature = 0.5 -- Lower is less random
-local top_p = 0.5 -- percentage of probability mass considered
+local temperature = 0.6 -- Lower is less random
+local top_p = 1.0 -- percentage of probability mass considered
 local prompt =
     "Only display the code if it is related to coding or simply answer the question directly, without unnecessary talking."
 
@@ -99,8 +100,8 @@ return {
         { "<C-g>x", "<CMD>GpContext<CR>", mode = "i", desc = "Toggle GpContext" },
     },
     opts = {
-        default_chat_agent = model,
-        default_command_agent = model,
+        default_chat_agent = chat_model,
+        default_command_agent = cmd_model,
         chat_confirm_delete = false,
         agents = {
             {
@@ -155,13 +156,13 @@ return {
                 name = "ollama-deepseek-r1",
                 provider = "ollama",
                 chat = true,
-                command = true,
+                command = false,
                 model = {
                     model = "deepseek-r1:32b",
                     temperature = temperature,
                     top_p = top_p,
                 },
-                system_prompt = prompt,
+                system_prompt = "",
             },
         },
         providers = {
