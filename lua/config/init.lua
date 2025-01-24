@@ -1,9 +1,15 @@
-require("config/settings")
-require("config/signs")
-require("config/keymaps")
-require("config/autocmds")
-require("config/cmds")
-require("config/filetypes")
-require("config/platform")
-require("config/neovide")
-require("config/lazy")
+local modules = {
+  "settings",
+  "signs",
+  "keymaps",
+  "autocmds",
+  "cmds",
+  "filetypes",
+  "platform",
+  "neovide",
+  "lazy",
+}
+
+for _, module in ipairs(modules) do
+  require("config/" .. module)
+end
