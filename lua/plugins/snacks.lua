@@ -287,7 +287,7 @@ return {
             },
             sections = {
                 { section = "header" },
-                { section = "keys", gap = 1, padding = 1 },
+                { section = "keys",  gap = 1, padding = 1 },
                 {
                     pane = 2,
                     icon = " ",
@@ -300,8 +300,19 @@ return {
                 },
                 function()
                     local in_git = Snacks.git.get_root() ~= nil
-                    local is_gh = vim.fn.system("git config --get remote.origin.url"):match("github.com") ~= nil
+                    local origin = vim.trim(vim.fn.system("git config --get remote.origin.url"))
+                    local is_gh = origin:match("github.com") ~= nil
+                    local is_azdo = origin:match("dev.azure.com") ~= nil
+
+                    local organization, project, repository
+                    if is_azdo then
+                        organization, project, repository = origin:match("v3/([^/]+)/([^/]+)/([^/]+)")
+                    elseif is_gh then
+                        project = ""
+                        organization, repository = origin:match("github.com[:/]([^/]+)/([^/]+)")
+                    end
                     local cmds = {
+                        -- GitHub
                         {
                             title = "Notifications",
                             cmd = "gh notify -s -a -n5",
@@ -335,6 +346,24 @@ return {
                             height = 7,
                             enabled = is_gh,
                         },
+                        -- Azure DevOps
+                        {
+                            icon = " ",
+                            title = "Open PRs",
+                            cmd = "az repos pr list --top 7"
+                                .. " --organization https://dev.azure.com/" .. organization
+                                .. " --project " .. project
+                                .. " --repository " .. repository
+                                .. " | jq -r '.[] | \"\\(.title) | \\(.sourceRefName | sub(\"refs/heads/\"; \"\")) | \\(.status)\"'",
+                            key = "p",
+                            action = function()
+                                vim.ui.open("https://dev.azure.com/" ..
+                                organization .. "/" .. project .. "/_git/" .. repository .. "/pullrequests")
+                            end,
+                            height = 7,
+                            enabled = is_azdo,
+                        },
+                        -- Git
                         {
                             icon = " ",
                             title = "Git Status",
