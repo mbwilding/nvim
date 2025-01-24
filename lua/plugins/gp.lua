@@ -1,4 +1,4 @@
--- local model = "ollama-deepseek-r1"
+local model = "ollama-deepseek-r1"
 -- local model = "ollama-phi-4"
 -- local model = "chatgpt-4o"
 -- local model = "chatgpt-o1"
