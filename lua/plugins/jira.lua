@@ -1,5 +1,6 @@
 return {
-    "kid-icarus/jira.nvim",
+    -- "kid-icarus/jira.nvim",
+    "mbwilding/jira.nvim",
     -- lazy = true,
     dev = true,
     dependencies = {
@@ -20,5 +21,6 @@ return {
 
         vim.keymap.set("n", "<leader>jv", "<cmd>Jira issue view<cr>", { desc = "Jira: Issue view" })
         vim.keymap.set("n", "<leader>jc", "<cmd>Jira issue create<cr>", { desc = "Jira: Issue create" })
+        vim.keymap.set('n', '<leader>jt', require("jira.pickers.snacks").transitions, { desc = "Jira: Transitions"})
     end,
 }
