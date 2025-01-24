@@ -354,7 +354,7 @@ return {
                                 .. " --organization https://dev.azure.com/" .. organization
                                 .. " --project " .. project
                                 .. " --repository " .. repository
-                                .. " | jq -r '.[] | \"\\(.title) | \\(.sourceRefName | sub(\"refs/heads/\"; \"\")) | \\(.status)\"'",
+                                .. " | jq -r '.[] | \"\\(.title) | \\(.sourceRefName | sub(\"refs/heads/\"; \"\"))\"'",
                             key = "p",
                             action = function()
                                 vim.ui.open("https://dev.azure.com/" ..
