@@ -1,6 +1,6 @@
 return {
     "kperath/dailynotes.nvim",
-    lazy = true,
+    -- lazy = true,
     keys = {
         {
             "<leader>dnt",
