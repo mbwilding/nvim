@@ -17,6 +17,7 @@ return {
                 "jsonlint",
                 "markdownlint",
                 "prettierd",
+                "shfmt",
                 "xmlformatter",
                 "yamllint",
             },
