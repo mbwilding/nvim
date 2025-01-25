@@ -1,9 +1,9 @@
-local cmd_model = "deepseek-r1"
+local cmd_model = "chatgpt-o1"
 local cmd_prompt =
     "Only display the code if it is related to coding or simply answer the question directly, without unnecessary talking."
 
-local chat_model = "chatgpt-o1"
-local chat_prompt = "Show me your reasoning after telling me the answer"
+local chat_model = "deepseek-r1"
+local chat_prompt = "Show me your reasoning after telling me the answer."
 
 local temperature = 0.6 -- Lower is less random
 local top_p = 1.0 -- percentage of probability mass considered
