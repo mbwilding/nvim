@@ -12,6 +12,6 @@ return {
     opts = {
         preview = {
             icon_provider = "devicons",
-        }
+        },
     },
 }

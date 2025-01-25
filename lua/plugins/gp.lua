@@ -1,11 +1,48 @@
--- local chat_model = "ollama-deepseek-r1"
+local cmd_model = "deepseek-r1"
+local cmd_prompt =
+    "Only display the code if it is related to coding or simply answer the question directly, without unnecessary talking."
+
 local chat_model = "chatgpt-o1"
-local cmd_model = "chatgpt-o1-mini"
+local chat_prompt = "Show me your reasoning after telling me the answer"
 
 local temperature = 0.6 -- Lower is less random
 local top_p = 1.0 -- percentage of probability mass considered
-local prompt =
-    "Only display the code if it is related to coding or simply answer the question directly, without unnecessary talking."
+
+local function create_agents()
+    local agent_configs = {
+        { name = "chatgpt-4o", provider = "openai", model = "gpt-4o-2024-11-20" },
+        { name = "chatgpt-o1", provider = "openai", model = "o1-preview" },
+        { name = "chatgpt-o1-mini", provider = "openai", model = "o1-mini" },
+        { name = "ollama-phi-4", provider = "ollama", model = "vanilj/Phi-4:latest" },
+        { name = "ollama-deepseek-r1", provider = "ollama", model = "deepseek-r1:32b" },
+        { name = "deepseek-v3", provider = "deepseek", model = "deepseek-chat" },
+        { name = "deepseek-r1", provider = "deepseek", model = "deepseek-reasoner" },
+    }
+
+    local function create_agent(config, prompt, is_cmd)
+        return {
+            name = config.name,
+            provider = config.provider,
+            command = is_cmd,
+            chat = not is_cmd,
+            model = {
+                model = config.model,
+                temperature = temperature,
+                top_p = top_p,
+            },
+            system_prompt = prompt,
+        }
+    end
+
+    local agents = {}
+
+    for _, config in ipairs(agent_configs) do
+        table.insert(agents, create_agent(config, cmd_prompt, true))
+        table.insert(agents, create_agent(config, chat_prompt, false))
+    end
+
+    return agents
+end
 
 return {
     "robitx/gp.nvim",
@@ -100,68 +137,7 @@ return {
         default_chat_agent = chat_model,
         default_command_agent = cmd_model,
         chat_confirm_delete = false,
-        agents = {
-            {
-                name = "chatgpt-4o",
-                provider = "openai",
-                chat = true,
-                command = true,
-                model = {
-                    model = "gpt-4o-2024-11-20",
-                    temperature = temperature,
-                    top_p = top_p,
-                },
-                system_prompt = prompt,
-            },
-            {
-                name = "chatgpt-o1",
-                provider = "openai",
-                chat = true,
-                command = true,
-                model = {
-                    model = "o1-preview",
-                    temperature = temperature,
-                    top_p = top_p,
-                },
-                system_prompt = prompt,
-            },
-            {
-                name = "chatgpt-o1-mini",
-                provider = "openai",
-                chat = true,
-                command = true,
-                model = {
-                    model = "o1-mini",
-                    temperature = temperature,
-                    top_p = top_p,
-                },
-                system_prompt = prompt,
-            },
-            {
-                name = "ollama-phi-4",
-                provider = "ollama",
-                chat = true,
-                command = true,
-                model = {
-                    model = "vanilj/Phi-4:latest",
-                    temperature = temperature,
-                    top_p = top_p,
-                },
-                system_prompt = prompt,
-            },
-            {
-                name = "ollama-deepseek-r1",
-                provider = "ollama",
-                chat = true,
-                command = false,
-                model = {
-                    model = "deepseek-r1:32b",
-                    temperature = temperature,
-                    top_p = top_p,
-                },
-                system_prompt = "",
-            },
-        },
+        agents = create_agents(),
         providers = {
             openai = {
                 endpoint = "https://api.openai.com/v1/chat/completions",
@@ -170,6 +146,10 @@ return {
             ollama = {
                 endpoint = "https://ollama.mattwilding.com/v1/chat/completions",
                 secret = os.getenv("OLLAMA_API_KEY"),
+            },
+            deepseek = {
+                endpoint = "https://api.deepseek.com/v1/chat/completions",
+                secret = os.getenv("DEEPSEEK_API_KEY"),
             },
         },
         hooks = {

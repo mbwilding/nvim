@@ -287,7 +287,7 @@ return {
             },
             sections = {
                 { section = "header" },
-                { section = "keys",  gap = 1, padding = 1 },
+                { section = "keys", gap = 1, padding = 1 },
                 {
                     pane = 2,
                     icon = " ",
@@ -297,7 +297,7 @@ return {
                     action = function()
                         Snacks.gitbrowse()
                     end,
-                    enabled = vim.fn.isdirectory(".git") == 1
+                    enabled = vim.fn.isdirectory(".git") == 1,
                 },
                 function()
                     local in_git = Snacks.git.get_root() ~= nil
@@ -306,8 +306,7 @@ return {
                     local is_azdo = origin:match("dev.azure.com") ~= nil
 
                     -- cmd -- action -- enabled
-                    local pr =
-                    {
+                    local pr = {
                         icon = " ",
                         title = "Open PRs",
                         key = "p",
@@ -318,14 +317,24 @@ return {
                         local organization, project, repository = origin:match("v3/([^/]+)/([^/]+)/([^/]+)")
 
                         pr.cmd = "az repos pr list --top 7"
-                            .. " --organization https://dev.azure.com/" .. organization
-                            .. " --project " .. project
-                            .. " --repository " .. repository
+                            .. " --organization https://dev.azure.com/"
+                            .. organization
+                            .. " --project "
+                            .. project
+                            .. " --repository "
+                            .. repository
                             .. " | jq -r '.[] | \"\\(.title) | \\(.sourceRefName | sub(\"refs/heads/\"; \"\"))\"'"
 
                         pr.action = function()
-                            vim.ui.open("https://dev.azure.com/" ..
-                                organization .. "/" .. project .. "/_git/" .. repository .. "/pullrequests")
+                            vim.ui.open(
+                                "https://dev.azure.com/"
+                                    .. organization
+                                    .. "/"
+                                    .. project
+                                    .. "/_git/"
+                                    .. repository
+                                    .. "/pullrequests"
+                            )
                         end
                     elseif is_gh then
                         local organization, repository = origin:match("github.com[:/]([^/]+)/([^/]+)")
