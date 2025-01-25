@@ -8,7 +8,7 @@ local modules = {
     "platform",
     "neovide",
     "lazy",
-    "notes",
+    "plugins/notes",
 }
 
 for _, module in ipairs(modules) do

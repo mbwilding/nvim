@@ -2,9 +2,7 @@ local owner = "mbwilding"
 local repository = "notes"
 local url_base = "repos/" .. owner .. "/" .. repository .. "/contents/"
 
-vim.api.nvim_create_user_command("NoteToday", function()
-    local sha
-    local file = os.date("%Y-%m-%d") .. ".md"
+local function open(file)
     vim.fn.jobstart("gh api " .. url_base .. file, {
         stdout_buffered = true,
         on_stdout = function(_, data_load)
@@ -16,6 +14,8 @@ vim.api.nvim_create_user_command("NoteToday", function()
 
             local response = table.concat(data_load, "\n")
             local decoded = vim.json.decode(response)
+
+            local sha
 
             if decoded.status ~= "404" then
                 sha = decoded.sha
@@ -47,7 +47,7 @@ vim.api.nvim_create_user_command("NoteToday", function()
                             if exit_code == 0 then
                                 vim.notify("Updated", "info")
                             else
-                                vim.notify("Error uploading", "error")
+                                vim.notify("Error Updating", "error")
                             end
                         end,
                     })
@@ -55,4 +55,36 @@ vim.api.nvim_create_user_command("NoteToday", function()
             })
         end,
     })
-end, {})
+end
+
+local function list()
+    vim.fn.jobstart("gh api " .. url_base, {
+        stdout_buffered = true,
+        on_stdout = function(_, data_load)
+            local response = table.concat(data_load, "\n")
+
+            local notes = {}
+            for _, item in ipairs(vim.json.decode(response)) do
+                table.insert(notes, item.path)
+            end
+            table.sort(notes, function(a, b) return a > b end)
+
+            require("snacks.picker").select(notes, {
+                prompt = 'Notes',
+                format_item = function(item)
+                    return item
+                end,
+            }, function(selection)
+                if selection then
+                    open(selection)
+                end
+            end)
+        end,
+    })
+end
+
+vim.api.nvim_create_user_command("NoteList", list, {})
+vim.api.nvim_create_user_command("NoteToday", function() open(os.date("%Y-%m-%d") .. ".md") end, {})
+
+vim.keymap.set("n", "<leader>NL", "<CMD>NoteList<CR>", { desc = "Notes: List" })
+vim.keymap.set("n", "<leader>NT", "<CMD>NoteToday<CR>", { desc = "Notes: Today" })
