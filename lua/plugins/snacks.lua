@@ -305,14 +305,40 @@ return {
                     local is_gh = origin:match("github.com") ~= nil
                     local is_azdo = origin:match("dev.azure.com") ~= nil
 
-                    local organization, project, repository = "", "", ""
+                    -- cmd -- action -- enabled
+                    local pr =
+                    {
+                        icon = " ",
+                        title = "Open PRs",
+                        key = "p",
+                        height = 7,
+                    }
+
                     if is_azdo then
-                        organization, project, repository = origin:match("v3/([^/]+)/([^/]+)/([^/]+)")
+                        local organization, project, repository = origin:match("v3/([^/]+)/([^/]+)/([^/]+)")
+
+                        pr.cmd = "az repos pr list --top 7"
+                            .. " --organization https://dev.azure.com/" .. organization
+                            .. " --project " .. project
+                            .. " --repository " .. repository
+                            .. " | jq -r '.[] | \"\\(.title) | \\(.sourceRefName | sub(\"refs/heads/\"; \"\"))\"'"
+
+                        pr.action = function()
+                            vim.ui.open("https://dev.azure.com/" ..
+                                organization .. "/" .. project .. "/_git/" .. repository .. "/pullrequests")
+                        end
                     elseif is_gh then
-                        organization, repository = origin:match("github.com[:/]([^/]+)/([^/]+)")
+                        local organization, repository = origin:match("github.com[:/]([^/]+)/([^/]+)")
+
+                        pr.cmd = "gh pr list -L 3"
+                        pr.action = function()
+                            vim.fn.jobstart("gh pr list --web", { detach = true })
+                        end
+                    else
+                        pr.enabled = false
                     end
+
                     local cmds = {
-                        -- GitHub
                         {
                             title = "Notifications",
                             cmd = "gh notify -s -a -n5",
@@ -335,34 +361,7 @@ return {
                             height = 7,
                             enabled = is_gh,
                         },
-                        {
-                            icon = " ",
-                            title = "Open PRs",
-                            cmd = "gh pr list -L 3",
-                            key = "p",
-                            action = function()
-                                vim.fn.jobstart("gh pr list --web", { detach = true })
-                            end,
-                            height = 7,
-                            enabled = is_gh,
-                        },
-                        -- Azure DevOps
-                        {
-                            icon = " ",
-                            title = "Open PRs",
-                            cmd = "az repos pr list --top 7"
-                                .. " --organization https://dev.azure.com/" .. organization
-                                .. " --project " .. project
-                                .. " --repository " .. repository
-                                .. " | jq -r '.[] | \"\\(.title) | \\(.sourceRefName | sub(\"refs/heads/\"; \"\"))\"'",
-                            key = "p",
-                            action = function()
-                                vim.ui.open("https://dev.azure.com/" ..
-                                organization .. "/" .. project .. "/_git/" .. repository .. "/pullrequests")
-                            end,
-                            height = 7,
-                            enabled = is_azdo,
-                        },
+                        pr,
                         -- Git
                         {
                             icon = " ",
