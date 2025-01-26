@@ -413,7 +413,9 @@ return {
 
                     for _, client in ipairs(lsp_clients) do
                         if vim.lsp.buf_is_attached(current_buf, client.id) then
-                            table.insert(lsp_client_names, client.name)
+                            if client.name ~= "copilot" then
+                                table.insert(lsp_client_names, client.name)
+                            end
                         end
                     end
 
@@ -502,20 +504,21 @@ return {
                 },
                 {
                     provider = function(self)
-                        return self.hints > 0 and (self.hint_icon .. self.hints)
+                        return (self.info > 0 and " " or "") .. (self.hints > 0 and (self.hint_icon .. self.hints) or "")
                     end,
                     hl = { fg = colors.macro, bg = bg },
                 },
                 {
                     provider = function(self)
-                        return self.warnings > 0 and (self.warn_icon .. self.warnings)
+                        return (self.hints > 0 and " " or "") ..
+                            (self.warnings > 0 and (self.warn_icon .. self.warnings) or "")
                     end,
                     hl = { fg = colors.namespace, bg = bg },
                 },
                 {
                     provider = function(self)
-                        -- 0 is just another output, we can decide to print it or not!
-                        return self.errors > 0 and (self.error_icon .. self.errors)
+                        return (self.warnings > 0 and " " or "") ..
+                            (self.errors > 0 and (self.error_icon .. self.errors) or "")
                     end,
                     hl = { fg = colors.error, bg = bg },
                 },
@@ -523,16 +526,18 @@ return {
         end
 
         -- DEBUG
-        local debug = {
-            condition = function()
-                local session = require("dap").session()
-                return session ~= nil
-            end,
-            provider = function()
-                return " " .. "[" .. require("dap").status() .. "]"
-            end,
-            hl = { fg = colors.keyword, bg = colors.none },
-        }
+        local function debug(bg)
+            return {
+                condition = function()
+                    local session = require("dap").session()
+                    return session ~= nil
+                end,
+                provider = function()
+                    return "  " .. require("dap").status()
+                end,
+                hl = { fg = colors.keyword, bg = bg },
+            }
+        end
 
         -- DATE TIME
         -- local date_time = {
@@ -625,32 +630,32 @@ return {
         -- INIT
         require("heirline").setup({
             statusline = {
-                section("left", colors.window_accent, colors.window_bg, {
+                section("left", colors.window_bg, colors.window_accent, {
                     vim_mode,
                 }),
-
-                section("left", colors.window_bg, colors.window_accent, {
-                    work_dir,
+                section("left", colors.window_accent, colors.none, {
+                    ruler,
                 }),
 
-                section("left", colors.window_accent, colors.none, {
+                align,
+
+                section("right", colors.window_bg, colors.none, {
+                    debug,
+                }),
+                section("right", colors.window_accent, colors.window_bg, {
+                    work_dir,
+                }),
+                section("right", colors.window_bg, colors.window_accent, {
                     file_size,
                     file_format,
                     file_encoding,
                 }),
-
-                debug,
-
-                align,
-                section("right", colors.window_accent, colors.none, {
+                section("right", colors.window_accent, colors.window_bg, {
                     git,
                 }),
                 section("right", colors.window_bg, colors.window_accent, {
                     lsp_lint,
                     diagnostics,
-                }),
-                section("right", colors.window_accent, colors.window_bg, {
-                    ruler,
                 }),
             },
             winbar = nil,
