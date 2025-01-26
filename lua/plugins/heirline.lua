@@ -530,8 +530,7 @@ return {
         local function debug(bg)
             return {
                 condition = function()
-                    local session = require("dap").session()
-                    return session ~= nil
+                    return require("dap").session() ~= nil
                 end,
                 provider = function()
                     return "  " .. require("dap").status()
@@ -648,7 +647,7 @@ return {
                     work_dir,
                 }),
                 align,
-                section("right", colors.window_bg, colors.none, {
+                true == true and section("right", colors.window_bg, colors.none, {
                     debug,
                 }),
                 section("right", colors.window_accent, colors.window_bg, {
