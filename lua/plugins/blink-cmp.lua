@@ -8,12 +8,12 @@ return {
         "rafamadriz/friendly-snippets",
         "kristijanhusak/vim-dadbod-completion",
         "L3MON4D3/LuaSnip",
-        "giuxtaposition/blink-cmp-copilot",
+        -- "giuxtaposition/blink-cmp-copilot",
     },
     version = "*",
     opts = {
         sources = {
-            default = { "lsp", "path", "snippets", "buffer", "dadbod", "copilot" }, -- copilot
+            default = { "lsp", "path", "snippets", "buffer", "dadbod" }, -- copilot
             providers = {
                 lsp = {
                     name = "lsp",
@@ -39,22 +39,22 @@ return {
                     module = "blink.cmp.sources.snippets",
                     score_offset = 2,
                 },
-                copilot = {
-                    name = "copilot",
-                    enabled = true,
-                    module = "blink-cmp-copilot",
-                    score_offset = 1,
-                    async = true,
-                    transform_items = function(_, items)
-                        local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
-                        local kind_idx = #CompletionItemKind + 1
-                        CompletionItemKind[kind_idx] = "Copilot"
-                        for _, item in ipairs(items) do
-                            item.kind = kind_idx
-                        end
-                        return items
-                    end,
-                },
+                -- copilot = {
+                --     name = "copilot",
+                --     enabled = true,
+                --     module = "blink-cmp-copilot",
+                --     score_offset = 1,
+                --     async = true,
+                --     transform_items = function(_, items)
+                --         local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
+                --         local kind_idx = #CompletionItemKind + 1
+                --         CompletionItemKind[kind_idx] = "Copilot"
+                --         for _, item in ipairs(items) do
+                --             item.kind = kind_idx
+                --         end
+                --         return items
+                --     end,
+                -- },
             },
         },
         keymap = {
