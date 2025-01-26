@@ -236,6 +236,7 @@ return {
 
                     local function build(command)
                         local output = vim.fn.systemlist(command)
+                        local errors = {}
                         local json_status
                         local error_message
                         for _, line in ipairs(output) do
@@ -243,13 +244,14 @@ return {
                             if ok and type(decoded) == "table" then
                                 if decoded.success ~= nil then
                                     json_status = decoded
-                                elseif decoded.message ~= nil and not error_message then
-                                    error_message = decoded.message.rendered or decoded.message
+                                end
+                                if decoded and decoded.message and decoded.message.rendered then
+                                    table.insert(errors, decoded.message.rendered)
                                 end
                             end
                         end
                         if json_status and not json_status.success then
-                            return error(error_message)
+                            return error(table.concat(errors, ""))
                         end
                     end
 
@@ -280,7 +282,6 @@ return {
 
                     local dir = project_dir
                     while dir and dir ~= "/" do
-                        print(dir)
                         if vim.fn.isdirectory(dir .. "/target/debug") == 1 then
                             break
                         end
