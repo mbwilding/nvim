@@ -233,12 +233,21 @@ return {
                 program = function()
                     local function build(command)
                         local lines = vim.fn.systemlist(command)
-                        local output = table.concat(lines, "\n")
-                        local filename = output:match("^.*\"executable\":\"(.*)\",.*\n.*,\"success\":true}$")
-
-                        if filename == nil then
-                            return error("Failed to build cargo project")
+                        local json_status = vim.json.decode(lines[#lines])
+                        local json = vim.json.decode(lines[1])
+                        if not json_status.success then
+                            return error(json.message.rendered)
                         end
+
+                        local executable_line = vim.tbl_filter(function(line)
+                            return line:find("\"executable\":")
+                        end, lines)[1]
+
+                        if not executable_line then
+                            return error("Failed to json line with `executable` field")
+                        end
+
+                        local filename = vim.json.decode(executable_line).executable
 
                         return filename
                     end
