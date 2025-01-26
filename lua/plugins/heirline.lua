@@ -333,7 +333,7 @@ return {
                     -- local lines = vim.api.nvim_buf_line_count(0)
                     -- local i = math.floor((curr_line - 1) / lines * #self.sbar) + 1
                     -- local icon = string.rep(self.sbar[i], 1)
-                    return "%P %l/%L %c"
+                    return "%P %3l/%3L %3c"
                 end,
                 hl = { fg = colors.string, bg = bg },
             }
@@ -641,15 +641,15 @@ return {
                 section("left", colors.window_accent, colors.window_bg, {
                     vim_mode,
                 }),
-                section("left", colors.window_bg, colors.none, {
+                section("left", colors.window_bg, colors.window_accent, {
                     ruler,
+                }),
+                section("left", colors.window_accent, colors.none, {
+                    work_dir,
                 }),
                 align,
                 section("right", colors.window_accent, colors.none, {
                     debug,
-                }),
-                section("right", colors.window_bg, colors.window_accent, {
-                    work_dir,
                 }),
                 section("right", colors.window_accent, colors.window_bg, {
                     file_size,
