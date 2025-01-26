@@ -333,7 +333,7 @@ return {
                     -- local lines = vim.api.nvim_buf_line_count(0)
                     -- local i = math.floor((curr_line - 1) / lines * #self.sbar) + 1
                     -- local icon = string.rep(self.sbar[i], 1)
-                    return "%P %l/%L %c"
+                    return "%3c %l/%L %P"
                 end,
                 hl = { fg = colors.string, bg = bg },
             }
@@ -606,13 +606,15 @@ return {
             }
         end
 
-        local function section(direction, primary, secondary, contents)
+        local function section(direction, primary, secondary, contents, no_spacer)
             local result = {}
 
             if direction == "right" then
                 table.insert(result, slant(direction, primary, secondary))
             else
-                table.insert(result, spacer(primary))
+                if not no_spacer then
+                    table.insert(result, spacer(primary))
+                end
             end
 
             for i, content_func in ipairs(contents) do
@@ -625,7 +627,9 @@ return {
             if direction == "left" then
                 table.insert(result, slant(direction, primary, secondary))
             else
-                table.insert(result, spacer(primary))
+                if not no_spacer then
+                    table.insert(result, spacer(primary))
+                end
             end
 
             return result
@@ -637,16 +641,15 @@ return {
                 section("left", colors.window_accent, colors.window_bg, {
                     vim_mode,
                 }),
-                section("left", colors.window_bg, colors.none, {
+                section("left", colors.window_bg, colors.window_accent, {
                     ruler,
+                }, true),
+                section("left", colors.window_accent, colors.none, {
+                    debug,
                 }),
 
                 align,
-
-                section("right", colors.window_accent, colors.none, {
-                    debug,
-                }),
-                section("right", colors.window_bg, colors.window_accent, {
+                section("right", colors.window_bg, colors.none, {
                     work_dir,
                 }),
                 section("right", colors.window_accent, colors.window_bg, {
