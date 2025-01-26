@@ -398,52 +398,54 @@ return {
         }
 
         -- LSP / Lint
-        local lsp_lint = {
-            condition = conditions.lsp_attached,
-            update = { "LspAttach", "LspDetach", "BufEnter", "BufWritePost" },
-            provider = function()
-                -- LSP
-                local current_buf = vim.api.nvim_get_current_buf()
-                local lsp_clients = vim.lsp.get_clients()
-                local lsp_client_names = {}
-                local separator = ", "
+        local function lsp_lint(bg)
+            return {
+                condition = conditions.lsp_attached,
+                update = { "LspAttach", "LspDetach", "BufEnter", "BufWritePost" },
+                provider = function()
+                    -- LSP
+                    local current_buf = vim.api.nvim_get_current_buf()
+                    local lsp_clients = vim.lsp.get_clients()
+                    local lsp_client_names = {}
+                    local separator = ", "
 
-                for _, client in ipairs(lsp_clients) do
-                    if vim.lsp.buf_is_attached(current_buf, client.id) then
-                        table.insert(lsp_client_names, client.name)
-                    end
-                end
-
-                -- Lint
-                local ft = vim.bo[current_buf].filetype
-                local linters_by_ft = require("lint").linters_by_ft[ft] or {}
-                local linter_clients = {}
-
-                for _, name in ipairs(linters_by_ft) do
-                    table.insert(linter_clients, name)
-                end
-                local linter_names = table.concat(linter_clients, separator)
-
-                -- Combine
-                if #lsp_client_names > 0 or #linters_by_ft > 0 then
-                    local result = "  ["
-                    if #lsp_client_names > 0 then
-                        result = result .. table.concat(lsp_client_names, separator)
-                    end
-                    if #linters_by_ft > 0 then
-                        if #lsp_client_names > 0 then
-                            result = result .. separator
+                    for _, client in ipairs(lsp_clients) do
+                        if vim.lsp.buf_is_attached(current_buf, client.id) then
+                            table.insert(lsp_client_names, client.name)
                         end
-                        result = result .. linter_names
                     end
-                    result = result .. "]"
-                    return result
-                else
-                    return ""
-                end
-            end,
-            hl = { fg = colors.number, bg = colors.none },
-        }
+
+                    -- Lint
+                    local ft = vim.bo[current_buf].filetype
+                    local linters_by_ft = require("lint").linters_by_ft[ft] or {}
+                    local linter_clients = {}
+
+                    for _, name in ipairs(linters_by_ft) do
+                        table.insert(linter_clients, name)
+                    end
+                    local linter_names = table.concat(linter_clients, separator)
+
+                    -- Combine
+                    if #lsp_client_names > 0 or #linters_by_ft > 0 then
+                        local result = " ["
+                        if #lsp_client_names > 0 then
+                            result = result .. table.concat(lsp_client_names, separator)
+                        end
+                        if #linters_by_ft > 0 then
+                            if #lsp_client_names > 0 then
+                                result = result .. separator
+                            end
+                            result = result .. linter_names
+                        end
+                        result = result .. "]"
+                        return result
+                    else
+                        return ""
+                    end
+                end,
+                hl = { fg = colors.number, bg = bg },
+            }
+        end
 
         -- WORKING DIRECTORY
         local function work_dir(bg)
@@ -462,59 +464,61 @@ return {
         end
 
         -- DIAGNOSTICS
-        local diagnostics = {
-            condition = conditions.has_diagnostics,
+        local function diagnostics(bg)
+            return {
+                condition = conditions.has_diagnostics,
 
-            static = {
-                error_icon = vim.fn.sign_getdefined("DiagnosticSignError")[1] and vim.fn.sign_getdefined(
-                    "DiagnosticSignError"
-                )[1].text or "E",
-                warn_icon = vim.fn.sign_getdefined("DiagnosticSignWarn")[1] and vim.fn.sign_getdefined(
-                    "DiagnosticSignWarn"
-                )[1].text or "W",
-                info_icon = vim.fn.sign_getdefined("DiagnosticSignInfo")[1] and vim.fn.sign_getdefined(
-                    "DiagnosticSignInfo"
-                )[1].text or "I",
-                hint_icon = vim.fn.sign_getdefined("DiagnosticSignHint")[1] and vim.fn.sign_getdefined(
-                    "DiagnosticSignHint"
-                )[1].text or "H",
-            },
+                static = {
+                    error_icon = vim.fn.sign_getdefined("DiagnosticSignError")[1] and vim.fn.sign_getdefined(
+                        "DiagnosticSignError"
+                    )[1].text or "E",
+                    warn_icon = vim.fn.sign_getdefined("DiagnosticSignWarn")[1] and vim.fn.sign_getdefined(
+                        "DiagnosticSignWarn"
+                    )[1].text or "W",
+                    info_icon = vim.fn.sign_getdefined("DiagnosticSignInfo")[1] and vim.fn.sign_getdefined(
+                        "DiagnosticSignInfo"
+                    )[1].text or "I",
+                    hint_icon = vim.fn.sign_getdefined("DiagnosticSignHint")[1] and vim.fn.sign_getdefined(
+                        "DiagnosticSignHint"
+                    )[1].text or "H",
+                },
 
-            init = function(self)
-                self.errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
-                self.warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
-                self.hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
-                self.info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
-            end,
+                init = function(self)
+                    self.errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
+                    self.warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
+                    self.hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
+                    self.info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
+                end,
 
-            update = { "DiagnosticChanged", "BufEnter" },
+                update = { "DiagnosticChanged", "BufEnter" },
 
-            {
-                provider = function(self)
-                    return self.info > 0 and (self.info_icon .. self.info)
-                end,
-                hl = { fg = colors.method, bg = colors.none },
-            },
-            {
-                provider = function(self)
-                    return self.hints > 0 and (" " .. self.hint_icon .. self.hints)
-                end,
-                hl = { fg = colors.macro, bg = colors.none },
-            },
-            {
-                provider = function(self)
-                    -- 0 is just another output, we can decide to print it or not!
-                    return self.errors > 0 and (" " .. self.error_icon .. self.errors)
-                end,
-                hl = { fg = colors.error, bg = colors.none },
-            },
-            {
-                provider = function(self)
-                    return self.warnings > 0 and (" " .. self.warn_icon .. self.warnings)
-                end,
-                hl = { fg = colors.namespace, bg = colors.none },
-            },
-        }
+                {
+                    provider = function(self)
+                        return self.info > 0 and (self.info_icon .. self.info)
+                    end,
+                    hl = { fg = colors.method, bg = bg },
+                },
+                {
+                    provider = function(self)
+                        return self.hints > 0 and (" " .. self.hint_icon .. self.hints)
+                    end,
+                    hl = { fg = colors.macro, bg = bg },
+                },
+                {
+                    provider = function(self)
+                        -- 0 is just another output, we can decide to print it or not!
+                        return self.errors > 0 and (" " .. self.error_icon .. self.errors)
+                    end,
+                    hl = { fg = colors.error, bg = bg },
+                },
+                {
+                    provider = function(self)
+                        return self.warnings > 0 and (" " .. self.warn_icon .. self.warnings)
+                    end,
+                    hl = { fg = colors.namespace, bg = bg },
+                },
+            }
+        end
 
         -- DEBUG
         local debug = {
@@ -595,7 +599,6 @@ return {
             }
         end
 
-
         local function section(direction, primary, secondary, contents)
             local result = {}
             if direction == "right" then
@@ -638,14 +641,14 @@ return {
                 git,
 
                 align,
-                lsp_lint,
-                diagnostics,
-
-                align,
                 debug,
 
                 align,
-                section("right", colors.window_accent, colors.none, {
+                section("right", colors.window_bg, colors.none, {
+                    lsp_lint,
+                    -- diagnostics,
+                }),
+                section("right", colors.window_accent, colors.window_bg, {
                     ruler,
                 }),
             },
