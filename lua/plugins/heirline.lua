@@ -630,32 +630,32 @@ return {
         -- INIT
         require("heirline").setup({
             statusline = {
-                section("left", colors.window_bg, colors.window_accent, {
+                section("left", colors.window_accent, colors.window_bg, {
                     vim_mode,
                 }),
-                section("left", colors.window_accent, colors.none, {
+                section("left", colors.window_bg, colors.none, {
                     ruler,
                 }),
 
                 align,
 
-                section("right", colors.window_bg, colors.none, {
+                section("right", colors.window_accent, colors.none, {
                     debug,
                 }),
-                section("right", colors.window_accent, colors.window_bg, {
+                section("right", colors.window_bg, colors.window_accent, {
                     work_dir,
                 }),
-                section("right", colors.window_bg, colors.window_accent, {
+                section("right", colors.window_accent, colors.window_bg, {
                     file_size,
                     file_format,
                     file_encoding,
                 }),
-                section("right", colors.window_accent, colors.window_bg, {
-                    git,
-                }),
                 section("right", colors.window_bg, colors.window_accent, {
                     lsp_lint,
                     diagnostics,
+                }),
+                section("right", colors.window_accent, colors.window_bg, {
+                    git,
                 }),
             },
             winbar = nil,
