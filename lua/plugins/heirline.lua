@@ -486,10 +486,10 @@ return {
                 },
 
                 init = function(self)
-                    self.errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
-                    self.warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
-                    self.hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
                     self.info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
+                    self.hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
+                    self.warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
+                    self.errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
                 end,
 
                 update = { "DiagnosticChanged", "BufEnter" },
@@ -502,22 +502,22 @@ return {
                 },
                 {
                     provider = function(self)
-                        return self.hints > 0 and (" " .. self.hint_icon .. self.hints)
+                        return self.hints > 0 and (self.hint_icon .. self.hints)
                     end,
                     hl = { fg = colors.macro, bg = bg },
                 },
                 {
                     provider = function(self)
-                        -- 0 is just another output, we can decide to print it or not!
-                        return self.errors > 0 and (" " .. self.error_icon .. self.errors)
+                        return self.warnings > 0 and (self.warn_icon .. self.warnings)
                     end,
-                    hl = { fg = colors.error, bg = bg },
+                    hl = { fg = colors.namespace, bg = bg },
                 },
                 {
                     provider = function(self)
-                        return self.warnings > 0 and (" " .. self.warn_icon .. self.warnings)
+                        -- 0 is just another output, we can decide to print it or not!
+                        return self.errors > 0 and (self.error_icon .. self.errors)
                     end,
-                    hl = { fg = colors.namespace, bg = bg },
+                    hl = { fg = colors.error, bg = bg },
                 },
             }
         end
