@@ -229,60 +229,66 @@ return {
         }
 
         -- FILE ENCODING
-        local file_encoding = {
-            provider = function()
-                local file_encoding = vim.bo.fenc
-                if file_encoding ~= "" then
-                    local has_bom = vim.bo.bomb and "-BOM" or ""
-                    return " " .. file_encoding:upper() .. has_bom
-                end
-            end,
-            hl = function()
-                return { fg = colors.keyword, bg = colors.none }
-            end,
-        }
+        local function file_encoding(bg)
+            return {
+                provider = function()
+                    local enc = vim.bo.fenc
+                    if enc ~= "" then
+                        local has_bom = vim.bo.bomb and "  " or ""
+                        return enc:upper() .. has_bom
+                    end
+                end,
+                hl = function()
+                    return { fg = colors.keyword, bg = bg }
+                end,
+            }
+        end
 
         -- FILE FORMAT
-        local file_format = {
-            provider = function()
-                local format = vim.bo.fileformat
-                if format == "unix" then
-                    return " LF"
-                elseif format == "dos" then
-                    return " CRLF"
-                elseif format == "mac" then
-                    return " CR"
-                else
-                    return " " .. format:upper()
-                end
-            end,
-            hl = function()
-                return { fg = colors.method, bg = colors.none }
-            end,
-        }
+        local function file_format(bg)
+            return {
+                provider = function()
+                    local format = vim.bo.fileformat
+                    if format == "unix" then
+                        return "LF"
+                    elseif format == "dos" then
+                        return "CRLF"
+                    elseif format == "mac" then
+                        return "CR"
+                    else
+                        return format:upper()
+                    end
+                end,
+                hl = function()
+                    return { fg = colors.method, bg = bg }
+                end,
+            }
+        end
 
         -- FILE SIZE
-        local file_size = {
-            provider = function()
-                local suffix = { "B", "KB", "MB", "GB", "TB", "PB", "EB" }
-                local fsize = vim.fn.getfsize(vim.api.nvim_buf_get_name(0))
+        local function file_size(bg)
+            return {
+                provider = function()
+                    local suffix = { "B", "KB", "MB", "GB", "TB", "PB", "EB" }
+                    local fsize = vim.fn.getfsize(vim.api.nvim_buf_get_name(0))
 
-                fsize = (fsize < 0 and 0) or fsize
+                    fsize = (fsize < 0 and 0) or fsize
 
-                if fsize == 0 or fsize == nil then
-                    return nil
-                end
+                    if fsize == 0 or fsize == nil then
+                        return nil
+                    end
 
-                if fsize < 1024 then
-                    return fsize .. suffix[1]
-                end
-                local i = math.floor((math.log(fsize) / math.log(1024)))
-                return string.format(" %.2g%s", fsize / math.pow(1024, i), suffix[i + 1])
-            end,
-            hl = function()
-                return { fg = colors.module, bg = colors.none }
-            end,
-        }
+                    if fsize < 1024 then
+                        return fsize .. suffix[1]
+                    end
+                    local i = math.floor((math.log(fsize) / math.log(1024)))
+                    return string.format("%.2g%s", fsize / math.pow(1024, i), suffix[i + 1])
+                end,
+                hl = function()
+                    return { fg = colors.module, bg = bg }
+                end,
+            }
+        end
 
         -- FILE LAST MODIFIED
         local file_last_modified = {
@@ -597,8 +603,11 @@ return {
             else
                 table.insert(result, spacer(primary))
             end
-            for _, content_func in ipairs(contents) do
+            for i, content_func in ipairs(contents) do
                 table.insert(result, content_func(primary))
+                if i < #contents then
+                    table.insert(result, spacer(primary))
+                end
             end
             if direction == "left" then
                 table.insert(result, slant(direction, primary, secondary))
@@ -615,14 +624,15 @@ return {
                     vim_mode,
                 }),
 
-                section("left", colors.window_bg, colors.none, {
+                section("left", colors.window_bg, colors.window_accent, {
                     work_dir,
                 }),
 
-                align,
-                file_size,
-                file_format,
-                file_encoding,
+                section("left", colors.window_accent, colors.none, {
+                    file_size,
+                    file_format,
+                    file_encoding,
+                }),
 
                 align,
                 git,
