@@ -333,7 +333,7 @@ return {
                     -- local lines = vim.api.nvim_buf_line_count(0)
                     -- local i = math.floor((curr_line - 1) / lines * #self.sbar) + 1
                     -- local icon = string.rep(self.sbar[i], 1)
-                    return "%3c %l/%L %P"
+                    return "%P %l/%L %c"
                 end,
                 hl = { fg = colors.string, bg = bg },
             }
@@ -641,15 +641,14 @@ return {
                 section("left", colors.window_accent, colors.window_bg, {
                     vim_mode,
                 }),
-                section("left", colors.window_bg, colors.window_accent, {
+                section("left", colors.window_bg, colors.none, {
                     ruler,
-                }, true),
-                section("left", colors.window_accent, colors.none, {
+                }),
+                align,
+                section("right", colors.window_accent, colors.none, {
                     debug,
                 }),
-
-                align,
-                section("right", colors.window_bg, colors.none, {
+                section("right", colors.window_bg, colors.window_accent, {
                     work_dir,
                 }),
                 section("right", colors.window_accent, colors.window_bg, {
@@ -660,7 +659,7 @@ return {
                 section("right", colors.window_bg, colors.window_accent, {
                     lsp_lint,
                     diagnostics,
-                }),
+                }, true),
                 section("right", colors.window_accent, colors.window_bg, {
                     git,
                 }),
