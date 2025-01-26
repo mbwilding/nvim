@@ -574,15 +574,15 @@ return {
         local function slant(direction, primary, secondary)
             return
             {
-                direction == "right" and {
+                direction == "left" and {
                     provider = " ",
                     hl = { fg = secondary, bg = primary },
                 },
                 {
-                    provider = direction == "left" and "" or "",
+                    provider = direction == "right" and "" or "",
                     hl = { fg = primary, bg = secondary },
                 },
-                direction == "left" and {
+                direction == "right" and {
                     provider = " ",
                     hl = { fg = secondary, bg = primary },
                 },
@@ -592,7 +592,7 @@ return {
 
         local function section(direction, primary, secondary, contents)
             local result = {}
-            if direction == "left" then
+            if direction == "right" then
                 table.insert(result, slant(direction, primary, secondary))
             else
                 table.insert(result, spacer(primary))
@@ -600,7 +600,7 @@ return {
             for _, content_func in ipairs(contents) do
                 table.insert(result, content_func(primary))
             end
-            if direction == "right" then
+            if direction == "left" then
                 table.insert(result, slant(direction, primary, secondary))
             else
                 table.insert(result, spacer(primary))
@@ -611,11 +611,11 @@ return {
         -- INIT
         require("heirline").setup({
             statusline = {
-                section("right", colors.window_accent, colors.window_bg, {
+                section("left", colors.window_accent, colors.window_bg, {
                     vim_mode,
                 }),
 
-                section("right", colors.window_bg, colors.none, {
+                section("left", colors.window_bg, colors.none, {
                     work_dir,
                 }),
 
@@ -635,7 +635,7 @@ return {
                 debug,
 
                 align,
-                section("left", colors.window_accent, colors.none, {
+                section("right", colors.window_accent, colors.none, {
                     ruler,
                 }),
             },
