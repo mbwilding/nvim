@@ -20,7 +20,7 @@ return {
         local function spacer(bg)
             return {
                 provider = " ",
-                hl = { bg = bg }
+                hl = { bg = bg },
             }
         end
 
@@ -504,21 +504,22 @@ return {
                 },
                 {
                     provider = function(self)
-                        return (self.info > 0 and " " or "") .. (self.hints > 0 and (self.hint_icon .. self.hints) or "")
+                        return (self.info > 0 and " " or "")
+                            .. (self.hints > 0 and (self.hint_icon .. self.hints) or "")
                     end,
                     hl = { fg = colors.macro, bg = bg },
                 },
                 {
                     provider = function(self)
-                        return (self.hints > 0 and " " or "") ..
-                            (self.warnings > 0 and (self.warn_icon .. self.warnings) or "")
+                        return (self.hints > 0 and " " or "")
+                            .. (self.warnings > 0 and (self.warn_icon .. self.warnings) or "")
                     end,
                     hl = { fg = colors.namespace, bg = bg },
                 },
                 {
                     provider = function(self)
-                        return (self.warnings > 0 and " " or "") ..
-                            (self.errors > 0 and (self.error_icon .. self.errors) or "")
+                        return (self.warnings > 0 and " " or "")
+                            .. (self.errors > 0 and (self.error_icon .. self.errors) or "")
                     end,
                     hl = { fg = colors.error, bg = bg },
                 },
@@ -589,8 +590,7 @@ return {
         -- }
 
         local function slant(direction, primary, secondary)
-            return
-            {
+            return {
                 direction == "left" and {
                     provider = " ",
                     hl = { fg = secondary, bg = primary },
@@ -608,22 +608,26 @@ return {
 
         local function section(direction, primary, secondary, contents)
             local result = {}
+
             if direction == "right" then
                 table.insert(result, slant(direction, primary, secondary))
             else
                 table.insert(result, spacer(primary))
             end
+
             for i, content_func in ipairs(contents) do
                 table.insert(result, content_func(primary))
                 if i < #contents then
                     table.insert(result, spacer(primary))
                 end
             end
+
             if direction == "left" then
                 table.insert(result, slant(direction, primary, secondary))
             else
                 table.insert(result, spacer(primary))
             end
+
             return result
         end
 

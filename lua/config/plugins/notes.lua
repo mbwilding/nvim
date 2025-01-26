@@ -9,7 +9,7 @@ local function open(file)
             local buf = vim.api.nvim_create_buf(true, false)
             vim.api.nvim_buf_set_name(buf, file)
             vim.bo[buf].filetype = "markdown"
-            vim.bo[buf].buftype = 'acwrite'
+            vim.bo[buf].buftype = "acwrite"
             vim.api.nvim_win_set_buf(0, buf)
 
             local response = table.concat(data_load, "\n")
@@ -20,7 +20,7 @@ local function open(file)
             if decoded.status ~= "404" then
                 sha = decoded.sha
                 local content = require("b64").dec(decoded.content)
-                local lines = vim.split(content, '\n')
+                local lines = vim.split(content, "\n")
                 vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
             end
 
@@ -32,8 +32,13 @@ local function open(file)
                     local content = table.concat(lines, "\n")
                     local content_b64 = require("b64").enc(content)
 
-                    local cmd = "gh api " ..
-                        url_base .. file .. " --method PUT -f message='" .. "updated" .. "' -f content=" .. content_b64
+                    local cmd = "gh api "
+                        .. url_base
+                        .. file
+                        .. " --method PUT -f message='"
+                        .. "updated"
+                        .. "' -f content="
+                        .. content_b64
                     if sha then
                         cmd = cmd .. " -f sha=" .. sha
                     end
@@ -67,10 +72,12 @@ local function list()
             for _, item in ipairs(vim.json.decode(response)) do
                 table.insert(notes, item.path)
             end
-            table.sort(notes, function(a, b) return a > b end)
+            table.sort(notes, function(a, b)
+                return a > b
+            end)
 
             require("snacks.picker").select(notes, {
-                prompt = 'Notes',
+                prompt = "Notes",
                 format_item = function(item)
                     return item
                 end,
@@ -84,7 +91,9 @@ local function list()
 end
 
 vim.api.nvim_create_user_command("NoteList", list, {})
-vim.api.nvim_create_user_command("NoteToday", function() open(os.date("%Y-%m-%d") .. ".md") end, {})
+vim.api.nvim_create_user_command("NoteToday", function()
+    open(os.date("%Y-%m-%d") .. ".md")
+end, {})
 
 vim.keymap.set("n", "<leader>NL", "<CMD>NoteList<CR>", { desc = "Notes: List" })
 vim.keymap.set("n", "<leader>NT", "<CMD>NoteToday<CR>", { desc = "Notes: Today" })
