@@ -647,7 +647,7 @@ return {
                     work_dir,
                 }),
                 align,
-                true == true and section("right", colors.window_bg, colors.none, {
+                section("right", colors.window_bg, colors.none, {
                     debug,
                 }),
                 section("right", colors.window_accent, colors.window_bg, {
