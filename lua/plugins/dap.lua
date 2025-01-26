@@ -231,6 +231,9 @@ return {
                 type = "codelldb",
                 request = "launch",
                 program = function()
+                    local current_file = vim.fn.expand("%:p")
+                    local project_dir = string.match(current_file, "(.+)/src/.+")
+
                     local function build(command)
                         local lines = vim.fn.systemlist(command)
                         local json_status = vim.json.decode(lines[#lines])
@@ -238,24 +241,9 @@ return {
                         if not json_status.success then
                             return error(json.message.rendered)
                         end
-
-                        local executable_line = vim.tbl_filter(function(line)
-                            return line:find("\"executable\":")
-                        end, lines)[1]
-
-                        if not executable_line then
-                            return error("Failed to json line with `executable` field")
-                        end
-
-                        local filename = vim.json.decode(executable_line).executable
-
-                        return filename
                     end
 
                     local function get_crate_target()
-                        local current_file = vim.fn.expand("%:p")
-                        local project_dir = string.match(current_file, "(.+)/src/.+")
-
                         if not project_dir then
                             return error("Project directory not found")
                         end
@@ -276,7 +264,24 @@ return {
                         return error("No binary target found")
                     end
 
-                    return build("cargo build -q --message-format=json --bin " .. get_crate_target())
+                    local crate_target = get_crate_target()
+
+                    build("cargo build -q --message-format=json --bin " .. crate_target)
+
+                    local dir = project_dir
+                    while dir and dir ~= "/" do
+                        print(dir)
+                        if vim.fn.isdirectory(dir .. "/target/debug") == 1 then
+                            break
+                        end
+                        local parent_dir = vim.fn.fnamemodify(dir, ":h")
+                        if parent_dir == dir then
+                            break
+                        end
+                        dir = parent_dir
+                    end
+
+                    return dir .. "/target/debug/" .. crate_target
                 end,
                 cwd = "${workspaceFolder}",
                 stopOnEntry = false,
