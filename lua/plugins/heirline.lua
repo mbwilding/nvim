@@ -17,7 +17,12 @@ return {
         local icons = true
 
         -- HELPERS
-        local spacer = { provider = " " }
+        local function spacer(bg)
+            return {
+                provider = " ",
+                hl = { bg = bg }
+            }
+        end
 
         local vspacer = { provider = " | " }
 
@@ -28,6 +33,24 @@ return {
         local open = { provider = "[" }
 
         local close = { provider = "]" }
+
+        local function slant(primary, secondary, direction)
+            return
+            {
+                direction == "right" and {
+                    provider = " ",
+                    hl = { fg = secondary, bg = primary },
+                },
+                {
+                    provider = direction == "left" and "" or "",
+                    hl = { fg = primary, bg = secondary },
+                },
+                direction == "left" and {
+                    provider = " ",
+                    hl = { fg = secondary, bg = primary },
+                },
+            }
+        end
 
         -- MODE
         local mode_name = {
@@ -105,24 +128,26 @@ return {
             }
         end
 
-        local vim_mode = {
-            init = function(self)
-                self.mode_info = mode_info()
-            end,
-            provider = function(self)
-                return " %2(" .. self.mode_info.name .. "%)"
-            end,
-            hl = function(self)
-                return { fg = self.mode_info.color, bg = colors.none, bold = true }
-            end,
-            update = {
-                "ModeChanged",
-                pattern = "*:*",
-                callback = vim.schedule_wrap(function()
-                    vim.cmd("redrawstatus")
-                end),
-            },
-        }
+        local function vim_mode(bg)
+            return {
+                init = function(self)
+                    self.mode_info = mode_info()
+                end,
+                provider = function(self)
+                    return "%2(" .. self.mode_info.name .. "%)"
+                end,
+                hl = function(self)
+                    return { fg = self.mode_info.color, bg = bg, bold = true }
+                end,
+                update = {
+                    "ModeChanged",
+                    pattern = "*:*",
+                    callback = vim.schedule_wrap(function()
+                        vim.cmd("redrawstatus")
+                    end),
+                },
+            }
+        end
 
         -- FILE
         local file_name_block = {
@@ -288,41 +313,43 @@ return {
         }
 
         -- RULER
-        local ruler = {
-            -- %l = current line number
-            -- %L = number of lines in the buffer
-            -- %c = column number
-            -- %P = percentage through file of displayed window
+        local function ruler(bg)
+            return {
+                -- %l = current line number
+                -- %L = number of lines in the buffer
+                -- %c = column number
+                -- %P = percentage through file of displayed window
 
-            static = {
-                --sbar = { "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" },
-                sbar = {
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
+                static = {
+                    --sbar = { "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" },
+                    sbar = {
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                    },
                 },
-            },
-            provider = function(self)
-                -- local curr_line = vim.api.nvim_win_get_cursor(0)[1]
-                -- local lines = vim.api.nvim_buf_line_count(0)
-                -- local i = math.floor((curr_line - 1) / lines * #self.sbar) + 1
-                -- local icon = string.rep(self.sbar[i], 1)
-                return " %P %l/%L %c"
-            end,
-            hl = { fg = colors.string, bg = colors.none },
-        }
+                provider = function(self)
+                    -- local curr_line = vim.api.nvim_win_get_cursor(0)[1]
+                    -- local lines = vim.api.nvim_buf_line_count(0)
+                    -- local i = math.floor((curr_line - 1) / lines * #self.sbar) + 1
+                    -- local icon = string.rep(self.sbar[i], 1)
+                    return "%P %l/%L %c"
+                end,
+                hl = { fg = colors.string, bg = bg },
+            }
+        end
 
         -- GIT
         local git = {
@@ -560,10 +587,31 @@ return {
         -- 	hl = { fg = colors.error, bg = colors.none },
         -- }
 
+
+        local function section(primary, secondary, direction, contents)
+            local result = {}
+            if direction == "left" then
+                table.insert(result, slant(primary, secondary, direction))
+            else
+                table.insert(result, spacer(primary))
+            end
+            for _, content_func in ipairs(contents) do
+                table.insert(result, content_func(primary))
+            end
+            if direction == "right" then
+                table.insert(result, slant(primary, secondary, direction))
+            else
+                table.insert(result, spacer(primary))
+            end
+            return result
+        end
+
         -- INIT
         require("heirline").setup({
             statusline = {
-                vim_mode,
+                section(colors.window_accent, colors.none, "right", {
+                    vim_mode,
+                }),
 
                 align,
                 work_dir,
@@ -582,9 +630,11 @@ return {
 
                 align,
                 debug,
-                ruler,
 
-                spacer,
+                align,
+                section(colors.window_accent, colors.none, "left", {
+                    ruler,
+                }),
             },
             winbar = nil,
             --tabline = { ... },
