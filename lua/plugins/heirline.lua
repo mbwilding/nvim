@@ -340,62 +340,64 @@ return {
         end
 
         -- GIT
-        local git = {
-            condition = conditions.is_git_repo,
-            init = function(self)
-                self.status_dict = vim.b.gitsigns_status_dict
-                self.has_changes = self.status_dict.added ~= nil
-                    or self.status_dict.removed ~= nil
-                    or self.status_dict.changed ~= nil
-            end,
+        local function git(bg)
+            return {
+                condition = conditions.is_git_repo,
+                init = function(self)
+                    self.status_dict = vim.b.gitsigns_status_dict
+                    self.has_changes = self.status_dict.added ~= nil
+                        or self.status_dict.removed ~= nil
+                        or self.status_dict.changed ~= nil
+                end,
 
-            hl = { fg = colors.macro, bg = colors.none },
+                hl = { fg = colors.macro, bg = bg },
 
-            { -- git branch name
-                provider = function(self)
-                    return "  " .. "[" .. self.status_dict.head .. "]"
-                end,
-            },
-            {
-                provider = function(self)
-                    local count = self.status_dict.added or 0
-                    if count > 0 then
-                        if icons then
-                            return "  " .. count
-                        else
-                            return " + " .. count
+                { -- git branch name
+                    provider = function(self)
+                        return "  " .. self.status_dict.head
+                    end,
+                },
+                {
+                    provider = function(self)
+                        local count = self.status_dict.added or 0
+                        if count > 0 then
+                            if icons then
+                                return "  " .. count
+                            else
+                                return " + " .. count
+                            end
                         end
-                    end
-                end,
-                hl = { fg = utils.get_highlight("DiffAdd").fg, bg = colors.none },
-            },
-            {
-                provider = function(self)
-                    local count = self.status_dict.changed or 0
-                    if count > 0 then
-                        if icons then
-                            return "  " .. count
-                        else
-                            return " ~ " .. count
+                    end,
+                    hl = { fg = utils.get_highlight("DiffAdd").fg, bg = bg },
+                },
+                {
+                    provider = function(self)
+                        local count = self.status_dict.changed or 0
+                        if count > 0 then
+                            if icons then
+                                return "  " .. count
+                            else
+                                return " ~ " .. count
+                            end
                         end
-                    end
-                end,
-                hl = { fg = utils.get_highlight("DiffChange").fg, bg = colors.none },
-            },
-            {
-                provider = function(self)
-                    local count = self.status_dict.removed or 0
-                    if count > 0 then
-                        if icons then
-                            return "  " .. count
-                        else
-                            return " - " .. count
+                    end,
+                    hl = { fg = utils.get_highlight("DiffChange").fg, bg = bg },
+                },
+                {
+                    provider = function(self)
+                        local count = self.status_dict.removed or 0
+                        if count > 0 then
+                            if icons then
+                                return "  " .. count
+                            else
+                                return " - " .. count
+                            end
                         end
-                    end
-                end,
-                hl = { fg = utils.get_highlight("DiffDelete").fg, bg = colors.none },
-            },
-        }
+                    end,
+                    hl = { fg = utils.get_highlight("DiffDelete").fg, bg = bg },
+                },
+            }
+        end
 
         -- LSP / Lint
         local function lsp_lint(bg)
@@ -427,7 +429,7 @@ return {
 
                     -- Combine
                     if #lsp_client_names > 0 or #linters_by_ft > 0 then
-                        local result = " ["
+                        local result = "  "
                         if #lsp_client_names > 0 then
                             result = result .. table.concat(lsp_client_names, separator)
                         end
@@ -437,7 +439,7 @@ return {
                             end
                             result = result .. linter_names
                         end
-                        result = result .. "]"
+                        result = result
                         return result
                     else
                         return ""
@@ -451,13 +453,13 @@ return {
         local function work_dir(bg)
             return {
                 provider = function()
-                    local icon = " "
+                    local icon = "  "
                     local cwd = vim.fn.getcwd(0)
                     cwd = vim.fn.fnamemodify(cwd, ":~")
                     if not conditions.width_percent_below(#cwd, 0.25) then
                         cwd = vim.fn.fnamemodify(cwd, ":t")
                     end
-                    return icon .. "[" .. cwd .. "]"
+                    return icon .. cwd
                 end,
                 hl = { fg = colors.struct, bg = bg },
             }
@@ -637,24 +639,21 @@ return {
                     file_encoding,
                 }),
 
-                align,
-                git,
-
-                align,
                 debug,
 
                 align,
-                section("right", colors.window_bg, colors.none, {
+                section("right", colors.window_accent, colors.none, {
+                    git,
+                }),
+                section("right", colors.window_bg, colors.window_accent, {
                     lsp_lint,
-                    -- diagnostics,
+                    diagnostics,
                 }),
                 section("right", colors.window_accent, colors.window_bg, {
                     ruler,
                 }),
             },
             winbar = nil,
-            --tabline = { ... },
-            --statuscolumn = { ... },
         })
     end,
 }
