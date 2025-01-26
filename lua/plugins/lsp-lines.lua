@@ -41,6 +41,6 @@ return {
 
         local ll = require("lsp_lines")
         ll.setup()
-        ll.toggle()
+        -- ll.toggle()
     end,
 }
