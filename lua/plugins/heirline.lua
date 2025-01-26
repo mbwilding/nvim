@@ -34,24 +34,6 @@ return {
 
         local close = { provider = "]" }
 
-        local function slant(primary, secondary, direction)
-            return
-            {
-                direction == "right" and {
-                    provider = " ",
-                    hl = { fg = secondary, bg = primary },
-                },
-                {
-                    provider = direction == "left" and "" or "",
-                    hl = { fg = primary, bg = secondary },
-                },
-                direction == "left" and {
-                    provider = " ",
-                    hl = { fg = secondary, bg = primary },
-                },
-            }
-        end
-
         -- MODE
         local mode_name = {
             n = "NORMAL",
@@ -458,18 +440,20 @@ return {
         }
 
         -- WORKING DIRECTORY
-        local work_dir = {
-            provider = function()
-                local icon = " "
-                local cwd = vim.fn.getcwd(0)
-                cwd = vim.fn.fnamemodify(cwd, ":~")
-                if not conditions.width_percent_below(#cwd, 0.25) then
-                    cwd = vim.fn.fnamemodify(cwd, ":t")
-                end
-                return " " .. icon .. "[" .. cwd .. "]"
-            end,
-            hl = { fg = colors.struct, bg = colors.none },
-        }
+        local function work_dir(bg)
+            return {
+                provider = function()
+                    local icon = " "
+                    local cwd = vim.fn.getcwd(0)
+                    cwd = vim.fn.fnamemodify(cwd, ":~")
+                    if not conditions.width_percent_below(#cwd, 0.25) then
+                        cwd = vim.fn.fnamemodify(cwd, ":t")
+                    end
+                    return icon .. "[" .. cwd .. "]"
+                end,
+                hl = { fg = colors.struct, bg = bg },
+            }
+        end
 
         -- DIAGNOSTICS
         local diagnostics = {
@@ -587,11 +571,29 @@ return {
         -- 	hl = { fg = colors.error, bg = colors.none },
         -- }
 
+        local function slant(direction, primary, secondary)
+            return
+            {
+                direction == "right" and {
+                    provider = " ",
+                    hl = { fg = secondary, bg = primary },
+                },
+                {
+                    provider = direction == "left" and "" or "",
+                    hl = { fg = primary, bg = secondary },
+                },
+                direction == "left" and {
+                    provider = " ",
+                    hl = { fg = secondary, bg = primary },
+                },
+            }
+        end
 
-        local function section(primary, secondary, direction, contents)
+
+        local function section(direction, primary, secondary, contents)
             local result = {}
             if direction == "left" then
-                table.insert(result, slant(primary, secondary, direction))
+                table.insert(result, slant(direction, primary, secondary))
             else
                 table.insert(result, spacer(primary))
             end
@@ -599,7 +601,7 @@ return {
                 table.insert(result, content_func(primary))
             end
             if direction == "right" then
-                table.insert(result, slant(primary, secondary, direction))
+                table.insert(result, slant(direction, primary, secondary))
             else
                 table.insert(result, spacer(primary))
             end
@@ -609,12 +611,13 @@ return {
         -- INIT
         require("heirline").setup({
             statusline = {
-                section(colors.window_accent, colors.none, "right", {
+                section("right", colors.window_accent, colors.window_bg, {
                     vim_mode,
                 }),
 
-                align,
-                work_dir,
+                section("right", colors.window_bg, colors.none, {
+                    work_dir,
+                }),
 
                 align,
                 file_size,
@@ -632,7 +635,7 @@ return {
                 debug,
 
                 align,
-                section(colors.window_accent, colors.none, "left", {
+                section("left", colors.window_accent, colors.none, {
                     ruler,
                 }),
             },
