@@ -1,4 +1,4 @@
-local virtual_text = true
+local virtual_text = false
 local only_current_line = true
 
 return {
