@@ -308,32 +308,37 @@ return {
                 -- %c = column number
                 -- %P = percentage through file of displayed window
 
-                static = {
-                    --sbar = { "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" },
-                    sbar = {
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                    },
-                },
+                -- static = {
+                --     --sbar = { "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" },
+                --     sbar = {
+                --         "",
+                --         "",
+                --         "",
+                --         "",
+                --         "",
+                --         "",
+                --         "",
+                --         "",
+                --         "",
+                --         "",
+                --         "",
+                --         "",
+                --         "",
+                --         "",
+                --         "",
+                --     },
+                -- },
                 provider = function(self)
                     -- local curr_line = vim.api.nvim_win_get_cursor(0)[1]
                     -- local lines = vim.api.nvim_buf_line_count(0)
-                    -- local i = math.floor((curr_line - 1) / lines * #self.sbar) + 1
+                    -- local i
+                    -- if lines == 1 then
+                    --   i = #self.sbar
+                    -- else
+                    --   i = math.floor((curr_line - 1) / (lines - 1) * (#self.sbar - 1)) + 1
+                    -- end
                     -- local icon = string.rep(self.sbar[i], 1)
-                    return "%P %3l/%3L %3c"
+                    return "%P %{max([line('.'),1])}/%L %c"
                 end,
                 hl = { fg = colors.string, bg = bg },
             }
@@ -342,22 +347,25 @@ return {
         -- GIT
         local function git(bg)
             return {
-                condition = conditions.is_git_repo,
+                -- condition = conditions.is_git_repo,
                 init = function(self)
                     self.status_dict = vim.b.gitsigns_status_dict
-                    self.has_changes = self.status_dict.added ~= nil
+                    self.has_changes = self.status_dict and (self.status_dict.added ~= nil
                         or self.status_dict.removed ~= nil
-                        or self.status_dict.changed ~= nil
+                        or self.status_dict.changed ~= nil) or false
                 end,
-
                 hl = { fg = colors.macro, bg = bg },
 
                 { -- git branch name
                     provider = function(self)
-                        return "  " .. self.status_dict.head
+                        if self.status_dict then
+                            return "  " .. self.status_dict.head
+                        end
+                        return "  n/a"
                     end,
                 },
                 {
+                    condition = conditions.is_git_repo,
                     provider = function(self)
                         local count = self.status_dict.added or 0
                         if count > 0 then
@@ -371,6 +379,7 @@ return {
                     hl = { fg = utils.get_highlight("DiffAdd").fg, bg = bg },
                 },
                 {
+                    condition = conditions.is_git_repo,
                     provider = function(self)
                         local count = self.status_dict.changed or 0
                         if count > 0 then
@@ -384,6 +393,7 @@ return {
                     hl = { fg = utils.get_highlight("DiffChange").fg, bg = bg },
                 },
                 {
+                    condition = conditions.is_git_repo,
                     provider = function(self)
                         local count = self.status_dict.removed or 0
                         if count > 0 then
@@ -402,9 +412,15 @@ return {
         -- LSP / Lint
         local function lsp_lint(bg)
             return {
-                condition = conditions.lsp_attached,
+                -- condition = conditions.lsp_attached,
                 update = { "LspAttach", "LspDetach", "BufEnter", "BufWritePost" },
                 provider = function()
+                    local result = "  "
+
+                    if not conditions.lsp_attached then
+                        return result .. "n/a"
+                    end
+
                     -- LSP
                     local current_buf = vim.api.nvim_get_current_buf()
                     local lsp_clients = vim.lsp.get_clients()
@@ -431,7 +447,6 @@ return {
 
                     -- Combine
                     if #lsp_client_names > 0 or #linters_by_ft > 0 then
-                        local result = "  "
                         if #lsp_client_names > 0 then
                             result = result .. table.concat(lsp_client_names, separator)
                         end
@@ -444,7 +459,7 @@ return {
                         result = result
                         return result
                     else
-                        return ""
+                        return result .. "n/a"
                     end
                 end,
                 hl = { fg = colors.number, bg = bg },
@@ -641,16 +656,13 @@ return {
                     vim_mode,
                 }),
                 section("left", colors.window_bg, colors.window_accent, {
-                    ruler,
-                }),
-                section("left", colors.window_accent, colors.none, {
                     work_dir,
                 }),
-                align,
-                section("right", colors.window_bg, colors.none, {
-                    debug,
+                section("left", colors.window_accent, colors.none, {
+                    ruler,
                 }),
-                section("right", colors.window_accent, colors.window_bg, {
+                align,
+                section("right", colors.window_accent, colors.none, {
                     file_size,
                     file_format,
                     file_encoding,
