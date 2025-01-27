@@ -350,9 +350,9 @@ return {
                 -- condition = conditions.is_git_repo,
                 init = function(self)
                     self.status_dict = vim.b.gitsigns_status_dict
-                    self.has_changes = self.status_dict and (self.status_dict.added ~= nil
-                        or self.status_dict.removed ~= nil
-                        or self.status_dict.changed ~= nil) or false
+                    self.has_changes = self.status_dict
+                            and (self.status_dict.added ~= nil or self.status_dict.removed ~= nil or self.status_dict.changed ~= nil)
+                        or false
                 end,
                 hl = { fg = colors.macro, bg = bg },
 
@@ -413,7 +413,27 @@ return {
         local function lsp_lint(bg)
             return {
                 -- condition = conditions.lsp_attached,
-                update = { "LspAttach", "LspDetach", "BufEnter", "BufWritePost" },
+                update = { "LspAttach", "LspDetach", "BufEnter", "BufWritePost", "DiagnosticChanged" },
+                static = {
+                    error_icon = vim.fn.sign_getdefined("DiagnosticSignError")[1] and vim.fn.sign_getdefined(
+                        "DiagnosticSignError"
+                    )[1].text or "E",
+                    warn_icon = vim.fn.sign_getdefined("DiagnosticSignWarn")[1] and vim.fn.sign_getdefined(
+                        "DiagnosticSignWarn"
+                    )[1].text or "W",
+                    info_icon = vim.fn.sign_getdefined("DiagnosticSignInfo")[1] and vim.fn.sign_getdefined(
+                        "DiagnosticSignInfo"
+                    )[1].text or "I",
+                    hint_icon = vim.fn.sign_getdefined("DiagnosticSignHint")[1] and vim.fn.sign_getdefined(
+                        "DiagnosticSignHint"
+                    )[1].text or "H",
+                },
+                init = function(self)
+                    self.info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
+                    self.hint = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
+                    self.warn = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
+                    self.error = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
+                end,
                 provider = function()
                     local result = "  "
 
@@ -462,6 +482,30 @@ return {
                         return result .. "n/a"
                     end
                 end,
+                {
+                    provider = function(self)
+                        return self.info > 0 and (" " .. self.info_icon .. self.info)
+                    end,
+                    hl = { fg = colors.method, bg = bg },
+                },
+                {
+                    provider = function(self)
+                        return self.hint > 0 and (" " .. self.hint_icon .. self.hint) or ""
+                    end,
+                    hl = { fg = colors.macro, bg = bg },
+                },
+                {
+                    provider = function(self)
+                        return self.warn > 0 and (" " .. self.warn_icon .. self.warn) or ""
+                    end,
+                    hl = { fg = colors.namespace, bg = bg },
+                },
+                {
+                    provider = function(self)
+                        return self.error > 0 and (" " .. self.error_icon .. self.error) or ""
+                    end,
+                    hl = { fg = colors.error, bg = bg },
+                },
                 hl = { fg = colors.number, bg = bg },
             }
         end
@@ -479,62 +523,6 @@ return {
                     return icon .. cwd
                 end,
                 hl = { fg = colors.struct, bg = bg },
-            }
-        end
-
-        -- DIAGNOSTICS
-        local function diagnostics(bg)
-            return {
-                condition = conditions.has_diagnostics,
-
-                static = {
-                    error_icon = vim.fn.sign_getdefined("DiagnosticSignError")[1] and vim.fn.sign_getdefined(
-                        "DiagnosticSignError"
-                    )[1].text or "E",
-                    warn_icon = vim.fn.sign_getdefined("DiagnosticSignWarn")[1] and vim.fn.sign_getdefined(
-                        "DiagnosticSignWarn"
-                    )[1].text or "W",
-                    info_icon = vim.fn.sign_getdefined("DiagnosticSignInfo")[1] and vim.fn.sign_getdefined(
-                        "DiagnosticSignInfo"
-                    )[1].text or "I",
-                    hint_icon = vim.fn.sign_getdefined("DiagnosticSignHint")[1] and vim.fn.sign_getdefined(
-                        "DiagnosticSignHint"
-                    )[1].text or "H",
-                },
-
-                init = function(self)
-                    self.info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
-                    self.hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
-                    self.warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
-                    self.errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
-                end,
-
-                update = { "DiagnosticChanged", "BufEnter" },
-
-                {
-                    provider = function(self)
-                        return self.info > 0 and (self.info_icon .. self.info)
-                    end,
-                    hl = { fg = colors.method, bg = bg },
-                },
-                {
-                    provider = function(self)
-                        return self.hints > 0 and (self.hint_icon .. self.hints) or ""
-                    end,
-                    hl = { fg = colors.macro, bg = bg },
-                },
-                {
-                    provider = function(self)
-                        return self.warnings > 0 and (self.warn_icon .. self.warnings) or ""
-                    end,
-                    hl = { fg = colors.namespace, bg = bg },
-                },
-                {
-                    provider = function(self)
-                        return self.errors > 0 and (self.error_icon .. self.errors) or ""
-                    end,
-                    hl = { fg = colors.error, bg = bg },
-                },
             }
         end
 
@@ -661,7 +649,6 @@ return {
                 }),
                 section("left", colors.window_accent, colors.window_none, {
                     lsp_lint,
-                    diagnostics,
                 }),
 
                 align,
