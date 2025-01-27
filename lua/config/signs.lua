@@ -4,10 +4,6 @@ local function define_sign(name, opts)
 end
 
 local signs = {
-    { "DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" } },
-    { "DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" } },
-    { "DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo" } },
-    { "DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" } },
     {
         "DapBreakpointCondition",
         { text = "ﳁ", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" },
@@ -24,3 +20,23 @@ local signs = {
 for _, sign in ipairs(signs) do
     define_sign(sign[1], sign[2])
 end
+
+----------------------------------
+vim.diagnostic.config{
+    virtual_text = false,  -- floating text next to code is too noisy.
+    underline = true,
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = "",
+            [vim.diagnostic.severity.WARN]  = "",
+            [vim.diagnostic.severity.INFO]  = "",
+            [vim.diagnostic.severity.HINT]  = "",
+        },
+        -- linehl = {
+        --     [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
+        -- },
+        -- numhl = {
+        --     [vim.diagnostic.severity.WARN] = 'WarningMsg',
+        -- },
+    },
+}
