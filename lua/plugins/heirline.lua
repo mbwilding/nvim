@@ -351,7 +351,7 @@ return {
                 init = function(self)
                     self.status_dict = vim.b.gitsigns_status_dict
                     self.has_changes = self.status_dict
-                            and (self.status_dict.added ~= nil or self.status_dict.removed ~= nil or self.status_dict.changed ~= nil)
+                        and (self.status_dict.added ~= nil or self.status_dict.removed ~= nil or self.status_dict.changed ~= nil)
                         or false
                 end,
                 hl = { fg = colors.macro, bg = bg },
@@ -540,26 +540,30 @@ return {
         end
 
         -- DATE TIME
-        -- local date_time = {
-        -- 	provider = function()
-        -- 		return os.date("%Y-%m-%d %I:%M:%S %p")
-        -- 	end,
-        -- 	hl = { fg = colors.struct, bg = colors.none },
-        -- }
-        -- local function startTimerOnSecondDivisibleBy(updateRateInSeconds)
-        -- 	local currentTime = os.date("*t")
-        -- 	local currentSecond = currentTime.sec
-        -- 	local millisecondsTillNextDivisibleSecond = (
-        -- 		(updateRateInSeconds - (currentSecond % updateRateInSeconds)) % updateRateInSeconds
-        -- 	) * 1000
-        -- 	if millisecondsTillNextDivisibleSecond == 0 then
-        -- 		millisecondsTillNextDivisibleSecond = updateRateInSeconds * 1000
-        -- 	end
-        -- 	vim.fn.timer_start(millisecondsTillNextDivisibleSecond, function()
-        -- 		vim.cmd("redrawstatus")
-        -- 	end, { ["repeat"] = -1 })
-        -- end
-        -- startTimerOnSecondDivisibleBy(1)
+        local function date_time(bg)
+            return {
+                provider = function()
+                    -- return os.date("%Y-%m-%d %I:%M:%S %p")
+                    return os.date("%I:%M %p")
+                end,
+                hl = { fg = colors.struct, bg = bg },
+            }
+        end
+
+        local function startTimerOnSecondDivisibleBy(updateRateInSeconds)
+            local currentTime = os.date("*t")
+            local currentSecond = currentTime.sec
+            local millisecondsTillNextDivisibleSecond = (
+                (updateRateInSeconds - (currentSecond % updateRateInSeconds)) % updateRateInSeconds
+            ) * 1000
+            if millisecondsTillNextDivisibleSecond == 0 then
+                millisecondsTillNextDivisibleSecond = updateRateInSeconds * 1000
+            end
+            vim.fn.timer_start(millisecondsTillNextDivisibleSecond, function()
+                vim.cmd("redrawstatus")
+            end, { ["repeat"] = -1 })
+        end
+        startTimerOnSecondDivisibleBy(60)
 
         -- GRAPPLE
         local grapple = {
@@ -650,11 +654,14 @@ return {
                 -- debug(colors.none),
                 cut,
                 align,
-                section("right", colors.window_bg, colors.none, {
+                section("right", colors.window_accent, colors.none, {
                     ruler,
                 }),
-                section("right", colors.window_accent, colors.window_bg, {
+                section("right", colors.window_bg, colors.window_accent, {
                     lsp_lint,
+                }),
+                section("right", colors.window_accent, colors.window_bg, {
+                    date_time,
                 }),
             },
             winbar = nil,
