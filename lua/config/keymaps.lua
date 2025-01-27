@@ -17,7 +17,7 @@ vim.keymap.set("n", "<C-l>", "<C-w>l")
 vim.keymap.set("n", "q", ":tabclose<CR>")
 
 -- End search highlight and clear messages
-vim.keymap.set("n", "<C-/>", "<CMD>noh<CR>")
+vim.keymap.set("n", "<Esc>", "<CMD>noh<CR>")
 
 -- Leader NOP
 vim.keymap.set({ "n", "v" }, "<leader>", "<Nop>")
