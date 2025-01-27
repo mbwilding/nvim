@@ -351,7 +351,7 @@ return {
                 init = function(self)
                     self.status_dict = vim.b.gitsigns_status_dict
                     self.has_changes = self.status_dict
-                        and (self.status_dict.added ~= nil or self.status_dict.removed ~= nil or self.status_dict.changed ~= nil)
+                            and (self.status_dict.added ~= nil or self.status_dict.removed ~= nil or self.status_dict.changed ~= nil)
                         or false
                 end,
                 hl = { fg = colors.macro, bg = bg },
