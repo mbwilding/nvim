@@ -647,7 +647,7 @@ return {
                     file_format,
                     file_encoding,
                 }),
-
+                cut,
                 align,
                 section("right", colors.window_bg, colors.none, {
                     ruler,
