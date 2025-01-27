@@ -642,18 +642,18 @@ return {
                 section("left", colors.window_accent, colors.window_bg, {
                     git,
                 }),
-                section("left", colors.window_bg, colors.window_accent, {
+                section("left", colors.window_bg, colors.none, {
                     file_size,
                     file_format,
                     file_encoding,
                 }),
-                section("left", colors.window_accent, colors.window_none, {
-                    lsp_lint,
-                }),
 
                 align,
-                section("right", colors.window_accent, colors.none, {
+                section("right", colors.window_bg, colors.none, {
                     ruler,
+                }),
+                section("right", colors.window_accent, colors.window_bg, {
+                    lsp_lint,
                 }),
             },
             winbar = nil,
