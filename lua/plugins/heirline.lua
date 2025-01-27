@@ -338,7 +338,7 @@ return {
                     --   i = math.floor((curr_line - 1) / (lines - 1) * (#self.sbar - 1)) + 1
                     -- end
                     -- local icon = string.rep(self.sbar[i], 1)
-                    return "%P %{max([line('.'),1])}/%L %c"
+                    return "%c %{max([line('.'),1])}/%L %P"
                 end,
                 hl = { fg = colors.string, bg = bg },
             }
@@ -519,22 +519,19 @@ return {
                 },
                 {
                     provider = function(self)
-                        return (self.info > 0 and " " or "")
-                            .. (self.hints > 0 and (self.hint_icon .. self.hints) or "")
+                        return self.hints > 0 and (self.hint_icon .. self.hints) or ""
                     end,
                     hl = { fg = colors.macro, bg = bg },
                 },
                 {
                     provider = function(self)
-                        return (self.hints > 0 and " " or "")
-                            .. (self.warnings > 0 and (self.warn_icon .. self.warnings) or "")
+                        return self.warnings > 0 and (self.warn_icon .. self.warnings) or ""
                     end,
                     hl = { fg = colors.namespace, bg = bg },
                 },
                 {
                     provider = function(self)
-                        return (self.warnings > 0 and " " or "")
-                            .. (self.errors > 0 and (self.error_icon .. self.errors) or "")
+                        return self.errors > 0 and (self.error_icon .. self.errors) or ""
                     end,
                     hl = { fg = colors.error, bg = bg },
                 },
@@ -620,15 +617,13 @@ return {
             }
         end
 
-        local function section(direction, primary, secondary, contents, no_spacer)
+        local function section(direction, primary, secondary, contents)
             local result = {}
 
             if direction == "right" then
                 table.insert(result, slant(direction, primary, secondary))
             else
-                if not no_spacer then
-                    table.insert(result, spacer(primary))
-                end
+                table.insert(result, spacer(primary))
             end
 
             for i, content_func in ipairs(contents) do
@@ -641,9 +636,7 @@ return {
             if direction == "left" then
                 table.insert(result, slant(direction, primary, secondary))
             else
-                if not no_spacer then
-                    table.insert(result, spacer(primary))
-                end
+                table.insert(result, spacer(primary))
             end
 
             return result
@@ -658,21 +651,22 @@ return {
                 section("left", colors.window_bg, colors.window_accent, {
                     work_dir,
                 }),
-                section("left", colors.window_accent, colors.none, {
-                    ruler,
+                section("left", colors.window_accent, colors.window_bg, {
+                    git,
                 }),
-                align,
-                section("right", colors.window_accent, colors.none, {
+                section("left", colors.window_bg, colors.window_accent, {
                     file_size,
                     file_format,
                     file_encoding,
                 }),
-                section("right", colors.window_bg, colors.window_accent, {
+                section("left", colors.window_accent, colors.window_none, {
                     lsp_lint,
                     diagnostics,
-                }, true),
-                section("right", colors.window_accent, colors.window_bg, {
-                    git,
+                }),
+
+                align,
+                section("right", colors.window_accent, colors.none, {
+                    ruler,
                 }),
             },
             winbar = nil,
