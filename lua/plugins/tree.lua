@@ -17,9 +17,9 @@ return {
             view = {
                 relativenumber = false,
                 number = false,
-                width = function()
-                    return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
-                end,
+                -- width = function()
+                --     return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
+                -- end,
                 -- float = {
                 --     enable = true,
                 --     open_win_config = function()

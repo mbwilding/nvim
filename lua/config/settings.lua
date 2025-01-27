@@ -76,7 +76,7 @@ o.backup = false
 o.undolevels = 30000
 
 -- Set scroll offset
-o.scrolloff = 10
+o.scrolloff = 3
 
 -- Update time for CursorHold
 o.updatetime = 50
