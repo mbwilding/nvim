@@ -1,7 +1,3 @@
-local function define_sign(name, opts)
-    vim.fn.sign_define(name, opts)
-end
-
 local signs = {
     { "DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" } },
     { "DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" } },
@@ -21,7 +17,7 @@ local signs = {
 }
 
 for _, sign in ipairs(signs) do
-    define_sign(sign[1], sign[2])
+    vim.fn.sign_define(sign[1], sign[2])
 end
 
 -- vim.diagnostic.config({
