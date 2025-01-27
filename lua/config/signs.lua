@@ -1,5 +1,6 @@
 local function define_sign(name, opts)
     vim.fn.sign_define(name, opts)
+    vim.diagnostic.config()
 end
 
 local signs = {
