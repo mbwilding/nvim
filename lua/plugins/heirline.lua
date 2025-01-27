@@ -647,6 +647,7 @@ return {
                     file_format,
                     file_encoding,
                 }),
+                -- debug(colors.none),
                 cut,
                 align,
                 section("right", colors.window_bg, colors.none, {
