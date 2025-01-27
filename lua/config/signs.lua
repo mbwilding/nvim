@@ -5,15 +5,15 @@ local signs = {
     { "DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" } },
     {
         "DapBreakpointCondition",
-        { text = "ﳁ", texthl = "DapBreakpoint", numhl = "DapBreakpoint" },
+        { texthl = "DapBreakpoint", numhl = "DapBreakpoint" },
     },
     {
         "DapBreakpointRejected",
-        { text = "", texthl = "DapBreakpoint", numhl = "DapBreakpoint" },
+        { texthl = "DapBreakpoint", numhl = "DapBreakpoint" },
     },
-    { "DapLogPoint", { text = "", texthl = "DapLogPoint", numhl = "DapLogPoint" } },
-    { "DapStopped", { text = "", texthl = "DapStopped", numhl = "DapStopped" } },
-    { "DapBreakpoint", { text = "⦿", texthl = "DapBreakpoint", numhl = "DapBreakpoint" } },
+    { "DapLogPoint", { texthl = "DapLogPoint", numhl = "DapLogPoint" } },
+    { "DapStopped", { texthl = "DapStopped", numhl = "DapStopped" } },
+    { "DapBreakpoint", { texthl = "DapBreakpoint", numhl = "DapBreakpoint" } },
 }
 
 for _, sign in ipairs(signs) do
@@ -29,17 +29,17 @@ end
 --             [vim.diagnostic.severity.HINT] = "",
 --         },
 --         -- Highlights
---         linehl = {
---             [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
---             [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
---             [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
---             [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
---         },
---         numhl = {
---             [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
---             [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
---             [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
---             [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
---         },
+--         -- linehl = {
+--         --     [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+--         --     [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+--         --     [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+--         --     [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+--         -- },
+--         -- numhl = {
+--         --     [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+--         --     [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+--         --     [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+--         --     [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+--         -- },
 --     },
 -- })
