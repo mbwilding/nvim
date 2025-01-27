@@ -282,7 +282,7 @@ return {
                         return fsize .. suffix[1]
                     end
                     local i = math.floor((math.log(fsize) / math.log(1024)))
-                    return string.format("%.2g%s", fsize / math.pow(1024, i), suffix[i + 1])
+                    return string.format("%.2f%s", fsize / math.pow(1024, i), suffix[i + 1])
                 end,
                 hl = function()
                     return { fg = colors.module, bg = bg }
