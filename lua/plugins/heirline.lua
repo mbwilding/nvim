@@ -26,9 +26,11 @@ return {
 
         local vspacer = { provider = " | " }
 
+        local cut = { provider = "%<" }
+
         local align = { provider = "%=" }
 
-        local cut = { provider = "%<" }
+        local align_cut = { provider = "%<%=" }
 
         local open = { provider = "[" }
 
@@ -679,8 +681,7 @@ return {
             { primary = colors.window_bg,     contents = { work_dir } },
             { primary = colors.window_accent, contents = { git } },
             { primary = colors.window_bg,     contents = { file_size, file_format, file_encoding } },
-            -- cut,
-            align,
+            align_cut,
             { primary = colors.window_accent, contents = { ruler } },
             { primary = colors.window_bg,     contents = { lsp_lint } },
             { primary = colors.window_accent, contents = { date_time } },
@@ -688,7 +689,7 @@ return {
 
         local align_index
         for i, sec in ipairs(sections) do
-            if sec == align then
+            if sec == align_cut then
                 align_index = i
                 break
             end
