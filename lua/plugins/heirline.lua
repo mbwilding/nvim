@@ -671,7 +671,7 @@ return {
             if align_index then
                 return index < align_index and "left" or "right"
             end
-            return "left" -- Default to 'left' if align is not found
+            return "left"
         end
 
         local sections = {
