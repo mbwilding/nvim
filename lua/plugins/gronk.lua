@@ -3,7 +3,7 @@
 return {
     "mbwilding/gronk.nvim",
     lazy = false,
-    dev = true,
+    dev = false,
     priority = 1000,
     config = function()
         require("gronk").setup({
@@ -11,6 +11,5 @@ return {
         })
 
         vim.cmd([[colorscheme gronk-wilding]])
-        -- vim.cmd([[colorscheme gronk-mono]])
     end,
 }
