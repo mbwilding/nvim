@@ -592,6 +592,7 @@ return {
         -- 	hl = { fg = colors.error, bg = colors.none },
         -- }
 
+        -- Layout Logic
         local function slant(direction, primary, secondary)
             return {
                 direction == "left" and {
@@ -663,8 +664,8 @@ return {
             { primary = colors.window_bg,     contents = { work_dir },                              direction = "left" },
             { primary = colors.window_accent, contents = { git },                                   direction = "left" },
             { primary = colors.window_bg,     contents = { file_size, file_format, file_encoding }, direction = "left" },
-            cut, -- directly inserting the special section (e.g., cut)
-            align, -- directly inserting the special section (e.g., align)
+            cut,
+            align,
             { primary = colors.window_accent, contents = { ruler },     direction = "right" },
             { primary = colors.window_bg,     contents = { lsp_lint },  direction = "right" },
             { primary = colors.window_accent, contents = { date_time }, direction = "right" },
@@ -672,16 +673,15 @@ return {
 
         local statusline = {}
         for i, sec in ipairs(sections) do
-            if type(sec) == "table" and sec.contents then -- typical section
+            if type(sec) == "table" and sec.contents then
                 local next_or_prev_primary = get_next_or_prev_primary(sections, i, sec.direction)
                 table.insert(statusline, dynamic_section(sec.direction, sec.primary, sec.contents, next_or_prev_primary))
             else
-                -- directly using the special section element (e.g., cut or align)
                 table.insert(statusline, sec)
             end
         end
 
-        -- INIT
+        -- Init
         require("heirline").setup({
             statusline = statusline,
             winbar = nil,
