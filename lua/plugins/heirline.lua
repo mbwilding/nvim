@@ -659,23 +659,39 @@ return {
             return colors.none
         end
 
+        local function determine_direction(index, align_index)
+            if align_index then
+                return index < align_index and "left" or "right"
+            end
+            return "left" -- Default to 'left' if align is not found
+        end
+
         local sections = {
-            { primary = colors.window_accent, contents = { vim_mode },                              direction = "left" },
-            { primary = colors.window_bg,     contents = { work_dir },                              direction = "left" },
-            { primary = colors.window_accent, contents = { git },                                   direction = "left" },
-            { primary = colors.window_bg,     contents = { file_size, file_format, file_encoding }, direction = "left" },
+            { primary = colors.window_accent, contents = { vim_mode } },
+            { primary = colors.window_bg,     contents = { work_dir } },
+            { primary = colors.window_accent, contents = { git } },
+            { primary = colors.window_bg,     contents = { file_size, file_format, file_encoding } },
             cut,
             align,
-            { primary = colors.window_accent, contents = { ruler },     direction = "right" },
-            { primary = colors.window_bg,     contents = { lsp_lint },  direction = "right" },
-            { primary = colors.window_accent, contents = { date_time }, direction = "right" },
+            { primary = colors.window_accent, contents = { ruler } },
+            { primary = colors.window_bg,     contents = { lsp_lint } },
+            { primary = colors.window_accent, contents = { date_time } },
         }
+
+        local align_index
+        for i, sec in ipairs(sections) do
+            if sec == align then
+                align_index = i
+                break
+            end
+        end
 
         local statusline = {}
         for i, sec in ipairs(sections) do
             if type(sec) == "table" and sec.contents then
-                local next_or_prev_primary = get_next_or_prev_primary(sections, i, sec.direction)
-                table.insert(statusline, dynamic_section(sec.direction, sec.primary, sec.contents, next_or_prev_primary))
+                local direction = determine_direction(i, align_index)
+                local next_or_prev_primary = get_next_or_prev_primary(sections, i, direction)
+                table.insert(statusline, dynamic_section(direction, sec.primary, sec.contents, next_or_prev_primary))
             else
                 table.insert(statusline, sec)
             end
