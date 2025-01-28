@@ -15,7 +15,7 @@ return {
                     or vim.wo[win].winbar ~= ""
                     or ft == "help"
                     or ft == "noice"
-                    or ft == "dashboard"
+                    or ft == "snacks_dashboard"
                 then
                     return false
                 else
