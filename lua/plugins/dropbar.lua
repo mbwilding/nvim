@@ -8,23 +8,24 @@ return {
             enable = function(buf, win, _)
                 local ft = vim.bo[buf].filetype
                 local bt = vim.bo[buf].buftype
+                local wb = vim.wo[win].winbar
 
                 if
                     not vim.api.nvim_buf_is_valid(buf)
                     or not vim.api.nvim_win_is_valid(win)
                     or vim.fn.win_gettype(win) ~= ""
-                    or vim.wo[win].winbar ~= ""
+                    or wb ~= ""
                     or ft == "help"
                     or ft == "noice"
                     or ft == "snacks_dashboard"
-                    or bt == "terminal"
                 then
                     return false
                 else
-                    -- print("----------")
-                    -- print("ft: " .. ft)
-                    -- print("bt: " .. bt)
-                    -- print("----------")
+                    print("----------")
+                    print("ft: " .. ft)
+                    print("bt: " .. bt)
+                    print("wb: " .. wb)
+                    print("----------")
                     return true
                 end
             end,
