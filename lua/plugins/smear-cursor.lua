@@ -30,6 +30,6 @@ return {
         smear.setup(opts)
         smear.enabled = false
 
-        vim.keymap.set("n", "<leader>is","<CMD>SmearCursorToggle<CR>")
-    end
+        vim.keymap.set("n", "<leader>is", "<CMD>SmearCursorToggle<CR>")
+    end,
 }

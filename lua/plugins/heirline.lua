@@ -351,7 +351,7 @@ return {
                 init = function(self)
                     self.status_dict = vim.b.gitsigns_status_dict
                     self.has_changes = self.status_dict
-                        and (self.status_dict.added ~= nil or self.status_dict.removed ~= nil or self.status_dict.changed ~= nil)
+                            and (self.status_dict.added ~= nil or self.status_dict.removed ~= nil or self.status_dict.changed ~= nil)
                         or false
                 end,
                 hl = { fg = colors.macro, bg = bg },
@@ -660,14 +660,30 @@ return {
         end
 
         local sections = {
-            { primary = colors.window_accent, contents = { vim_mode },                              direction = "left" },
-            { primary = colors.window_bg,     contents = { work_dir },                              direction = "left" },
-            { primary = colors.window_accent, contents = { git },                                   direction = "left" },
-            { primary = colors.window_bg,     contents = { file_size, file_format, file_encoding }, direction = "left" },
+            {
+                primary = colors.window_accent,
+                contents = { vim_mode },
+                direction = "left",
+            },
+            {
+                primary = colors.window_bg,
+                contents = { work_dir },
+                direction = "left",
+            },
+            {
+                primary = colors.window_accent,
+                contents = { git },
+                direction = "left",
+            },
+            {
+                primary = colors.window_bg,
+                contents = { file_size, file_format, file_encoding },
+                direction = "left",
+            },
             cut,
             align,
-            { primary = colors.window_accent, contents = { ruler },     direction = "right" },
-            { primary = colors.window_bg,     contents = { lsp_lint },  direction = "right" },
+            { primary = colors.window_accent, contents = { ruler }, direction = "right" },
+            { primary = colors.window_bg, contents = { lsp_lint }, direction = "right" },
             { primary = colors.window_accent, contents = { date_time }, direction = "right" },
         }
 
@@ -675,7 +691,10 @@ return {
         for i, sec in ipairs(sections) do
             if type(sec) == "table" and sec.contents then -- typical section
                 local next_or_prev_primary = get_next_or_prev_primary(sections, i, sec.direction)
-                table.insert(statusline, dynamic_section(sec.direction, sec.primary, sec.contents, next_or_prev_primary))
+                table.insert(
+                    statusline,
+                    dynamic_section(sec.direction, sec.primary, sec.contents, next_or_prev_primary)
+                )
             else
                 -- directly using the special section element (e.g., cut or align)
                 table.insert(statusline, sec)
