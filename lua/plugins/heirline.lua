@@ -640,16 +640,24 @@ return {
             return section(direction, primary, secondary, contents)
         end
 
-        local function get_next_or_prev_primary(sections, index, direction)
+        local function get_next_or_prev_primary(sections, index, direction, align_index)
             if direction == "right" then
-                for i = index - 1, #sections do
+                -- If the transition is immediately after align, use colors.none
+                if index == align_index + 1 then
+                    return colors.none
+                end
+                for i = index - 1, 1, -1 do
                     local sec = sections[i]
                     if type(sec) == "table" and sec.primary then
                         return sec.primary
                     end
                 end
             else
-                for i = index + 1, 1, -1 do
+                -- If transitioning right before align, use colors.none
+                if index == align_index - 1 then
+                    return colors.none
+                end
+                for i = index + 1, #sections do
                     local sec = sections[i]
                     if type(sec) == "table" and sec.primary then
                         return sec.primary
@@ -690,7 +698,7 @@ return {
         for i, sec in ipairs(sections) do
             if type(sec) == "table" and sec.contents then
                 local direction = determine_direction(i, align_index)
-                local next_or_prev_primary = get_next_or_prev_primary(sections, i, direction)
+                local next_or_prev_primary = get_next_or_prev_primary(sections, i, direction, align_index)
                 table.insert(statusline, dynamic_section(direction, sec.primary, sec.contents, next_or_prev_primary))
             else
                 table.insert(statusline, sec)
