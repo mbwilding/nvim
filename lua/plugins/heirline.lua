@@ -177,7 +177,7 @@ return {
                 return self.icon
             end,
             hl = function(self)
-                return { fg = self.icon_color, bg = colors.none }
+                return { fg = self.icon_color, bg = colors.none, bold = true }
             end,
         }
 
@@ -199,16 +199,16 @@ return {
                 return "[" .. filename .. "]"
             end,
             hl = function()
-                return { fg = colors.string, bg = colors.none, force = true }
+                return { fg = colors.string, bg = colors.none, bold = true, force = true }
             end,
         }
 
         local file_name_modifier = {
             hl = function()
                 if vim.bo.modified then
-                    return { fg = colors.number, bg = colors.none, force = true }
+                    return { fg = colors.number, bg = colors.none, bold = true, force = true }
                 elseif vim.bo.readonly or not vim.bo.modifiable then
-                    return { fg = colors.error, bg = colors.none, force = true }
+                    return { fg = colors.error, bg = colors.none, bold = true, force = true }
                 end
             end,
         }
@@ -226,7 +226,7 @@ return {
                 return string.upper(vim.bo.filetype)
             end,
             hl = function()
-                return { fg = mode_info().color, bg = colors.none }
+                return { fg = mode_info().color, bg = colors.none, bold = true }
             end,
         }
 
@@ -241,7 +241,7 @@ return {
                     end
                 end,
                 hl = function()
-                    return { fg = colors.keyword, bg = bg }
+                    return { fg = colors.keyword, bg = bg, bold = true }
                 end,
             }
         end
@@ -262,7 +262,7 @@ return {
                     end
                 end,
                 hl = function()
-                    return { fg = colors.method, bg = bg }
+                    return { fg = colors.method, bg = bg, bold = true }
                 end,
             }
         end
@@ -287,7 +287,7 @@ return {
                     return string.format("%.2f%s", fsize / math.pow(1024, i), suffix[i + 1])
                 end,
                 hl = function()
-                    return { fg = colors.module, bg = bg }
+                    return { fg = colors.module, bg = bg, bold = true }
                 end,
             }
         end
@@ -299,7 +299,7 @@ return {
                 local ftime = vim.fn.getftime(vim.api.nvim_buf_get_name(0))
                 return (ftime > 0) and os.date("%c", ftime)
             end,
-            hl = { bg = colors.none },
+            hl = { bg = colors.none, bold = true },
         }
 
         -- RULER
@@ -342,7 +342,7 @@ return {
                     -- local icon = string.rep(self.sbar[i], 1)
                     return "%c %{max([line('.'),1])}/%L %P"
                 end,
-                hl = { fg = colors.string, bg = bg },
+                hl = { fg = colors.string, bg = bg, bold = true },
             }
         end
 
@@ -356,7 +356,7 @@ return {
                         and (self.status_dict.added ~= nil or self.status_dict.removed ~= nil or self.status_dict.changed ~= nil)
                         or false
                 end,
-                hl = { fg = colors.macro, bg = bg },
+                hl = { fg = colors.macro, bg = bg, bold = true },
 
                 { -- git branch name
                     provider = function(self)
@@ -378,7 +378,7 @@ return {
                             end
                         end
                     end,
-                    hl = { fg = utils.get_highlight("DiffAdd").fg, bg = bg },
+                    hl = { fg = utils.get_highlight("DiffAdd").fg, bg = bg, bold = true },
                 },
                 {
                     condition = conditions.is_git_repo,
@@ -392,7 +392,7 @@ return {
                             end
                         end
                     end,
-                    hl = { fg = utils.get_highlight("DiffChange").fg, bg = bg },
+                    hl = { fg = utils.get_highlight("DiffChange").fg, bg = bg, bold = true },
                 },
                 {
                     condition = conditions.is_git_repo,
@@ -406,7 +406,7 @@ return {
                             end
                         end
                     end,
-                    hl = { fg = utils.get_highlight("DiffDelete").fg, bg = bg },
+                    hl = { fg = utils.get_highlight("DiffDelete").fg, bg = bg, bold = true },
                 },
             }
         end
@@ -488,27 +488,27 @@ return {
                     provider = function(self)
                         return self.info > 0 and (" " .. self.info_icon .. self.info)
                     end,
-                    hl = { fg = colors.method, bg = bg },
+                    hl = { fg = colors.method, bg = bg, bold = true },
                 },
                 {
                     provider = function(self)
                         return self.hint > 0 and (" " .. self.hint_icon .. self.hint) or ""
                     end,
-                    hl = { fg = colors.macro, bg = bg },
+                    hl = { fg = colors.macro, bg = bg, bold = true },
                 },
                 {
                     provider = function(self)
                         return self.warn > 0 and (" " .. self.warn_icon .. self.warn) or ""
                     end,
-                    hl = { fg = colors.namespace, bg = bg },
+                    hl = { fg = colors.namespace, bg = bg, bold = true },
                 },
                 {
                     provider = function(self)
                         return self.error > 0 and (" " .. self.error_icon .. self.error) or ""
                     end,
-                    hl = { fg = colors.error, bg = bg },
+                    hl = { fg = colors.error, bg = bg, bold = true },
                 },
-                hl = { fg = colors.number, bg = bg },
+                hl = { fg = colors.number, bg = bg, bold = true },
             }
         end
 
@@ -524,7 +524,7 @@ return {
                     end
                     return icon .. cwd
                 end,
-                hl = { fg = colors.struct, bg = bg },
+                hl = { fg = colors.struct, bg = bg, bold = true },
             }
         end
 
@@ -537,7 +537,7 @@ return {
                 provider = function()
                     return "  " .. require("dap").status()
                 end,
-                hl = { fg = colors.keyword, bg = bg },
+                hl = { fg = colors.keyword, bg = bg, bold = true },
             }
         end
 
@@ -548,7 +548,7 @@ return {
                     -- return os.date("%Y-%m-%d %I:%M:%S %p")
                     return os.date("%I:%M %p")
                 end,
-                hl = { fg = colors.struct, bg = bg },
+                hl = { fg = colors.struct, bg = bg, bold = true },
             }
         end
 
@@ -579,19 +579,19 @@ return {
             condition = function()
                 return require("grapple").exists()
             end,
-            hl = { fg = colors.struct, bg = colors.none },
+            hl = { fg = colors.struct, bg = colors.none, bold = true },
         }
 
         -- MEMES
         local meme = {
             provider = " [Penger Pics: 3.6TB]",
-            hl = { fg = colors.error, bg = colors.none },
+            hl = { fg = colors.error, bg = colors.none, bold = true },
         }
 
         -- Auto-Session
         -- local auto_session = {
         -- 	provider = require("auto-session.lib").current_session_name,
-        -- 	hl = { fg = colors.error, bg = colors.none },
+        -- 	hl = { fg = colors.error, bg = colors.none, bold = true },
         -- }
 
         -- Layout Logic
