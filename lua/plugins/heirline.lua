@@ -351,7 +351,7 @@ return {
                 init = function(self)
                     self.status_dict = vim.b.gitsigns_status_dict
                     self.has_changes = self.status_dict
-                            and (self.status_dict.added ~= nil or self.status_dict.removed ~= nil or self.status_dict.changed ~= nil)
+                        and (self.status_dict.added ~= nil or self.status_dict.removed ~= nil or self.status_dict.changed ~= nil)
                         or false
                 end,
                 hl = { fg = colors.macro, bg = bg },
@@ -634,36 +634,57 @@ return {
             return result
         end
 
+        local function dynamic_section(direction, primary, contents, next_or_prev_primary)
+            local secondary = next_or_prev_primary or colors.none
+            return section(direction, primary, secondary, contents)
+        end
+
+        -- A utility to find the next or previous primary color given an index.
+        local function get_next_or_prev_primary(sections, index, direction)
+            if direction == "right" then
+                for i = index + 1, #sections do
+                    local sec = sections[i]
+                    if sec and #sec > 0 then
+                        return sec[1].hl and sec[1].hl.bg
+                    end
+                end
+            else
+                for i = index - 1, 1, -1 do
+                    local sec = sections[i]
+                    if sec and #sec > 0 then
+                        return sec[1].hl and sec[1].hl.bg
+                    end
+                end
+            end
+            return colors.none
+        end
+
+        local sections = {
+            { primary = colors.window_accent, contents = { vim_mode },                              direction = "left" },
+            { primary = colors.window_bg,     contents = { work_dir },                              direction = "left" },
+            { primary = colors.window_accent, contents = { git },                                   direction = "left" },
+            { primary = colors.window_bg,     contents = { file_size, file_format, file_encoding }, direction = "left" },
+            cut,
+            align,
+            { primary = colors.window_accent, contents = { ruler },     direction = "right" },
+            { primary = colors.window_bg,     contents = { lsp_lint },  direction = "right" },
+            { primary = colors.window_accent, contents = { date_time }, direction = "right" },
+        }
+
+        local statusline = {}
+        for i, sec in ipairs(sections) do
+            if type(sec) == "table" and sec.contents then -- typical section
+                local next_or_prev_primary = get_next_or_prev_primary(sections, i, sec.direction)
+                table.insert(statusline, dynamic_section(sec.direction, sec.primary, sec.contents, next_or_prev_primary))
+            else
+                -- directly using the special section element (e.g., cut or align)
+                table.insert(statusline, sec)
+            end
+        end
+
         -- INIT
         require("heirline").setup({
-            statusline = {
-                section("left", colors.window_accent, colors.window_bg, {
-                    vim_mode,
-                }),
-                section("left", colors.window_bg, colors.window_accent, {
-                    work_dir,
-                }),
-                section("left", colors.window_accent, colors.window_bg, {
-                    git,
-                }),
-                section("left", colors.window_bg, colors.none, {
-                    file_size,
-                    file_format,
-                    file_encoding,
-                }),
-                -- debug(colors.none),
-                cut,
-                align,
-                section("right", colors.window_accent, colors.none, {
-                    ruler,
-                }),
-                section("right", colors.window_bg, colors.window_accent, {
-                    lsp_lint,
-                }),
-                section("right", colors.window_accent, colors.window_bg, {
-                    date_time,
-                }),
-            },
+            statusline = statusline,
             winbar = nil,
         })
     end,
