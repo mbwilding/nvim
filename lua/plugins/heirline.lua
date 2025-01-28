@@ -679,7 +679,7 @@ return {
             { primary = colors.window_bg,     contents = { work_dir } },
             { primary = colors.window_accent, contents = { git } },
             { primary = colors.window_bg,     contents = { file_size, file_format, file_encoding } },
-            cut,
+            -- cut,
             align,
             { primary = colors.window_accent, contents = { ruler } },
             { primary = colors.window_bg,     contents = { lsp_lint } },
