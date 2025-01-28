@@ -21,11 +21,11 @@ return {
                 then
                     return false
                 else
-                    print("----------")
-                    print("ft: " .. ft)
-                    print("bt: " .. bt)
-                    print("wb: " .. wb)
-                    print("----------")
+                    -- print("----------")
+                    -- print("ft: " .. ft)
+                    -- print("bt: " .. bt)
+                    -- print("wb: " .. wb)
+                    -- print("----------")
                     return true
                 end
             end,
