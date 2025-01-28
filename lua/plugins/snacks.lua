@@ -287,7 +287,7 @@ return {
             },
             sections = {
                 { section = "header" },
-                { section = "keys", gap = 1, padding = 1 },
+                { section = "keys",  gap = 1, padding = 1 },
                 {
                     pane = 2,
                     icon = " ",
@@ -328,12 +328,12 @@ return {
                         pr.action = function()
                             vim.ui.open(
                                 "https://dev.azure.com/"
-                                    .. organization
-                                    .. "/"
-                                    .. project
-                                    .. "/_git/"
-                                    .. repository
-                                    .. "/pullrequests"
+                                .. organization
+                                .. "/"
+                                .. project
+                                .. "/_git/"
+                                .. repository
+                                .. "/pullrequests"
                             )
                         end
                     elseif is_gh then
@@ -394,6 +394,9 @@ return {
             },
         },
         picker = {
+            matcher = {
+                frecency = true,
+            },
             sources = {
                 files = {
                     hidden = true,
