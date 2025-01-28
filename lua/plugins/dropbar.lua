@@ -6,7 +6,8 @@ return {
     opts = {
         bar = {
             enable = function(buf, win, _)
-                local ft = vim.bo[buf].ft
+                local ft = vim.bo[buf].filetype
+                local bt = vim.bo[buf].buftype
 
                 if
                     not vim.api.nvim_buf_is_valid(buf)
@@ -16,6 +17,7 @@ return {
                     or ft == "help"
                     or ft == "noice"
                     or ft == "snacks_dashboard"
+                    or bt == "terminal"
                 then
                     return false
                 else
