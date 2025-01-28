@@ -10,7 +10,7 @@ return {
             transparent = false,
         })
 
-        -- vim.cmd([[colorscheme gronk-wilding]])
-        vim.cmd([[colorscheme gronk-mono]])
+        vim.cmd([[colorscheme gronk-wilding]])
+        -- vim.cmd([[colorscheme gronk-mono]])
     end,
 }
