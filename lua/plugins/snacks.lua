@@ -337,7 +337,7 @@ return {
                             )
                         end
                     elseif is_gh then
-                        local organization, repository = origin:match("github.com[:/]([^/]+)/([^/]+)")
+                        -- local organization, repository = origin:match("github.com[:/]([^/]+)/([^/]+)")
 
                         pr.cmd = "gh pr list -L 3"
                         pr.action = function()
