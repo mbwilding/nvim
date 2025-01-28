@@ -30,7 +30,6 @@ return {
         sources = {
             path = {
                 max_depth = 16,
-                oil = true,
             },
             treesitter = {
                 max_depth = 0,
