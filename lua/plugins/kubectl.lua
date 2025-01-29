@@ -1,5 +1,7 @@
 return {
-    "ramilito/kubectl.nvim",
+    -- "ramilito/kubectl.nvim",
+    "mbwilding/kubectl.nvim",
+    dev = true,
     lazy = true,
     enabled = vim.fn.has("win32") == 0,
     keys = {
@@ -11,5 +13,7 @@ return {
             desc = "Kubectl",
         },
     },
-    opts = {},
+    opts = {
+        terminal_cmd = "ghostty -e"
+    },
 }
