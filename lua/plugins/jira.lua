@@ -1,11 +1,12 @@
 return {
     "kid-icarus/jira.nvim",
+    lazy = true,
     dependencies = {
         "nvim-lua/plenary.nvim",
     },
     keys = {
-        { "<leader>jv", "<cmd>Jira issue view<cr>", desc = "Jira: Issue view" },
-        { "<leader>jc", "<cmd>Jira issue create<cr>", desc = "Jira: Issue create" },
+        { "<leader>jv", "<CMD>Jira issue view<CR>", desc = "Jira: Issue view" },
+        { "<leader>jc", "<CMD>Jira issue create<CR>", desc = "Jira: Issue create" },
         {
             "<leader>jt",
             function()
