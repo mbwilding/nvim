@@ -1,7 +1,7 @@
 return {
     -- "ramilito/kubectl.nvim",
     "mbwilding/kubectl.nvim",
-    dev = true,
+    -- dev = true,
     lazy = true,
     enabled = vim.fn.has("win32") == 0,
     keys = {
