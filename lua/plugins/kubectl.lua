@@ -12,6 +12,6 @@ return {
         },
     },
     opts = {
-        terminal_cmd = "ghostty -e"
+        terminal_cmd = "ghostty -e",
     },
 }
