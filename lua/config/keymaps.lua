@@ -122,6 +122,15 @@ vim.keymap.set("n", "<leader>ivl", function()
     vim.notify("Virtual Lines: " .. tostring(vim.diagnostic.config().virtual_lines))
 end, { desc = "Diagnostics: Toggle Virtual Lines" })
 
+vim.keymap.set("n", "<leader>ivc", function()
+    vim.diagnostic.config({
+        virtual_lines = {
+            current_line = not vim.diagnostic.config().virtual_lines.current_line
+        },
+    })
+    vim.notify("Virtual Lines Current Line: " .. tostring(vim.diagnostic.config().virtual_lines.current_line))
+end, { desc = "Diagnostics: Toggle Virtual Lines Current Line" })
+
 vim.keymap.set("n", "<leader>id", function()
     vim.diagnostic.enable(not vim.diagnostic.is_enabled(), {})
     vim.notify("Diagnostics: " .. tostring(vim.diagnostic.is_enabled()))

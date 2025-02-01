@@ -124,6 +124,7 @@ o.laststatus = 3
 
 -- Virtual Text
 vim.diagnostic.config({
-    virtual_lines = true,
-    current_line = true,
+    virtual_lines = {
+        current_line = true,
+    },
 })
