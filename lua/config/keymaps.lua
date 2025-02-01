@@ -34,7 +34,7 @@ end, { desc = "Toggle relative/absolute line numbers" })
 
 vim.keymap.set("n", "<leader>iw", function()
     vim.wo.wrap = not vim.wo.wrap
-    vim.notify("Wrap: " .. tostring(vim.wo.wrap), vim.log.levels.INFO)
+    vim.notify("Wrap: " .. tostring(vim.wo.wrap))
 end, { desc = "Toggle Word Wrap" })
 
 -- Redo
@@ -108,6 +108,15 @@ vim.keymap.set("n", "]d", function()
     vim.diagnostic.jump({ count = 1, float = true })
 end, { desc = "Diagnostics: Goto next diagnostic message" })
 
+vim.keymap.set("n", "<leader>id", function()
+    vim.diagnostic.enable(not vim.diagnostic.is_enabled(), {})
+    vim.notify("Diagnostics: " .. tostring(vim.diagnostic.is_enabled()))
+end, { desc = "Diagnostics: Toggle" })
+
+vim.keymap.set("n", "<leader>k", function()
+    vim.diagnostic.open_float(nil, { scope = "line" })
+end, { desc = "Diagnostics: View float" })
+
 vim.keymap.set("n", "<leader>ivt", function()
     vim.diagnostic.config({
         virtual_text = not vim.diagnostic.config().virtual_text,
@@ -132,12 +141,3 @@ vim.keymap.set("n", "<leader>ivc", function()
     })
     vim.notify("Virtual Lines Current Line: " .. tostring(vim.diagnostic.config().virtual_lines.current_line))
 end, { desc = "Diagnostics: Toggle Virtual Lines Current Line" })
-
-vim.keymap.set("n", "<leader>id", function()
-    vim.diagnostic.enable(not vim.diagnostic.is_enabled(), {})
-    vim.notify("Diagnostics: " .. tostring(vim.diagnostic.is_enabled()))
-end, { desc = "Diagnostics: Toggle" })
-
-vim.keymap.set("n", "<leader>k", function()
-    vim.diagnostic.open_float(nil, { scope = "line" })
-end, { desc = "Diagnostics: View float" })

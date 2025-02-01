@@ -110,14 +110,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
         -- Format the buffer
         map("<leader>f", function()
-            vim.notify("Formatting", vim.log.levels.INFO)
+            vim.notify("Formatting")
             vim.lsp.buf.format({ async = true })
         end, "Format")
 
         map("<leader>ih", function()
             local enabled = not vim.lsp.inlay_hint.is_enabled()
             vim.lsp.inlay_hint.enable(enabled)
-            vim.notify("Inlay Hints: " .. tostring(enabled), vim.log.levels.INFO)
+            vim.notify("Inlay Hints: " .. tostring(enabled))
         end, "Toggle [I]nlay [H]ints")
 
         map("<leader>h", function()
