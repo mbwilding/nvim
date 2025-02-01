@@ -121,3 +121,9 @@ o.splitbelow = true
 
 -- Single status line
 o.laststatus = 3
+
+-- Virtual Text
+vim.diagnostic.config({
+    virtual_lines = true,
+    virtual_text = false,
+})

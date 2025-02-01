@@ -52,7 +52,7 @@ local function select_command(results)
         if cmd_key then
             local cmd_value = results.language.commands[cmd_key]
             local path = vim.fs.joinpath(vim.fn.getcwd(), vim.fs.normalize(results.project.path))
-            local command = vim.list_extend(vim.split(cmd_value, '%s+'), { path })
+            local command = vim.list_extend(vim.split(cmd_value, "%s+"), { path })
             vim.system(command)
         end
     end)
