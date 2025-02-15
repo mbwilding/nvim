@@ -7,8 +7,10 @@ local cmd_prompt =
 local chat_model = model
 local chat_prompt = "Show me your reasoning after telling me the answer."
 
-local temperature = 0.6 -- Lower is less random
-local top_p = 1.0 -- percentage of probability mass considered
+-- Lower is less random
+local temperature = nil -- 0.6
+-- percentage of probability mass considered
+local top_p = nil -- 1.0
 
 local function create_agents()
     local agent_configs = {
