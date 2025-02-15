@@ -1,10 +1,13 @@
-local model = "chatgpt-o1"
+-- Override for command and chat model
+local model_override = nil
 
-local cmd_model = model
+-- Command
+local cmd_model = model_override or "chatgpt-o1"
 local cmd_prompt =
     "Only display the code if it is related to coding or simply answer the question directly, without unnecessary talking."
 
-local chat_model = model
+-- Chat
+local chat_model = model_override or "deepseek-r1"
 local chat_prompt = "Show me your reasoning after telling me the answer."
 
 -- Lower is less random
