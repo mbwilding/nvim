@@ -1,8 +1,10 @@
-local cmd_model = "chatgpt-o1"
+local model = "chatgpt-o1"
+
+local cmd_model = model
 local cmd_prompt =
     "Only display the code if it is related to coding or simply answer the question directly, without unnecessary talking."
 
-local chat_model = "deepseek-r1"
+local chat_model = model
 local chat_prompt = "Show me your reasoning after telling me the answer."
 
 local temperature = 0.6 -- Lower is less random
@@ -45,7 +47,9 @@ local function create_agents()
 end
 
 return {
-    "robitx/gp.nvim",
+    -- "robitx/gp.nvim",
+    "kai-leddy/gp.nvim",
+    branch = "o1-streaming",
     lazy = true,
     keys = {
         -- VISUAL mode mappings
