@@ -1,11 +1,14 @@
 return {
     "hat0uma/csvview.nvim",
-    ft = { "csv" },
+    ft = "csv",
     cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
     keys = {
         {
             "<leader>csv",
-            "<CMD>CsvViewToggle<CR>",
+            function()
+                vim.cmd("CsvViewToggle")
+                vim.notify("CSV View: toggled")
+            end,
             desc = "CSV View: Toggle",
         },
     },
