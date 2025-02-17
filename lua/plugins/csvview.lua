@@ -28,4 +28,14 @@ return {
             jump_prev_row = { "<S-Enter>", mode = { "n", "v" } },
         },
     },
+    config = function(_, opts)
+        require("csvview").setup(opts)
+
+        vim.api.nvim_create_autocmd("FileType", {
+            pattern = "csv",
+            callback = function()
+                vim.cmd("CsvViewEnable")
+            end,
+        })
+    end,
 }
