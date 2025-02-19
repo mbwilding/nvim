@@ -245,6 +245,7 @@ return {
         },
     },
     opts = {
+        image = {},
         dashboard = {
             preset = {
                 keys = {
