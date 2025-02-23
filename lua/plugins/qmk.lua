@@ -15,11 +15,11 @@ return {
             }
         },
         layout = {
-            "x x x x x x _ x x x x x x",
-            "x x x x x x _ x x x x x x",
-            "x x x x x x _ x x x x x x",
-            "x x x x x x _ x x x x x x",
-            "_ _ _ _ x x _ x x _ _ _ _",
+            "x x x x x x _ _ x x x x x x",
+            "x x x x x x _ _ x x x x x x",
+            "x x x x x x _ _ x x x x x x",
+            "x x x x x x _ _ x x x x x x",
+            "_ _ _ _ x x _ _ x x _ _ _ _",
         }
     }
 }
