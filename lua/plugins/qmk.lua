@@ -25,6 +25,15 @@ return {
                     KC_UP = "",
                     KC_LEFT = "",
                     KC_RIGHT = "",
+                    SFT_T = "SHIFT",
+                    CTL_T = "CTRL",
+                    ALT_T = "ALT",
+                    GUI_T = "META",
+                    RCTL_T = "CTRL",
+                    RALT_T = "ALT",
+                    RGUI_T = "META",
+                    ALL_T = "HYPER",
+                    MEH_T = "MEH",
                 }
 
                 -- F Keys
