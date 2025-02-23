@@ -6,6 +6,7 @@ return {
     opts = {
         name = "LAYOUT_voyager",
         variant = "qmk",
+        auto_format_pattern = "keys.h",
         comment_preview = {
             position = "top",
             keymap_overrides = (function()
