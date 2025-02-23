@@ -3,7 +3,7 @@ local empty = '   '
 return {
     "mbwilding/qmk.nvim",
     cmd = { "QMKFormat" },
-    dev = true,
+    dev = false,
     opts = {
         name = "LAYOUT_voyager",
         variant = "qmk",
