@@ -1,9 +1,8 @@
 local empty = '   '
 
 return {
-    "mbwilding/qmk.nvim",
+    "codethread/qmk.nvim",
     cmd = { "QMKFormat" },
-    dev = false,
     opts = {
         name = "LAYOUT_voyager",
         variant = "qmk",
