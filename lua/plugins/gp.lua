@@ -1,5 +1,5 @@
 -- Override for command and chat model
-local model_override = nil
+local model_override = "chatgpt-o1"
 
 -- Command
 local cmd_model = model_override or "chatgpt-o1"
