@@ -41,47 +41,27 @@ return {
         })
 
         -- Inserts ending bracket and/or quotes
-        require("mini.pairs").setup({
-            modes = { insert = true, command = false, terminal = false },
-
-            mappings = (function()
-                local pair_definitions = {
-                    { open = "(", close = ")", pair = "()" },
-                    { open = "[", close = "]", pair = "[]" },
-                    { open = "{", close = "}", pair = "{}" },
-                    { open = "<", close = ">", pair = "<>" },
-                }
-
-                local quote_definitions = {
-                    { char = '"', pair = '""' },
-                    { char = "'", pair = "''" },
-                    { char = "`", pair = "``" },
-                }
-
-                local mappings = {}
-
-                for _, p in ipairs(pair_definitions) do
-                    for _, side in ipairs({ { key = p.open, action = "open" }, { key = p.close, action = "close" } }) do
-                        mappings[side.key] = {
-                            action = side.action,
-                            pair = p.pair,
-                            neigh_pattern = "[^" .. vim.fn.escape(side.key, "\\") .. "].",
-                        }
-                    end
-                end
-
-                for _, q in ipairs(quote_definitions) do
-                    mappings[q.char] = {
-                        action = "closeopen",
-                        pair = q.pair,
-                        neigh_pattern = "[^" .. vim.fn.escape(q.char, "\\") .. "].",
-                        register = { cr = false },
-                    }
-                end
-
-                return mappings
-            end)(),
-        })
+        -- require("mini.pairs").setup({
+        --     modes = { insert = true, command = true, terminal = false },
+        --
+        --     mappings = {
+        --         ['"'] = { action = "closeopen", pair = '""', neigh_pattern = "[^\\].", register = { cr = false } },
+        --         ["'"] = { action = "closeopen", pair = "''", neigh_pattern = "[^%a\\].", register = { cr = false } },
+        --         ["`"] = { action = "closeopen", pair = "``", neigh_pattern = "[^\\].", register = { cr = false } },
+        --
+        --         ["("] = { action = "open", pair = "()", neigh_pattern = "[^\\]." },
+        --         [")"] = { action = "close", pair = "()", neigh_pattern = "[^\\]." },
+        --
+        --         ["["] = { action = "open", pair = "[]", neigh_pattern = "[^\\]." },
+        --         ["]"] = { action = "close", pair = "[]", neigh_pattern = "[^\\]." },
+        --
+        --         ["{"] = { action = "open", pair = "{}", neigh_pattern = "[^\\]." },
+        --         ["}"] = { action = "close", pair = "{}", neigh_pattern = "[^\\]." },
+        --
+        --         ["<"] = { action = "open", pair = "<>", neigh_pattern = "[^%s\\]." },
+        --         [">"] = { action = "close", pair = "<>", neigh_pattern = "[^%s\\]." },
+        --     },
+        -- })
 
         require("mini.bracketed").setup()
     end,
