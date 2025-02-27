@@ -53,7 +53,7 @@ return {
                 }
 
                 local quote_definitions = {
-                    { char = "\"", pair = "\"\"" },
+                    { char = '"', pair = '""' },
                     { char = "'", pair = "''" },
                     { char = "`", pair = "``" },
                 }
