@@ -136,7 +136,7 @@ vim.keymap.set("n", "<leader>ivc", function()
     current_line = not current_line
     vim.diagnostic.config({
         virtual_lines = {
-            current_line = current_line
+            current_line = current_line,
         },
     })
     vim.notify("Virtual Lines Current Line: " .. tostring(vim.diagnostic.config().virtual_lines.current_line))

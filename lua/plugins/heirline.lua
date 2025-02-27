@@ -353,7 +353,7 @@ return {
                 init = function(self)
                     self.status_dict = vim.b.gitsigns_status_dict
                     self.has_changes = self.status_dict
-                        and (self.status_dict.added ~= nil or self.status_dict.removed ~= nil or self.status_dict.changed ~= nil)
+                            and (self.status_dict.added ~= nil or self.status_dict.removed ~= nil or self.status_dict.changed ~= nil)
                         or false
                 end,
                 hl = { fg = colors.macro, bg = bg },
@@ -682,12 +682,12 @@ return {
 
         local sections = {
             { primary = colors.window_accent, contents = { vim_mode } },
-            { primary = colors.window_bg,     contents = { work_dir } },
+            { primary = colors.window_bg, contents = { work_dir } },
             { primary = colors.window_accent, contents = { git } },
-            { primary = colors.window_bg,     contents = { file_size, file_format, file_encoding } },
+            { primary = colors.window_bg, contents = { file_size, file_format, file_encoding } },
             align_cut,
             { primary = colors.window_accent, contents = { ruler } },
-            { primary = colors.window_bg,     contents = { lsp_lint } },
+            { primary = colors.window_bg, contents = { lsp_lint } },
             { primary = colors.window_accent, contents = { date_time } },
         }
 

@@ -8,7 +8,7 @@ return {
     },
     opts = {
         preview = {
-            icon_provider = "devicons"
-        }
-    }
+            icon_provider = "devicons",
+        },
+    },
 }
