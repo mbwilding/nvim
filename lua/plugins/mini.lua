@@ -42,7 +42,7 @@ return {
 
         -- Inserts ending bracket and/or quotes
         require("mini.pairs").setup({
-            modes = { insert = true, command = true, terminal = true },
+            modes = { insert = true, command = false, terminal = false },
 
             mappings = {
                 ["("] = { action = "open", pair = "()", neigh_pattern = "[^\\]." },
