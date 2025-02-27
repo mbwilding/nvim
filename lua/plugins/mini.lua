@@ -44,23 +44,43 @@ return {
         require("mini.pairs").setup({
             modes = { insert = true, command = false, terminal = false },
 
-            mappings = {
-                ["("] = { action = "open", pair = "()", neigh_pattern = "[^(]." },
-                [")"] = { action = "close", pair = "()", neigh_pattern = "[^)]." },
+            mappings = (function()
+                local pair_definitions = {
+                    { open = "(", close = ")", pair = "()" },
+                    { open = "[", close = "]", pair = "[]" },
+                    { open = "{", close = "}", pair = "{}" },
+                    { open = "<", close = ">", pair = "<>" },
+                }
 
-                ["["] = { action = "open", pair = "[]", neigh_pattern = "[^[]." },
-                ["]"] = { action = "close", pair = "[]", neigh_pattern = "[^]]." },
+                local quote_definitions = {
+                    { char = "\"", pair = "\"\"" },
+                    { char = "'", pair = "''" },
+                    { char = "`", pair = "``" },
+                }
 
-                ["{"] = { action = "open", pair = "{}", neigh_pattern = "[^{]." },
-                ["}"] = { action = "close", pair = "{}", neigh_pattern = "[^}]." },
+                local mappings = {}
 
-                ["<"] = { action = "open", pair = "<>", neigh_pattern = "[^<]." },
-                [">"] = { action = "close", pair = "<>", neigh_pattern = "[^>]." },
+                for _, p in ipairs(pair_definitions) do
+                    for _, side in ipairs({ { key = p.open, action = "open" }, { key = p.close, action = "close" } }) do
+                        mappings[side.key] = {
+                            action = side.action,
+                            pair = p.pair,
+                            neigh_pattern = "[^" .. vim.fn.escape(side.key, "\\") .. "].",
+                        }
+                    end
+                end
 
-                ['"'] = { action = "closeopen", pair = '""', neigh_pattern = '[^"].', register = { cr = false } },
-                ["'"] = { action = "closeopen", pair = "''", neigh_pattern = "[^'].", register = { cr = false } },
-                ["`"] = { action = "closeopen", pair = "``", neigh_pattern = "[^`].", register = { cr = false } },
-            },
+                for _, q in ipairs(quote_definitions) do
+                    mappings[q.char] = {
+                        action = "closeopen",
+                        pair = q.pair,
+                        neigh_pattern = "[^" .. vim.fn.escape(q.char, "\\") .. "].",
+                        register = { cr = false },
+                    }
+                end
+
+                return mappings
+            end)(),
         })
 
         require("mini.bracketed").setup()
