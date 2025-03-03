@@ -15,42 +15,6 @@ local temperature = nil -- 0.6
 -- percentage of probability mass considered
 local top_p = nil -- 1.0
 
-local function create_agents()
-    local agent_configs = {
-        { name = "chatgpt-4o", provider = "openai", model = "gpt-4o-2024-11-20" },
-        { name = "chatgpt-o1", provider = "openai", model = "o1-preview" },
-        { name = "chatgpt-o1-mini", provider = "openai", model = "o1-mini" },
-        { name = "ollama-phi-4", provider = "ollama", model = "vanilj/Phi-4:latest" },
-        { name = "ollama-deepseek-r1", provider = "ollama", model = "deepseek-r1:32b" },
-        { name = "deepseek-v3", provider = "deepseek", model = "deepseek-chat" },
-        { name = "deepseek-r1", provider = "deepseek", model = "deepseek-reasoner" },
-    }
-
-    local function create_agent(config, prompt, is_cmd)
-        return {
-            name = config.name,
-            provider = config.provider,
-            command = is_cmd,
-            chat = not is_cmd,
-            model = {
-                model = config.model,
-                temperature = temperature,
-                top_p = top_p,
-            },
-            system_prompt = prompt,
-        }
-    end
-
-    local agents = {}
-
-    for _, config in ipairs(agent_configs) do
-        table.insert(agents, create_agent(config, cmd_prompt, true))
-        table.insert(agents, create_agent(config, chat_prompt, false))
-    end
-
-    return agents
-end
-
 return {
     -- "robitx/gp.nvim",
     "kai-leddy/gp.nvim",
@@ -146,7 +110,64 @@ return {
         default_chat_agent = chat_model,
         default_command_agent = cmd_model,
         chat_confirm_delete = false,
-        agents = create_agents(),
+        agents = {
+            {
+                name = "chatgpt-4o",
+                provider = "openai",
+                model = { model = "gpt-4o-2024-11-20", temperature = temperature, top_p = top_p },
+                command = true,
+                chat = true,
+                system_prompt = cmd_prompt,
+            },
+            {
+                name = "chatgpt-o1",
+                provider = "openai",
+                model = { model = "o1-preview", temperature = temperature, top_p = top_p },
+                command = true,
+                chat = true,
+                system_prompt = cmd_prompt,
+            },
+            {
+                name = "chatgpt-o1-mini",
+                provider = "openai",
+                model = { model = "o1-mini", temperature = temperature, top_p = top_p },
+                command = true,
+                chat = true,
+                system_prompt = cmd_prompt,
+            },
+            {
+                name = "ollama-phi-4",
+                provider = "ollama",
+                model = { model = "vanilj/Phi-4:latest", temperature = temperature, top_p = top_p },
+                command = true,
+                chat = true,
+                system_prompt = cmd_prompt,
+            },
+            {
+                name = "ollama-deepseek-r1",
+                provider = "ollama",
+                model = { model = "deepseek-r1:32b", temperature = temperature, top_p = top_p },
+                command = true,
+                chat = true,
+                system_prompt = cmd_prompt,
+            },
+            {
+                name = "deepseek-v3",
+                provider = "deepseek",
+                model = { model = "deepseek-chat", temperature = temperature, top_p = top_p },
+                command = true,
+                chat = true,
+                system_prompt = cmd_prompt,
+            },
+            {
+                name = "deepseek-r1",
+                provider = "deepseek",
+                model = { model = "deepseek-reasoner", temperature = temperature, top_p = top_p },
+                command = true,
+                chat = true,
+                system_prompt = cmd_prompt,
+            },
+        },
         providers = {
             openai = {
                 endpoint = "https://api.openai.com/v1/chat/completions",

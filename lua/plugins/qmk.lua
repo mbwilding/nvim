@@ -1,4 +1,4 @@
-local empty = '   '
+local empty = "   "
 
 return {
     "codethread/qmk.nvim",
@@ -73,14 +73,14 @@ return {
                         for _, note_letter in ipairs(names) do
                             local octave_str = octave == 0 and "" or tostring(octave)
                             local key = "MI_" .. note_letter .. octave_str
-                            local display_note_letter = note_letter:gsub('s', '#')
+                            local display_note_letter = note_letter:gsub("s", "#")
                             keys[key] = display_note_letter .. octave_str
                         end
                     end
                 end
 
                 return keys
-            end)()
+            end)(),
         },
         layout = {
             "x x x x x x _ _ x x x x x x",
@@ -88,6 +88,6 @@ return {
             "x x x x x x _ _ x x x x x x",
             "x x x x x x _ _ x x x x x x",
             "_ _ _ _ x x _ _ x x _ _ _ _",
-        }
-    }
+        },
+    },
 }
