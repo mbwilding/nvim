@@ -1,4 +1,3 @@
-
 return {
     "olimorris/codecompanion.nvim",
     dependencies = {
