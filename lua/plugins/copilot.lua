@@ -10,6 +10,7 @@ return {
         },
     },
     opts = {
+        copilot_model = "gpt-4o-copilot",
         panel = {
             enabled = true,
             auto_refresh = false,
