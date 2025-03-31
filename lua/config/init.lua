@@ -8,7 +8,6 @@ local modules = {
     "platform",
     "neovide",
     "lazy",
-    "plugins/notes",
     "plugins/launch",
 }
 
