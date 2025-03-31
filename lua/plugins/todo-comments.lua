@@ -31,17 +31,25 @@ return {
         "nvim-lua/plenary.nvim",
         "folke/snacks.nvim",
     },
-    keys = {
-        {
-            "<leader>st",
-            function()
-                ---@diagnostic disable-next-line: undefined-global, undefined-field
-                Snacks.picker.todo_comments(keywords)
-            end,
-            desc = "Todo",
-        },
-    },
+    -- TODO: This breaks the loading
+    -- keys = {
+    --     {
+    --         "<leader>st",
+    --         function()
+    --             ---@diagnostic disable-next-line: undefined-global, undefined-field
+    --             Snacks.picker.todo_comments(keywords)
+    --         end,
+    --         desc = "TODO",
+    --     },
+    -- },
     opts = {
         keywords = keywords,
     },
+    config = function(_, opts)
+        require("todo-comments").setup(opts)
+        vim.keymap.set("n", "<leader>st", function()
+            ---@diagnostic disable-next-line: undefined-global, undefined-field
+            Snacks.picker.todo_comments(keywords)
+        end, { desc = "TODO" })
+    end
 }
