@@ -11,8 +11,8 @@ M.projects = require("config/plugins/launch/utils").find_projects({
 })
 
 M.commands = {
-    build = { command = "zig build", path = false },
     run = { command = "zig build run", path = false },
+    build = { command = "zig build", path = false },
     test = { command = "zig build test", path = false },
     watch = { command = "zig build --watch", path = false },
 }
