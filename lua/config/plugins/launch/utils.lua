@@ -51,9 +51,8 @@ local function select_command(results)
     }, function(cmd_key)
         if cmd_key then
             local cmd_value = results.language.commands[cmd_key]
+
             local cmd
-
-
             if cmd_value.path then
                 local path = vim.fs.joinpath(vim.fn.getcwd(), vim.fs.normalize(results.project.path))
                 cmd = cmd_value.command .. " " .. path

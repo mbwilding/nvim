@@ -360,6 +360,7 @@ return {
             },
         },
         picker = {
+            ui_select = true,
             layout = {
                 reverse = true,
                 layout = {
