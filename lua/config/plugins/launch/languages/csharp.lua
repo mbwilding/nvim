@@ -10,9 +10,9 @@ M.projects = require("config/plugins/launch/utils").find_projects({
 })
 
 M.commands = {
-    restore = "dotnet restore",
-    build = "dotnet build --no-restore",
-    run = "dotnet run --no-restore --no-build --project",
+    restore = { command = "dotnet restore", path = true },
+    build = { command = "dotnet build --no-restore", path = true },
+    run = { command = "dotnet run --no-restore --no-build --project", path = true },
 }
 
 return M

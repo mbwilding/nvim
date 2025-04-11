@@ -51,9 +51,30 @@ local function select_command(results)
     }, function(cmd_key)
         if cmd_key then
             local cmd_value = results.language.commands[cmd_key]
-            local path = vim.fs.joinpath(vim.fn.getcwd(), vim.fs.normalize(results.project.path))
-            local command = vim.list_extend(vim.split(cmd_value, "%s+"), { path })
-            vim.system(command)
+            local cmd
+
+
+            if cmd_value.path then
+                local path = vim.fs.joinpath(vim.fn.getcwd(), vim.fs.normalize(results.project.path))
+                cmd = cmd_value.command .. " " .. path
+            else
+                cmd = cmd_value.command
+            end
+
+            -- Background
+            -- local command_table = vim.list_extend(vim.split(cmd_value, "%s+"), { path })
+            -- vim.system(command_table)
+
+            -- Toggleterm
+            local terminal = require("toggleterm.terminal").Terminal
+            local my_term = terminal:new({
+                cmd = cmd,
+                hidden = true,
+                direction = "horizontal",
+                close_on_exit = false
+            })
+            my_term:open()
+            -- my_term:toggle()
         end
     end)
 end
