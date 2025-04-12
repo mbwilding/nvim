@@ -51,5 +51,5 @@ return {
             ---@diagnostic disable-next-line: undefined-global, undefined-field
             Snacks.picker.todo_comments(keywords)
         end, { desc = "TODO" })
-    end
+    end,
 }

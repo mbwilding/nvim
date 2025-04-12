@@ -1,4 +1,6 @@
 return {
     "andrewferrier/debugprint.nvim",
-    opts = {},
+    opts = {
+        highlight_lines = false,
+    },
 }
