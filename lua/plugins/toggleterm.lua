@@ -44,6 +44,8 @@ return {
         local uname = vim.loop.os_uname().sysname
         if uname == "Windows_NT" then
             opts.shell = "pwsh -NoLogo"
+        else
+            opts.shell = "fish"
         end
 
         toggle_term.setup(opts)
