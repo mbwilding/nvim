@@ -362,6 +362,7 @@ return {
         picker = {
             ui_select = true,
             layout = {
+                preview = true,
                 reverse = true,
                 layout = {
                     box = "horizontal",
