@@ -32,13 +32,22 @@ return {
                     },
                 })
             end,
+            copilot = function()
+                return require("codecompanion.adapters").extend("copilot", {
+                    schema = {
+                        model = {
+                            default = "o3-mini",
+                        },
+                    },
+                })
+            end,
         },
         strategies = {
             chat = {
                 adapter = "openai",
             },
             inline = {
-                adapter = "openai",
+                adapter = "copilot",
                 language = "English",
                 -- layout = "vertical",
                 keymaps = {
