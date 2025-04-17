@@ -43,7 +43,7 @@ end, { desc = "Toggle Word Wrap" })
 k("n", "U", "<C-r>", { desc = "Redo" })
 
 -- Registers
-k({ "n", "v" }, "x", "\"_x")
+k("n", "x", "\"_x")
 
 -- Sort
 k("v", "s", ":sort<CR>gv")
