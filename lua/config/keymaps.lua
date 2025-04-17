@@ -1,68 +1,63 @@
+local k = vim.keymap.set
+
 -- Map ; to :
-vim.keymap.set("n", ";", ":")
+k("n", ";", ":")
 
 -- Allow hjkl navigation in non-normal mode
-vim.keymap.set({ "i", "c" }, "<C-k>", "<Up>")
-vim.keymap.set({ "i", "c" }, "<C-j>", "<Down>")
-vim.keymap.set({ "i", "c" }, "<C-h>", "<Left>")
-vim.keymap.set({ "i", "c" }, "<C-l>", "<Right>")
+k({ "i", "c" }, "<C-k>", "<Up>")
+k({ "i", "c" }, "<C-j>", "<Down>")
+k({ "i", "c" }, "<C-h>", "<Left>")
+k({ "i", "c" }, "<C-l>", "<Right>")
 
 -- Window focus
-vim.keymap.set("n", "<C-h>", "<C-w>h")
-vim.keymap.set("n", "<C-j>", "<C-w>j")
-vim.keymap.set("n", "<C-k>", "<C-w>k")
-vim.keymap.set("n", "<C-l>", "<C-w>l")
+k("n", "<C-h>", "<C-w>h")
+k("n", "<C-j>", "<C-w>j")
+k("n", "<C-k>", "<C-w>k")
+k("n", "<C-l>", "<C-w>l")
 
 -- Tab close
-vim.keymap.set("n", "q", ":tabclose<CR>")
+k("n", "q", ":tabclose<CR>")
 
 -- End search highlight and clear messages
-vim.keymap.set("n", "<Esc>", "<CMD>noh<CR>")
+k("n", "<Esc>", "<CMD>noh<CR>")
 
 -- Leader NOP
-vim.keymap.set({ "n", "v" }, "<leader>", "<Nop>")
+k({ "n", "v" }, "<leader>", "<Nop>")
 
 -- Remap for dealing with word wrap
-vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
-vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
+k("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
+k("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
 -- Toggles
-vim.keymap.set("n", "<leader>ir", function()
+k("n", "<leader>ir", function()
     vim.o.relativenumber = not vim.o.relativenumber
     vim.notify("Relative Numbers: " .. tostring(vim.o.relativenumber))
 end, { desc = "Toggle relative/absolute line numbers" })
 
-vim.keymap.set("n", "<leader>iw", function()
+k("n", "<leader>iw", function()
     vim.wo.wrap = not vim.wo.wrap
     vim.notify("Wrap: " .. tostring(vim.wo.wrap))
 end, { desc = "Toggle Word Wrap" })
 
 -- Redo
-vim.keymap.set("n", "U", "<C-r>", { desc = "Redo" })
-
--- Clipboard
--- Check autocmds
--- vim.keymap.set({ "n", "v" }, "<leader>y", "\"+y", { desc = "Copy to clipboard" })
--- vim.keymap.set({ "n", "v" }, "<leader>yy", "\"+Y", { desc = "Copy to clipboard (line)" })
-vim.keymap.set({ "n", "v" }, "<leader>p", "\"+p", { desc = "Paste from clipboard" })
-vim.keymap.set({ "n", "v" }, "<leader>P", "\"+P", { desc = "Paste from clipboard (before)" })
+k("n", "U", "<C-r>", { desc = "Redo" })
 
 -- Registers
-vim.keymap.set("n", "x", "\"_x")
+k("n", "x", "\"_x")
 
 -- Sort
-vim.keymap.set("v", "s", ":sort<CR>gv")
+k("v", "s", ":sort<CR>gv")
 
 -- Select all
-vim.keymap.set("n", "<C-a>", "ggVG", { desc = "Select all" })
+k("n", "<C-a>", "ggVG", { desc = "Select all" })
 
 -- Mouse
-vim.keymap.set("v", "<RightMouse>", "\"+y")
-vim.keymap.set({ "n", "v" }, "<MiddleMouse>", "\"+p")
+k("v", "<RightMouse>", "\"+y")
+k({ "n", "v" }, "<MiddleMouse>", "\"+p")
 
 -- Rulers
 local columns = "80,120"
-vim.keymap.set("n", "<leader>ic", function()
+k("n", "<leader>ic", function()
     if vim.o.colorcolumn == columns then
         vim.o.colorcolumn = ""
     else
@@ -73,13 +68,13 @@ vim.keymap.set("n", "<leader>ic", function()
 end, { desc = "Toggle Columns" })
 
 -- HTML Generation
-vim.keymap.set("n", "<leader>ht", function()
+k("n", "<leader>ht", function()
     vim.cmd("TOhtml")
     vim.defer_fn(function()
         vim.lsp.buf.format({ async = false })
     end, 200)
 end, { desc = "HTML" })
-vim.keymap.set("v", "<leader>ht", function()
+k("v", "<leader>ht", function()
     vim.cmd("'<,'>TOhtml")
     vim.defer_fn(function()
         vim.lsp.buf.format({ async = false })
@@ -87,44 +82,44 @@ vim.keymap.set("v", "<leader>ht", function()
 end, { desc = "HTML" })
 
 -- Debug
--- vim.keymap.set("n", "\\m", "<CMD>messages<CR>", { desc = "Debug: Messages" })
-vim.keymap.set("n", "\\i", "<CMD>Inspect<CR>", { desc = "Highlights: Inspect" })
+-- k("n", "\\m", "<CMD>messages<CR>", { desc = "Debug: Messages" })
+k("n", "\\i", "<CMD>Inspect<CR>", { desc = "Highlights: Inspect" })
 
 -- Custom
-vim.keymap.set("n", "yd", "yyp", { desc = "Duplicate line" })
+k("n", "yd", "yyp", { desc = "Duplicate line" })
 
 -- Whitespace
 local whitespace = false
-vim.keymap.set("n", "<leader>iW", function()
+k("n", "<leader>iW", function()
     whitespace = not whitespace
     vim.opt.list = whitespace
 end, { desc = "Toggle Whitespace Visuals" })
 
 -- Diagnostic keymaps
-vim.keymap.set("n", "[d", function()
+k("n", "[d", function()
     vim.diagnostic.jump({ count = -1, float = true })
 end, { desc = "Diagnostics: Goto previous diagnostic message" })
-vim.keymap.set("n", "]d", function()
+k("n", "]d", function()
     vim.diagnostic.jump({ count = 1, float = true })
 end, { desc = "Diagnostics: Goto next diagnostic message" })
 
-vim.keymap.set("n", "<leader>id", function()
+k("n", "<leader>id", function()
     vim.diagnostic.enable(not vim.diagnostic.is_enabled(), {})
     vim.notify("Diagnostics: " .. tostring(vim.diagnostic.is_enabled()))
 end, { desc = "Diagnostics: Toggle" })
 
-vim.keymap.set("n", "<leader>k", function()
+k("n", "<leader>k", function()
     vim.diagnostic.open_float(nil, { scope = "line" })
 end, { desc = "Diagnostics: View float" })
 
-vim.keymap.set("n", "<leader>ivt", function()
+k("n", "<leader>ivt", function()
     vim.diagnostic.config({
         virtual_text = not vim.diagnostic.config().virtual_text,
     })
     vim.notify("Virtual Text: " .. tostring(vim.diagnostic.config().virtual_text))
 end, { desc = "Diagnostics: Toggle Virtual Text" })
 
-vim.keymap.set("n", "<leader>ivl", function()
+k("n", "<leader>ivl", function()
     vim.diagnostic.config({
         virtual_lines = not vim.diagnostic.config().virtual_lines,
     })
@@ -132,7 +127,7 @@ vim.keymap.set("n", "<leader>ivl", function()
 end, { desc = "Diagnostics: Toggle Virtual Lines" })
 
 local current_line = vim.diagnostic.config().virtual_lines.current_line
-vim.keymap.set("n", "<leader>ivc", function()
+k("n", "<leader>ivc", function()
     current_line = not current_line
     vim.diagnostic.config({
         virtual_lines = {

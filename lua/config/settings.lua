@@ -1,9 +1,20 @@
 local g = vim.g
-local o = vim.opt
+local o = vim.o
+local opt = vim.opt
 local wo = vim.wo
 
--- Enable loading plugins faster
-vim.loader.enable()
+g.mapleader = " "
+g.maplocalleader = " "
+g.have_nerd_font = true
+
+o.showmode = false
+o.inccommand = "split"
+o.list = true
+opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+
+vim.schedule(function()
+    o.clipboard = "unnamedplus"
+end)
 
 -- Set leader key to space
 local leader = " "
@@ -48,7 +59,7 @@ o.ignorecase = true
 o.smartcase = true
 
 -- Set update time for diagnostics
-o.updatetime = 100
+o.updatetime = 250
 
 -- Leader command timeout
 o.timeout = true
@@ -98,18 +109,7 @@ o.spelllang = "en_au"
 -- o.spell = true
 
 -- Set fill characters after EOF
-o.fillchars:append({ eob = " " })
-
--- List characters
-o.list = false
-local space = "·"
-o.listchars:append({
-    tab = ">─",
-    multispace = space,
-    lead = space,
-    trail = space,
-    nbsp = "⣿",
-})
+opt.fillchars:append({ eob = " " })
 
 -- Indentation
 o.shiftwidth = 4
