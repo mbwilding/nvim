@@ -15,6 +15,13 @@ k("n", "<C-j>", "<C-w>j")
 k("n", "<C-k>", "<C-w>k")
 k("n", "<C-l>", "<C-w>l")
 
+-- Clipboard
+-- Check autocmds
+-- k({ "n", "v" }, "<leader>y", "\"+y", { desc = "Copy to clipboard" })
+-- k({ "n", "v" }, "<leader>yy", "\"+Y", { desc = "Copy to clipboard (line)" })
+k({ "n", "v" }, "<leader>p", "\"+p", { desc = "Paste from clipboard" })
+k({ "n", "v" }, "<leader>P", "\"+P", { desc = "Paste from clipboard (before)" })
+
 -- Tab close
 k("n", "q", ":tabclose<CR>")
 

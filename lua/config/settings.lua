@@ -12,9 +12,9 @@ o.inccommand = "split"
 o.list = true
 opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
-vim.schedule(function()
-    o.clipboard = "unnamedplus"
-end)
+-- vim.schedule(function()
+--     o.clipboard = "unnamedplus"
+-- end)
 
 -- Set leader key to space
 local leader = " "
