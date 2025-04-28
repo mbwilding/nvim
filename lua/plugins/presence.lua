@@ -13,8 +13,8 @@ return {
             debounce_timeout = 10,            -- Number of seconds to debounce events (or calls to `:lua package.loaded.presence:update(<filename>, true)`)
             enable_line_number = false,       -- Displays the current line number instead of the current project
             blacklist = {                     -- A list of strings or Lua patterns that disable Rich Presence if the current file name, path, or workspace matches
-                -- ".*/rwwa/.*",              -- Matches Unix-like paths
-                -- ".*\\rwwa\\.*",            -- Matches Windows paths
+                -- ".*/rwwa/.*",
+                -- ".*\\rwwa\\.*",
                 ".*/Unreal Projects/.*"
             },
             buttons = true,   -- Configure Rich Presence button(s), either a boolean to enable/disable, a static table (`{{ label = "<label>", url = "<url>" }, ...}`, or a function(buffer: string, repo_url: string|nil): table)
