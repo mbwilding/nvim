@@ -4,8 +4,14 @@ return {
     config = function()
         vim.g.unreal_engine_path = os.getenv("HOME") .. "/dev/UnrealEngine"
 
-        vim.keymap.set("n", "<leader><esc>", function()
-            require("launcher").run()
-        end, { desc = "Launcher" })
+        local prefix = "Launcher: "
+
+        vim.keymap.set("n", "<leader>lp", function()
+            require("launcher").picker()
+        end, { desc = prefix .. "Picker" })
+
+        vim.keymap.set("n", "<leader>lr", function()
+            require("launcher").rerun()
+        end, { desc = prefix .. "Rerun" })
     end,
 }
