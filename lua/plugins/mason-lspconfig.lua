@@ -8,48 +8,48 @@ return {
         "Issafalcon/lsp-overloads.nvim",
         "kevinhwang91/nvim-ufo",
         -- "Hoffs/omnisharp-extended-lsp.nvim",
-        -- "Decodetalkers/csharpls-extended-lsp.nvim",
+        "Decodetalkers/csharpls-extended-lsp.nvim",
 
-        {
-            "seblj/roslyn.nvim",
-            ft = "cs",
-            opts = {
-                config = {
-                    capabilities = (function()
-                        local capabilities = require("blink.cmp").get_lsp_capabilities()
-
-                        -- UFO (Folding)
-                        if pcall(require, "ufo") then
-                            capabilities.textDocument.foldingRange = {
-                                dynamicRegistration = false,
-                                lineFoldingOnly = true,
-                            }
-                        end
-
-                        return capabilities
-                    end)(),
-                    settings = {
-                        ["csharp|inlay_hints"] = {
-                            csharp_enable_inlay_hints_for_implicit_object_creation = true,
-                            csharp_enable_inlay_hints_for_implicit_variable_types = true,
-                            csharp_enable_inlay_hints_for_lambda_parameter_types = true,
-                            csharp_enable_inlay_hints_for_types = true,
-                            dotnet_enable_inlay_hints_for_indexer_parameters = true,
-                            dotnet_enable_inlay_hints_for_literal_parameters = true,
-                            dotnet_enable_inlay_hints_for_object_creation_parameters = true,
-                            dotnet_enable_inlay_hints_for_other_parameters = true,
-                            dotnet_enable_inlay_hints_for_parameters = true,
-                            dotnet_suppress_inlay_hints_for_parameters_that_differ_only_by_suffix = true,
-                            dotnet_suppress_inlay_hints_for_parameters_that_match_argument_name = true,
-                            dotnet_suppress_inlay_hints_for_parameters_that_match_method_intent = true,
-                        },
-                        ["csharp|code_lens"] = {
-                            dotnet_enable_references_code_lens = true,
-                        },
-                    },
-                },
-            },
-        },
+        -- {
+        --     "seblj/roslyn.nvim",
+        --     ft = "cs",
+        --     opts = {
+        --         config = {
+        --             capabilities = (function()
+        --                 local capabilities = require("blink.cmp").get_lsp_capabilities()
+        --
+        --                 -- UFO (Folding)
+        --                 if pcall(require, "ufo") then
+        --                     capabilities.textDocument.foldingRange = {
+        --                         dynamicRegistration = false,
+        --                         lineFoldingOnly = true,
+        --                     }
+        --                 end
+        --
+        --                 return capabilities
+        --             end)(),
+        --             settings = {
+        --                 ["csharp|inlay_hints"] = {
+        --                     csharp_enable_inlay_hints_for_implicit_object_creation = true,
+        --                     csharp_enable_inlay_hints_for_implicit_variable_types = true,
+        --                     csharp_enable_inlay_hints_for_lambda_parameter_types = true,
+        --                     csharp_enable_inlay_hints_for_types = true,
+        --                     dotnet_enable_inlay_hints_for_indexer_parameters = true,
+        --                     dotnet_enable_inlay_hints_for_literal_parameters = true,
+        --                     dotnet_enable_inlay_hints_for_object_creation_parameters = true,
+        --                     dotnet_enable_inlay_hints_for_other_parameters = true,
+        --                     dotnet_enable_inlay_hints_for_parameters = true,
+        --                     dotnet_suppress_inlay_hints_for_parameters_that_differ_only_by_suffix = true,
+        --                     dotnet_suppress_inlay_hints_for_parameters_that_match_argument_name = true,
+        --                     dotnet_suppress_inlay_hints_for_parameters_that_match_method_intent = true,
+        --                 },
+        --                 ["csharp|code_lens"] = {
+        --                     dotnet_enable_references_code_lens = true,
+        --                 },
+        --             },
+        --         },
+        --     },
+        -- },
     },
     config = function()
         -- These can have more fields like cmd, settings and filetypes
@@ -289,190 +289,190 @@ return {
                     },
                 },
             },
-            roslyn = {
+            -- roslyn = {
+            --     enabled = true,
+            --     custom = true,
+            -- },
+            csharp_ls = {
                 enabled = true,
-                custom = true,
+                handlers = {
+                    ["textDocument/definition"] = require("csharpls_extended").handler,
+                    ["textDocument/typeDefinition"] = require("csharpls_extended").handler,
+                },
             },
-            -- csharp_ls = {
-            --     enabled = false,
-            --     handlers = {
-            --         ["textDocument/definition"] = require("csharpls_extended").handler,
-            --         ["textDocument/typeDefinition"] = require("csharpls_extended").handler,
-            --     },
-            -- },
-            -- omnisharp = {
-            --     enabled = false,
-            --     settings = {
-            --         csharp = {
-            --             inlayHints = {
-            --                 enableInlayHintsForImplicitObjectCreation = true,
-            --                 enableInlayHintsForImplicitVariableTypes = true,
-            --                 enableInlayHintsForLambdaParameterTypes = true,
-            --                 enableInlayHintsForTypes = true,
-            --             },
-            --             debug = {
-            --                 -- console = "internalConsole",
-            --                 -- enableStepFiltering = true,
-            --                 expressionEvaluationOptions = {
-            --                     -- allowFastEvaluate = true,
-            --                     -- allowImplicitFuncEval = true,
-            --                     -- allowToString = true,
-            --                     -- showRawValues = false,
-            --                 },
-            --                 -- justMyCode = true,
-            --                 logging = {
-            --                     -- browserStdOut = true,
-            --                     -- consoleUsageMessage = true,
-            --                     diagnosticsLog = {
-            --                         -- debugEngineAPITracing = "none",
-            --                         -- debugRuntimeEventTracing = false,
-            --                         -- dispatcherMessages = "none",
-            --                         -- expressionEvaluationTracing = false,
-            --                         -- protocolMessages = false,
-            --                         -- startDebuggingTracing = false,
-            --                     },
-            --                     -- elapsedTiming = false,
-            --                     -- engineLogging = false,
-            --                     -- exceptions = true,
-            --                     -- moduleLoad = true,
-            --                     -- processExit = true,
-            --                     -- programOutput = true,
-            --                     -- threadExit = false,
-            --                 },
-            --                 -- requireExactSource = true,
-            --                 -- sourceFileMap = {},
-            --                 -- stopAtEntry = false,
-            --                 -- suppressJITOptimizations = false,
-            --                 symbolOptions = {
-            --                     -- cachePath = "",
-            --                     moduleFilter = {
-            --                         -- excludedModules = {},
-            --                         -- includeSymbolsNextToModules = true,
-            --                         -- includeSymbolsOnDemand = true,
-            --                         -- includedModules = {},
-            --                         -- mode = "loadAllButExcluded",
-            --                     },
-            --                     searchMicrosoftSymbolServer = true,
-            --                     searchNuGetOrgSymbolServer = true,
-            --                     -- searchPaths = {},
-            --                 },
-            --             },
-            --             format = {
-            --                 -- enable = true,
-            --             },
-            --             -- maxProjectFileCountForDiagnosticAnalysis = 1000,
-            --             referencesCodeLens = {
-            --                 -- filteredSymbols = {},
-            --             },
-            --             -- semanticHighlighting.enabled = true,
-            --             -- showOmnisharpLogOnError = true,
-            --             -- suppressBuildAssetsNotification = false,
-            --             -- suppressDotnetInstallWarning = false,
-            --             -- suppressDotnetRestoreNotification = false,
-            --             -- suppressHiddenDiagnostics = true,
-            --             -- suppressProjectJsonWarning = false,
-            --         },
-            --         dotnet = {
-            --             -- defaultSolution = "",
-            --             backgroundAnalysis = {
-            --                 -- analyzerDiagnosticsScope = "openFiles",
-            --                 -- compilerDiagnosticsScope = "openFiles",
-            --             },
-            --             codeLens = {
-            --                 -- enableReferencesCodeLens = true,
-            --                 -- enableTestsCodeLens = true,
-            --             },
-            --             completion = {
-            --                 -- provideRegexCompletions = "true",
-            --                 -- showCompletionItemsFromUnimportedNamespaces = true,
-            --                 -- showNameCompletionSuggestions = "true",
-            --             },
-            --             highlighting = {
-            --                 -- highlightRelatedJsonComponents = "true",
-            --                 -- highlightRelatedRegexComponents = "true",
-            --             },
-            --             implementType = {
-            --                 -- insertionBehavior = "withOtherMembersOfTheSameKind",
-            --                 -- propertyGenerationBehavior = "preferThrowingProperties",
-            --             },
-            --             inlayHints = {
-            --                 enableInlayHintsForIndexerParameters = true,
-            --                 enableInlayHintsForLiteralParameters = true,
-            --                 enableInlayHintsForObjectCreationParameters = true,
-            --                 enableInlayHintsForOtherParameters = true,
-            --                 enableInlayHintsForParameters = true,
-            --                 suppressInlayHintsForParametersThatDifferOnlyBySuffix = true,
-            --                 suppressInlayHintsForParametersThatMatchArgumentName = true,
-            --                 suppressInlayHintsForParametersThatMatchMethodIntent = true,
-            --             },
-            --             -- navigation.navigateToDecompiledSources = "true",
-            --             -- quickInfo.showRemarksInQuickInfo = "true",
-            --             -- symbolSearch.searchReferenceAssemblies = true,
-            --             -- unitTestDebuggingOptions = {},
-            --             -- unitTests.runSettingsPath = "",
-            --             -- dotnetPath = "",
-            --             -- enableXamlTools = true,
-            --             -- preferCSharpExtension = false,
-            --             -- projects.binaryLogPath = "",
-            --             -- projects.enableAutomaticRestore = true,
-            --             -- server.componentPaths = {},
-            --             -- server.crashDumpPath = "",
-            --             -- server.extensionPaths = {},
-            --             -- server.path = "",
-            --             -- server.startTimeout = 30000,
-            --             -- server.suppressLspErrorToasts = false,
-            --             -- server.trace = "Information",
-            --             -- server.waitForDebugger = false,
-            --         },
-            --         omnisharp = {
-            --             enableAsyncCompletion = true,
-            --             enableDecompilationSupport = true,
-            --             -- enableEditorConfigSupport = true,
-            --             enableLspDriver = true,
-            --             -- enableMsBuildLoadProjectsOnDemand = false,
-            --             -- loggingLevel = "information",
-            --             -- maxFindSymbolsItems = 1000,
-            --             -- maxProjectResults = 250,
-            --             -- minFindSymbolsFilterLength = 0,
-            --             -- monoPath = "",
-            --             organizeImportsOnFormat = true,
-            --             -- projectFilesExcludePattern = "**/node_modules/**,**/.git/**,**/bower_components/**",
-            --             -- projectLoadTimeout = 60,
-            --             sdkIncludePrereleases = true,
-            --             -- sdkPath = "",
-            --             -- sdkVersion = "",
-            --             -- useEditorFormattingSettings = true,
-            --             -- useModernNet = true,
-            --         },
-            --         razor = {
-            --             -- languageServer.debug = false,
-            --             -- languageServer.directory = "",
-            --             -- languageServer.forceRuntimeCodeGeneration = false,
-            --             -- server.trace = "Information",
-            --             -- completion.commitElementsWithSpace = "false",
-            --             -- devmode = false,
-            --             -- format.codeBlockBraceOnNextLine = false,
-            --             -- format.enable = true,
-            --             -- plugin.path = "",
-            --         },
-            --     },
-            --     on_attach = function(_, bufnr)
-            --         map("gd", require("omnisharp_extended").telescope_lsp_definition, "Telescope Definition", bufnr)
-            --         map(
-            --             "<leader>D",
-            --             require("omnisharp_extended").telescope_lsp_type_definition,
-            --             "Telescope Type Definition",
-            --             bufnr
-            --         )
-            --         map("gr", require("omnisharp_extended").telescope_lsp_references, "Telescope References", bufnr)
-            --         map(
-            --             "gi",
-            --             require("omnisharp_extended").telescope_lsp_implementation,
-            --             "Telescope Implementation",
-            --             bufnr
-            --         )
-            --     end,
-            -- },
+            omnisharp = {
+                enabled = false,
+                settings = {
+                    csharp = {
+                        inlayHints = {
+                            enableInlayHintsForImplicitObjectCreation = true,
+                            enableInlayHintsForImplicitVariableTypes = true,
+                            enableInlayHintsForLambdaParameterTypes = true,
+                            enableInlayHintsForTypes = true,
+                        },
+                        debug = {
+                            -- console = "internalConsole",
+                            -- enableStepFiltering = true,
+                            expressionEvaluationOptions = {
+                                -- allowFastEvaluate = true,
+                                -- allowImplicitFuncEval = true,
+                                -- allowToString = true,
+                                -- showRawValues = false,
+                            },
+                            -- justMyCode = true,
+                            logging = {
+                                -- browserStdOut = true,
+                                -- consoleUsageMessage = true,
+                                diagnosticsLog = {
+                                    -- debugEngineAPITracing = "none",
+                                    -- debugRuntimeEventTracing = false,
+                                    -- dispatcherMessages = "none",
+                                    -- expressionEvaluationTracing = false,
+                                    -- protocolMessages = false,
+                                    -- startDebuggingTracing = false,
+                                },
+                                -- elapsedTiming = false,
+                                -- engineLogging = false,
+                                -- exceptions = true,
+                                -- moduleLoad = true,
+                                -- processExit = true,
+                                -- programOutput = true,
+                                -- threadExit = false,
+                            },
+                            -- requireExactSource = true,
+                            -- sourceFileMap = {},
+                            -- stopAtEntry = false,
+                            -- suppressJITOptimizations = false,
+                            symbolOptions = {
+                                -- cachePath = "",
+                                moduleFilter = {
+                                    -- excludedModules = {},
+                                    -- includeSymbolsNextToModules = true,
+                                    -- includeSymbolsOnDemand = true,
+                                    -- includedModules = {},
+                                    -- mode = "loadAllButExcluded",
+                                },
+                                searchMicrosoftSymbolServer = true,
+                                searchNuGetOrgSymbolServer = true,
+                                -- searchPaths = {},
+                            },
+                        },
+                        format = {
+                            -- enable = true,
+                        },
+                        -- maxProjectFileCountForDiagnosticAnalysis = 1000,
+                        referencesCodeLens = {
+                            -- filteredSymbols = {},
+                        },
+                        -- semanticHighlighting.enabled = true,
+                        -- showOmnisharpLogOnError = true,
+                        -- suppressBuildAssetsNotification = false,
+                        -- suppressDotnetInstallWarning = false,
+                        -- suppressDotnetRestoreNotification = false,
+                        -- suppressHiddenDiagnostics = true,
+                        -- suppressProjectJsonWarning = false,
+                    },
+                    dotnet = {
+                        -- defaultSolution = "",
+                        backgroundAnalysis = {
+                            -- analyzerDiagnosticsScope = "openFiles",
+                            -- compilerDiagnosticsScope = "openFiles",
+                        },
+                        codeLens = {
+                            -- enableReferencesCodeLens = true,
+                            -- enableTestsCodeLens = true,
+                        },
+                        completion = {
+                            -- provideRegexCompletions = "true",
+                            -- showCompletionItemsFromUnimportedNamespaces = true,
+                            -- showNameCompletionSuggestions = "true",
+                        },
+                        highlighting = {
+                            -- highlightRelatedJsonComponents = "true",
+                            -- highlightRelatedRegexComponents = "true",
+                        },
+                        implementType = {
+                            -- insertionBehavior = "withOtherMembersOfTheSameKind",
+                            -- propertyGenerationBehavior = "preferThrowingProperties",
+                        },
+                        inlayHints = {
+                            enableInlayHintsForIndexerParameters = true,
+                            enableInlayHintsForLiteralParameters = true,
+                            enableInlayHintsForObjectCreationParameters = true,
+                            enableInlayHintsForOtherParameters = true,
+                            enableInlayHintsForParameters = true,
+                            suppressInlayHintsForParametersThatDifferOnlyBySuffix = true,
+                            suppressInlayHintsForParametersThatMatchArgumentName = true,
+                            suppressInlayHintsForParametersThatMatchMethodIntent = true,
+                        },
+                        -- navigation.navigateToDecompiledSources = "true",
+                        -- quickInfo.showRemarksInQuickInfo = "true",
+                        -- symbolSearch.searchReferenceAssemblies = true,
+                        -- unitTestDebuggingOptions = {},
+                        -- unitTests.runSettingsPath = "",
+                        -- dotnetPath = "",
+                        -- enableXamlTools = true,
+                        -- preferCSharpExtension = false,
+                        -- projects.binaryLogPath = "",
+                        -- projects.enableAutomaticRestore = true,
+                        -- server.componentPaths = {},
+                        -- server.crashDumpPath = "",
+                        -- server.extensionPaths = {},
+                        -- server.path = "",
+                        -- server.startTimeout = 30000,
+                        -- server.suppressLspErrorToasts = false,
+                        -- server.trace = "Information",
+                        -- server.waitForDebugger = false,
+                    },
+                    omnisharp = {
+                        enableAsyncCompletion = true,
+                        enableDecompilationSupport = true,
+                        -- enableEditorConfigSupport = true,
+                        enableLspDriver = true,
+                        -- enableMsBuildLoadProjectsOnDemand = false,
+                        -- loggingLevel = "information",
+                        -- maxFindSymbolsItems = 1000,
+                        -- maxProjectResults = 250,
+                        -- minFindSymbolsFilterLength = 0,
+                        -- monoPath = "",
+                        organizeImportsOnFormat = true,
+                        -- projectFilesExcludePattern = "**/node_modules/**,**/.git/**,**/bower_components/**",
+                        -- projectLoadTimeout = 60,
+                        sdkIncludePrereleases = true,
+                        -- sdkPath = "",
+                        -- sdkVersion = "",
+                        -- useEditorFormattingSettings = true,
+                        -- useModernNet = true,
+                    },
+                    razor = {
+                        -- languageServer.debug = false,
+                        -- languageServer.directory = "",
+                        -- languageServer.forceRuntimeCodeGeneration = false,
+                        -- server.trace = "Information",
+                        -- completion.commitElementsWithSpace = "false",
+                        -- devmode = false,
+                        -- format.codeBlockBraceOnNextLine = false,
+                        -- format.enable = true,
+                        -- plugin.path = "",
+                    },
+                },
+                on_attach = function(_, bufnr)
+                    map("gd", require("omnisharp_extended").telescope_lsp_definition, "Telescope Definition", bufnr)
+                    map(
+                        "<leader>D",
+                        require("omnisharp_extended").telescope_lsp_type_definition,
+                        "Telescope Type Definition",
+                        bufnr
+                    )
+                    map("gr", require("omnisharp_extended").telescope_lsp_references, "Telescope References", bufnr)
+                    map(
+                        "gi",
+                        require("omnisharp_extended").telescope_lsp_implementation,
+                        "Telescope Implementation",
+                        bufnr
+                    )
+                end,
+            },
         }
 
         require("mason").setup({
