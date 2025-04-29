@@ -7,7 +7,7 @@ return {
         local prefix = "Launcher: "
 
         vim.keymap.set("n", "<leader>lp", function()
-            require("launcher").picker()
+            require("launcher").file()
         end, { desc = prefix .. "Picker" })
 
         vim.keymap.set("n", "<leader>lr", function()
