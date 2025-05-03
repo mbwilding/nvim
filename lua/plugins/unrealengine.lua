@@ -1,6 +1,7 @@
 return {
     "mbwilding/UnrealEngine.nvim",
     dev = true,
+    lazy = false,
     keys = {
         {
             "<leader>ug",
@@ -12,23 +13,20 @@ return {
         {
             "<leader>ub",
             function()
-                require("unrealengine.commands").generate_lsp()
+                require("unrealengine.commands").build()
             end,
             desc = "UnrealEngine: Build",
         },
     },
     config = function()
-        local engine_path
-        if jit.os == "Linux" then
-            engine_path = os.getenv("HOME") .. "/dev/UnrealEngine"
-        elseif jit.os == "OSX" then
-            engine_path = "/Volumes/SamsungT7/UnrealEngine"
-        elseif jit.os == "Windows" then
-            engine_path = "D:\\UnrealEngine"
-        end
-
         require("unrealengine").setup({
-            engine_path = engine_path,
+            auto_generate = true,
+            auto_build = true,
+            engine_path = {
+                "D:\\UnrealEngine",
+                os.getenv("HOME") .. "/dev/UnrealEngine",
+                "/Volumes/SamsungT7/UnrealEngine",
+            },
         })
     end,
 }

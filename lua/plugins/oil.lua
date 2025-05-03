@@ -4,10 +4,7 @@ return {
     dependencies = {
         "nvim-tree/nvim-web-devicons",
         "refractalize/oil-git-status.nvim",
-        {
-            "JezerM/oil-lsp-diagnostics.nvim",
-            -- dev = true,
-        },
+        "JezerM/oil-lsp-diagnostics.nvim",
     },
     keys = {
         {

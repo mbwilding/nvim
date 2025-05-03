@@ -5,6 +5,6 @@ return {
     -- "zadirion/Unreal.nvim",
     "mbwilding/Unreal.nvim",
     dependencies = {
-        "tpope/vim-dispatch"
-    }
+        "tpope/vim-dispatch",
+    },
 }

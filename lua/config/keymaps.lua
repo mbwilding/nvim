@@ -94,14 +94,14 @@ k("n", "\\i", "<CMD>Inspect<CR>", { desc = "Highlights: Inspect" })
 
 -- Custom
 k("n", "yd", function()
-  local buf = vim.api.nvim_get_current_buf()
-  local win = 0
-  local cursor = vim.api.nvim_win_get_cursor(win)
-  local line_num = cursor[1]
-  local col = cursor[2]
-  local line = vim.api.nvim_buf_get_lines(buf, line_num - 1, line_num, false)[1]
-  vim.api.nvim_buf_set_lines(buf, line_num, line_num, false, { line })
-  vim.api.nvim_win_set_cursor(win, { line_num + 1, col })
+    local buf = vim.api.nvim_get_current_buf()
+    local win = 0
+    local cursor = vim.api.nvim_win_get_cursor(win)
+    local line_num = cursor[1]
+    local col = cursor[2]
+    local line = vim.api.nvim_buf_get_lines(buf, line_num - 1, line_num, false)[1]
+    vim.api.nvim_buf_set_lines(buf, line_num, line_num, false, { line })
+    vim.api.nvim_win_set_cursor(win, { line_num + 1, col })
 end, { desc = "Duplicate line" })
 
 -- Whitespace
