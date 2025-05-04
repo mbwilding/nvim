@@ -17,6 +17,13 @@ return {
             end,
             desc = "UnrealEngine: Build",
         },
+        {
+            "<leader>uc",
+            function()
+                require("unrealengine.commands").clean()
+            end,
+            desc = "UnrealEngine: Clean",
+        },
     },
     config = function()
         require("unrealengine").setup({
