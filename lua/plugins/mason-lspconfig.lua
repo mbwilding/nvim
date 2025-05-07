@@ -101,116 +101,116 @@ return {
             docker_compose_language_service = {},
             dockerls = {},
             -- nginx_language_server = {},
-            vtsls = {
-                settings = {
-                    javascript = {
-                        inlayHints = {
-                            functionLikeReturnTypes = {
-                                enabled = true,
-                            },
-                            parameterNames = {
-                                enabled = "all",
-                                suppressWhenArgumentMatchesName = true,
-                            },
-                            parameterTypes = {
-                                enabled = true,
-                            },
-                            propertyDeclarationTypes = {
-                                enabled = true,
-                            },
-                            variableTypes = {
-                                enabled = true,
-                                suppressWhenTypeMatchesName = true,
-                            },
-                        },
-                    },
-                    typescript = {
-                        inlayHints = {
-                            functionLikeReturnTypes = {
-                                enabled = true,
-                            },
-                            parameterNames = {
-                                enabled = "all",
-                                suppressWhenArgumentMatchesName = true,
-                            },
-                            parameterTypes = {
-                                enabled = true,
-                            },
-                            propertyDeclarationTypes = {
-                                enabled = true,
-                            },
-                            variableTypes = {
-                                enabled = true,
-                                suppressWhenTypeMatchesName = true,
-                            },
-                        },
-                    },
-                },
-            },
+            -- vtsls = {
+            --     settings = {
+            --         javascript = {
+            --             inlayHints = {
+            --                 functionLikeReturnTypes = {
+            --                     enabled = true,
+            --                 },
+            --                 parameterNames = {
+            --                     enabled = "all",
+            --                     suppressWhenArgumentMatchesName = true,
+            --                 },
+            --                 parameterTypes = {
+            --                     enabled = true,
+            --                 },
+            --                 propertyDeclarationTypes = {
+            --                     enabled = true,
+            --                 },
+            --                 variableTypes = {
+            --                     enabled = true,
+            --                     suppressWhenTypeMatchesName = true,
+            --                 },
+            --             },
+            --         },
+            --         typescript = {
+            --             inlayHints = {
+            --                 functionLikeReturnTypes = {
+            --                     enabled = true,
+            --                 },
+            --                 parameterNames = {
+            --                     enabled = "all",
+            --                     suppressWhenArgumentMatchesName = true,
+            --                 },
+            --                 parameterTypes = {
+            --                     enabled = true,
+            --                 },
+            --                 propertyDeclarationTypes = {
+            --                     enabled = true,
+            --                 },
+            --                 variableTypes = {
+            --                     enabled = true,
+            --                     suppressWhenTypeMatchesName = true,
+            --                 },
+            --             },
+            --         },
+            --     },
+            -- },
             -- volar = {},
             vuels = {},
-            ts_ls = {
-                enabled = false,
-                settings = {
-                    javascript = {
-                        preferences = {
-                            quoteStyle = "single",
-                        },
-                        inlayHints = {
-                            enumMemberValues = {
-                                enabled = true,
-                            },
-                            functionLikeReturnTypes = {
-                                enabled = true,
-                            },
-                            parameterNames = {
-                                enabled = true,
-                                suppressWhenArgumentMatchesName = true,
-                            },
-                            parameterTypes = {
-                                enabled = true,
-                            },
-                            propertyDeclarationTypes = {
-                                enabled = true,
-                            },
-                            variableTypes = {
-                                enabled = true,
-                                suppressWhenTypeMatchesName = true,
-                            },
-                        },
-                    },
-                    typescript = {
-                        format = {
-                            semicolons = "insert",
-                        },
-                        preferences = {
-                            quoteStyle = "single",
-                        },
-                        inlayHints = {
-                            enumMemberValues = {
-                                enabled = true,
-                            },
-                            functionLikeReturnTypes = {
-                                enabled = true,
-                            },
-                            parameterNames = {
-                                enabled = true,
-                                suppressWhenArgumentMatchesName = true,
-                            },
-                            parameterTypes = {
-                                enabled = true,
-                            },
-                            propertyDeclarationTypes = {
-                                enabled = true,
-                            },
-                            variableTypes = {
-                                enabled = true,
-                                suppressWhenTypeMatchesName = true,
-                            },
-                        },
-                    },
-                },
-            },
+            -- ts_ls = {
+            --     enabled = false,
+            --     settings = {
+            --         javascript = {
+            --             preferences = {
+            --                 quoteStyle = "single",
+            --             },
+            --             inlayHints = {
+            --                 enumMemberValues = {
+            --                     enabled = true,
+            --                 },
+            --                 functionLikeReturnTypes = {
+            --                     enabled = true,
+            --                 },
+            --                 parameterNames = {
+            --                     enabled = true,
+            --                     suppressWhenArgumentMatchesName = true,
+            --                 },
+            --                 parameterTypes = {
+            --                     enabled = true,
+            --                 },
+            --                 propertyDeclarationTypes = {
+            --                     enabled = true,
+            --                 },
+            --                 variableTypes = {
+            --                     enabled = true,
+            --                     suppressWhenTypeMatchesName = true,
+            --                 },
+            --             },
+            --         },
+            --         typescript = {
+            --             format = {
+            --                 semicolons = "insert",
+            --             },
+            --             preferences = {
+            --                 quoteStyle = "single",
+            --             },
+            --             inlayHints = {
+            --                 enumMemberValues = {
+            --                     enabled = true,
+            --                 },
+            --                 functionLikeReturnTypes = {
+            --                     enabled = true,
+            --                 },
+            --                 parameterNames = {
+            --                     enabled = true,
+            --                     suppressWhenArgumentMatchesName = true,
+            --                 },
+            --                 parameterTypes = {
+            --                     enabled = true,
+            --                 },
+            --                 propertyDeclarationTypes = {
+            --                     enabled = true,
+            --                 },
+            --                 variableTypes = {
+            --                     enabled = true,
+            --                     suppressWhenTypeMatchesName = true,
+            --                 },
+            --             },
+            --         },
+            --     },
+            -- },
             taplo = {},
             sqls = {},
             pylsp = {},
