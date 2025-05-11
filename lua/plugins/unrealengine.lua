@@ -8,28 +8,28 @@ return {
             function()
                 require("unrealengine.commands").generate_lsp()
             end,
-            desc = "UnrealEngine: Generate LSP"
+            desc = "UnrealEngine: Generate LSP",
         },
         {
             "<leader>ub",
             function()
                 require("unrealengine.commands").build()
             end,
-            desc = "UnrealEngine: Build"
+            desc = "UnrealEngine: Build",
         },
         {
             "<leader>ur",
             function()
                 require("unrealengine.commands").rebuild()
             end,
-            desc = "UnrealEngine: Rebuild"
+            desc = "UnrealEngine: Rebuild",
         },
         {
             "<leader>uo",
             function()
                 require("unrealengine.commands").open()
             end,
-            desc = "UnrealEngine: Open"
+            desc = "UnrealEngine: Open",
         },
         {
             "<leader>uc",

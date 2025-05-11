@@ -3,7 +3,7 @@ return {
     dev = false,
     config = function()
         local opts = {
-            custom_dir = vim.fn.stdpath("config") .. "/lua/launcher"
+            custom_dir = vim.fn.stdpath("config") .. "/lua/launcher",
         }
 
         local prefix = "Launcher: "
