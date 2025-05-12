@@ -2,6 +2,7 @@
 return {
     "jiriks74/presence.nvim",
     event = "UIEnter",
+    enabled = false,
     config = function()
         require("presence").setup({
             -- General options
