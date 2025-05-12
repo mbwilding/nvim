@@ -9,7 +9,7 @@ brew install bun jq curl wget node python go ripgrep fzf rustup powershell llvm
 brew install lua-language-server taplo python-lsp-server yaml-language-server tailwindcss-language-server bash-language-server zls gopls
 
 ## Linters
-brew install actionlint clang-format eslint_d jsonlint markdownlint-cli prettierd shfmt yamllint goimports
+brew install actionlint clang-format eslint_d jsonlint markdownlint-cli prettierd shfmt yamllint goimports pylint
 
 # Go
 go install github.com/sqls-server/sqls@latest
