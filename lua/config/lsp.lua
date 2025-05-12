@@ -45,7 +45,10 @@ local servers = {
         },
     },
     powershell_es = {
-        bundle_path = os.getenv("HOME") .. "/.lsp/powershell_es",
+        bundle_path = (function()
+            return (jit.os == "OSX" and os.getenv("HOME") .. "/.lsp/powershell_es")
+                or (jit.os == "Linux" and "/opt/powershell-editor-services")
+        end)(),
         settings = {
             powershell = {
                 enableProfileLoading = false,
