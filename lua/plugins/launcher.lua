@@ -1,6 +1,6 @@
 return {
     "mbwilding/launcher.nvim",
-    dev = false,
+    dev = true,
     config = function()
         local opts = {
             custom_dir = vim.fn.stdpath("config") .. "/lua/launcher",
