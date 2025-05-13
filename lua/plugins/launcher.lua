@@ -1,19 +1,27 @@
+local opts = {
+    custom_dir = vim.fn.stdpath("config") .. "/lua/launcher",
+}
+
 return {
     "mbwilding/launcher.nvim",
-    dev = true,
-    config = function()
-        local opts = {
-            custom_dir = vim.fn.stdpath("config") .. "/lua/launcher",
-        }
-
-        local prefix = "Launcher: "
-
-        vim.keymap.set("n", "<leader>lp", function()
-            require("launcher").file(opts)
-        end, { desc = prefix .. "Picker" })
-
-        vim.keymap.set("n", "<leader>lr", function()
-            require("launcher").rerun(opts)
-        end, { desc = prefix .. "Rerun" })
-    end,
+    dependiencies = {
+        "folke/snacks.nvim"
+    },
+    lazy = true,
+    keys = {
+        {
+            "<leader>lp",
+            function()
+                require("launcher").file(opts)
+            end,
+            desc = "Launcher: File",
+        },
+        {
+            "<leader>lr",
+            function()
+                require("launcher").rerun(opts)
+            end,
+            desc = "Launcher: Rerun",
+        },
+    },
 }
