@@ -18,7 +18,7 @@ shared="$(dirname "$(readlink -f "$0")")/../shared"
 bash ${shared}/roslyn.sh
 
 # Linters
-paru -S --noconfirm eslint_d prettierd python-pylint
+paru -S --noconfirm eslint_d prettierd python-pylint yamllint
 go install golang.org/x/tools/cmd/goimports@latest
 
 # eslint-languageserver vscode-markdown-languageserver dockercompose-language-server azure-pipelines-language-server
