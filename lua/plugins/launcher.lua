@@ -8,7 +8,7 @@ return {
         "folke/snacks.nvim"
     },
     lazy = true,
-    dev = true,
+    dev = false,
     keys = {
         {
             "<leader>lp",
