@@ -4,8 +4,8 @@ return {
     "mfussenegger/nvim-dap",
     lazy = false,
     dependencies = {
-        "williamboman/mason.nvim",
-        "jay-babu/mason-nvim-dap.nvim",
+        -- "williamboman/mason.nvim",
+        -- "jay-babu/mason-nvim-dap.nvim",
         "nvim-neotest/nvim-nio",
         "theHamsta/nvim-dap-virtual-text",
         -- {
@@ -76,16 +76,16 @@ return {
     config = function()
         local dap = require("dap")
 
-        require("mason-nvim-dap").setup({
-            automatic_installation = true,
-            ensure_installed = {
-                "coreclr", -- netcoredbg
-                "codelldb", -- cpp, rust
-                "delve", -- go
-                "python", -- python
-            },
-            handlers = nil,
-        })
+        -- require("mason-nvim-dap").setup({
+        --     automatic_installation = true,
+        --     ensure_installed = {
+        --         "coreclr", -- netcoredbg
+        --         "codelldb", -- cpp, rust
+        --         "delve", -- go
+        --         "python", -- python
+        --     },
+        --     handlers = nil,
+        -- })
 
         require("nvim-dap-virtual-text").setup({
             enabled = true, -- enable this plugin (the default)

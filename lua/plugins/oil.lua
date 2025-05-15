@@ -1,7 +1,7 @@
 return {
     "stevearc/oil.nvim",
     lazy = false,
-    dev = true,
+    dev = false,
     dependencies = {
         "nvim-tree/nvim-web-devicons",
         "refractalize/oil-git-status.nvim",

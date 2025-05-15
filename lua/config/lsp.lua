@@ -167,12 +167,12 @@ for server, config in pairs(servers) do
     config.capabilities = require("blink.cmp").get_lsp_capabilities()
 
     -- UFO (Folding)
-    if pcall(require, "ufo") then
-        config.capabilities.textDocument.foldingRange = {
-            dynamicRegistration = false,
-            lineFoldingOnly = true,
-        }
-    end
+    -- if pcall(require, "ufo") then
+    --     config.capabilities.textDocument.foldingRange = {
+    --         dynamicRegistration = false,
+    --         lineFoldingOnly = true,
+    --     }
+    -- end
 
     vim.lsp.config(server, config)
 end
