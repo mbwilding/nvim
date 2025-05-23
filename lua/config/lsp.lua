@@ -175,32 +175,24 @@ local servers = {
     },
 }
 
--- UFO installed?
-local ufo = pcall(require, "ufo")
-
 -- Configure LSP
+---@type lsp.ClientCapabilities
+local base_capabilities = require("blink.cmp").get_lsp_capabilities(nil, true)
+
+if pcall(require, "ufo") then
+    base_capabilities.textDocument.foldingRange = {
+        dynamicRegistration = false,
+        lineFoldingOnly = true,
+    }
+end
+
 for server, config in pairs(servers) do
-    if config.enable == nil or config.enable == true then
-        config.capabilities = require("blink.cmp").get_lsp_capabilities()
-
-        if ufo then
-            config.capabilities.textDocument.foldingRange = {
-                dynamicRegistration = false,
-                lineFoldingOnly = true,
-            }
-        end
-
+    if config.enable == nil or config.enable then
+        config.capabilities = base_capabilities
         vim.lsp.config(server, config)
+        vim.lsp.enable(server)
     end
 end
-
-local enabled_servers = {}
-for name, config in pairs(servers) do
-    if config.enable == nil or config.enable == true then
-        table.insert(enabled_servers, name)
-    end
-end
-vim.lsp.enable(enabled_servers)
 
 -- LSP on attach
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -222,11 +214,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
             vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
         end
 
-        -- Format the buffer
-        -- map("<leader>f", function()
-        --     vim.notify("Formatting")
-        --     vim.lsp.buf.format({ async = true })
-        -- end, "Format")
+        map("<leader>lsr", function()
+            vim.notify("Restarting LSP client: " .. client.name)
+            vim.cmd("LspRestart " .. client.name)
+        end, "Restart")
+
+        if not pcall(require, "conform") then
+            map("<leader>f", function()
+                vim.notify("Formatting")
+                vim.lsp.buf.format({ async = true })
+            end, "Format")
+        end
 
         map("<leader>ih", function()
             local enabled = not vim.lsp.inlay_hint.is_enabled()
@@ -241,34 +239,5 @@ vim.api.nvim_create_autocmd("LspAttach", {
         map("<leader>H", function()
             vim.lsp.buf.clear_references()
         end, "Unhighlight")
-
-        -- The following two autocommands are used to highlight references of the
-        -- word under your cursor when your cursor rests there for a little while.
-        --    See `:help CursorHold` for information about when this is executed
-        --
-        -- When you move your cursor, the highlights will be cleared (the second autocommand).
-        --
-        -- if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
-        --     local highlight_augroup = augroup("lsp-highlight")
-        --     vim.api.nvim_create_autocmd({ "CursorHold" }, { -- "CursorHoldI"
-        --         buffer = event.buf,
-        --         group = highlight_augroup,
-        --         callback = vim.lsp.buf.document_highlight,
-        --     })
-        --
-        --     vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI", "InsertEnter" }, {
-        --         buffer = event.buf,
-        --         group = highlight_augroup,
-        --         callback = vim.lsp.buf.clear_references,
-        --     })
-        --
-        --     vim.api.nvim_create_autocmd("LspDetach", {
-        --         group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
-        --         callback = function(event2)
-        --             vim.lsp.buf.clear_references()
-        --             vim.api.nvim_clear_autocmds({ group = "lsp-highlight", buffer = event2.buf })
-        --         end,
-        --     })
-        -- end
     end,
 })
