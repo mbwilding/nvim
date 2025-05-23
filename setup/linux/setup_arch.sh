@@ -27,6 +27,7 @@ go install golang.org/x/tools/cmd/goimports@latest
 # DAP
 paru -S --noconfirm netcoredbg delve python-debugpy
 bash ${shared}/netcoredbg.sh
+bash ${shared}/codelldb.sh
 
 # eslint-languageserver vscode-markdown-languageserver dockercompose-language-server azure-pipelines-language-server
 # TODO: Install dotnet packages from Yay

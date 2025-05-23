@@ -21,6 +21,7 @@ brew install actionlint clang-format eslint_d jsonlint markdownlint-cli prettier
 ## DAP
 pipx install debugpy
 bash ${shared}/netcoredbg.sh
+bash ${shared}/codelldb.sh
 
 # Go
 go install github.com/sqls-server/sqls@latest
