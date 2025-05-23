@@ -7,7 +7,7 @@ shared="$(dirname "$(readlink -f "$0")")/../shared"
 # HomeBrew
 brew install neovim --HEAD
 brew tap oven-sh/bun
-brew install bun jq curl wget node python go ripgrep fzf rustup powershell llvm
+brew install bun jq curl wget node python go ripgrep fzf rustup powershell llvm pipx
 
 ## Language Servers
 brew install lua-language-server taplo python-lsp-server yaml-language-server tailwindcss-language-server bash-language-server zls gopls
@@ -19,8 +19,7 @@ bash ${shared}/powershell_es.sh
 brew install actionlint clang-format eslint_d jsonlint markdownlint-cli prettierd shfmt yamllint goimports pylint
 
 ## DAP
-brew install delve
-pip install debugpy
+pipx install debugpy
 bash ${shared}/netcoredbg.sh
 
 # Go
