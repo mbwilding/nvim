@@ -23,7 +23,7 @@ paru -S --noconfirm eslint_d prettierd python-pylint yamllint
 go install golang.org/x/tools/cmd/goimports@latest
 
 # DAP
-paru -S --noconfirm netcoredbg
+paru -S --noconfirm netcoredbg delve
 bash ${shared}/netcoredbg.sh
 
 # eslint-languageserver vscode-markdown-languageserver dockercompose-language-server azure-pipelines-language-server
