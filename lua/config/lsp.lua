@@ -196,7 +196,7 @@ end
 
 local enabled_servers = {}
 for name, config in pairs(servers) do
-    if config.enable then
+    if config.enable == nil or config.enable == true then
         table.insert(enabled_servers, name)
     end
 end
