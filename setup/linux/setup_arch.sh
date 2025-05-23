@@ -12,9 +12,10 @@ paru -S --noconfirm bun-bin neovim openssh gnupg wget jq fuse make grep ripgrep 
 rustup default stable
 rustup component add rust-analyzer
 
+shared="$(dirname "$(readlink -f "$0")")/../shared"
+
 # Language Servers
 paru -S --noconfirm zls vue-language-server taplo-cli sqls python-lsp-server vscode-css-languageserver vscode-html-languageserver vscode-json-languageserver gopls dockerfile-language-server lua-language-server bash-language-server powershell-editor-services lemminx tailwindcss-language-server yaml-language-server
-shared="$(dirname "$(readlink -f "$0")")/../shared"
 bash ${shared}/roslyn.sh
 
 # Linters
@@ -23,6 +24,7 @@ go install golang.org/x/tools/cmd/goimports@latest
 
 # DAP
 paru -S --noconfirm netcoredbg
+bash ${shared}/netcoredbg.sh
 
 # eslint-languageserver vscode-markdown-languageserver dockercompose-language-server azure-pipelines-language-server
 # TODO: Install dotnet packages from Yay
