@@ -35,7 +35,7 @@ base_url="https://github.com/${repo}/releases/download/${version}"
 file_name="netcoredbg-${os_name}-${arch}.tar.gz"
 download_url="${base_url}/${file_name}"
 
-destination="$HOME/.dotnet/netcoredbg"
+destination="$HOME/.dotnet"
 mkdir -p "${destination}"
 
 echo "Downloading from: ${download_url}"
