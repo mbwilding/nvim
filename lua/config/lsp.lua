@@ -227,10 +227,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end
 
         map("<leader>ih", function()
-            local enabled = not vim.lsp.inlay_hint.is_enabled()
+            local enabled = not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf })
             vim.lsp.inlay_hint.enable(enabled)
             vim.notify("Inlay Hints: " .. tostring(enabled))
-        end, "Toggle [I]nlay [H]ints")
+        end, "Inlay Hints")
 
         map("<leader>h", function()
             vim.lsp.buf.document_highlight()
