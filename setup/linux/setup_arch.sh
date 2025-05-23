@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+set -e
+
+shared="$(dirname "$(readlink -f "$0")")/../shared"
+
 # Update
 sudo pacman -Syu --noconfirm
 
@@ -11,8 +15,6 @@ paru -S --noconfirm bun-bin neovim openssh gnupg wget jq fuse make grep ripgrep 
 
 rustup default stable
 rustup component add rust-analyzer
-
-shared="$(dirname "$(readlink -f "$0")")/../shared"
 
 # Language Servers
 paru -S --noconfirm zls vue-language-server taplo-cli sqls python-lsp-server vscode-css-languageserver vscode-html-languageserver vscode-json-languageserver gopls dockerfile-language-server lua-language-server bash-language-server powershell-editor-services lemminx tailwindcss-language-server yaml-language-server
