@@ -11,6 +11,19 @@ local servers = {
     taplo = {},
     vuels = {},
     zls = {},
+    tsgo = {
+        enable = false,
+        cmd = { vim.loop.os_homedir() .. "/dev/typescript-go/built/local/tsgo", "--lsp", "-stdio" },
+        filetypes = {
+            "javascript",
+            "javascriptreact",
+            "javascript.jsx",
+            "typescript",
+            "typescriptreact",
+            "typescript.tsx",
+        },
+        root_markers = { "tsconfig.json", "jsconfig.json", "package.json", ".git" },
+    },
     lua_ls = {
         settings = {
             Lua = {
@@ -167,18 +180,27 @@ local ufo = pcall(require, "ufo")
 
 -- Configure LSP
 for server, config in pairs(servers) do
-    config.capabilities = require("blink.cmp").get_lsp_capabilities()
+    if config.enable == nil or config.enable == true then
+        config.capabilities = require("blink.cmp").get_lsp_capabilities()
 
-    if ufo then
-        config.capabilities.textDocument.foldingRange = {
-            dynamicRegistration = false,
-            lineFoldingOnly = true,
-        }
+        if ufo then
+            config.capabilities.textDocument.foldingRange = {
+                dynamicRegistration = false,
+                lineFoldingOnly = true,
+            }
+        end
+
+        vim.lsp.config(server, config)
     end
-
-    vim.lsp.config(server, config)
 end
-vim.lsp.enable(vim.tbl_keys(servers))
+
+local enabled_servers = {}
+for name, config in pairs(servers) do
+  if config.enable then
+    table.insert(enabled_servers, name)
+  end
+end
+vim.lsp.enable(enabled_servers)
 
 -- LSP on attach
 vim.api.nvim_create_autocmd("LspAttach", {
