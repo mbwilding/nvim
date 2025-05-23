@@ -11,6 +11,9 @@ brew install lua-language-server taplo python-lsp-server yaml-language-server ta
 ## Linters
 brew install actionlint clang-format eslint_d jsonlint markdownlint-cli prettierd shfmt yamllint goimports pylint
 
+## DAP
+brew install delve
+
 # Go
 go install github.com/sqls-server/sqls@latest
 
@@ -36,3 +39,4 @@ shared="$(dirname "$(readlink -f "$0")")/../shared"
 bash ${shared}/roslyn.sh
 bash ${shared}/lemminx.sh
 bash ${shared}/powershell_es.sh
+bash ${shared}/netcoredbg.sh

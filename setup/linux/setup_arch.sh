@@ -21,6 +21,9 @@ bash ${shared}/roslyn.sh
 paru -S --noconfirm eslint_d prettierd python-pylint yamllint
 go install golang.org/x/tools/cmd/goimports@latest
 
+# DAP
+paru -S --noconfirm netcoredbg
+
 # eslint-languageserver vscode-markdown-languageserver dockercompose-language-server azure-pipelines-language-server
 # TODO: Install dotnet packages from Yay
 
