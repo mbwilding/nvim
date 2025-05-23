@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+set -e
 
 shared="$(dirname "$(readlink -f "$0")")/../shared"
 
