@@ -44,7 +44,7 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "Extracting ${file_name} into ${destination}"
-unzip -o "${file_name}" -d "${destination}"
+unzip -o "${file_name}" -d "${destination}/codelldb"
 if [ $? -ne 0 ]; then
   echo "Error: Extraction failed"
   exit 1
