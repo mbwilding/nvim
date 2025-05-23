@@ -2,7 +2,7 @@ return {
     "pmizio/typescript-tools.nvim",
     dependencies = {
         "nvim-lua/plenary.nvim",
-        "neovim/nvim-lspconfig"
+        "neovim/nvim-lspconfig",
     },
     opts = {
         settings = {
@@ -16,7 +16,7 @@ return {
             jsx_close_tag = {
                 enable = false,
                 filetypes = { "javascriptreact", "typescriptreact" },
-            }
+            },
         },
     },
 }

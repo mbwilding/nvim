@@ -6,10 +6,12 @@ return {
     },
     keys = {
         {
-            "<leader>sj",
+            "<leader>j",
             "<CMD>TSJToggle<CR>",
             desc = "TreeSJ: Toggle",
         },
     },
-    opts = {},
+    opts = {
+        use_default_keymaps = false,
+    },
 }

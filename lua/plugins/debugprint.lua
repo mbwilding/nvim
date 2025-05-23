@@ -1,3 +1,7 @@
+-- Debug print line adding
+
+-- g/p or g/P
+
 return {
     "andrewferrier/debugprint.nvim",
     opts = {

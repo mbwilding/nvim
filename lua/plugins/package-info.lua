@@ -1,3 +1,5 @@
+-- NPM package info
+
 return {
     "vuki656/package-info.nvim",
     dependencies = {

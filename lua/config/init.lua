@@ -8,6 +8,7 @@ local modules = {
     "platform",
     "neovide",
     "lazy",
+    "lsp",
 }
 
 for _, module in ipairs(modules) do
