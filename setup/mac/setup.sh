@@ -1,5 +1,7 @@
 #!/bin/bash
 
+shared="$(dirname "$(readlink -f "$0")")/../shared"
+
 # HomeBrew
 brew install neovim --HEAD
 brew tap oven-sh/bun
@@ -7,12 +9,17 @@ brew install bun jq curl wget node python go ripgrep fzf rustup powershell llvm
 
 ## Language Servers
 brew install lua-language-server taplo python-lsp-server yaml-language-server tailwindcss-language-server bash-language-server zls gopls
+bash ${shared}/roslyn.sh
+bash ${shared}/lemminx.sh
+bash ${shared}/powershell_es.sh
 
 ## Linters
 brew install actionlint clang-format eslint_d jsonlint markdownlint-cli prettierd shfmt yamllint goimports pylint
 
 ## DAP
 brew install delve
+pip install debugpy
+bash ${shared}/netcoredbg.sh
 
 # Go
 go install github.com/sqls-server/sqls@latest
@@ -33,10 +40,3 @@ bun install --global vscode-langservers-extracted
 # Rust
 rustup default stable
 rustup component add rust-analyzer
-
-# Roslyn
-shared="$(dirname "$(readlink -f "$0")")/../shared"
-bash ${shared}/roslyn.sh
-bash ${shared}/lemminx.sh
-bash ${shared}/powershell_es.sh
-bash ${shared}/netcoredbg.sh
