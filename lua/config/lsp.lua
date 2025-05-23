@@ -196,9 +196,9 @@ end
 
 local enabled_servers = {}
 for name, config in pairs(servers) do
-  if config.enable then
-    table.insert(enabled_servers, name)
-  end
+    if config.enable then
+        table.insert(enabled_servers, name)
+    end
 end
 vim.lsp.enable(enabled_servers)
 

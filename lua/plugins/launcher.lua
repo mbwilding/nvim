@@ -5,7 +5,7 @@ local opts = {
 return {
     "mbwilding/launcher.nvim",
     dependiencies = {
-        "folke/snacks.nvim"
+        "folke/snacks.nvim",
     },
     lazy = true,
     dev = false,
