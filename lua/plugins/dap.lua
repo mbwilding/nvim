@@ -6,6 +6,7 @@ return {
     dependencies = {
         "nvim-neotest/nvim-nio",
         "theHamsta/nvim-dap-virtual-text",
+        "banjo/package-pilot.nvim",
     },
     config = function()
         local dap = require("dap")
@@ -306,5 +307,81 @@ return {
                 end,
             },
         }
+
+        -- JavaScript / TypeScript
+        dap.adapters.js = {
+            type = "server",
+            host = "localhost",
+            port = "${port}",
+            executable = {
+                command = "node",
+                args = {
+                    vim.loop.os_homedir() .. "/.local/bin/js-debug/src/dapDebugServer.js",
+                    "${port}",
+                },
+            },
+        }
+
+        local function pick_js_script()
+            local pilot = require("package-pilot")
+
+            local current_dir = vim.fn.getcwd()
+            local package = pilot.find_package_file({ dir = current_dir })
+
+            if not package then
+                vim.notify("No package.json found", vim.log.levels.ERROR)
+                return require("dap").ABORT
+            end
+
+            local scripts = pilot.get_all_scripts(package)
+
+            local label_fn = function(script)
+                return script
+            end
+
+            local co, ismain = coroutine.running()
+            local ui = require("dap.ui")
+            local pick = (co and not ismain) and ui.pick_one or ui.pick_one_sync
+            local result = pick(scripts, "Select script", label_fn)
+            return result or require("dap").ABORT
+        end
+
+        for _, language in ipairs({ "typescript", "javascript", "typescriptreact", "javascriptreact" }) do
+            dap.configurations[language] = {
+                {
+                    type = "js",
+                    request = "launch",
+                    name = "Launch file",
+                    program = "${file}",
+                    cwd = "${workspaceFolder}",
+                },
+                {
+                    type = "js",
+                    request = "attach",
+                    name = "Attach",
+                    processId = require("dap.utils").pick_process,
+                    cwd = "${workspaceFolder}",
+                },
+                {
+                    name = "tsx (" .. vim.fn.expand("%:t") .. ")",
+                    type = "node",
+                    request = "launch",
+                    program = "${file}",
+                    runtimeExecutable = "tsx",
+                    cwd = "${workspaceFolder}",
+                    console = "integratedTerminal",
+                    internalConsoleOptions = "neverOpen",
+                    skipFiles = { "<node_internals>/**", "${workspaceFolder}/node_modules/**" },
+                },
+                {
+                    type = "node",
+                    request = "launch",
+                    name = "pick script (bun)",
+                    runtimeExecutable = "bun",
+                    runtimeArgs = { "run", pick_js_script },
+                    cwd = "${workspaceFolder}",
+                },
+            }
+        end
     end,
 }
