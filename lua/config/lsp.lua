@@ -203,15 +203,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
             return
         end
 
-        -- Set up signature help overloads
-        -- if client.server_capabilities.signatureHelpProvider then
-        --     ---@diagnostic disable-next-line: missing-fields
-        --     require("lsp-overloads").setup(client, {})
-        -- end
-
         local map = function(keys, func, desc, mode)
             mode = mode or "n"
             vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+        end
+
+        if client.server_capabilities.signatureHelpProvider then
+            map("<leader>o", "<CMD>LspOverloadsSignature<CR>", "Overloads")
         end
 
         map("<leader>lsr", function()
