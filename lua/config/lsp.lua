@@ -9,7 +9,6 @@ local servers = {
     pylsp = {},
     sqls = {},
     taplo = {},
-    vuels = {},
     zls = {},
     tsgo = {
         enable = false,
