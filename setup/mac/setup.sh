@@ -11,6 +11,18 @@ brew install bun jq curl wget node python go ripgrep fzf rustup powershell llvm 
 
 ## Language Servers
 brew install lua-language-server taplo python-lsp-server yaml-language-server tailwindcss-language-server bash-language-server zls gopls
+go install github.com/sqls-server/sqls@latest
+bun install --global @microsoft/compose-language-service
+bun install --global azure-pipelines-language-server
+bun install --global dockerfile-language-server-nodejs
+bun install --global vue-language-server
+# bun install --global @mistweaverco/kulala-ls
+bun install --global vscode-langservers-extracted
+    # - vscode-css-language-server
+    # - vscode-eslint-language-server
+    # - vscode-html-language-server
+    # - vscode-json-language-server
+    # - vscode-markdown-language-server
 bash ${shared}/roslyn.sh
 bash ${shared}/lemminx.sh
 bash ${shared}/powershell_es.sh
@@ -24,21 +36,8 @@ bash ${shared}/netcoredbg.sh
 bash ${shared}/codelldb.sh
 bash ${shared}/js-debug.sh
 
-# Go
-go install github.com/sqls-server/sqls@latest
-
-# NPM
-bun install --global @microsoft/compose-language-service
-bun install --global azure-pipelines-language-server
-bun install --global dockerfile-language-server-nodejs
-bun install --global vue-language-server
+# Formatters
 bun install --global xml-formatter
-bun install --global vscode-langservers-extracted
-# - vscode-css-language-server
-# - vscode-eslint-language-server
-# - vscode-html-language-server
-# - vscode-json-language-server
-# - vscode-markdown-language-server
 
 # Rust
 rustup default stable
