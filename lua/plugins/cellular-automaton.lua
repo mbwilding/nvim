@@ -5,17 +5,17 @@ return {
     lazy = true,
     keys = {
         {
-            "<leader>xr",
+            "<leader>Xr",
             "<CMD>CellularAutomaton make_it_rain<CR>",
             desc = "Cellular Automaton: Make It Rain",
         },
         {
-            "<leader>xg",
+            "<leader>Xg",
             "<CMD>CellularAutomaton game_of_life<CR>",
             desc = "Cellular Automaton: Game Of Life",
         },
         {
-            "<leader>xs",
+            "<leader>Xs",
             "<CMD>CellularAutomaton scramble<CR>",
             desc = "Cellular Automaton: Scramble",
         },
