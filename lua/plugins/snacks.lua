@@ -241,7 +241,15 @@ return {
             end,
             desc = "LSP Symbols",
         },
+        {
+            "<leader>lg",
+            function()
+                Snacks.lazygit.open()
+            end,
+            desc = "LazyGit",
+        },
     },
+    ---@type snacks.plugins.Config
     opts = {
         image = {},
         lazygit = {},
