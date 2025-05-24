@@ -31,16 +31,16 @@ bash ${shared}/lemminx.sh
 bash ${shared}/powershell_es.sh
 
 ## Linters
-brew install actionlint clang-format eslint_d jsonlint markdownlint-cli prettierd shfmt yamllint goimports pylint
+brew install actionlint eslint_d jsonlint markdownlint-cli yamllint pylint
+
+# Formatters
+bun install --global xml-formatter black isort prettier prettierd shfmt clang-format goimports
 
 ## DAP
 pipx install debugpy
 bash ${shared}/netcoredbg.sh
 bash ${shared}/codelldb.sh
 bash ${shared}/js-debug.sh
-
-# Formatters
-bun install --global xml-formatter
 
 # Rust
 rustup default stable
