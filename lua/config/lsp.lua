@@ -204,12 +204,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end
 
         local map = function(keys, func, desc, mode)
-            mode = mode or "n"
-            vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+            vim.keymap.set(mode or "n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
         end
 
         if client.server_capabilities.signatureHelpProvider then
-            map("<leader>o", "<CMD>LspOverloadsSignature<CR>", "Overloads")
+            map("<leader>o", "<CMD>LspOverloadsSignature<CR>", "Overloads", { "n", "i" })
         end
 
         map("<leader>lsr", function()
