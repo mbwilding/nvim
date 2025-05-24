@@ -1,6 +1,7 @@
 -- Debug print line adding
 
 -- g/p or g/P
+-- g/v
 
 return {
     "andrewferrier/debugprint.nvim",

@@ -244,6 +244,7 @@ return {
     },
     opts = {
         image = {},
+        lazygit = {},
         dashboard = {
             preset = {
                 header = [[
