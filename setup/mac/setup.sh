@@ -5,9 +5,12 @@ set -e
 shared="$(dirname "$(readlink -f "$0")")/../shared"
 
 # HomeBrew
+brew update
+brew upgrade --force
+
 brew install neovim --HEAD
 brew tap oven-sh/bun
-brew install bun jq curl wget node python go ripgrep fzf rustup powershell llvm pipx
+brew install luarocks bun jq curl wget node python go ripgrep fzf rustup powershell llvm pipx
 
 ## Language Servers
 brew install lua-language-server taplo python-lsp-server yaml-language-server tailwindcss-language-server bash-language-server zls gopls
