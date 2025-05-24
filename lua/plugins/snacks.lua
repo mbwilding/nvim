@@ -249,11 +249,18 @@ return {
             desc = "LazyGit: Open",
         },
         {
+            "<leader>lgl",
+            function()
+                Snacks.lazygit.log()
+            end,
+            desc = "LazyGit: Log",
+        },
+        {
             "<leader>lgf",
             function()
                 Snacks.lazygit.log_file()
             end,
-            desc = "LazyGit: File",
+            desc = "LazyGit: Log File",
         },
     },
     ---@type snacks.plugins.Config
