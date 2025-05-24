@@ -11,9 +11,10 @@ return {
         -- "giuxtaposition/blink-cmp-copilot",
     },
     version = "*",
+    ---@type blink.cmp.Config
     opts = {
         sources = {
-            default = { "lsp", "path", "snippets", "buffer", "dadbod" }, -- copilot
+            default = { "lsp", "path", "snippets", "buffer" },
             providers = {
                 lsp = {
                     name = "lsp",
@@ -27,12 +28,12 @@ return {
                     module = "blink.cmp.sources.path",
                     score_offset = 4,
                 },
-                dadbod = {
-                    name = "Dadbod",
-                    enabled = true,
-                    module = "vim_dadbod_completion.blink",
-                    score_offset = 3,
-                },
+                -- dadbod = {
+                --     name = "Dadbod",
+                --     enabled = true,
+                --     module = "vim_dadbod_completion.blink",
+                --     score_offset = 3,
+                -- },
                 snippets = {
                     name = "snippets",
                     enabled = true,
@@ -156,7 +157,7 @@ return {
             },
             documentation = {
                 auto_show = true,
-                auto_show_delay_ms = 0,
+                auto_show_delay_ms = 500,
                 window = {
                     border = "single",
                 },
@@ -164,6 +165,20 @@ return {
         },
         signature = {
             enabled = true,
+            trigger = {
+                enabled = true,
+                -- show_on_keyword = false,
+                -- blocked_trigger_characters = {},
+                -- blocked_retrigger_characters = {},
+                -- show_on_trigger_character = true,
+                -- show_on_insert = false,
+                -- show_on_insert_on_trigger_character = true,
+                -- show_on_accept = false,
+                -- show_on_accept_on_trigger_character = true,
+            },
+            window = {
+                show_documentation = true,
+            },
         },
     },
 }
