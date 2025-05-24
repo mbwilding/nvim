@@ -242,11 +242,18 @@ return {
             desc = "LSP Symbols",
         },
         {
-            "<leader>lg",
+            "<leader>lgo",
             function()
                 Snacks.lazygit.open()
             end,
-            desc = "LazyGit",
+            desc = "LazyGit: Open",
+        },
+        {
+            "<leader>lgf",
+            function()
+                Snacks.lazygit.log_file()
+            end,
+            desc = "LazyGit: File",
         },
     },
     ---@type snacks.plugins.Config
