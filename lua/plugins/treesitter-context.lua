@@ -3,10 +3,7 @@ local toggled = false
 return {
     "nvim-treesitter/nvim-treesitter-context",
     dependencies = {
-        {
-            "nvim-treesitter/nvim-treesitter",
-            branch = "main",
-        },
+        "nvim-treesitter/nvim-treesitter",
     },
     keys = {
         {
