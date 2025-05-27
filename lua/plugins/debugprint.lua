@@ -5,6 +5,9 @@
 
 return {
     "andrewferrier/debugprint.nvim",
+    dependencies = {
+        "echasnovski/mini.hipatterns",
+    },
     opts = {
         highlight_lines = false,
         print_tag = "DEBUG",
