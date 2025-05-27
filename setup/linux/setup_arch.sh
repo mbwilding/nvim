@@ -11,7 +11,7 @@ sudo pacman -Syu --noconfirm
 # sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay-bin.git /tmp/yay-bin && cd /tmp/yay-bin && makepkg -si
 
 # Install Dependencies
-paru -S --noconfirm bun-bin neovim-git openssh gnupg wget jq fuse make grep ripgrep cmake unzip go python3 ruby rustup nodejs clang
+paru -S --noconfirm bun-bin neovim-git openssh gnupg wget jq fuse make grep ripgrep cmake unzip go python3 ruby rustup nodejs clang luarocks
 
 rustup default stable
 rustup component add rust-analyzer
