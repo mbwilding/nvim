@@ -56,7 +56,7 @@ k("n", "x", "\"_x")
 k("v", "s", ":sort<CR>gv")
 
 -- Select all
-k("n", "<C-a>", "ggVG", { desc = "Select all" })
+k("n", "<C-A>", "ggVG", { desc = "Select all" })
 
 -- Mouse
 k("v", "<RightMouse>", "\"+y")
