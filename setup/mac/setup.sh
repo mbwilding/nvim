@@ -32,9 +32,11 @@ bash ${shared}/powershell_es.sh
 
 ## Linters
 brew install actionlint eslint_d jsonlint markdownlint-cli yamllint pylint
+go install golang.org/x/tools/cmd/goimports@latest
 
 # Formatters
-bun install --global xml-formatter black isort prettier prettierd shfmt clang-format goimports
+brew install prettierd isort
+bun install --global xml-formatter black prettier shfmt clang-format
 
 ## DAP
 pipx install debugpy
