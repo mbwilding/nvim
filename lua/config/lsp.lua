@@ -193,10 +193,15 @@ for server, config in pairs(servers) do
     end
 end
 
+vim.treesitter.language.register("c_sharp", "csharp")
+
 -- LSP on attach
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
     callback = function(event)
+
+        print(vim.g.roslyn_nvim_selected_solution)
+
         local client = vim.lsp.get_client_by_id(event.data.client_id)
         if not client then
             return
