@@ -3,11 +3,12 @@
 set -e
 
 # Set desired major version override here (e.g., '4' for v4.x.x).
-major_override="4"
+major_override=""
 
 uname_os=$(uname | tr '[:upper:]' '[:lower:]')
 if [[ "$uname_os" == "darwin" ]]; then
   os_name="osx"
+  major_override="4"
 elif [[ "$uname_os" == "linux" ]]; then
   os_name="linux"
 else
