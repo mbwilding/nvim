@@ -7,12 +7,16 @@ return {
             "<leader>f",
             function()
                 vim.notify("Formatting")
-                require("conform").format({ async = true, lsp_format = "fallback" })
+                -- NOTE: fallback doesn't work, last does
+                require("conform").format({ async = true, lsp_format = "last" })
             end,
             desc = "Conform: Format",
         },
     },
     opts = {
+        default_format_opts = {
+            lsp_format = "fallback",
+        },
         -- Map of filetype to formatters
         formatters_by_ft = {
             lua = { "stylua" },
