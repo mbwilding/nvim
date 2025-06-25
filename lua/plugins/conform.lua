@@ -7,7 +7,6 @@ return {
             "<leader>f",
             function()
                 vim.notify("Formatting")
-                -- NOTE: fallback doesn't work, last does
                 require("conform").format({ async = true })
             end,
             desc = "Conform: Format",
