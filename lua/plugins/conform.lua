@@ -8,7 +8,7 @@ return {
             function()
                 vim.notify("Formatting")
                 -- NOTE: fallback doesn't work, last does
-                require("conform").format({ async = true, lsp_format = "last" })
+                require("conform").format({ async = true })
             end,
             desc = "Conform: Format",
         },
@@ -37,7 +37,7 @@ return {
             -- ["*"] = { "typos" },
             -- Use the "_" filetype to run formatters on filetypes that don't
             -- have other formatters configured.
-            ["_"] = { "trim_whitespace" },
+            -- ["_"] = { "trim_whitespace" },
         },
         -- If this is set, Conform will run the formatter on save.
         -- It will pass the table to conform.format().
