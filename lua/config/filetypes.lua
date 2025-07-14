@@ -5,5 +5,6 @@ vim.filetype.add({
         esproj = "xml",
         wsdl = "xml",
         xsd = "xml",
+        keymap = "c",
     },
 })
