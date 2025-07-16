@@ -3,6 +3,15 @@
 return {
     "sindrets/diffview.nvim",
     lazy = true,
+    cmd = {
+        "DiffviewClose",
+        "DiffviewFileHistory",
+        "DiffviewFocusFiles",
+        "DiffviewLog",
+        "DiffviewOpen",
+        "DiffviewRefresh",
+        "DiffviewToggleFiles",
+    },
     dependencies = {
         "nvim-tree/nvim-web-devicons",
     },
@@ -41,7 +50,7 @@ return {
     opts = {
         hooks = {
             diff_buf_win_enter = function()
-                vim.opt_local.foldenable = false
+                vim.opt_local.foldenable = true
             end,
         },
     },
