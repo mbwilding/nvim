@@ -1,17 +1,23 @@
 return {
-    "ramilito/kubectl.nvim",
-    lazy = true,
-    enabled = vim.fn.has("win32") == 0,
-    keys = {
-        {
-            "<leader>kc",
-            function()
-                require("kubectl").toggle()
-            end,
-            desc = "Kubectl",
+    {
+        "ramilito/kubectl.nvim",
+        version = "2.*",
+        build = "cargo build --release --features \"kube/socks5\"",
+        dependencies = "saghen/blink.download",
+        keys = {
+            {
+                "<leader>kc",
+                function()
+                    require("kubectl").toggle()
+                end,
+                desc = "Kubectl",
+            },
         },
-    },
-    opts = {
-        -- terminal_cmd = "ghostty -e",
+        opts = {
+            terminal_cmd = "ghostty -e",
+        },
+        -- config = function()
+        --     require("kubectl").setup()
+        -- end,
     },
 }
