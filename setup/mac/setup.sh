@@ -19,6 +19,7 @@ bun install --global @microsoft/compose-language-service
 bun install --global azure-pipelines-language-server
 bun install --global dockerfile-language-server-nodejs
 bun install --global vue-language-server
+bun install --global @typescript/native-preview
 # bun install --global @mistweaverco/kulala-ls
 bun install --global vscode-langservers-extracted
     # - vscode-css-language-server

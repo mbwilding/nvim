@@ -46,7 +46,6 @@ return {
             engine_path = {
                 "D:\\UnrealEngine",
                 os.getenv("HOME") .. "/dev/UnrealEngine",
-                "/Volumes/SamsungT7/UnrealEngine",
             },
         })
     end,
