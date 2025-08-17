@@ -23,7 +23,7 @@ k({ "n", "v" }, "<leader>p", "\"+p", { desc = "Paste from clipboard" })
 k({ "n", "v" }, "<leader>P", "\"+P", { desc = "Paste from clipboard (before)" })
 
 -- Tab close
-k("n", "q", ":tabclose<CR>")
+k("n", "<leader>q", ":tabclose<CR>")
 
 -- End search highlight and clear messages
 k("n", "<Esc>", "<CMD>noh<CR>")
