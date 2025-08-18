@@ -187,8 +187,9 @@ vim.treesitter.language.register("c_sharp", "csharp")
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
     callback = function(event)
-
-        print(vim.g.roslyn_nvim_selected_solution)
+        if vim.g.roslyn_nvim_selected_solution then
+            vim.notify(vim.g.roslyn_nvim_selected_solution)
+        end
 
         local client = vim.lsp.get_client_by_id(event.data.client_id)
         if not client then
