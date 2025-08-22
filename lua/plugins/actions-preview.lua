@@ -1,17 +1,9 @@
 -- Actions Preview will display a floating window with a preview of code actions.
 
-return {
-    "aznhe21/actions-preview.nvim",
-    lazy = true,
-    keys = {
-        {
-            "<leader><enter>",
-            function()
-                require("actions-preview").code_actions()
-            end,
-            desc = "Actions Preview",
-            mode = { "n", "v" },
-        },
-    },
-    opts = {},
-}
+vim.pack.add({
+    "http://github.com/aznhe21/actions-preview.nvim",
+}, { confirm = false })
+
+vim.keymap.set({ "n", "v" }, "<leader><enter>", function()
+    require("actions-preview").code_actions()
+end, { desc = "Actions Preview" })

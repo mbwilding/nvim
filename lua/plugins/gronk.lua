@@ -1,15 +1,11 @@
 -- Custom theme based on the Rider Dark theme
 
-return {
-    "mbwilding/gronk.nvim",
-    lazy = false,
-    dev = false,
-    priority = 1001,
-    config = function()
-        require("gronk").setup({
-            transparent = false,
-        })
+vim.pack.add({
+    "https://github.com/mbwilding/gronk.nvim",
+}, { confirm = false })
 
-        vim.cmd([[colorscheme gronk-wilding]])
-    end,
-}
+require("gronk").setup({
+    transparent = false,
+})
+
+vim.cmd([[colorscheme gronk-wilding]])

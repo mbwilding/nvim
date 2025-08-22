@@ -7,7 +7,7 @@ local modules = {
     "filetypes",
     "platform",
     "neovide",
-    "lazy",
+    "plugins",
     "lsp",
 }
 

@@ -1,17 +1,17 @@
 -- Comment allows you to quickly comment out lines or blocks of code in many languages.
 
-return {
-    "numToStr/Comment.nvim",
-    opts = {
-        toggler = {
-            line = "gc",
-            block = "gb",
-        },
-    },
-    config = function(_, opts)
-        require("Comment").setup(opts)
+vim.pack.add({
+    "https://github.com/numToStr/Comment.nvim",
+}, { confirm = false })
 
-        local ft = require("Comment.ft")
-        ft.set("vhs", "# %s")
-    end,
+local opts = {
+    toggler = {
+        line = "gc",
+        block = "gb",
+    },
 }
+
+require("Comment").setup(opts)
+
+local ft = require("Comment.ft")
+ft.set("vhs", "# %s")
