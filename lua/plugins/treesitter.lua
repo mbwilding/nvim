@@ -8,7 +8,7 @@ return {
     },
     config = function()
         require("nvim-treesitter.configs").setup({
-            ensure_installed = "all",
+            -- ensure_installed = "all",
             modules = {},
             ignore_install = {},
             -- Install parsers synchronously (only applied to `ensure_installed`
