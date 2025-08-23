@@ -1,0 +1,39 @@
+-- CSV Viewer
+
+-- ft = "csv",
+-- cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
+
+vim.pack.add({
+    "https://github.com/hat0uma/csvview.nvim",
+}, { confirm = false })
+
+vim.keymap.set("n", "<leader>csv", function()
+    vim.notify("CSV View: Toggled")
+    vim.cmd("CsvViewToggle")
+end, { desc = "CSV View: Toggle" })
+
+local opts = {
+    parser = { comments = { "#", "//" } },
+    keymaps = {
+        -- Text objects for selecting fields
+        textobject_field_inner = { "if", mode = { "o", "x" } },
+        textobject_field_outer = { "af", mode = { "o", "x" } },
+        -- Excel-like navigation:
+        -- Use <Tab> and <S-Tab> to move horizontally between fields.
+        -- Use <Enter> and <S-Enter> to move vertically between rows and place the cursor at the end of the field.
+        -- NOTE: In terminals, you may need to enable CSI-u mode to use <S-Tab> and <S-Enter>.
+        jump_next_field_end = { "<Tab>", mode = { "n", "v" } },
+        jump_prev_field_end = { "<S-Tab>", mode = { "n", "v" } },
+        jump_next_row = { "<Enter>", mode = { "n", "v" } },
+        jump_prev_row = { "<S-Enter>", mode = { "n", "v" } },
+    },
+}
+
+require("csvview").setup(opts)
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "csv",
+    callback = function()
+        vim.cmd("CsvViewEnable")
+    end,
+})

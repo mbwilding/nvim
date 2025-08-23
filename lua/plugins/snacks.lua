@@ -1,10 +1,11 @@
 -- Fuzzy finding
 
 vim.pack.add({
-    "folke/snacks.nvim",
+    "https://github.com/folke/snacks.nvim",
 }, { confirm = false })
 
 vim.keymap.set("n", "<leader>,", function()
+    require("snacks")
     Snacks.picker.buffers()
 end, { desc = "Snacks: Buffers" })
 
