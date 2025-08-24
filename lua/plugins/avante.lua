@@ -15,11 +15,10 @@ return {
     ---@module 'avante'
     ---@type avante.Config
     opts = {
-        hints = {
-            enabled = false,
+        selection = {
+            enabled = true,
+            hint_display = "none",
         },
-        -- add any opts here
-        -- for example
         provider = "openai",
         providers = {
             openai = {
