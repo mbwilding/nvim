@@ -2,7 +2,7 @@ return {
     {
         "ramilito/kubectl.nvim",
         version = "2.*",
-        build = "make build_go && cargo build --release --features \"kube/socks5\"",
+        build = "make build_go && cargo build --release --features kube/socks5",
         dependencies = "saghen/blink.download",
         keys = {
             {
