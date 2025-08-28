@@ -5,7 +5,7 @@ return {
     ft = { "http", "rest" },
     opts = {
         global_keymaps = true,
-        global_keymaps_prefix = "<leader>x",
+        global_keymaps_prefix = "<leader>h",
         kulala_keymaps_prefix = "",
     },
 }
