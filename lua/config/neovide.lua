@@ -14,6 +14,9 @@ if vim.g.neovide then
         vim.g.neovide_refresh_rate = 120
     end
 
+    vim.g.neovide_opacity = 0.85
+    vim.g.neovide_background_color = "#000000"
+
     vim.g.neovide_position_animation_length = 0.1
     vim.g.neovide_scroll_animation_length = 0.1
 
