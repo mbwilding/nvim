@@ -6,6 +6,9 @@ if vim.g.neovide then
     if vim.fn.has("mac") == 1 then
         vim.o.guifont = font_suffix .. "18"
         vim.g.neovide_refresh_rate = 60
+    elseif vim.fn.hostname() == "nona" then
+        vim.o.guifont = font_suffix .. "26"
+        vim.g.neovide_refresh_rate = 90
     else
         vim.o.guifont = font_suffix .. "17" -- :w-1
         vim.g.neovide_refresh_rate = 120
