@@ -265,6 +265,7 @@ return {
     },
     ---@type snacks.plugins.Config
     opts = {
+        -- terminal = {},
         image = {},
         lazygit = {},
         dashboard = {
