@@ -29,4 +29,21 @@ if vim.g.neovide then
     vim.keymap.set("n", "<F11>", function()
         vim.g.neovide_fullscreen = not vim.g.neovide_fullscreen
     end)
+
+    vim.g.terminal_color_0  = "#181818"
+    vim.g.terminal_color_1  = "#e78284"
+    vim.g.terminal_color_2  = "#39cc8f"
+    vim.g.terminal_color_3  = "#c9a26d"
+    vim.g.terminal_color_4  = "#8caaee"
+    vim.g.terminal_color_5  = "#f4b8e4"
+    vim.g.terminal_color_6  = "#81c8be"
+    vim.g.terminal_color_7  = "#a5adce"
+    vim.g.terminal_color_8  = "#4f5258"
+    vim.g.terminal_color_9  = "#ff4747"
+    vim.g.terminal_color_10 = "#39cc8f"
+    vim.g.terminal_color_11 = "#ffffff"
+    vim.g.terminal_color_12 = "#9591ff"
+    vim.g.terminal_color_13 = "#ed94c0"
+    vim.g.terminal_color_14 = "#5abfb5"
+    vim.g.terminal_color_15 = "#b5bfe2"
 end
