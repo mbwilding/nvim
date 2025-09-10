@@ -2,4 +2,6 @@
 
 ```sh
 git clone git@github.com:mbwilding/neovim-dotfiles ~/.config/nvim
+sh ~/.config/nvim/setup/linux/setup_arch.sh
+nvim
 ```
