@@ -10,7 +10,7 @@ if vim.g.neovide then
         vim.o.guifont = font_suffix .. "26"
         vim.g.neovide_refresh_rate = 90
     else
-        vim.o.guifont = font_suffix .. "17" -- :w-1
+        vim.o.guifont = font_suffix .. "26" -- :w-1
         vim.g.neovide_refresh_rate = 120
     end
 
