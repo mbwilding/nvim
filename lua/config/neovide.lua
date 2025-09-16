@@ -7,7 +7,7 @@ if vim.g.neovide then
         vim.o.guifont = font_suffix .. "18"
         vim.g.neovide_refresh_rate = 60
     elseif vim.fn.hostname() == "nona" then
-        vim.o.guifont = font_suffix .. "26"
+        vim.o.guifont = font_suffix .. "21"
         vim.g.neovide_refresh_rate = 90
     else
         vim.o.guifont = font_suffix .. "26" -- :w-1
