@@ -14,10 +14,13 @@ return {
             },
         },
         opts = {
+            auto_refresh = 500, -- ms
             terminal_cmd = "ghostty -e",
+            logs = {
+                prefix = true,
+                timestamps = true,
+                since = "5m",
+            },
         },
-        -- config = function()
-        --     require("kubectl").setup()
-        -- end,
     },
 }
