@@ -13,5 +13,7 @@ return {
             mode = { "n", "v" },
         },
     },
-    opts = {},
+    opts = {
+        backend = { "snacks", "minipick", "telescope", "nui" },
+    },
 }
