@@ -355,7 +355,12 @@ return {
                         border = "rounded",
                         title_pos = "center",
                     },
-                    { win = "list", title = " Results ", title_pos = "center", border = "rounded" },
+                    {
+                        win = "list",
+                        title = " Results ",
+                        title_pos = "center",
+                        border = "rounded",
+                    },
                     {
                         win = "input",
                         height = 1,
