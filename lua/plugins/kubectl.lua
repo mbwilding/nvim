@@ -14,7 +14,6 @@ return {
             },
         },
         opts = {
-            auto_refresh = 500, -- ms
             terminal_cmd = "ghostty -e",
             logs = {
                 prefix = true,
