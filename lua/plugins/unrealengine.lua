@@ -1,6 +1,6 @@
 return {
     "mbwilding/UnrealEngine.nvim",
-    dev = true,
+    dev = false,
     lazy = false,
     keys = {
         {
