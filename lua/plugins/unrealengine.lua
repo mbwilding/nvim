@@ -1,6 +1,6 @@
 return {
     "mbwilding/UnrealEngine.nvim",
-    dev = false,
+    dev = true,
     lazy = false,
     keys = {
         {
@@ -47,6 +47,9 @@ return {
                 "/opt/unreal-engine",
                 os.getenv("HOME") .. "/dev/UnrealEngine",
                 "D:\\UnrealEngine",
+            },
+            environment_variables = {
+                SDL_VIDEODRIVER = "",
             },
         })
     end,
