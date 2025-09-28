@@ -44,8 +44,9 @@ return {
             auto_generate = true,
             auto_build = true,
             engine_path = {
-                "D:\\UnrealEngine",
+                "/opt/unreal-engine",
                 os.getenv("HOME") .. "/dev/UnrealEngine",
+                "D:\\UnrealEngine",
             },
         })
     end,
