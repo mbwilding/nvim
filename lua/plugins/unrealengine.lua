@@ -42,7 +42,7 @@ return {
     config = function()
         require("unrealengine").setup({
             auto_generate = true,
-            auto_build = true,
+            auto_build = false,
             engine_path = {
                 "/opt/unreal-engine",
                 os.getenv("HOME") .. "/dev/UnrealEngine",
