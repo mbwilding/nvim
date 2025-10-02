@@ -36,8 +36,7 @@ return {
         },
     },
     opts = {
-        is_insert_mode = false,
-        -- live_update = true,
+        is_insert_mode = true,
         default = {
             find = {
                 cmd = 'rg',
