@@ -6,26 +6,46 @@ return {
     },
     keys = {
         {
-            "<leader>R",
-            "<CMD>lua require('spectre').toggle()<CR>",
+            "<leader>sr",
+            function()
+                require('spectre').toggle()
+            end,
             desc = "Spectre: Toggle Spectre",
         },
         {
             "<leader>rw",
-            "<CMD>lua require('spectre').open_visual({select_word=true})<CR>",
+            function()
+                require('spectre').open_visual({select_word=true})
+            end,
             desc = "Spectre: Search current word",
         },
         {
             "<leader>rw",
-            "<ESC><CMD>lua require('spectre').open_visual()<CR>",
+            function()
+                require('spectre').open_visual()
+            end,
             desc = "Spectre: Search current word",
             mode = "v",
         },
         {
             "<leader>rf",
-            "<CMD>lua require('spectre').open_file_search({select_word=true})<CR>",
+            function()
+                require('spectre').open_file_search({select_word=true})
+            end,
             desc = "Spectre: Search current file",
         },
     },
-    opts = {},
+    opts = {
+        is_insert_mode = false,
+        -- live_update = true,
+        default = {
+            find = {
+                cmd = 'rg',
+                options = {
+                    -- 'ignore-case'
+                },
+            },
+        },
+    },
 }
+
