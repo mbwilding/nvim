@@ -46,6 +46,9 @@ k("n", "<leader>iw", function()
     vim.notify("Wrap: " .. tostring(vim.wo.wrap))
 end, { desc = "Toggle Word Wrap" })
 
+-- Replace in file
+k("n", "<leader>rn", ":%s/<C-R><C-W>//g<Left><Left>", { noremap = true, desc = "Replace Hovered" })
+
 -- Redo
 k("n", "U", "<C-r>", { desc = "Redo" })
 
