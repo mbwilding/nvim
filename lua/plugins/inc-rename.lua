@@ -4,7 +4,7 @@ return {
     event = "LspAttach",
     config = function()
         require("inc_rename").setup({
-            -- input_buffer_type = "dressing",
+            input_buffer_type = "snacks",
         })
 
         vim.keymap.set("n", "<leader>rn", function()
