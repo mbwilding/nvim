@@ -20,5 +20,5 @@
   (#any-of? @_pwsh "inlineScript")
   value: (block_node
     (block_scalar) @injection.content
-    (#set! injection.language "bash")
+    (#set! injection.language "powershell")
     (#offset! @injection.content 0 1 0 0)))
