@@ -16,7 +16,6 @@ brew install lazygit fd gs imagemagick luarocks bun jq curl wget node python go 
 brew install lua-language-server taplo python-lsp-server yaml-language-server tailwindcss-language-server bash-language-server zls gopls
 go install github.com/sqls-server/sqls@latest
 bun install --global @microsoft/compose-language-service
-bun install --global azure-pipelines-language-server
 bun install --global dockerfile-language-server-nodejs
 bun install --global vue-language-server
 bun install --global @typescript/native-preview

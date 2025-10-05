@@ -15,7 +15,6 @@ rustup component add rust-analyzer
 
 # Language Servers
 paru -S --noconfirm zls vue-language-server taplo-cli sqls python-lsp-server vscode-css-languageserver vscode-html-languageserver vscode-json-languageserver gopls dockerfile-language-server lua-language-server bash-language-server powershell-editor-services lemminx tailwindcss-language-server yaml-language-server
-bun install --global azure-pipelines-language-server
 bun install --global @typescript/native-preview
 bash ${shared}/roslyn.sh
 
@@ -29,4 +28,4 @@ bash ${shared}/netcoredbg.sh
 bash ${shared}/codelldb.sh
 bash ${shared}/js-debug.sh
 
-# eslint-languageserver vscode-markdown-languageserver dockercompose-language-server azure-pipelines-language-server
+# eslint-languageserver vscode-markdown-languageserver dockercompose-language-server

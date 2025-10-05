@@ -13,6 +13,5 @@ source $HOME/.profile
 
 # sudo pip install cfn-lint
 # sudo gem install cfn-nag
-sudo npm install -g aws-azure-login
 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
