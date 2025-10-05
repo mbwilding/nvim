@@ -1,8 +1,6 @@
 ; extends
 
-; --- Inject Bash and PowerShell for common CI pipeline fields ---
-
-; Azure DevOps, GitHub Actions, GitLab CI (sh, bash, script, run, before_script, after_script as block_scalar)
+; Azure DevOps, GitHub Actions, GitLab CI
 (block_mapping_pair
   key: (flow_node) @key
     (#any-of? @key "script" "run" "bash" "sh" "before_script" "after_script" "inlineScript")
@@ -34,18 +32,3 @@
   value: (flow_node (plain_scalar) @injection.content)
   (#set! injection.language "powershell")
 )
-
-; --- Variable/Template Interpolation ---
-; Handles {{ }} and similar for gotmpl-like highlighting
-(block_scalar) @injection.content
-  (#match? @injection.content "\\{\\{\\s*[A-Za-z_.][A-Za-z0-9_.]*\\s*\\}\}")
-  (#set! injection.language "gotmpl")
-
-(block_scalar) @injection.content
-  (#match? @injection.content "\\$\\{\\{[^}]+\\}\}")
-  (#set! injection.language "gotmpl")
-
-; Bash variable style
-(block_scalar) @injection.content
-  (#match? @injection.content "\\$[A-Za-z_][A-Za-z0-9_]*")
-  (#set! injection.language "bash")
