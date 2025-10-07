@@ -53,6 +53,9 @@ return {
             desc = "UnrealEngine: Link Plugin - Build Engine",
         },
     },
+    build = function()
+        require("unrealengine.commands").build_engine()
+    end,
     config = function()
         require("unrealengine").setup({
             auto_generate = true,
