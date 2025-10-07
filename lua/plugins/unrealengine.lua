@@ -43,7 +43,6 @@ return {
         require("unrealengine").setup({
             auto_generate = true,
             auto_build = false,
-            with_editor = true,
             engine_path = "/opt/unreal-engine",
             environment_variables = {
                 SDL_VIDEODRIVER = "",
