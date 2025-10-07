@@ -38,12 +38,27 @@ return {
             end,
             desc = "UnrealEngine: Clean",
         },
+        {
+            "<leader>ul",
+            function()
+                require("unrealengine.commands").link_plugin()
+            end,
+            desc = "UnrealEngine: Link Plugin",
+        },
+        {
+            "<leader>ue",
+            function()
+                require("unrealengine.commands").build_engine()
+            end,
+            desc = "UnrealEngine: Link Plugin - Build Engine",
+        },
     },
     config = function()
         require("unrealengine").setup({
             auto_generate = true,
             auto_build = false,
             engine_path = "/opt/unreal-engine",
+            link_plugin = true,
             environment_variables = {
                 SDL_VIDEODRIVER = "",
             },
