@@ -1,6 +1,8 @@
+local engine_path = "/opt/unreal-engine"
+
 return {
     "mbwilding/UnrealEngine.nvim",
-    dev = false,
+    dev = true,
     lazy = false,
     keys = {
         {
@@ -54,13 +56,13 @@ return {
         },
     },
     build = function()
-        require("unrealengine.commands").build_engine({ engine_path = "/opt/unreal-engine" })
+        require("unrealengine.commands").build_engine({ engine_path = engine_path })
     end,
     config = function()
         require("unrealengine").setup({
             auto_generate = true,
             auto_build = false,
-            engine_path = "/opt/unreal-engine",
+            engine_path = engine_path,
             link_plugin = true,
             environment_variables = {
                 SDL_VIDEODRIVER = "",
