@@ -54,7 +54,7 @@ return {
         },
     },
     build = function()
-        require("unrealengine.commands").build_engine()
+        require("unrealengine.commands").build_engine({ engine_path = "/opt/unreal-engine" })
     end,
     config = function()
         require("unrealengine").setup({
