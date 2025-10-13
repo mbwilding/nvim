@@ -1,0 +1,8 @@
+{
+  "plugins": {
+    "plenary.nvim": {
+      "rev": "b9fd522",
+      "src": "https://github.com/nvim-lua/plenary.nvim"
+    }
+  }
+}
