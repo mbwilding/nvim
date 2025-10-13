@@ -22,3 +22,5 @@ bash ${shared}/codelldb.sh &
 bash ${shared}/js-debug.sh &
 bash ${shared}/roslyn.sh &
 wait
+
+echo "Setup complete"
