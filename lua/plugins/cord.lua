@@ -10,7 +10,7 @@ return {
         },
         display = {
             theme = "classic",
-            flavor = "accent",
+            flavor = "dark",
             swap_icons = false,
         },
     },
