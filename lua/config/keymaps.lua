@@ -47,7 +47,8 @@ k("n", "<leader>iw", function()
 end, { desc = "Toggle Word Wrap" })
 
 -- Replace in file
-k("n", "<leader>rn", ":%s/<C-R><C-W>//g<Left><Left>", { noremap = true, desc = "Replace Hovered" })
+k("n", "<leader>rn", ":%s/<C-R><C-W>//g<Left><Left>", { desc = "Replace Hovered" })
+k("v", "<leader>rn", 'y:%s/<C-R>0//g<Left><Left>', { desc = "Replace All Matching Selected" })
 
 -- Redo
 k("n", "U", "<C-r>", { desc = "Redo" })
