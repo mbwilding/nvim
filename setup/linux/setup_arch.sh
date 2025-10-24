@@ -5,7 +5,7 @@ set -e
 shared="$(dirname "$(readlink -f "$0")")/../shared"
 
 paru -Sy --noconfirm --skipreview --needed \
-    bun-bin neovim-git openssh gnupg wget jq fuse make grep ripgrep cmake unzip go python3 ruby rustup nodejs clang luarocks tree-sitter-cli \
+    bun-bin neovim-nightly-bin openssh gnupg wget jq fuse make grep ripgrep cmake unzip go python3 ruby rustup nodejs clang luarocks tree-sitter-cli \
     zls vue-language-server taplo-cli sqls python-lsp-server vscode-css-languageserver vscode-html-languageserver vscode-json-languageserver gopls dockerfile-language-server lua-language-server bash-language-server powershell-editor-services lemminx tailwindcss-language-server yaml-language-server \
     netcoredbg delve python-debugpy \
     eslint_d prettierd python-pylint yamllint python-cfn-lint
