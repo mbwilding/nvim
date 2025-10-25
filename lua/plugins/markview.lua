@@ -12,7 +12,7 @@ return {
     opts = {
         preview = {
             icon_provider = "devicons",
-            filetypes = { "markdown", "codecompanion" },
+            filetypes = { "markdown", "codecompanion", "avante" },
             ignore_buftypes = {},
         },
     },
