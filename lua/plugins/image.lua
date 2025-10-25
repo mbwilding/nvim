@@ -49,7 +49,7 @@ return {
                     -- Notice these are the settings for markdown files
                     markdown = {
                         enabled = true,
-                        clear_in_insert_mode = false,
+                        clear_in_insert_mode = true,
                         -- Set this to false if you don't want to render images coming from
                         -- a URL
                         download_remote_images = true,
@@ -97,7 +97,7 @@ return {
                 window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
 
                 -- auto show/hide images when the editor gains/looses focus
-                editor_only_render_when_focused = true,
+                editor_only_render_when_focused = false,
 
                 -- auto show/hide images in the correct tmux window
                 -- In the tmux.conf add `set -g visual-activity off`

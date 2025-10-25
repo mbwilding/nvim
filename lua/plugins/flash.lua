@@ -45,7 +45,7 @@ return {
     },
     ---@type Flash.Config
     opts = {
-        labels ="uhetonasidkbjmqwvpgycfrlx",
+        labels = "uhetonasidkbjmqwvpgycfrlx",
         modes = {
             search = {
                 enabled = false,

@@ -8,21 +8,21 @@ return {
         {
             "<leader>sr",
             function()
-                require('spectre').toggle()
+                require("spectre").toggle()
             end,
             desc = "Spectre: Toggle Spectre",
         },
         {
             "<leader>rw",
             function()
-                require('spectre').open_visual({select_word=true})
+                require("spectre").open_visual({ select_word = true })
             end,
             desc = "Spectre: Search current word",
         },
         {
             "<leader>rw",
             function()
-                require('spectre').open_visual()
+                require("spectre").open_visual()
             end,
             desc = "Spectre: Search current word",
             mode = "v",
@@ -30,7 +30,7 @@ return {
         {
             "<leader>rf",
             function()
-                require('spectre').open_file_search({select_word=true})
+                require("spectre").open_file_search({ select_word = true })
             end,
             desc = "Spectre: Search current file",
         },
@@ -39,7 +39,7 @@ return {
         is_insert_mode = true,
         default = {
             find = {
-                cmd = 'rg',
+                cmd = "rg",
                 options = {
                     -- 'ignore-case'
                 },
@@ -47,4 +47,3 @@ return {
         },
     },
 }
-

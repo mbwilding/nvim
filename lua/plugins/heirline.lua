@@ -292,7 +292,6 @@ return {
             }
         end
 
-
         -- FILE TYPE
         local function file_type(bg)
             return {
