@@ -2,9 +2,9 @@ local engine_path = vim.loop.os_uname().sysname == "Windows_NT" and [[D:\UnrealE
 
 return {
     "mbwilding/UnrealEngine.nvim",
-    dev = true,
     lazy = false,
-    enabled = false,
+    dev = true,
+    enabled = true,
     keys = {
         {
             "<leader>ug",
