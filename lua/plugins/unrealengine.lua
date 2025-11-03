@@ -3,7 +3,7 @@ local engine_path = vim.loop.os_uname().sysname == "Windows_NT" and [[D:\UnrealE
 return {
     "mbwilding/UnrealEngine.nvim",
     lazy = false,
-    dev = true,
+    dev = false,
     enabled = true,
     keys = {
         {
@@ -66,7 +66,7 @@ return {
             engine_path = engine_path,
             link_plugin = true,
             environment_variables = {
-                SDL_VIDEODRIVER = "",
+                -- SDL_VIDEODRIVER = "",
             },
         })
     end,
