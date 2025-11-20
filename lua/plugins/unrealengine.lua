@@ -4,7 +4,7 @@ return {
     "mbwilding/UnrealEngine.nvim",
     lazy = false,
     dev = false,
-    enabled = true,
+    enabled = false,
     keys = {
         {
             "<leader>ug",
