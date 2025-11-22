@@ -1,7 +1,10 @@
 local k = vim.keymap.set
 
 -- Map ; to :
-k("n", ";", ":")
+-- k("n", ";", ":")
+
+-- Map ; to /
+k("n", ";", "/")
 
 -- Allow hjkl navigation in non-normal mode
 k({ "i", "c" }, "<C-k>", "<Up>")

@@ -23,7 +23,7 @@ return {
         vim.o.foldenable = true
         -- vim.o.foldcolumn = "1"
         vim.o.foldcolumn = "0"
-        vim.o.fillchars = "eob: ,fold: ,foldopen:,foldsep: ,foldclose:"
+        vim.o.fillchars = "eob: ,fold: ,diff:/,foldopen:,foldsep: ,foldclose:"
         vim.o.foldlevel = 99999999
         vim.o.foldlevelstart = 99999999
 
