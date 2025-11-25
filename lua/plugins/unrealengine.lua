@@ -1,6 +1,6 @@
 local uname = vim.loop.os_uname()
 
-local engine_path = uname.sysname == "Windows_NT" and [[D:\UnrealEngine]] or "/opt/unreal-engine"
+local engine_path = uname.sysname == "Windows_NT" and [[D:\unreal-engine]] or "/mnt/studio/unreal-engine"
 
 local is_android
 if uname.release:lower():find("android") or uname.version:lower():find("android") then
@@ -10,7 +10,7 @@ end
 return {
     "mbwilding/UnrealEngine.nvim",
     lazy = false,
-    dev = false,
+    dev = true,
     enabled = not is_android,
     keys = {
         {
