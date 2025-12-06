@@ -132,27 +132,27 @@ k("n", "<leader>k", function()
     vim.diagnostic.open_float(nil, { scope = "line" })
 end, { desc = "Diagnostics: View float" })
 
-k("n", "<leader>ivt", function()
-    vim.diagnostic.config({
-        virtual_text = not vim.diagnostic.config().virtual_text,
-    })
-    vim.notify("Virtual Text: " .. tostring(vim.diagnostic.config().virtual_text))
-end, { desc = "Diagnostics: Toggle Virtual Text" })
+-- k("n", "<leader>ivt", function()
+--     vim.diagnostic.config({
+--         virtual_text = not vim.diagnostic.config().virtual_text,
+--     })
+--     vim.notify("Virtual Text: " .. tostring(vim.diagnostic.config().virtual_text))
+-- end, { desc = "Diagnostics: Toggle Virtual Text" })
 
-k("n", "<leader>ivl", function()
-    vim.diagnostic.config({
-        virtual_lines = not vim.diagnostic.config().virtual_lines,
-    })
-    vim.notify("Virtual Lines: " .. tostring(vim.diagnostic.config().virtual_lines))
-end, { desc = "Diagnostics: Toggle Virtual Lines" })
+-- k("n", "<leader>ivl", function()
+--     vim.diagnostic.config({
+--         virtual_lines = not vim.diagnostic.config().virtual_lines,
+--     })
+--     vim.notify("Virtual Lines: " .. tostring(vim.diagnostic.config().virtual_lines))
+-- end, { desc = "Diagnostics: Toggle Virtual Lines" })
 
-local current_line = vim.diagnostic.config().virtual_lines.current_line
-k("n", "<leader>ivc", function()
-    current_line = not current_line
-    vim.diagnostic.config({
-        virtual_lines = {
-            current_line = current_line,
-        },
-    })
-    vim.notify("Virtual Lines Current Line: " .. tostring(vim.diagnostic.config().virtual_lines.current_line))
-end, { desc = "Diagnostics: Toggle Virtual Lines Current Line" })
+-- local current_line = vim.diagnostic.config().virtual_lines.current_line
+-- k("n", "<leader>ivc", function()
+--     current_line = not current_line
+--     vim.diagnostic.config({
+--         virtual_lines = {
+--             current_line = current_line,
+--         },
+--     })
+--     vim.notify("Virtual Lines Current Line: " .. tostring(vim.diagnostic.config().virtual_lines.current_line))
+-- end, { desc = "Diagnostics: Toggle Virtual Lines Current Line" })

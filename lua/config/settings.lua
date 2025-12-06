@@ -50,8 +50,8 @@ wo.relativenumber = false
 wo.signcolumn = "auto:2"
 
 -- Virtual Text
-vim.diagnostic.config({
-    virtual_lines = {
-        current_line = true,
-    },
-})
+-- vim.diagnostic.config({
+--     virtual_lines = {
+--         current_line = true,
+--     },
+-- })
