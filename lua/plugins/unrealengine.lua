@@ -11,7 +11,8 @@ return {
     "mbwilding/UnrealEngine.nvim",
     lazy = false,
     dev = true,
-    enabled = not is_android,
+    -- enabled = not is_android,
+    enabled = false,
     keys = {
         {
             "<leader>ug",
