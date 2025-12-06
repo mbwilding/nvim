@@ -10,6 +10,7 @@ return {
         options = {
             multilines = {
                 enabled = true,
+                trim_whitespaces = false,
             },
             add_messages = {
                 display_count = true,
