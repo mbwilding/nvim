@@ -99,25 +99,14 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     end,
 })
 
-vim.keymap.set({ "n", "x" }, "y", function()
-    cursorPreAction = vim.api.nvim_win_get_cursor(0)
-    return "y"
-end, { expr = true })
-
-vim.keymap.set("n", "Y", function()
-    cursorPreAction = vim.api.nvim_win_get_cursor(0)
-    return "yg_"
-end, { expr = true })
-
-vim.keymap.set({ "n", "x" }, "<leader>y", function()
-    cursorPreAction = vim.api.nvim_win_get_cursor(0)
-    return "\"+y"
-end, { expr = true })
-
-vim.keymap.set("n", "<leader>yy", function()
-    cursorPreAction = vim.api.nvim_win_get_cursor(0)
-    return "\"+yy"
-end, { expr = true })
+vim.api.nvim_create_autocmd("User", {
+  pattern = "OilActionsPost",
+  callback = function(event)
+      if event.data.actions[1].type == "move" then
+          Snacks.rename.on_rename_file(event.data.actions[1].src_url, event.data.actions[1].dest_url)
+      end
+  end,
+})
 
 -- Virtual text only on current line
 -- vim.diagnostic.config({

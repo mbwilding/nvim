@@ -132,6 +132,26 @@ k("n", "<leader>k", function()
     vim.diagnostic.open_float(nil, { scope = "line" })
 end, { desc = "Diagnostics: View float" })
 
+vim.keymap.set({ "n", "x" }, "y", function()
+    cursorPreAction = vim.api.nvim_win_get_cursor(0)
+    return "y"
+end, { expr = true })
+
+vim.keymap.set("n", "Y", function()
+    cursorPreAction = vim.api.nvim_win_get_cursor(0)
+    return "yg_"
+end, { expr = true })
+
+vim.keymap.set({ "n", "x" }, "<leader>y", function()
+    cursorPreAction = vim.api.nvim_win_get_cursor(0)
+    return "\"+y"
+end, { expr = true })
+
+vim.keymap.set("n", "<leader>yy", function()
+    cursorPreAction = vim.api.nvim_win_get_cursor(0)
+    return "\"+yy"
+end, { expr = true })
+
 -- k("n", "<leader>ivt", function()
 --     vim.diagnostic.config({
 --         virtual_text = not vim.diagnostic.config().virtual_text,
