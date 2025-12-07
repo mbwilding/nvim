@@ -99,15 +99,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     end,
 })
 
-vim.api.nvim_create_autocmd("User", {
-  pattern = "OilActionsPost",
-  callback = function(event)
-      if event.data.actions[1].type == "move" then
-          Snacks.rename.on_rename_file(event.data.actions[1].src_url, event.data.actions[1].dest_url)
-      end
-  end,
-})
-
 -- Virtual text only on current line
 -- vim.diagnostic.config({
 --     virtual_text = false,
