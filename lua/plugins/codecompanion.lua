@@ -1,13 +1,17 @@
 return {
     "olimorris/codecompanion.nvim",
+    version = "v17.33.0",
     dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-treesitter/nvim-treesitter",
         {
-            "github/copilot.vim",
-            config = function()
-                vim.g.copilot_enabled = false
-            end,
+            "zbirenbaum/copilot.lua",
+            opts = {
+                copilot_model = "claude-sonnet-4.5",
+                panel = { enabled = false },
+                suggestion = { enabled = false },
+                nes = { enabled = false },
+            },
         },
     },
     opts = {
