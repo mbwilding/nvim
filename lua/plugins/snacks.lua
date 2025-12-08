@@ -1,10 +1,10 @@
 vim.api.nvim_create_autocmd("User", {
-  pattern = "OilActionsPost",
-  callback = function(event)
-      if event.data.actions[1].type == "move" then
-          Snacks.rename.on_rename_file(event.data.actions[1].src_url, event.data.actions[1].dest_url)
-      end
-  end,
+    pattern = "OilActionsPost",
+    callback = function(event)
+        if event.data.actions[1].type == "move" then
+            Snacks.rename.on_rename_file(event.data.actions[1].src_url, event.data.actions[1].dest_url)
+        end
+    end,
 })
 
 return {
@@ -77,7 +77,7 @@ return {
             end,
             desc = "Git Status",
         },
-        -- Grep
+        -- grep
         {
             "<leader>sb",
             function()
@@ -271,6 +271,34 @@ return {
             end,
             desc = "LazyGit: Log File",
         },
+        {
+            "<leader>gi",
+            function()
+                Snacks.picker.gh_issue()
+            end,
+            desc = "GitHub Issues (open)",
+        },
+        {
+            "<leader>gI",
+            function()
+                Snacks.picker.gh_issue({ state = "all" })
+            end,
+            desc = "GitHub Issues (all)",
+        },
+        {
+            "<leader>gp",
+            function()
+                Snacks.picker.gh_pr()
+            end,
+            desc = "GitHub Pull Requests (open)",
+        },
+        {
+            "<leader>gP",
+            function()
+                Snacks.picker.gh_pr({ state = "all" })
+            end,
+            desc = "GitHub Pull Requests (all)",
+        },
     },
     ---@type snacks.plugins.Config
     opts = {
@@ -398,6 +426,8 @@ return {
                 grep = {
                     hidden = true,
                 },
+                gh_issue = {},
+                gh_pr = {},
             },
         },
     },
