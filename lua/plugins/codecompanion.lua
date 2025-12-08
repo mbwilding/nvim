@@ -3,6 +3,12 @@ return {
     dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-treesitter/nvim-treesitter",
+        {
+            "github/copilot.vim",
+            config = function()
+                vim.g.copilot_enabled = false
+            end,
+        },
     },
     opts = {
         strategies = {
