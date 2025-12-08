@@ -12,6 +12,9 @@ return {
             inline = {
                 adapter = "openai",
             },
+            agent = {
+                adapter = "openai",
+            },
             cmd = {
                 adapter = "openai",
             },
