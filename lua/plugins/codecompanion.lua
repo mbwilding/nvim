@@ -12,6 +12,9 @@ return {
             inline = {
                 adapter = "openai",
             },
+            cmd = {
+                adapter = "openai",
+            },
         },
     },
     config = function(_, opts)
