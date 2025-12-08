@@ -1,0 +1,3 @@
+return {
+    "thgrass/tail.nvim",
+}
