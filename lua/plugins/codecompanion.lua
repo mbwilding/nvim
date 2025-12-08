@@ -7,16 +7,20 @@ return {
     opts = {
         strategies = {
             chat = {
-                adapter = "openai",
+                adapter = "copilot",
+                model = "claude-sonnet-4.5",
             },
             inline = {
-                adapter = "openai",
+                adapter = "copilot",
+                model = "claude-sonnet-4.5",
             },
             agent = {
-                adapter = "openai",
+                adapter = "copilot",
+                model = "claude-sonnet-4.5",
             },
             cmd = {
-                adapter = "openai",
+                adapter = "copilot",
+                model = "claude-sonnet-4.5",
             },
         },
     },
