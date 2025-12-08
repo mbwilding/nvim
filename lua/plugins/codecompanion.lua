@@ -7,7 +7,7 @@ return {
         {
             "zbirenbaum/copilot.lua",
             opts = {
-                copilot_model = "claude-sonnet-4.5",
+                copilot_model = "claude-sonnet-4-5",
                 panel = { enabled = false },
                 suggestion = { enabled = false },
                 nes = { enabled = false },
@@ -18,19 +18,19 @@ return {
         strategies = {
             chat = {
                 adapter = "copilot",
-                model = "claude-sonnet-4.5",
+                model = "claude-sonnet-4-5",
             },
             inline = {
                 adapter = "copilot",
-                model = "claude-sonnet-4.5",
+                model = "claude-sonnet-4-5",
             },
             agent = {
                 adapter = "copilot",
-                model = "claude-sonnet-4.5",
+                model = "claude-sonnet-4-5",
             },
             cmd = {
                 adapter = "copilot",
-                model = "claude-sonnet-4.5",
+                model = "claude-sonnet-4-5",
             },
         },
     },
