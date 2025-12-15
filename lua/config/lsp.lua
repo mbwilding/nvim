@@ -10,6 +10,7 @@ local servers = {
     taplo = {},
     zls = {},
     tsgo = {},
+    marksman = {},
     lua_ls = {
         settings = {
             Lua = {
