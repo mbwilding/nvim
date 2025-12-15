@@ -32,6 +32,7 @@ return {
                     return { "isort", "black" }
                 end
             end,
+            markdown = { "markdownlint-cli2" },
             -- Use the "*" filetype to run formatters on all filetypes
             -- ["*"] = { "typos" },
             -- Use the "_" filetype to run formatters on filetypes that don't
