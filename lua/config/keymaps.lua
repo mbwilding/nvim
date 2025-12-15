@@ -37,6 +37,8 @@ k({ "n", "v" }, "<leader>", "<Nop>")
 -- Remap for dealing with word wrap
 k("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 k("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
+k("n", "0", "v:count == 0 ? 'g0' : '0'", { expr = true })
+k("n", "$", "v:count == 0 ? 'g$' : '$'", { expr = true })
 
 -- Toggles
 k("n", "<leader>ir", function()
