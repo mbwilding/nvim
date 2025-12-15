@@ -9,7 +9,7 @@ paru -Sy --noconfirm --skipreview --needed \
     zls vue-language-server taplo-cli sqls python-lsp-server vscode-css-languageserver vscode-html-languageserver vscode-json-languageserver gopls dockerfile-language-server lua-language-server bash-language-server powershell-editor-services lemminx tailwindcss-language-server yaml-language-server marksman \
     netcoredbg delve python-debugpy \
     eslint_d prettierd python-pylint yamllint python-cfn-lint \
-    markdownlint-cli2
+    ruff markdownlint-cli2
 
 rustup default stable
 rustup component add rust-analyzer
