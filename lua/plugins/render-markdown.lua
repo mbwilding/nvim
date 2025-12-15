@@ -6,7 +6,6 @@ return {
     },
     ---@type render.md.UserConfig
     opts = {
-        file_types = { "markdown", "Avante" },
+        file_types = { "markdown", "Avante", "CodeCompanion" },
     },
-    ft = { "markdown", "Avante" },
 }
