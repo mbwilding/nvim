@@ -9,7 +9,12 @@ local servers = {
     sqls = {},
     taplo = {},
     zls = {},
-    tsgo = {},
+    -- TODO: Set back to just {} when tsgo install works fine
+    tsgo = (vim.fn.filereadable("/home/anon/dev/typescript-go/built/local/tsgo") == 1) and {
+        cmd = { "/home/anon/dev/typescript-go/built/local/tsgo", "--lsp", "--stdio" },
+    } or {
+        cmd = { "tsgo", "--lsp", "--stdio" },
+    },
     marksman = {},
     lua_ls = {
         settings = {
