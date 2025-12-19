@@ -13,23 +13,27 @@ return {
     },
     opts = {
         enable = true,
-        hide_zero_counts = false,
+        hide_zero_counts = true,
         include_declaration = false,
         sections = {
             definition = function(count)
-                if count > 1 then
+                if count == 1 then
+                    return count .. " definition"
+                elseif count > 1 then
                     return count .. " definitions"
                 end
             end,
             references = function(count)
-                if count == 0 then
-                    return "unused"
+                if count == 1 then
+                    return count .. " usage"
                 elseif count > 1 then
                     return count .. " usages"
                 end
             end,
             implements = function(count)
-                if count > 1 then
+                if count == 1 then
+                    return count .. " implementation"
+                elseif count > 1 then
                     return count .. " implementations"
                 end
             end,

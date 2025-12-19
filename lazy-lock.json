@@ -29,7 +29,6 @@
   "launcher.nvim": { "branch": "main", "commit": "0c20ac7a32e56c1ab7d8e7d7978ec51b15bcf3ac" },
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
   "log-highlight.nvim": { "branch": "main", "commit": "cac07cf2d1937038f6627a450bef4664f096b120" },
-  "lsp-lens.nvim": { "branch": "main", "commit": "8be745940fdc58785913a6e598cd53dbc5e99f51" },
   "mini.ai": { "branch": "main", "commit": "bfb26d9072670c3aaefab0f53024b2f3729c8083" },
   "mini.hipatterns": { "branch": "main", "commit": "add8d8abad602787377ec5d81f6b248605828e0f" },
   "mini.move": { "branch": "main", "commit": "4d214202d71e0a4066b6288176bbe88f268f9777" },
