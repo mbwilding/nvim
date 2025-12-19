@@ -11,12 +11,12 @@ return {
             sections = {
                 definition = function(count)
                     if count > 1 then
-                        return count .. " " .. "definitions"
+                        return count .. " definitions"
                     end
                 end,
                 references = function(count)
                     if count > 1 then
-                        return count .. " " .. "usages"
+                        return count .. " usages"
                     end
                 end,
                 implements = function(count)
