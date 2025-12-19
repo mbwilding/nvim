@@ -15,16 +15,12 @@ return {
                     end
                 end,
                 references = function(count)
-                    if count == 1 then
-                        return count .. " usage"
-                    elseif count > 1 then
-                        return count .. " usages"
+                    if count > 1 then
+                        return count .. " " .. "usages"
                     end
                 end,
                 implements = function(count)
-                    if count == 1 then
-                        return count .. " implementation"
-                    else
+                    if count > 1 then
                         return count .. " implementations"
                     end
                 end,
