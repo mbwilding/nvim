@@ -28,7 +28,7 @@ return {
             keymaps = {
                 view = {
                     quit = "q", -- Close diff tab
-                    toggle_explorer = "<leader>b", -- Toggle explorer visibility (explorer mode only)
+                    toggle_explorer = "<leader>e", -- Toggle explorer visibility (explorer mode only)
                     next_hunk = "]c", -- Jump to next change
                     prev_hunk = "[c", -- Jump to previous change
                     next_file = "]f", -- Next file in explorer mode
@@ -40,7 +40,7 @@ return {
                     select = "<CR>", -- Open diff for selected file
                     hover = "K", -- Show file diff preview
                     refresh = "R", -- Refresh git status
-                    toggle_view_mode = "i", -- Toggle between 'list' and 'tree' views
+                    toggle_view_mode = "t", -- Toggle between 'list' and 'tree' views
                 },
             },
         })
