@@ -10,7 +10,7 @@ return {
     branch = "main",
     build = ":TSUpdate",
     config = function()
-        require("nvim-treesitter").install({
+        local langs = {
             "ada",
             "agda",
             "angular",
@@ -337,6 +337,15 @@ return {
             "ziggy",
             "ziggy_schema",
             "zsh",
+        }
+
+        require("nvim-treesitter").install(langs)
+
+        vim.api.nvim_create_autocmd("FileType", {
+            pattern = langs,
+            callback = function()
+                vim.treesitter.start()
+            end,
         })
     end,
 }
