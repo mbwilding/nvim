@@ -1,6 +1,8 @@
 return {
-    "VidocqH/lsp-lens.nvim",
+    -- "VidocqH/lsp-lens.nvim",
+    "mbwilding/lsp-lens.nvim",
     lazy = true,
+    dev = false,
     event = "LspAttach",
     keys = {
         {
@@ -11,6 +13,7 @@ return {
     },
     opts = {
         enable = true,
+        hide_zero_counts = false,
         include_declaration = false,
         sections = {
             definition = function(count)
@@ -19,7 +22,9 @@ return {
                 end
             end,
             references = function(count)
-                if count > 1 then
+                if count == 0 then
+                    return "unused"
+                elseif count > 1 then
                     return count .. " usages"
                 end
             end,
