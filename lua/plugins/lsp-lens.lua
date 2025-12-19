@@ -28,7 +28,7 @@ return {
                         return count .. " implementations"
                     end
                 end,
-                -- git_authors = false,
+                git_authors = false,
                 git_authors = function(latest_author, count)
                     if latest_author == "Not Committed Yet" then
                         latest_author = "uncommitted"
