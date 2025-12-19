@@ -99,9 +99,13 @@ return {
             show_ignored = true,
             symbols = {
                 index = {
+                    ["A"] = "+",
+                    ["D"] = "-",
                     ["M"] = "~",
                 },
                 working_tree = {
+                    ["A"] = "+",
+                    ["D"] = "-",
                     ["M"] = "~",
                 },
             },
