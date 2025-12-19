@@ -18,6 +18,7 @@ return {
                     or ft == "help"
                     or ft == "noice"
                     or ft == "snacks_dashboard"
+                    or ft == "vscode-diff-explorer"
                 then
                     return false
                 else
