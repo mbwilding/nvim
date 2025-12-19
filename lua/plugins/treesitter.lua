@@ -19,9 +19,10 @@ return {
             end
         end
 
-        -- Install languages
+        -- Install file type parsers
         require("nvim-treesitter").install(file_types)
 
+        -- Automatically activate
         vim.api.nvim_create_autocmd("FileType", {
             pattern = file_types,
             callback = function()
