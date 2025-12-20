@@ -3,7 +3,7 @@ return {
     event = "VeryLazy",
     priority = 1000,
     opts = {
-        preset = "modern", -- classic, minimal, powerline, ghost, simple, nonerdfont, amongus
+        preset = "powerline", -- classic, minimal, powerline, ghost, simple, nonerdfont, amongus
         throttle = 0, -- 20
         softwrap = 30, -- min number of chars before wrap
         options = {
