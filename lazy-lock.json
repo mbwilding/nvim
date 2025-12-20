@@ -53,7 +53,7 @@
   "nvim-ufo": { "branch": "main", "commit": "72d54c31079d38d8dfc5456131b1d0fb5c0264b0" },
   "nvim-web-devicons": { "branch": "master", "commit": "8dcb311b0c92d460fac00eac706abd43d94d68af" },
   "oil-git-status.nvim": { "branch": "main", "commit": "4b5cf53842c17a09420919e655a6a559da3112d7" },
-  "oil-lsp-diagnostics.nvim": { "branch": "feat/diagnostic-realtime", "commit": "b0e33ac99fa2ced65b40869aaa149085672d5365" },
+  "oil-lsp-diagnostics.nvim": { "branch": "master", "commit": "aba6830527402b3e69314ac6b052074f0e0514c7" },
   "oil.nvim": { "branch": "master", "commit": "cbcb3f997f6f261c577b943ec94e4ef55108dd95" },
   "other.nvim": { "branch": "main", "commit": "1d48e090f6d1d53dda9fb5094af3f2006ebbb858" },
   "package-info.nvim": { "branch": "master", "commit": "0826010a13967bee4f74337e74d36e9bfa8ff2a7" },
