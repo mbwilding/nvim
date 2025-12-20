@@ -4,9 +4,9 @@ return {
         -- "nvim-mini/mini.icons"
         "nvim-tree/nvim-web-devicons",
     },
-    branch = "stable",
+    branch = "main", -- stable
     lazy = false,
-    enabled = false,
+    enabled = true,
     dev = false,
     keys = {
         {
