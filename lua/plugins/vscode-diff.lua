@@ -144,21 +144,21 @@ return {
         end
 
         -- Keymaps
-        vim.keymap.set("n", "<leader>sf", function()
+        vim.keymap.set("n", "<leader>gy", function()
             git_pickaxe({ global = false })
         end, { desc = "Code Diff: Git Search (Buffer)" })
 
-        vim.keymap.set("n", "<leader>sF", function()
+        vim.keymap.set("n", "<leader>gY", function()
             git_pickaxe({ global = true })
         end, { desc = "Code Diff: Git Search (Global)" })
 
-        vim.keymap.set({ "n", "t" }, "<leader>sy", function()
+        vim.keymap.set({ "n", "t" }, "<leader>gf", function()
             Snacks.picker.git_log_file({
                 confirm = walk_in_codediff,
             })
         end, { desc = "Code Diff: Find Git Log File" })
 
-        vim.keymap.set({ "n", "t" }, "<leader>sY", function()
+        vim.keymap.set({ "n", "t" }, "<leader>gF", function()
             Snacks.picker.git_log({
                 confirm = walk_in_codediff,
             })
