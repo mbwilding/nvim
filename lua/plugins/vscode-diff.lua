@@ -204,7 +204,6 @@ return {
                 cmd = "git",
                 args = { "branch", "--all", "--color=never" },
                 transform = function(item)
-                    -- Remove leading * and whitespace
                     local branch = item.text:gsub("^%*?%s*", ""):gsub("^remotes/", "")
                     item.branch = branch
                     return item
