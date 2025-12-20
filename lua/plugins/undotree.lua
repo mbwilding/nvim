@@ -6,7 +6,7 @@ return {
             function()
                 require("undotree").toggle()
             end,
-            "UndoTree",
+            desc = "UndoTree",
         },
     },
     ---@module "undotree.collector"
