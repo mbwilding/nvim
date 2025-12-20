@@ -203,15 +203,13 @@ return {
                 finder = "proc",
                 cmd = "git",
                 args = { "branch", "--all", "--color=never" },
+                layout = {
+                    preview = false,
+                },
                 transform = function(item)
                     local branch = item.text:gsub("^%*?%s*", ""):gsub("^remotes/", "")
                     item.branch = branch
                     return item
-                end,
-                preview = function(item)
-                    if item.branch then
-                        return "git log --oneline -n 10 " .. vim.fn.shellescape(item.branch)
-                    end
                 end,
                 confirm = function(picker, item)
                     picker:close()

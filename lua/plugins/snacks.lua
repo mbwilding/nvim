@@ -378,34 +378,34 @@ return {
             },
             layout = {
                 preview = true,
-                reverse = true,
-                layout = {
-                    box = "vertical",
-                    backdrop = false,
-                    width = 0.999,
-                    height = 0.999,
-                    border = "none",
-                    {
-                        win = "preview",
-                        title = "{preview:Preview}",
-                        width = 0.999,
-                        border = "rounded",
-                        title_pos = "center",
-                    },
-                    {
-                        win = "list",
-                        title = " Results ",
-                        title_pos = "center",
-                        border = "rounded",
-                    },
-                    {
-                        win = "input",
-                        height = 1,
-                        border = "rounded",
-                        title = "{title} {live} {flags}",
-                        title_pos = "center",
-                    },
-                },
+                -- reverse = true,
+                -- layout = {
+                --     box = "vertical",
+                --     backdrop = false,
+                --     width = 0.999,
+                --     height = 0.999,
+                --     border = "none",
+                --     {
+                --         win = "preview",
+                --         title = "{preview:Preview}",
+                --         width = 0.999,
+                --         border = "rounded",
+                --         title_pos = "center",
+                --     },
+                --     {
+                --         win = "list",
+                --         title = " Results ",
+                --         title_pos = "center",
+                --         border = "rounded",
+                --     },
+                --     {
+                --         win = "input",
+                --         height = 1,
+                --         border = "rounded",
+                --         title = "{title} {live} {flags}",
+                --         title_pos = "center",
+                --     },
+                -- },
             },
             matcher = {
                 fuzzy = true, -- use fuzzy matching
