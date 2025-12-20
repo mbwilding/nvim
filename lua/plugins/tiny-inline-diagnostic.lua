@@ -8,8 +8,8 @@ return {
             function()
                 require("tiny-inline-diagnostic").toggle()
             end,
-            desc = "Tiny Diag: Toggle"
-        }
+            desc = "Tiny Diag: Toggle",
+        },
     },
     opts = {
         preset = "powerline", -- classic, minimal, powerline, ghost, simple, nonerdfont, amongus
