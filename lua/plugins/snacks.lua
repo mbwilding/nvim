@@ -64,7 +64,7 @@ return {
         },
         -- git
         {
-            "<leader>gc",
+            "<leader>gl",
             function()
                 Snacks.picker.git_log()
             end,

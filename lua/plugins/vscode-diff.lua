@@ -146,26 +146,26 @@ return {
         -- Keymaps
         vim.keymap.set("n", "<leader>sf", function()
             git_pickaxe({ global = false })
-        end, { desc = "Snacks: Git Search (Buffer)" })
+        end, { desc = "Code Diff: Git Search (Buffer)" })
 
         vim.keymap.set("n", "<leader>sF", function()
             git_pickaxe({ global = true })
-        end, { desc = "Snacks: Git Search (Global)" })
+        end, { desc = "Code Diff: Git Search (Global)" })
 
         vim.keymap.set({ "n", "t" }, "<leader>sy", function()
             Snacks.picker.git_log_file({
                 confirm = walk_in_codediff,
             })
-        end, { desc = "Snacks: Find Git Log File" })
+        end, { desc = "Code Diff: Find Git Log File" })
 
         vim.keymap.set({ "n", "t" }, "<leader>sY", function()
             Snacks.picker.git_log({
                 confirm = walk_in_codediff,
             })
-        end, { desc = "Snacks: Find Git Log" })
+        end, { desc = "Code Diff: Find Git Log" })
 
         -- Revision
-        vim.keymap.set("n", "<leader>si", function()
+        vim.keymap.set("n", "<leader>gr", function()
             Snacks.picker({
                 title = "Git Revisions",
                 finder = "proc",
@@ -194,10 +194,10 @@ return {
                 end,
                 format = "text",
             })
-        end, { desc = "Snacks: Diff Against Revision" })
+        end, { desc = "Code Diff: Current <-> Revision" })
 
         -- Branch
-        vim.keymap.set("n", "<leader>sI", function()
+        vim.keymap.set("n", "<leader>gb", function()
             Snacks.picker({
                 title = "Git Branches",
                 finder = "proc",
@@ -223,6 +223,6 @@ return {
                 end,
                 format = "text",
             })
-        end, { desc = "Snacks: Diff Against Branch" })
+        end, { desc = "Code Diff: Current <-> Branch" })
     end,
 }
