@@ -163,5 +163,67 @@ return {
                 confirm = walk_in_codediff,
             })
         end, { desc = "Snacks: Find Git Log" })
+
+        -- Revision
+        vim.keymap.set("n", "<leader>si", function()
+            Snacks.picker({
+                title = "Git Revisions",
+                finder = "proc",
+                cmd = "git",
+                args = {
+                    "log",
+                    "--pretty=format:%C(yellow)%h%Creset %s %C(green)(%cr)%Creset %C(blue)<%an>%Creset",
+                    "--abbrev-commit",
+                    "--date=short",
+                },
+                transform = function(item)
+                    local clean_text = item.text:gsub("\27%[[0-9;]*m", "")
+                    local hash = clean_text:match("^%S+")
+                    if hash then
+                        item.commit = hash
+                    end
+                    return item
+                end,
+                preview = "git_show",
+                confirm = function(picker, item)
+                    picker:close()
+                    if item.commit then
+                        vim.notify("Diffing against revision: " .. item.commit)
+                        vim.cmd("CodeDiff " .. item.commit)
+                    end
+                end,
+                format = "text",
+            })
+        end, { desc = "Snacks: Diff Against Revision" })
+
+        -- Branch
+        vim.keymap.set("n", "<leader>sI", function()
+            Snacks.picker({
+                title = "Git Branches",
+                finder = "proc",
+                cmd = "git",
+                args = { "branch", "--all", "--color=never" },
+                transform = function(item)
+                    -- Remove leading * and whitespace
+                    local branch = item.text:gsub("^%*?%s*", ""):gsub("^remotes/", "")
+                    item.branch = branch
+                    return item
+                end,
+                preview = function(item)
+                    if item.branch then
+                        return "git log --oneline -n 10 " .. vim.fn.shellescape(item.branch)
+                    end
+                end,
+                confirm = function(picker, item)
+                    picker:close()
+                    if item.branch then
+                        local branch = item.branch
+                        vim.notify("Diffing against branch: " .. branch)
+                        vim.cmd("CodeDiff " .. branch)
+                    end
+                end,
+                format = "text",
+            })
+        end, { desc = "Snacks: Diff Against Branch" })
     end,
 }
