@@ -2,15 +2,14 @@ return {
     "rachartier/tiny-inline-diagnostic.nvim",
     event = "VeryLazy",
     priority = 1000,
-    config = function(_, opts)
-        require("tiny-inline-diagnostic").setup(opts)
-        vim.diagnostic.config({ virtual_text = false })
-    end,
     opts = {
+        preset = "modern", -- classic, minimal, powerline, ghost, simple, nonerdfont, amongus
+        throttle = 0, -- 20
+        softwrap = 30, -- min number of chars before wrap
         options = {
             multilines = {
                 enabled = true,
-                trim_whitespaces = false,
+                trim_whitespaces = true,
             },
             add_messages = {
                 display_count = true,
@@ -20,4 +19,8 @@ return {
             },
         },
     },
+    config = function(_, opts)
+        require("tiny-inline-diagnostic").setup(opts)
+        vim.diagnostic.config({ virtual_text = false })
+    end,
 }
