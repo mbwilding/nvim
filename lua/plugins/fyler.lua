@@ -6,7 +6,7 @@ return {
     },
     branch = "stable",
     lazy = false,
-    enable = false,
+    enabled = false,
     keys = {
         {
             "-",
