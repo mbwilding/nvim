@@ -7,6 +7,7 @@
 
 return {
     "echasnovski/mini.ai",
+    branch = "main",
     lazy = true,
     event = "BufEnter",
     opts = {

@@ -1,5 +1,6 @@
 return {
-    "echasnovski/mini.move",
+    "nvim-mini/mini.move",
+    branch = "main",
     lazy = true,
     event = "BufEnter",
     opts = {

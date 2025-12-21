@@ -5,12 +5,7 @@ return {
     dependencies = {
         "nvim-tree/nvim-web-devicons",
         "refractalize/oil-git-status.nvim",
-        {
-            -- "JezerM/oil-lsp-diagnostics.nvim",
-            "mbwilding/oil-lsp-diagnostics.nvim",
-            branch = "feat/diagnostic-count"
-            -- dev = true,
-        },
+        "JezerM/oil-lsp-diagnostics.nvim",
     },
     keys = {
         {
@@ -117,12 +112,14 @@ return {
         })
 
         require("oil-lsp-diagnostics").setup({
-            diagnostic_symbols = {
-                error = "",
-                warn = "",
-                info = "",
-                hint = "󰌶",
-            },
+            count = true,
+            parent_dirs = true,
+            -- diagnostic_symbols = {
+            --     error = "",
+            --     warn = "",
+            --     info = "",
+            --     hint = "󰌶",
+            -- },
         })
     end,
 }

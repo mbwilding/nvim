@@ -6,7 +6,8 @@
 return {
     "andrewferrier/debugprint.nvim",
     dependencies = {
-        "echasnovski/mini.hipatterns",
+        "nvim-mini/mini.hipatterns",
+        branch = "main",
     },
     opts = {
         highlight_lines = false,

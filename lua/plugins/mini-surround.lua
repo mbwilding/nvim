@@ -6,7 +6,8 @@
 --  - sr)'  - [S]urround [R]eplace [)] [']
 
 return {
-    "echasnovski/mini.surround",
+    "nvim-mini/mini.surround",
+    branch = "main",
     lazy = true,
     event = "BufEnter",
     opts = {},
