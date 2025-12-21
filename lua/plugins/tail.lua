@@ -1,5 +1,14 @@
 return {
     "thgrass/tail.nvim",
+    lazy = true,
+    cmd = {
+        "TailEnable",
+        "TailDisable",
+        "TailToggle",
+        "TailTimestampEnable",
+        "TailTimestampDisable",
+        "TailTimestampToggle",
+    },
     opts = {
         timestamps = false,
         -- customise the format (see `:help os.date`)
