@@ -1,6 +1,9 @@
 return {
     -- "VidocqH/lsp-lens.nvim",
-    "mbwilding/lsp-lens.nvim",
+    {
+        "topaxi/lsp-lens.nvim",
+        branch = "fix-deprecation",
+    },
     lazy = true,
     dev = false,
     event = "LspAttach",
