@@ -15,7 +15,7 @@ return {
         },
     },
     config = function()
-        require("vscode-diff").setup({
+        require("codediff").setup({
             keymaps = {
                 view = {
                     quit = "q", -- Close diff tab
