@@ -5,6 +5,7 @@ return {
     dependencies = {
         "nvim-tree/nvim-web-devicons",
         "refractalize/oil-git-status.nvim",
+        "benomahony/oil-git.nvim",
         "JezerM/oil-lsp-diagnostics.nvim",
     },
     keys = {
