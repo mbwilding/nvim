@@ -26,7 +26,7 @@
   "inc-rename.nvim": { "branch": "main", "commit": "2597bccb57d1b570fbdbd4adf88b955f7ade715b" },
   "kubectl.nvim": { "branch": "main", "commit": "3445e8474efb3de870e73f46b9279027f2af2015" },
   "kulala.nvim": { "branch": "main", "commit": "9fc4831a116fb32b0fd420ed483f5102a873446a" },
-  "launcher.nvim": { "branch": "main", "commit": "11add54cf3f7017e61b3126acb6b8e5c6448a6cc" },
+  "launcher.nvim": { "branch": "main", "commit": "163404412b31d9da7c70b35f24e74d87994ea4a5" },
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
   "log-highlight.nvim": { "branch": "main", "commit": "cac07cf2d1937038f6627a450bef4664f096b120" },
   "mini.ai": { "branch": "main", "commit": "bfb26d9072670c3aaefab0f53024b2f3729c8083" },
