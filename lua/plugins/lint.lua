@@ -32,7 +32,7 @@ return {
             javascriptreact = { "eslint_d" },
             typescriptreact = { "eslint_d" },
             svelte = { "eslint_d" },
-            python = { "pylint" },
+            -- python = { "pylint" }, -- ruff handles this via lsp
             yaml = { "yamllint" }, -- "cfn_lint", "cfn_nag"
         }
 
