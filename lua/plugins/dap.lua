@@ -347,7 +347,7 @@ return {
             executable = {
                 command = "node",
                 args = {
-                    vim.loop.os_homedir() .. "/.local/bin/js-debug/src/dapDebugServer.js",
+                    "/usr/lib/js-debug/dapDebugServer.js",
                     "${port}",
                 },
             },
