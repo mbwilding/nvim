@@ -13,10 +13,12 @@ paru -Sy --noconfirm --skipreview --needed \
 
 rustup default stable
 rustup component add rust-analyzer
+
 go install golang.org/x/tools/cmd/goimports@latest &
+
 bun install --global @typescript/native-preview &
+
 bash ${shared}/codelldb.sh &
 bash ${shared}/js-debug.sh &
-# bash ${shared}/roslyn.sh &
-# bash ${shared}/netcoredbg.sh &
+
 wait
