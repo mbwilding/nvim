@@ -3,6 +3,7 @@ return {
     dev = false,
     lazy = false,
     config = function()
+        ---@type table<string, vim.lsp.Config>
         local servers = {
             clangd = {},
             docker_compose_language_service = {},
@@ -30,7 +31,6 @@ return {
                         completion = {
                             callSnippet = "Replace",
                         },
-                        -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
                         -- diagnostics = { disable = { 'missing-fields' } },
                     },
                 },
@@ -179,16 +179,11 @@ return {
         end
 
         for server, config in pairs(servers) do
-            if config.enable == nil or config.enable then
-                config.capabilities = base_capabilities
-                vim.lsp.config(server, config)
-                vim.lsp.enable(server)
-            end
+            config.capabilities = base_capabilities
+            vim.lsp.config(server, config)
+            vim.lsp.enable(server)
         end
 
-        vim.treesitter.language.register("c_sharp", "csharp")
-
-        -- LSP on attach
         vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
             callback = function(event)
@@ -204,10 +199,6 @@ return {
                 local map = function(keys, func, desc, mode)
                     vim.keymap.set(mode or "n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
                 end
-
-                -- if client.server_capabilities.signatureHelpProvider then
-                --     map("<leader>o", "<CMD>LspOverloadsSignature<CR>", "Overloads", { "n", "i" })
-                -- end
 
                 map("<leader>lsr", function()
                     vim.notify("Restarting LSP client: " .. client.name)
