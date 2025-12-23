@@ -14,7 +14,7 @@ return {
                 {
                     "m00qek/baleia.nvim",
                     lazy = true,
-                    tag = "v1.4.0"
+                    tag = "v1.4.0",
                 },
             },
             lazy = true,
@@ -76,6 +76,34 @@ return {
         vim.keymap.set("n", "<leader>cv", function()
             dap.eval(nil, { enter = true })
         end, { desc = "Debug: Cursor Value" })
+
+        -- Bash
+        dap.adapters.sh = {
+            type = "executable",
+            command = vim.fn.exepath("vscode-bash-debug"),
+        }
+
+        dap.configurations.sh = {
+            {
+                name = "Debug",
+                type = "sh",
+                request = "launch",
+                program = "${file}",
+                cwd = "${fileDirname}",
+                env = {},
+                args = {},
+
+                pathBashdb = vim.fn.exepath("bashdb"),
+                pathBashdbLib = "/usr/share/bashdb",
+                pathBash = vim.fn.exepath("bash"),
+                pathCat = vim.fn.exepath("cat"),
+                pathMkfifo = vim.fn.exepath("mkfifo"),
+                pathPkill = vim.fn.exepath("pkill"),
+
+                -- showDebugOutput = true,
+                -- trace = true,
+            },
+        }
 
         -- CSharp
         dap.adapters.coreclr = {
