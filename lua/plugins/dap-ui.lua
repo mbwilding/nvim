@@ -59,6 +59,7 @@ return {
 
         dap.listeners.after.event_initialized.dapui_config = function()
             dapui.open()
+            require("dap-powershell").correct_repl_colors()
         end
 
         dap.listeners.before.event_terminated.dapui_config = function()

@@ -7,6 +7,25 @@ return {
         "nvim-neotest/nvim-nio",
         "theHamsta/nvim-dap-virtual-text",
         "banjo/package-pilot.nvim",
+        {
+            "Willem-J-an/nvim-dap-powershell",
+            dependencies = {
+                "nvim-lua/plenary.nvim",
+                {
+                    "m00qek/baleia.nvim",
+                    lazy = true,
+                    tag = "v1.4.0"
+                },
+            },
+            lazy = true,
+            ft = "ps1",
+            opts = {
+                pses_bundle_path = (function()
+                    return (jit.os == "OSX" and os.getenv("HOME") .. "/.lsp/powershell_es")
+                        or (jit.os == "Linux" and "/opt/powershell-editor-services")
+                end)(),
+            },
+        },
     },
     config = function()
         local dap = require("dap")
