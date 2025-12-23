@@ -10,8 +10,7 @@ end
 return {
     "mbwilding/UnrealEngine.nvim",
     lazy = false,
-    dev = true,
-    -- enabled = not is_android,
+    dev = false,
     enabled = false,
     keys = {
         {
