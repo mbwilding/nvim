@@ -19,6 +19,11 @@ return {
                     or ft == "noice"
                     or ft == "snacks_dashboard"
                     or ft == "codediff-explorer"
+                    or ft == "dapui_console"
+                    or ft == "dapui_watches"
+                    or ft == "dapui_stacks"
+                    or ft == "dapui_breakpoints"
+                    or ft == "dapui_scopes"
                 then
                     return false
                 else
