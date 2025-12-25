@@ -409,23 +409,5 @@ return {
                 cwd = "${workspaceFolder}",
             },
         }
-
-        dap.configurations.typescript = {
-            {
-                type = "pwa-node",
-                request = "launch",
-                name = "Launch TS file",
-                program = "${file}",
-                cwd = "${workspaceFolder}",
-                runtimeExecutable = "node",
-                runtimeArgs = {
-                    "--loader",
-                    "ts-node/esm",
-                },
-                sourceMaps = true,
-                protocol = "inspector",
-                skipFiles = { "<node_internals>/**" },
-            },
-        }
     end,
 }
