@@ -5,6 +5,7 @@ return {
     config = function()
         ---@type table<string, vim.lsp.Config>
         local servers = {
+            ada_ls = {},
             clangd = {},
             docker_compose_language_service = {},
             dockerls = {},
