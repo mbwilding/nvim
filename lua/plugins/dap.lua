@@ -409,5 +409,6 @@ return {
                 cwd = "${workspaceFolder}",
             },
         }
+        dap.configurations.javascriptreact = dap.configurations.javascript
     end,
 }
