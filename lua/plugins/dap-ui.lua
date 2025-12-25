@@ -47,7 +47,7 @@ return {
 
         dapui.setup(opts)
 
-        vim.keymap.set("n", "<leader>dap", dapui.toggle, { desc = "Debug: See last session result" })
+        vim.keymap.set("n", "<leader>dap", dapui.toggle, { desc = "Debug: Toggle UI" })
 
         dap.listeners.before.attach.dapui_config = function()
             dapui.open()
