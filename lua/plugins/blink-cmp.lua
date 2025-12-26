@@ -153,13 +153,13 @@ return {
                     },
                     treesitter = { "lsp" },
                 },
-                border = "single",
+                border = "none",
             },
             documentation = {
                 auto_show = true,
                 auto_show_delay_ms = 500,
                 window = {
-                    border = "single",
+                    border = "none",
                 },
             },
         },
