@@ -11,7 +11,7 @@ return {
 
         local conditions = require("heirline.conditions")
         local utils = require("heirline.utils")
-        local colors = require("gronk.colors." .. vim.g.colors_name:match("([^%-]+)$"))
+        local colors = require("gronk.colors")
         require("heirline").load_colors(colors)
 
         local icons = true
