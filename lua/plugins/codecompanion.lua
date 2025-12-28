@@ -15,6 +15,7 @@ return {
         "nvim-treesitter/nvim-treesitter",
         {
             "zbirenbaum/copilot.lua",
+            event = "VeryLazy",
             opts = {
                 copilot_model = "claude-sonnet-4-5",
                 panel = { enabled = false },
