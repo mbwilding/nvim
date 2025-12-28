@@ -235,8 +235,9 @@ return {
                 end
 
                 map("<leader>ih", function()
-                    local enabled = not vim.lsp.inlay_hint.is_enabled({ bufnr = args.buf })
-                    vim.lsp.inlay_hint.enable(enabled)
+                    local filter = { bufnr = 0 }
+                    local enabled = not vim.lsp.inlay_hint.is_enabled(filter)
+                    vim.lsp.inlay_hint.enable(enabled, filter)
                     vim.notify("Inlay Hints: " .. tostring(enabled))
                 end, "Inlay Hints")
 
