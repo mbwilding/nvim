@@ -6,7 +6,7 @@ return {
     config = function()
         -- Collect all available parsers
         local queries_dir = vim.fn.stdpath("data") .. "/lazy/nvim-treesitter/runtime/queries"
-        local file_types = {}
+        local file_types = {"cs"}
         for name, type in vim.fs.dir(queries_dir) do
             if type == "directory" then
                 table.insert(file_types, name)
@@ -15,6 +15,15 @@ return {
 
         -- Install file type parsers
         require("nvim-treesitter").install(file_types)
+
+        -- Additional file types
+        local file_types_extra = {
+            "cs"
+        }
+
+        for _, file_type in ipairs(file_types_extra) do
+            table.insert(file_types, file_type)
+        end
 
         -- Automatically activate
         vim.api.nvim_create_autocmd("FileType", {
