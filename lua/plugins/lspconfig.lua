@@ -189,7 +189,7 @@ return {
 
         -- Configure LSP
         ---@type lsp.ClientCapabilities
-        local base_capabilities = require("blink.cmp").get_lsp_capabilities(nil, true)
+        local base_capabilities = vim.lsp.protocol.make_client_capabilities()
 
         if pcall(require, "ufo") then
             base_capabilities.textDocument.foldingRange = {
