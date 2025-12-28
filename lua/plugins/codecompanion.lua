@@ -9,7 +9,6 @@ end
 
 return {
     "olimorris/codecompanion.nvim",
-    version = "v17.33.0",
     event = "VeryLazy",
     dependencies = {
         "nvim-lua/plenary.nvim",
