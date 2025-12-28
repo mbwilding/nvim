@@ -6,7 +6,7 @@ return {
     config = function()
         -- Collect all available parsers
         local queries_dir = vim.fn.stdpath("data") .. "/lazy/nvim-treesitter/runtime/queries"
-        local file_types = {"cs"}
+        local file_types = {}
         for name, type in vim.fs.dir(queries_dir) do
             if type == "directory" then
                 table.insert(file_types, name)
