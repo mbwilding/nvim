@@ -62,9 +62,9 @@ return {
                 settings = {
                     ["rust-analyzer"] = {
                         inlayHints = {
-                            reborrowHints = { enable = "always" },
-                            lifetimeElisionHints = { enable = "always" },
-                            implicitDrops = { enable = true },
+                            -- reborrowHints = { enable = "always" },
+                            -- lifetimeElisionHints = { enable = "always" },
+                            -- implicitDrops = { enable = true },
                         },
                     },
                 },
@@ -206,18 +206,20 @@ return {
 
         vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
-            callback = function(event)
+            callback = function(args)
                 if vim.g.roslyn_nvim_selected_solution then
                     vim.notify(vim.g.roslyn_nvim_selected_solution)
                 end
 
-                local client = vim.lsp.get_client_by_id(event.data.client_id)
+                local client = vim.lsp.get_client_by_id(args.data.client_id)
                 if not client then
                     return
                 end
 
+                -- vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
+
                 local map = function(keys, func, desc, mode)
-                    vim.keymap.set(mode or "n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+                    vim.keymap.set(mode or "n", keys, func, { buffer = args.buf, desc = "LSP: " .. desc })
                 end
 
                 map("<leader>lsr", function()
@@ -233,7 +235,7 @@ return {
                 end
 
                 map("<leader>ih", function()
-                    local enabled = not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf })
+                    local enabled = not vim.lsp.inlay_hint.is_enabled({ bufnr = args.buf })
                     vim.lsp.inlay_hint.enable(enabled)
                     vim.notify("Inlay Hints: " .. tostring(enabled))
                 end, "Inlay Hints")
