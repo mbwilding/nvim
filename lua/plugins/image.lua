@@ -1,7 +1,7 @@
 return {
     "3rd/image.nvim",
     -- dependencies = { "luarocks.nvim" },
-    enabled = true,
+    event = "VeryLazy",
     opts = {
         backend = "kitty",
         processor = "magick_cli",
