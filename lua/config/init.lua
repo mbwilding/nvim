@@ -4,7 +4,6 @@ local modules = {
     "keymaps",
     "autocmds",
     "cmds",
-    "filetypes",
     "platform",
     "neovide",
     "lazy",
