@@ -37,11 +37,19 @@ return {
     },
     opts = {
         is_insert_mode = true,
-        default = {
-            find = {
+        find_engine = {
+            -- rg is map with finder_cmd
+            ["rg"] = {
                 cmd = "rg",
-                options = {
-                    -- 'ignore-case'
+                args = {
+                    "--color=never",
+                    "--no-heading",
+                    "--with-filename",
+                    "--line-number",
+                    "--column",
+                    "--hidden",
+                    "--glob",
+                    "!**/.git/*",
                 },
             },
         },
