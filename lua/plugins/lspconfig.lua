@@ -32,6 +32,7 @@ return {
             zls = {},
             tsgo = {},
             marksman = {},
+            stylua = {},
             lua_ls = {
                 settings = {
                     Lua = {
