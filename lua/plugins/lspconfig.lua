@@ -12,6 +12,17 @@ return {
             gopls = {},
             html = {},
             jsonls = {},
+            cssls = {
+                capabilities = {
+                    textDocument = {
+                        completion = {
+                            completionItem = {
+                                snippetSupport = true,
+                            },
+                        },
+                    },
+                },
+            },
             pyright = {
                 settings = {
                     pyright = {
@@ -186,7 +197,11 @@ return {
         end
 
         for server, config in pairs(servers) do
-            config.capabilities = base_capabilities
+            if config.capabilities then
+                config.capabilities = vim.tbl_deep_extend("force", base_capabilities, config.capabilities)
+            else
+                config.capabilities = base_capabilities
+            end
             vim.lsp.config(server, config)
             vim.lsp.enable(server)
         end
