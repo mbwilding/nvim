@@ -35,11 +35,11 @@ return {
 
         -- Get file types
         local file_types = vim.iter(parsers)
-          :map(function(parser)
-            return vim.treesitter.language.get_filetypes(parser)
-          end)
-          :flatten()
-          :totable()
+            :map(function(parser)
+                return vim.treesitter.language.get_filetypes(parser)
+            end)
+            :flatten()
+            :totable()
 
         -- Auto-run
         vim.api.nvim_create_autocmd("FileType", {
