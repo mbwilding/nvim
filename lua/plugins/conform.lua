@@ -33,6 +33,17 @@ return {
                 end
             end,
             markdown = { "markdownlint-cli2" },
+            php = {
+                command = "php-cs-fixer",
+                args = {
+                    "fix",
+                    "$FILENAME",
+                    "--config=" .. vim.fn.stdpath("config") .. "/configs/php-cs-fixer.php",
+                    "--allow-risky=yes",
+                },
+                stdin = false,
+            },
+
             -- Use the "*" filetype to run formatters on all filetypes
             -- ["*"] = { "typos" },
             -- Use the "_" filetype to run formatters on filetypes that don't
