@@ -12,6 +12,7 @@ return {
             gopls = {},
             html = {},
             jsonls = {},
+            phpactor = {},
             cssls = {
                 capabilities = {
                     textDocument = {
