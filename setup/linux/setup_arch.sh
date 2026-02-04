@@ -11,8 +11,8 @@ paru -Sy --noconfirm --skipreview --needed \
     ruff eslint_d prettierd yamllint python-cfn-lint markdownlint-cli2 php-cs-fixer
 
 rustup default stable
-rustup component add rust-analyzer
 rustup update
+rustup component add rust-analyzer
 
 go install golang.org/x/tools/cmd/goimports@latest &
 bun install --global @typescript/native-preview &
