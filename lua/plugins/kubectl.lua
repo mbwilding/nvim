@@ -6,7 +6,7 @@ return {
         {
             "<leader>kc",
             function()
-                require("kubectl").toggle()
+                require("kubectl").toggle({})
             end,
             desc = "Kubectl",
         },
