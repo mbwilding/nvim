@@ -48,10 +48,10 @@ return {
             lua_ls = {
                 settings = {
                     Lua = {
-                        -- NOTE: Work around for latest lua_ls version
-                        -- vim global not being recognised
                         workspace = {
-                            library = vim.api.nvim_get_runtime_file("", true),
+                            -- NOTE: Work around for latest lua_ls version
+                            -- vim global not being recognised
+                            library = { vim.env.VIMRUNTIME },
                         },
                         runtime = {
                             version = "LuaJIT",
