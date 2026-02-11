@@ -3,7 +3,7 @@ return {
     event = "VeryLazy",
     dependencies = {
         "nvim-lua/plenary.nvim",
-        "MeanderingProgrammer/render-markdown.nvim",
+        -- "MeanderingProgrammer/render-markdown.nvim",
         "saghen/blink.cmp",
         "folke/snacks.nvim",
     },
