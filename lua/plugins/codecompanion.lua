@@ -17,7 +17,7 @@ return {
             "zbirenbaum/copilot.lua",
             event = "VeryLazy",
             opts = {
-                copilot_model = "claude-sonnet-4-5",
+                copilot_model = "gpt-41-copilot",
                 panel = { enabled = false },
                 suggestion = { enabled = false },
                 nes = { enabled = false },
