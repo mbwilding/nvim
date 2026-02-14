@@ -141,7 +141,7 @@ return {
                         {
                             -- "item_idx",
                             "kind_icon",
-                            "kind",
+                            -- "kind",
                             "label",
                             "label_description",
                             gap = 1,
