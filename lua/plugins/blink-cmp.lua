@@ -106,6 +106,12 @@ return {
             preset = "luasnip",
         },
         completion = {
+            list = {
+                selection = {
+                    preselect = true,
+                    auto_insert = false,
+                },
+            },
             accept = {
                 -- Create an undo point when accepting a completion item
                 create_undo_point = true,
@@ -132,7 +138,7 @@ return {
                 },
             },
             ghost_text = {
-                enabled = false,
+                enabled = true,
             },
             menu = {
                 auto_show = true,
