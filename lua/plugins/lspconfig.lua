@@ -75,6 +75,27 @@ return {
                         },
                     },
                 },
+                on_attach = function(client, bufnr)
+                    vim.keymap.set("n", "<leader>em", function()
+                        local params = vim.lsp.util.make_position_params(0, client.offset_encoding or "utf-8")
+                        ---@diagnostic disable-next-line: param-type-mismatch
+                        vim.lsp.buf_request(bufnr, "rust-analyzer/expandMacro", params, function(err, result)
+                            if err and err.message and not string.find(err.message, "Method not found") then
+                                vim.notify("Error expanding macro: " .. err.message, vim.log.levels.ERROR)
+                                return
+                            end
+                            if result and result.expansion then
+                                local buf = vim.api.nvim_create_buf(false, true)
+                                local lines = vim.split(result.expansion, "\n", { plain = true })
+                                vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+                                vim.bo[buf].filetype = "rust"
+                                vim.cmd("vsplit")
+                                vim.api.nvim_win_set_buf(0, buf)
+                                -- vim.lsp.buf_attach_client(buf, client.id)
+                            end
+                        end)
+                    end, { desc = "LSP: Expand Macro" })
+                end,
             },
             powershell_es = {
                 bundle_path = (function()
@@ -191,6 +212,11 @@ return {
                         dotnet_organize_imports_on_format = true,
                     },
                 },
+                on_attach = function()
+                    if vim.g.roslyn_nvim_selected_solution then
+                        vim.notify(vim.g.roslyn_nvim_selected_solution)
+                    end
+                end,
             },
         }
 
@@ -198,11 +224,36 @@ return {
         ---@type lsp.ClientCapabilities
         local base_capabilities = vim.lsp.protocol.make_client_capabilities()
 
+        -- Folding
         if pcall(require, "ufo") then
             base_capabilities.textDocument.foldingRange = {
                 dynamicRegistration = false,
                 lineFoldingOnly = true,
             }
+        end
+
+        --- @param client vim.lsp.Client
+        --- @param bufnr integer
+        local default_on_attach = function(client, bufnr)
+            local map = function(keys, func, desc, mode)
+                vim.keymap.set(mode or "n", keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
+            end
+
+            map("<leader>lsr", function()
+                vim.notify("Restarting LSP client: " .. client.name)
+                vim.cmd("LspRestart " .. client.name)
+            end, "Restart")
+
+            map("<leader>ih", function()
+                local filter = { bufnr = 0 }
+                local enabled = not vim.lsp.inlay_hint.is_enabled(filter)
+                vim.lsp.inlay_hint.enable(enabled, filter)
+                vim.notify("Inlay Hints: " .. tostring(enabled))
+            end, "Inlay Hints")
+
+            map("<leader>h", vim.lsp.buf.document_highlight, "Highlight")
+
+            map("<leader>H", vim.lsp.buf.clear_references, "Unhighlight")
         end
 
         for server, config in pairs(servers) do
@@ -211,55 +262,19 @@ return {
             else
                 config.capabilities = base_capabilities
             end
+
+            local custom_on_attach = config.on_attach
+
+            config.on_attach = function(client, bufnr)
+                default_on_attach(client, bufnr)
+
+                if custom_on_attach then
+                    custom_on_attach(client, bufnr)
+                end
+            end
+
             vim.lsp.config(server, config)
             vim.lsp.enable(server)
         end
-
-        vim.api.nvim_create_autocmd("LspAttach", {
-            group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
-            callback = function(args)
-                if vim.g.roslyn_nvim_selected_solution then
-                    vim.notify(vim.g.roslyn_nvim_selected_solution)
-                end
-
-                local client = vim.lsp.get_client_by_id(args.data.client_id)
-                if not client then
-                    return
-                end
-
-                -- vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
-
-                local map = function(keys, func, desc, mode)
-                    vim.keymap.set(mode or "n", keys, func, { buffer = args.buf, desc = "LSP: " .. desc })
-                end
-
-                map("<leader>lsr", function()
-                    vim.notify("Restarting LSP client: " .. client.name)
-                    vim.cmd("LspRestart " .. client.name)
-                end, "Restart")
-
-                if not pcall(require, "conform") then
-                    map("<leader>f", function()
-                        vim.notify("Formatting")
-                        vim.lsp.buf.format({ async = true })
-                    end, "Format")
-                end
-
-                map("<leader>ih", function()
-                    local filter = { bufnr = 0 }
-                    local enabled = not vim.lsp.inlay_hint.is_enabled(filter)
-                    vim.lsp.inlay_hint.enable(enabled, filter)
-                    vim.notify("Inlay Hints: " .. tostring(enabled))
-                end, "Inlay Hints")
-
-                map("<leader>h", function()
-                    vim.lsp.buf.document_highlight()
-                end, "Highlight")
-
-                map("<leader>H", function()
-                    vim.lsp.buf.clear_references()
-                end, "Unhighlight")
-            end,
-        })
     end,
 }
