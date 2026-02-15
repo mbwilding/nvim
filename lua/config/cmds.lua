@@ -18,4 +18,5 @@ vim.api.nvim_create_user_command("Push", function()
             end
         end,
     })
+
 end, {})
