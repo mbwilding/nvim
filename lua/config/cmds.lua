@@ -16,11 +16,11 @@ vim.api.nvim_create_user_command("Push", function()
             end
         end,
         on_exit = function(_, code, _)
-            if code == 0 then
-                vim.notify("Push successful")
-            else
-                vim.notify("Push failed", vim.log.levels.ERROR)
-            end
+            -- if code == 0 then
+            --     vim.notify("Push successful")
+            -- else
+            --     vim.notify("Push failed", vim.log.levels.ERROR)
+            -- end
         end,
     })
 end, {})
