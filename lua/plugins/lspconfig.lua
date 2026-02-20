@@ -1,3 +1,5 @@
+# https://github.com/neovim/nvim-lspconfig/tree/master/lsp
+
 local is_nixos = vim.uv.fs_stat("/etc/nixos") ~= nil
 
 return {
@@ -15,6 +17,7 @@ return {
             html = {},
             jsonls = {},
             phpactor = {},
+            nil_ls = {},
             cssls = {
                 capabilities = {
                     textDocument = {
