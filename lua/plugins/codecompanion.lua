@@ -58,19 +58,19 @@ return {
         strategies = {
             chat = {
                 adapter = "copilot",
-                model = "claude-sonnet-4-5",
+                model = "claude-sonnet-4-6",
             },
             inline = {
                 adapter = "copilot",
-                model = "claude-sonnet-4-5",
+                model = "claude-sonnet-4-6",
             },
             agent = {
                 adapter = "copilot",
-                model = "claude-sonnet-4-5",
+                model = "claude-sonnet-4-6",
             },
             cmd = {
                 adapter = "copilot",
-                model = "claude-sonnet-4-5",
+                model = "claude-sonnet-4-6",
             },
         },
     },
