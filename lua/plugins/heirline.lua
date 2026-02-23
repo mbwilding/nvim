@@ -338,7 +338,7 @@ return {
                     --   i = math.floor((curr_line - 1) / (lines - 1) * (#self.sbar - 1)) + 1
                     -- end
                     -- local icon = string.rep(self.sbar[i], 1)
-                    return " %c %{max([line('.'),1])}/%L %P"
+                    return "  %c %{max([line('.'),1])}/%L %P"
                 end,
                 hl = { fg = colors.string, bg = bg },
             }
