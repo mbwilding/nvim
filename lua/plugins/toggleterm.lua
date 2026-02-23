@@ -45,7 +45,7 @@ return {
         if uname == "Windows_NT" then
             opts.shell = "pwsh -NoLogo"
         else
-            opts.shell = "zsh"
+            opts.shell = os.getenv('SHELL')
         end
 
         toggle_term.setup(opts)
