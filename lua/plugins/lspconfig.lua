@@ -17,7 +17,17 @@ return {
             html = {},
             jsonls = {},
             phpactor = {},
-            nil_ls = {},
+            nil_ls = {
+                settings = {
+                    ["nil"] = {
+                        nix = {
+                            maxMemoryMB = 4096, -- null is unbound
+                            autoArchive = true,
+                            autoEvalInputs = true,
+                        }
+                    },
+                },
+            },
             cssls = {
                 capabilities = {
                     textDocument = {
@@ -134,7 +144,7 @@ return {
                         experimental = {
                             classRegex = {
                                 { "cva\\(([^)]*)\\)", "[\"'`]?([^\"'`]*).*?[\"'`]?" },
-                                { "cx\\(([^)]*)\\)", "[\"'`]?([^\"'`]*).*?[\"'`]?" },
+                                { "cx\\(([^)]*)\\)",  "[\"'`]?([^\"'`]*).*?[\"'`]?" },
                             },
                         },
                     },
