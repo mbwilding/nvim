@@ -252,11 +252,11 @@ return {
                 provider = function()
                     local format = vim.bo.fileformat
                     if format == "unix" then
-                        return "LF"
+                        return " LF"
                     elseif format == "dos" then
-                        return "CRLF"
+                        return " CRLF"
                     elseif format == "mac" then
-                        return "CR"
+                        return " CR"
                     else
                         return format:upper()
                     end
@@ -284,7 +284,7 @@ return {
                         return fsize .. suffix[1]
                     end
                     local i = math.floor((math.log(fsize) / math.log(1024)))
-                    return string.format("%.2f%s", fsize / math.pow(1024, i), suffix[i + 1])
+                    return string.format("%.2f%s", fsize / (1024 ^ i), suffix[i + 1])
                 end,
                 hl = function()
                     return { fg = colors.module, bg = bg }
@@ -296,6 +296,18 @@ return {
         local function file_type(bg)
             return {
                 provider = function()
+                    local path = vim.api.nvim_buf_get_name(0)
+                    local devicons_ok, devicons = pcall(require, "nvim-web-devicons")
+                    if devicons_ok then
+                        local icon = devicons.get_icon(vim.fs.basename(path), vim.fn.fnamemodify(path, ":e"), { default = false })
+                        if not icon then
+                            local ft = vim.bo.filetype
+                            icon = devicons.get_icon_by_filetype(ft, { default = true })
+                        end
+                        if icon then
+                            return icon .. " " .. string.upper(vim.bo.filetype)
+                        end
+                    end
                     return string.upper(vim.bo.filetype)
                 end,
                 hl = function()
@@ -359,70 +371,40 @@ return {
         end
 
         -- GIT
+        local git_branch_cache = {}
+
+        local function get_git_branch()
+            local cwd = vim.fn.getcwd()
+            if git_branch_cache[cwd] ~= nil then
+                return git_branch_cache[cwd]
+            end
+            local result = vim.fn.systemlist("git -C " .. vim.fn.shellescape(cwd) .. " rev-parse --abbrev-ref HEAD 2>/dev/null")
+            local branch = (result and result[1] and result[1] ~= "" and vim.v.shell_error == 0) and result[1] or false
+            git_branch_cache[cwd] = branch
+            return branch
+        end
+
+        vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "DirChanged" }, {
+            callback = function()
+                git_branch_cache = {}
+                vim.cmd("redrawstatus")
+            end,
+        })
+
         local function git(bg)
             return {
-                -- condition = conditions.is_git_repo,
-                init = function(self)
-                    self.status_dict = vim.b.gitsigns_status_dict
-                    self.has_changes = self.status_dict
-                            and (self.status_dict.added ~= nil or self.status_dict.removed ~= nil or self.status_dict.changed ~= nil)
-                        or false
-                end,
                 hl = { fg = colors.macro, bg = bg },
 
                 { -- git branch name
-                    provider = function(self)
-                        local icon = " "
-                        if self.status_dict then
-                            if self.status_dict.head == "" then
-                                return icon .. " [init]"
-                            end
-                            return icon .. " " .. self.status_dict.head
+                    provider = function()
+                        local branch = get_git_branch()
+                        if not branch then
+                            return " [no git]"
+                        elseif branch == "HEAD" then
+                            return " [detached]"
                         end
-                        return icon .. " [null]"
+                        return " " .. branch
                     end,
-                },
-                {
-                    condition = conditions.is_git_repo,
-                    provider = function(self)
-                        local count = self.status_dict.added or 0
-                        if count > 0 then
-                            if icons then
-                                return "  " .. count
-                            else
-                                return " + " .. count
-                            end
-                        end
-                    end,
-                    hl = { fg = utils.get_highlight("DiffAdd").fg, bg = bg },
-                },
-                {
-                    condition = conditions.is_git_repo,
-                    provider = function(self)
-                        local count = self.status_dict.changed or 0
-                        if count > 0 then
-                            if icons then
-                                return "  " .. count
-                            else
-                                return " ~ " .. count
-                            end
-                        end
-                    end,
-                    hl = { fg = utils.get_highlight("DiffChange").fg, bg = bg },
-                },
-                {
-                    condition = conditions.is_git_repo,
-                    provider = function(self)
-                        local count = self.status_dict.removed or 0
-                        if count > 0 then
-                            if icons then
-                                return "  " .. count
-                            else
-                                return " - " .. count
-                            end
-                        end
-                    end,
-                    hl = { fg = utils.get_highlight("DiffDelete").fg, bg = bg },
                 },
             }
         end
