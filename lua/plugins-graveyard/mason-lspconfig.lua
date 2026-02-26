@@ -99,7 +99,7 @@ return {
             html = {},
             azure_pipelines_ls = {},
             docker_compose_language_service = {},
-            dockerls = {},
+            docker_language_server = {},
             -- nginx_language_server = {},
             -- vtsls = {
             --     settings = {
