@@ -10,14 +10,14 @@ return {
         "banjo/package-pilot.nvim",
         {
             "Willem-J-an/nvim-dap-powershell",
-            dependencies = {
-                "nvim-lua/plenary.nvim",
-                {
-                    "m00qek/baleia.nvim",
-                    lazy = true,
-                    tag = "v1.4.0",
-                },
-            },
+            -- dependencies = {
+            --     "nvim-lua/plenary.nvim",
+            --     {
+            --         "m00qek/baleia.nvim",
+            --         lazy = true,
+            --         tag = "v1.4.0",
+            --     },
+            -- },
             lazy = true,
             ft = "ps1",
             opts = {
