@@ -25,6 +25,7 @@ o.list = true
 o.mouse = "a"
 o.mousemodel = "extend"
 o.scrolloff = 3
+o.sidescrolloff = 3
 o.shiftwidth = 4
 o.showmode = false
 o.smartcase = true
