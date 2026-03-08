@@ -222,80 +222,78 @@ return {
             { provider = "%<" } -- this means that the statusline is cut here when there's not enough space
         )
 
-        -- FILE TYPE
-        local file_type = {
-            provider = function()
-                return vim.bo.filetype
-            end,
-            hl = function()
-                return { fg = mode_info().color, bg = colors.none }
-            end,
-        }
-
-        -- FILE INFO (size, format, encoding, type combined)
-        local function file_info(bg)
+        -- FILE INFO (size, format, encoding, type — each as its own section)
+        local function file_size(bg)
             return {
-                {
-                    provider = function()
-                        local suffix = { "B", "KB", "MB", "GB", "TB", "PB", "EB" }
-                        local fsize = vim.fn.getfsize(vim.api.nvim_buf_get_name(0))
-                        fsize = (fsize < 0 and 0) or fsize
-                        if fsize == 0 then return nil end
-                        if fsize < 1024 then return " " .. fsize .. suffix[1] .. " " end
-                        local i = math.floor((math.log(fsize) / math.log(1024)))
-                        return " " .. string.format("%.2f%s", fsize / (1024 ^ i), suffix[i + 1]) .. " "
-                    end,
-                    hl = { fg = colors.module, bg = bg },
-                },
-                {
-                    provider = function()
-                        local format = vim.bo.fileformat
-                        local icon = " "
-                        local le
+                provider = function()
+                    local suffix = { "B", "KB", "MB", "GB", "TB", "PB", "EB" }
+                    local fsize = vim.fn.getfsize(vim.api.nvim_buf_get_name(0))
+                    fsize = (fsize < 0 and 0) or fsize
+                    if fsize == 0 then return " " .. null .. " " end
+                    if fsize < 1024 then return " " .. fsize .. suffix[1] .. " " end
+                    local i = math.floor((math.log(fsize) / math.log(1024)))
+                    return " " .. string.format("%.2f%s", fsize / (1024 ^ i), suffix[i + 1]) .. " "
+                end,
+                hl = { fg = colors.module, bg = bg },
+            }
+        end
 
-                        if vim.bo.filetype == "oil" then
-                            return icon .. null .. " "
-                        end
+        local function file_format(bg)
+            return {
+                provider = function()
+                    local format = vim.bo.fileformat
 
-                        if format == "unix" then
-                            le = "lf"
-                        elseif format == "dos" then
-                            le = "crlf"
-                        elseif format == "mac" then
-                            le = "cr"
-                        end
+                    if vim.bo.filetype == "oil" then
+                        return " " .. null .. " "
+                    end
 
-                        return icon .. le .. " "
-                    end,
-                    hl = { fg = colors.method, bg = bg },
-                },
-                {
-                    provider = function()
-                        local enc = vim.bo.fenc
-                        if enc ~= "" then
-                            local has_bom = vim.bo.bomb and "  " or ""
-                            return " " .. enc .. has_bom .. " "
+                    if format == "unix" then
+                        return " LF "
+                    elseif format == "dos" then
+                        return " CRLF "
+                    elseif format == "mac" then
+                        return " CR "
+                    else
+                        return format:upper() .. " "
+                    end
+                end,
+                hl = { fg = colors.method, bg = bg },
+            }
+        end
+
+        local function file_encoding(bg)
+            return {
+                provider = function()
+                    local enc = vim.bo.fenc
+                    if enc ~= "" then
+                        local has_bom = vim.bo.bomb and "  " or ""
+                        return " " .. enc:upper() .. has_bom .. " "
+                    end
+                    return " " .. null .. " "
+                end,
+                hl = { fg = colors.keyword, bg = bg },
+            }
+        end
+
+        local function file_type(bg)
+            return {
+                provider = function()
+                    local path = vim.api.nvim_buf_get_name(0)
+                    local ft = vim.bo.filetype
+                    local devicons_ok, devicons = pcall(require, "nvim-web-devicons")
+                    local icon = ""
+                    if devicons_ok then
+                        local di = devicons.get_icon(vim.fs.basename(path), vim.fn.fnamemodify(path, ":e"),
+                            { default = false })
+                        if not di then
+                            di = devicons.get_icon_by_filetype(ft, { default = false })
                         end
-                    end,
-                    hl = { fg = colors.keyword, bg = bg },
-                },
-                {
-                    provider = function()
-                        local path = vim.api.nvim_buf_get_name(0)
-                        local ft = vim.bo.filetype
-                        local devicons_ok, devicons = pcall(require, "nvim-web-devicons")
-                        if devicons_ok then
-                            local icon = devicons.get_icon(vim.fs.basename(path), vim.fn.fnamemodify(path, ":e"),
-                                { default = false })
-                            if not icon then
-                                icon = devicons.get_icon_by_filetype(ft, { default = true })
-                            end
-                            if icon then return icon .. " " .. ft end
-                        end
-                        return ft
-                    end,
-                    hl = { fg = colors.number, bg = bg },
-                },
+                        if di then icon = di end
+                    end
+                    local label = ft ~= "" and ft or null
+                    return icon .. " " .. label
+                end,
+                hl = { fg = colors.number, bg = bg },
             }
         end
 
@@ -662,7 +660,10 @@ return {
             { primary = colors.window_accent, contents = { vim_mode } },
             { primary = colors.window_bg,     contents = { work_dir } },
             { primary = colors.window_accent, contents = { git } },
-            { primary = colors.window_bg,     contents = { file_info } },
+            { primary = colors.window_bg,     contents = { file_size } },
+            { primary = colors.window_accent, contents = { file_format } },
+            { primary = colors.window_bg,     contents = { file_encoding } },
+            { primary = colors.window_accent, contents = { file_type } },
             align_cut,
             { primary = colors.window_accent, contents = { ruler } },
             { primary = colors.window_bg,     contents = { lsp_lint } },
