@@ -14,6 +14,8 @@ return {
         local colors = require("gronk.colors")
         require("heirline").load_colors(colors)
 
+        local null = "-"
+
         local icons = true
 
         -- HELPERS
@@ -223,7 +225,7 @@ return {
         -- FILE TYPE
         local file_type = {
             provider = function()
-                return string.upper(vim.bo.filetype)
+                return vim.bo.filetype
             end,
             hl = function()
                 return { fg = mode_info().color, bg = colors.none }
@@ -248,15 +250,22 @@ return {
                 {
                     provider = function()
                         local format = vim.bo.fileformat
-                        if format == "unix" then
-                            return " LF "
-                        elseif format == "dos" then
-                            return " CRLF "
-                        elseif format == "mac" then
-                            return " CR "
-                        else
-                            return format:upper() .. " "
+                        local icon = " "
+                        local le
+
+                        if vim.bo.filetype == "oil" then
+                            return icon .. null .. " "
                         end
+
+                        if format == "unix" then
+                            le = "lf"
+                        elseif format == "dos" then
+                            le = "crlf"
+                        elseif format == "mac" then
+                            le = "cr"
+                        end
+
+                        return icon .. le .. " "
                     end,
                     hl = { fg = colors.method, bg = bg },
                 },
@@ -265,7 +274,7 @@ return {
                         local enc = vim.bo.fenc
                         if enc ~= "" then
                             local has_bom = vim.bo.bomb and "  " or ""
-                            return " " .. enc:upper() .. has_bom .. " "
+                            return " " .. enc .. has_bom .. " "
                         end
                     end,
                     hl = { fg = colors.keyword, bg = bg },
@@ -281,9 +290,9 @@ return {
                             if not icon then
                                 icon = devicons.get_icon_by_filetype(ft, { default = true })
                             end
-                            if icon then return icon .. " " .. ft:upper() end
+                            if icon then return icon .. " " .. ft end
                         end
-                        return ft:upper()
+                        return ft
                     end,
                     hl = { fg = colors.number, bg = bg },
                 },
@@ -353,7 +362,7 @@ return {
                 return git_branch_cache[cwd]
             end
             local result = vim.fn.systemlist("git -C " ..
-            vim.fn.shellescape(cwd) .. " rev-parse --abbrev-ref HEAD 2>/dev/null")
+                vim.fn.shellescape(cwd) .. " rev-parse --abbrev-ref HEAD 2>/dev/null")
             local branch = (result and result[1] and result[1] ~= "" and vim.v.shell_error == 0) and result[1] or false
             git_branch_cache[cwd] = branch
             return branch
@@ -374,7 +383,7 @@ return {
                     provider = function()
                         local branch = get_git_branch()
                         if not branch then
-                            return " [no git]"
+                            return " " .. null
                         elseif branch == "HEAD" then
                             return " [detached]"
                         end
@@ -413,7 +422,7 @@ return {
                     local result = "  "
 
                     if not conditions.lsp_attached then
-                        return result .. "n/a"
+                        return result .. null
                     end
 
                     -- LSP
@@ -454,7 +463,7 @@ return {
                         result = result
                         return result
                     else
-                        return result .. "n/a"
+                        return result .. null
                     end
                 end,
                 {
