@@ -2,6 +2,17 @@ return {
     "3rd/image.nvim",
     -- dependencies = { "luarocks.nvim" },
     event = "VeryLazy",
+    config = function(_, opts)
+        local original_notify = vim.notify
+        vim.notify = function(msg, level, o)
+            if type(msg) == "string" and msg:find("cannot query terminal size") then
+                return
+            end
+            original_notify(msg, level, o)
+        end
+        require("image").setup(opts)
+        vim.notify = original_notify
+    end,
     opts = {
         backend = "kitty",
         processor = "magick_cli",
