@@ -56,6 +56,7 @@ return {
                     },
                 },
             },
+            gh_actions_ls = {},
             ruff = {},
             sqls = {},
             taplo = {},
