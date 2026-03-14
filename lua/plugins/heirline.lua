@@ -229,10 +229,10 @@ return {
                     local suffix = { "B", "KB", "MB", "GB", "TB", "PB", "EB" }
                     local fsize = vim.fn.getfsize(vim.api.nvim_buf_get_name(0))
                     fsize = (fsize < 0 and 0) or fsize
-                    if fsize == 0 then return " " .. null .. " " end
-                    if fsize < 1024 then return " " .. fsize .. suffix[1] .. " " end
+                    if fsize == 0 then return " " .. null end
+                    if fsize < 1024 then return " " .. fsize .. suffix[1] end
                     local i = math.floor((math.log(fsize) / math.log(1024)))
-                    return " " .. string.format("%.2f%s", fsize / (1024 ^ i), suffix[i + 1]) .. " "
+                    return " " .. string.format("%.2f%s", fsize / (1024 ^ i), suffix[i + 1])
                 end,
                 hl = { fg = colors.module, bg = bg },
             }
@@ -244,17 +244,17 @@ return {
                     local format = vim.bo.fileformat
 
                     if vim.bo.filetype == "oil" then
-                        return " " .. null .. " "
+                        return " " .. null
                     end
 
                     if format == "unix" then
-                        return " LF "
+                        return " LF"
                     elseif format == "dos" then
-                        return " CRLF "
+                        return " CRLF"
                     elseif format == "mac" then
-                        return " CR "
+                        return " CR"
                     else
-                        return format:upper() .. " "
+                        return format:upper()
                     end
                 end,
                 hl = { fg = colors.method, bg = bg },
@@ -266,10 +266,10 @@ return {
                 provider = function()
                     local enc = vim.bo.fenc
                     if enc ~= "" then
-                        local has_bom = vim.bo.bomb and "  " or ""
-                        return " " .. enc:upper() .. has_bom .. " "
+                        local has_bom = vim.bo.bomb and " " or ""
+                        return " " .. enc:upper() .. has_bom
                     end
-                    return " " .. null .. " "
+                    return " " .. null
                 end,
                 hl = { fg = colors.keyword, bg = bg },
             }
