@@ -281,7 +281,7 @@ return {
                     local path = vim.api.nvim_buf_get_name(0)
                     local ft = vim.bo.filetype
                     local devicons_ok, devicons = pcall(require, "nvim-web-devicons")
-                    local icon = " "
+                    local icon = ""
                     if devicons_ok then
                         local di = devicons.get_icon(vim.fs.basename(path), vim.fn.fnamemodify(path, ":e"),
                             { default = false })
@@ -291,7 +291,7 @@ return {
                         if di then icon = di end
                     end
                     local label = ft ~= "" and ft or null
-                    return icon .. " " .. label
+                    return icon .. "  " .. label
                 end,
                 hl = { fg = colors.number, bg = bg },
             }
