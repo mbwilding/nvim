@@ -229,10 +229,10 @@ return {
                     local suffix = { "B", "KB", "MB", "GB", "TB", "PB", "EB" }
                     local fsize = vim.fn.getfsize(vim.api.nvim_buf_get_name(0))
                     fsize = (fsize < 0 and 0) or fsize
-                    if fsize == 0 then return " " .. null end
-                    if fsize < 1024 then return " " .. fsize .. suffix[1] end
+                    if fsize == 0 then return "  " .. null end
+                    if fsize < 1024 then return "  " .. fsize .. suffix[1] end
                     local i = math.floor((math.log(fsize) / math.log(1024)))
-                    return " " .. string.format("%.2f%s", fsize / (1024 ^ i), suffix[i + 1])
+                    return "  " .. string.format("%.2f%s", fsize / (1024 ^ i), suffix[i + 1])
                 end,
                 hl = { fg = colors.module, bg = bg },
             }
@@ -267,9 +267,9 @@ return {
                     local enc = vim.bo.fenc
                     if enc ~= "" then
                         local has_bom = vim.bo.bomb and " " or ""
-                        return " " .. enc:upper() .. has_bom
+                        return "  " .. enc:upper() .. has_bom
                     end
-                    return " " .. null
+                    return "  " .. null
                 end,
                 hl = { fg = colors.keyword, bg = bg },
             }
@@ -281,7 +281,7 @@ return {
                     local path = vim.api.nvim_buf_get_name(0)
                     local ft = vim.bo.filetype
                     local devicons_ok, devicons = pcall(require, "nvim-web-devicons")
-                    local icon = ""
+                    local icon = " "
                     if devicons_ok then
                         local di = devicons.get_icon(vim.fs.basename(path), vim.fn.fnamemodify(path, ":e"),
                             { default = false })
