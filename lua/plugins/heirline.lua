@@ -14,10 +14,6 @@ return {
         local colors = require("gronk.colors")
         require("heirline").load_colors(colors)
 
-        local null = "-"
-
-        local icons = true
-
         -- HELPERS
         local function spacer(bg)
             return {
@@ -40,40 +36,40 @@ return {
 
         -- MODE
         local mode_name = {
-            n = "NORMAL",
-            no = "OPERATOR-PENDING",
-            nov = "OPERATOR-PENDING VISUAL",
-            noV = "OPERATOR-PENDING VISUAL LINE",
-            ["no\22"] = "OPERATOR-PENDING VISUAL BLOCK",
-            niI = "NORMAL INSERT",
-            niR = "NORMAL REPLACE",
-            niV = "NORMAL VIRTUAL",
-            nt = "TERMINAL",
-            v = "VISUAL",
-            vs = "VISUAL SELECT",
-            V = "VISUAL LINE",
-            Vs = "VISUAL LINE SELECT",
-            ["\22"] = "VISUAL BLOCK",
-            ["\22s"] = "VISUAL BLOCK SELECT",
-            s = "SELECT",
-            S = "SELECT LINE",
-            ["\19"] = "SELECT BLOCK",
-            i = "INSERT",
-            ic = "INSERT COMPLETION",
-            ix = "INSERT XTERM",
-            R = "REPLACE",
-            Rc = "REPLACE COMPLETION",
-            Rx = "REPLACE XTERM",
-            Rv = "VIRTUAL REPLACE",
-            Rvc = "VIRTUAL REPLACE COMPLETION",
-            Rvx = "VIRTUAL REPLACE XTERM",
-            c = "COMMAND-LINE",
-            cv = "EX MODE",
-            r = "HIT-ENTER PROMPT",
-            rm = "MORE PROMPT",
-            ["r?"] = "CONFIRM",
-            ["!"] = "SHELL or EXTERNAL COMMAND",
-            t = "TERMINAL",
+            n = "N",
+            no = "NO",
+            nov = "NOV",
+            noV = "NOVL",
+            ["no\22"] = "NOVB",
+            niI = "NI",
+            niR = "NR",
+            niV = "NV",
+            nt = "NT",
+            v = "V",
+            vs = "VS",
+            V = "L",
+            Vs = "VLS",
+            ["\22"] = "VB",
+            ["\22s"] = "VBS",
+            s = "S",
+            S = "SL",
+            ["\19"] = "SB",
+            i = "I",
+            ic = "IC",
+            ix = "IX",
+            R = "R",
+            Rc = "RC",
+            Rx = "RX",
+            Rv = "VR",
+            Rvc = "VRC",
+            Rvx = "VRX",
+            c = "C",
+            cv = "CV",
+            r = "RE",
+            rm = "RM",
+            ["r?"] = "R?",
+            ["!"] = "!",
+            t = "T",
         }
 
         local mode_colors = {
@@ -120,7 +116,7 @@ return {
                     self.mode_info = mode_info()
                 end,
                 provider = function(self)
-                    return "%2(" .. self.mode_info.name .. "%)"
+                    return " " .. self.mode_info.name
                 end,
                 hl = function(self)
                     return { fg = self.mode_info.color, bg = bg, bold = true }
@@ -146,75 +142,6 @@ return {
             end,
         }
 
-        local file_icon = {
-            init = function(self)
-                local path = vim.fn.expand("%:p")
-                local devicons_ok, devicons = pcall(require, "nvim-web-devicons")
-                if not devicons_ok then
-                    self.icon = " " -- Default icon
-                    self.icon_color = "#6d8086" -- Default color
-                    return
-                end
-
-                -- Try to find icon using the filename
-                local icon, icon_color =
-                    devicons.get_icon_color(vim.fs.basename(path), vim.fn.fnamemodify(path, ":e"), { default = false })
-
-                -- If no icon is found, try finding it using the filetype
-                if not icon then
-                    local buf = vim.iter(vim.api.nvim_list_bufs()):find(function(buf)
-                        return vim.api.nvim_buf_get_name(buf) == path
-                    end)
-                    if buf then
-                        local filetype = vim.api.nvim_get_option_value("filetype", { buf = buf })
-                        icon, icon_color = devicons.get_icon_by_filetype(filetype)
-                    end
-                end
-
-                -- Fallback to default icon if none is found
-                self.icon = icon and icon .. " " or " "
-                self.icon_color = icon_color or "#6d8086"
-            end,
-            provider = function(self)
-                return self.icon
-            end,
-            hl = function(self)
-                return { fg = self.icon_color, bg = colors.none }
-            end,
-        }
-
-        local file_name = {
-            provider = function(self)
-                local home = vim.fn.expand("~")
-                local filename = vim.fn.fnamemodify(self.filename, ":.")
-
-                filename = filename:gsub("oil://", "")
-
-                if filename:sub(1, #home) == home then
-                    filename = "~" .. filename:sub(#home + 1)
-                end
-
-                if not conditions.width_percent_below(#filename, 0.25) then
-                    filename = vim.fn.fnamemodify(filename, ":t")
-                end
-
-                return "[" .. filename .. "]"
-            end,
-            hl = function()
-                return { fg = colors.string, bg = colors.none, force = true }
-            end,
-        }
-
-        local file_name_modifier = {
-            hl = function()
-                if vim.bo.modified then
-                    return { fg = colors.number, bg = colors.none, force = true }
-                elseif vim.bo.readonly or not vim.bo.modifiable then
-                    return { fg = colors.error, bg = colors.none, force = true }
-                end
-            end,
-        }
-
         file_name_block = utils.insert(
             file_name_block,
             -- file_icon,
@@ -229,10 +156,10 @@ return {
                     local suffix = { "B", "KB", "MB", "GB", "TB", "PB", "EB" }
                     local fsize = vim.fn.getfsize(vim.api.nvim_buf_get_name(0))
                     fsize = (fsize < 0 and 0) or fsize
-                    if fsize == 0 then return "  " .. null end
-                    if fsize < 1024 then return "  " .. fsize .. suffix[1] end
+                    if fsize == 0 then return "" end
+                    if fsize < 1024 then return " " .. fsize .. suffix[1] end
                     local i = math.floor((math.log(fsize) / math.log(1024)))
-                    return "  " .. string.format("%.2f%s", fsize / (1024 ^ i), suffix[i + 1])
+                    return " " .. string.format("%.2f%s", fsize / (1024 ^ i), suffix[i + 1])
                 end,
                 hl = { fg = colors.module, bg = bg },
             }
@@ -244,15 +171,15 @@ return {
                     local format = vim.bo.fileformat
 
                     if vim.bo.filetype == "oil" then
-                        return " " .. null
+                        return ""
                     end
 
                     if format == "unix" then
-                        return " LF"
+                        return ""
                     elseif format == "dos" then
-                        return " CRLF"
+                        return ""
                     elseif format == "mac" then
-                        return " CR"
+                        return ""
                     else
                         return format:upper()
                     end
@@ -267,9 +194,9 @@ return {
                     local enc = vim.bo.fenc
                     if enc ~= "" then
                         local has_bom = vim.bo.bomb and " " or ""
-                        return "  " .. enc:upper() .. has_bom
+                        return " " .. enc:upper() .. has_bom
                     end
-                    return "  " .. null
+                    return ""
                 end,
                 hl = { fg = colors.keyword, bg = bg },
             }
@@ -290,62 +217,22 @@ return {
                         end
                         if di then icon = di end
                     end
-                    local label = ft ~= "" and ft or null
-                    return icon .. "  " .. label
+                    local label = ft ~= "" and ft or ""
+                    if label ~= "" then
+                        return icon .. " " .. label
+                    else
+                        return icon
+                    end
                 end,
                 hl = { fg = colors.number, bg = bg },
             }
         end
 
-        -- FILE LAST MODIFIED
-        local file_last_modified = {
-            -- did you know? Vim is full of functions!
-            provider = function()
-                local ftime = vim.fn.getftime(vim.api.nvim_buf_get_name(0))
-                return (ftime > 0) and os.date("%c", ftime)
-            end,
-            hl = { bg = colors.none },
-        }
-
         -- RULER
         local function ruler(bg)
             return {
-                -- %l = current line number
-                -- %L = number of lines in the buffer
-                -- %c = column number
-                -- %P = percentage through file of displayed window
-
-                -- static = {
-                --     --sbar = { "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" },
-                --     sbar = {
-                --         "",
-                --         "",
-                --         "",
-                --         "",
-                --         "",
-                --         "",
-                --         "",
-                --         "",
-                --         "",
-                --         "",
-                --         "",
-                --         "",
-                --         "",
-                --         "",
-                --         "",
-                --     },
-                -- },
-                provider = function(self)
-                    -- local curr_line = vim.api.nvim_win_get_cursor(0)[1]
-                    -- local lines = vim.api.nvim_buf_line_count(0)
-                    -- local i
-                    -- if lines == 1 then
-                    --   i = #self.sbar
-                    -- else
-                    --   i = math.floor((curr_line - 1) / (lines - 1) * (#self.sbar - 1)) + 1
-                    -- end
-                    -- local icon = string.rep(self.sbar[i], 1)
-                    return "  %c %{max([line('.'),1])}/%L %P"
+                provider = function()
+                    return "%c %{max([line('.'),1])}/%L %P"
                 end,
                 hl = { fg = colors.string, bg = bg },
             }
@@ -381,9 +268,9 @@ return {
                     provider = function()
                         local branch = get_git_branch()
                         if not branch then
-                            return " " .. null
+                            return ""
                         elseif branch == "HEAD" then
-                            return " [detached]"
+                            return " [d]"
                         end
                         return " " .. branch
                     end,
@@ -417,10 +304,10 @@ return {
                     self.error = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
                 end,
                 provider = function()
-                    local result = "  "
+                    local result = ""
 
                     if not conditions.lsp_attached then
-                        return result .. null
+                        return result
                     end
 
                     -- LSP
@@ -450,7 +337,7 @@ return {
                     -- Combine
                     if #lsp_client_names > 0 or #linters_by_ft > 0 then
                         if #lsp_client_names > 0 then
-                            result = result .. table.concat(lsp_client_names, separator)
+                            result = result .. " " .. table.concat(lsp_client_names, separator)
                         end
                         if #linters_by_ft > 0 then
                             if #lsp_client_names > 0 then
@@ -458,10 +345,9 @@ return {
                             end
                             result = result .. linter_names
                         end
-                        result = result
                         return result
                     else
-                        return result .. null
+                        return result
                     end
                 end,
                 {
@@ -492,22 +378,6 @@ return {
             }
         end
 
-        -- WORKING DIRECTORY
-        local function work_dir(bg)
-            return {
-                provider = function()
-                    local icon = "  "
-                    local cwd = vim.fn.getcwd(0)
-                    cwd = vim.fn.fnamemodify(cwd, ":~")
-                    if not conditions.width_percent_below(#cwd, 0.25) then
-                        cwd = vim.fn.fnamemodify(cwd, ":t")
-                    end
-                    return icon .. cwd
-                end,
-                hl = { fg = colors.struct, bg = bg },
-            }
-        end
-
         -- DEBUG
         local function debug(bg)
             return {
@@ -515,7 +385,7 @@ return {
                     return require("dap").session() ~= nil
                 end,
                 provider = function()
-                    return "  " .. require("dap").status()
+                    return " " .. require("dap").status()
                 end,
                 hl = { fg = colors.keyword, bg = bg },
             }
@@ -525,8 +395,8 @@ return {
         local function date_time(bg)
             return {
                 provider = function()
-                    -- return os.date("%Y-%m-%d %I:%M:%S %p")
-                    return os.date("%I:%M %p")
+                    -- return os.date("%Y-%m-%d %H:%M:%S")
+                    return os.date("%H:%M")
                 end,
                 hl = { fg = colors.struct, bg = bg, bold = true },
             }
@@ -547,33 +417,6 @@ return {
         end
         startTimerOnSecondDivisibleBy(60)
 
-        -- GRAPPLE
-        local grapple = {
-            provider = function()
-                local value = require("grapple").name_or_index()
-                if value == "" then
-                    return nil
-                end
-                return " " .. "[" .. value .. "]"
-            end,
-            condition = function()
-                return require("grapple").exists()
-            end,
-            hl = { fg = colors.struct, bg = colors.none },
-        }
-
-        -- MEMES
-        local meme = {
-            provider = " [Penger Pics: 3.6TB]",
-            hl = { fg = colors.error, bg = colors.none },
-        }
-
-        -- Auto-Session
-        -- local auto_session = {
-        -- 	provider = require("auto-session.lib").current_session_name,
-        -- 	hl = { fg = colors.error, bg = colors.none },
-        -- }
-
         -- Layout Logic
         local function slant(direction, primary, secondary)
             return {
@@ -583,8 +426,8 @@ return {
                 },
                 {
                     -- provider = direction == "right" and "" or "",
-                    provider = direction == "right" and "" or "",
-                    -- provider = direction == "right" and "" or "",
+                    -- provider = direction == "right" and "" or "",
+                    provider = direction == "right" and "" or "",
                     -- provider = direction == "right" and "" or "",
                     hl = { fg = primary, bg = secondary },
                 },
@@ -661,13 +504,12 @@ return {
 
         local sections = {
             { primary = colors.window_accent, contents = { vim_mode } },
-            { primary = colors.window_bg,     contents = { work_dir } },
-            { primary = colors.window_accent, contents = { git } },
-            { primary = colors.window_bg,     contents = { file_size } },
-            { primary = colors.window_accent, contents = { file_format } },
-            { primary = colors.window_bg,     contents = { file_encoding } },
-            { primary = colors.window_accent, contents = { file_type } },
-            { primary = colors.window_bg,     contents = { lsp_lint } },
+            { primary = colors.window_bg,     contents = { git } },
+            { primary = colors.window_accent, contents = { file_size } },
+            { primary = colors.window_bg,     contents = { file_format } },
+            { primary = colors.window_accent, contents = { file_encoding } },
+            { primary = colors.window_bg,     contents = { file_type } },
+            { primary = colors.window_accent, contents = { lsp_lint } },
             align_cut,
             { primary = colors.window_bg,     contents = { ruler } },
             { primary = colors.window_accent, contents = { date_time } },
