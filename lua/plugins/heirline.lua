@@ -116,7 +116,7 @@ return {
                     self.mode_info = mode_info()
                 end,
                 provider = function(self)
-                    return " " .. self.mode_info.name
+                    return self.mode_info.name
                 end,
                 hl = function(self)
                     return { fg = self.mode_info.color, bg = bg, bold = true }
@@ -181,7 +181,7 @@ return {
                     elseif format == "mac" then
                         return ""
                     else
-                        return format:upper()
+                        return format
                     end
                 end,
                 hl = { fg = colors.method, bg = bg },
@@ -194,7 +194,7 @@ return {
                     local enc = vim.bo.fenc
                     if enc ~= "" then
                         local has_bom = vim.bo.bomb and " " or ""
-                        return " " .. enc:upper() .. has_bom
+                        return " " .. enc .. has_bom
                     end
                     return ""
                 end,
@@ -278,10 +278,54 @@ return {
             }
         end
 
-        -- LSP / Lint
-        local function lsp_lint(bg)
+        local separator = ", "
+
+        -- LSP
+        local function lsp(bg)
             return {
                 -- condition = conditions.lsp_attached,
+                update = { "LspAttach", "LspDetach", "BufEnter", "BufWritePost", "DiagnosticChanged" },
+                provider = function()
+                    local icon = ""
+
+                    if not conditions.lsp_attached then
+                        return icon
+                    end
+
+                    -- LSP
+                    local current_buf = vim.api.nvim_get_current_buf()
+                    local lsp_clients = vim.lsp.get_clients()
+                    local lsp_client_names = {}
+
+                    for _, client in ipairs(lsp_clients) do
+                        if vim.lsp.buf_is_attached(current_buf, client.id) then
+                            if client.name ~= "copilot" then
+                                table.insert(lsp_client_names, client.name)
+                            end
+                        end
+                    end
+
+                    if #lsp_client_names == 0 then
+                        return icon
+                    end
+
+                    return icon .. " " .. table.concat(lsp_client_names, separator)
+                end,
+                hl = { fg = colors.number, bg = bg },
+            }
+        end
+
+        -- Diagnostics
+        local function diagnostics(bg)
+            return {
+                condition = function()
+                    if not conditions.lsp_attached() then return false end
+                    local info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
+                    local hint = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
+                    local warn = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
+                    local error = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
+                    return (info > 0) or (hint > 0) or (warn > 0) or (error > 0)
+                end,
                 update = { "LspAttach", "LspDetach", "BufEnter", "BufWritePost", "DiagnosticChanged" },
                 static = {
                     error_icon = vim.fn.sign_getdefined("DiagnosticSignError")[1] and vim.fn.sign_getdefined(
@@ -303,78 +347,47 @@ return {
                     self.warn = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
                     self.error = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
                 end,
-                provider = function()
-                    local result = ""
-
-                    if not conditions.lsp_attached then
-                        return result
-                    end
-
-                    -- LSP
-                    local current_buf = vim.api.nvim_get_current_buf()
-                    local lsp_clients = vim.lsp.get_clients()
-                    local lsp_client_names = {}
-                    local separator = ", "
-
-                    for _, client in ipairs(lsp_clients) do
-                        if vim.lsp.buf_is_attached(current_buf, client.id) then
-                            if client.name ~= "copilot" then
-                                table.insert(lsp_client_names, client.name)
-                            end
-                        end
-                    end
-
-                    -- Lint
-                    local ft = vim.bo[current_buf].filetype
-                    local linters_by_ft = require("lint").linters_by_ft[ft] or {}
-                    local linter_clients = {}
-
-                    for _, name in ipairs(linters_by_ft) do
-                        table.insert(linter_clients, name)
-                    end
-                    local linter_names = table.concat(linter_clients, separator)
-
-                    -- Combine
-                    if #lsp_client_names > 0 or #linters_by_ft > 0 then
-                        if #lsp_client_names > 0 then
-                            result = result .. " " .. table.concat(lsp_client_names, separator)
-                        end
-                        if #linters_by_ft > 0 then
-                            if #lsp_client_names > 0 then
-                                result = result .. separator
-                            end
-                            result = result .. linter_names
-                        end
-                        return result
-                    else
-                        return result
-                    end
-                end,
                 {
                     provider = function(self)
-                        return self.info > 0 and (" " .. self.info_icon .. self.info)
+                        return self.info > 0 and (self.info_icon .. self.info)
                     end,
                     hl = { fg = colors.method, bg = bg },
                 },
                 {
                     provider = function(self)
-                        return self.hint > 0 and (" " .. self.hint_icon .. self.hint) or ""
+                        return self.hint > 0 and (self.hint_icon .. self.hint) or ""
                     end,
                     hl = { fg = colors.macro, bg = bg },
                 },
                 {
                     provider = function(self)
-                        return self.warn > 0 and (" " .. self.warn_icon .. self.warn) or ""
+                        return self.warn > 0 and (self.warn_icon .. self.warn) or ""
                     end,
                     hl = { fg = colors.namespace, bg = bg },
                 },
                 {
                     provider = function(self)
-                        return self.error > 0 and (" " .. self.error_icon .. self.error) or ""
+                        return self.error > 0 and (self.error_icon .. self.error) or ""
                     end,
                     hl = { fg = colors.error, bg = bg },
                 },
                 hl = { fg = colors.number, bg = bg },
+            }
+        end
+
+        local function lint(bg)
+            return {
+                provider = function()
+                    local icon = ""
+                    local current_buf = vim.api.nvim_get_current_buf()
+                    local ft = vim.bo[current_buf].filetype
+                    local linters_by_ft = require("lint").linters_by_ft[ft] or {}
+                    if #linters_by_ft == 0 then
+                        return icon
+                    end
+                    return icon .. " " .. table.concat(linters_by_ft, separator)
+                end,
+                hl = { fg = colors.interface, bg = bg },
             }
         end
 
@@ -505,12 +518,14 @@ return {
         local sections = {
             { primary = colors.window_accent, contents = { vim_mode } },
             { primary = colors.window_bg,     contents = { git } },
-            { primary = colors.window_accent, contents = { file_size } },
-            { primary = colors.window_bg,     contents = { file_format } },
+            { primary = colors.window_accent, contents = { file_format } },
+            { primary = colors.window_bg,     contents = { file_size } },
             { primary = colors.window_accent, contents = { file_encoding } },
             { primary = colors.window_bg,     contents = { file_type } },
-            { primary = colors.window_accent, contents = { lsp_lint } },
+            { primary = colors.window_accent, contents = { lsp } },
+            { primary = colors.window_bg,     contents = { lint } },
             align_cut,
+            { primary = colors.window_accent, contents = { diagnostics } },
             { primary = colors.window_bg,     contents = { ruler } },
             { primary = colors.window_accent, contents = { date_time } },
         }
