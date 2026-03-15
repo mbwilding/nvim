@@ -582,7 +582,10 @@ return {
                     hl = { fg = secondary, bg = primary },
                 },
                 {
-                    provider = direction == "right" and "" or "",
+                    -- provider = direction == "right" and "" or "",
+                    provider = direction == "right" and "" or "",
+                    -- provider = direction == "right" and "" or "",
+                    -- provider = direction == "right" and "" or "",
                     hl = { fg = primary, bg = secondary },
                 },
                 direction == "right" and {
@@ -664,9 +667,9 @@ return {
             { primary = colors.window_accent, contents = { file_format } },
             { primary = colors.window_bg,     contents = { file_encoding } },
             { primary = colors.window_accent, contents = { file_type } },
-            align_cut,
-            { primary = colors.window_accent, contents = { ruler } },
             { primary = colors.window_bg,     contents = { lsp_lint } },
+            align_cut,
+            { primary = colors.window_bg,     contents = { ruler } },
             { primary = colors.window_accent, contents = { date_time } },
         }
 
