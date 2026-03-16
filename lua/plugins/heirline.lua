@@ -224,7 +224,7 @@ return {
                         return icon
                     end
                 end,
-                hl = { fg = colors.number, bg = bg },
+                hl = { fg = colors.constant, bg = bg },
             }
         end
 
@@ -278,54 +278,17 @@ return {
             }
         end
 
-        local separator = ", "
-
-        -- LSP
-        local function lsp(bg)
-            return {
-                -- condition = conditions.lsp_attached,
-                update = { "LspAttach", "LspDetach", "BufEnter", "BufWritePost", "DiagnosticChanged" },
-                provider = function()
-                    local icon = ""
-
-                    if not conditions.lsp_attached then
-                        return icon
-                    end
-
-                    -- LSP
-                    local current_buf = vim.api.nvim_get_current_buf()
-                    local lsp_clients = vim.lsp.get_clients()
-                    local lsp_client_names = {}
-
-                    for _, client in ipairs(lsp_clients) do
-                        if vim.lsp.buf_is_attached(current_buf, client.id) then
-                            if client.name ~= "copilot" then
-                                table.insert(lsp_client_names, client.name)
-                            end
-                        end
-                    end
-
-                    if #lsp_client_names == 0 then
-                        return icon
-                    end
-
-                    return icon .. " " .. table.concat(lsp_client_names, separator)
-                end,
-                hl = { fg = colors.number, bg = bg },
-            }
-        end
-
         -- Diagnostics
         local function diagnostics(bg)
             return {
-                condition = function()
-                    if not conditions.lsp_attached() then return false end
-                    local info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
-                    local hint = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
-                    local warn = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
-                    local error = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
-                    return (info > 0) or (hint > 0) or (warn > 0) or (error > 0)
-                end,
+                -- condition = function()
+                --     if not conditions.lsp_attached() then return false end
+                --     local info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
+                --     local hint = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
+                --     local warn = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
+                --     local error = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
+                --     return (info > 0) or (hint > 0) or (warn > 0) or (error > 0)
+                -- end,
                 update = { "LspAttach", "LspDetach", "BufEnter", "BufWritePost", "DiagnosticChanged" },
                 static = {
                     error_icon = vim.fn.sign_getdefined("DiagnosticSignError")[1] and vim.fn.sign_getdefined(
@@ -346,6 +309,10 @@ return {
                     self.hint = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
                     self.warn = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
                     self.error = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
+
+                    self.info_space = self.info > 0 and (self.hint > 0 or self.warn > 0 or self.error > 0)
+                    self.hint_space = self.hint > 0 and (self.warn > 0 or self.error > 0)
+                    self.warn_space = self.warn > 0 and self.error > 0
                 end,
                 {
                     provider = function(self)
@@ -354,22 +321,78 @@ return {
                     hl = { fg = colors.method, bg = bg },
                 },
                 {
+                    condition = function(self) return self.info_space end,
+                    provider = " ",
+                },
+                {
                     provider = function(self)
-                        return self.hint > 0 and (self.hint_icon .. self.hint) or ""
+                        return self.hint > 0 and (self.hint_icon .. self.hint)
                     end,
                     hl = { fg = colors.macro, bg = bg },
                 },
                 {
+                    condition = function(self) return self.hint_space end,
+                    provider = " ",
+                },
+                {
                     provider = function(self)
-                        return self.warn > 0 and (self.warn_icon .. self.warn) or ""
+                        return self.warn > 0 and (self.warn_icon .. self.warn)
                     end,
                     hl = { fg = colors.namespace, bg = bg },
                 },
                 {
+                    condition = function(self) return self.warn_space end,
+                    provider = " ",
+                },
+                {
                     provider = function(self)
-                        return self.error > 0 and (self.error_icon .. self.error) or ""
+                        return self.error > 0 and (self.error_icon .. self.error)
                     end,
                     hl = { fg = colors.error, bg = bg },
+                },
+                {
+                    provider = function(self)
+                        return (self.info == 0 and self.hint == 0 and self.warn == 0 and self.error == 0) and "󰗠"
+                    end,
+                    hl = { fg = colors.ok, bg = bg },
+                },
+                hl = { fg = colors.number, bg = bg },
+            }
+        end
+
+        -- LSP
+        local separator = ", "
+        local function lsp(bg)
+            return {
+                -- condition = conditions.lsp_attached,
+                update = { "LspAttach", "LspDetach", "BufEnter", "BufWritePost", "DiagnosticChanged" },
+                {
+                    provider = function()
+                        local icon = ""
+
+                        if not conditions.lsp_attached then
+                            return icon
+                        end
+
+                        -- LSP
+                        local current_buf = vim.api.nvim_get_current_buf()
+                        local lsp_clients = vim.lsp.get_clients()
+                        local lsp_client_names = {}
+
+                        for _, client in ipairs(lsp_clients) do
+                            if vim.lsp.buf_is_attached(current_buf, client.id) then
+                                if client.name ~= "copilot" then
+                                    table.insert(lsp_client_names, client.name)
+                                end
+                            end
+                        end
+
+                        if #lsp_client_names == 0 then
+                            return icon
+                        end
+
+                        return icon .. " " .. table.concat(lsp_client_names, separator)
+                    end,
                 },
                 hl = { fg = colors.number, bg = bg },
             }
@@ -522,10 +545,10 @@ return {
             { primary = colors.window_bg,     contents = { file_size } },
             { primary = colors.window_accent, contents = { file_encoding } },
             { primary = colors.window_bg,     contents = { file_type } },
-            { primary = colors.window_accent, contents = { lsp } },
-            { primary = colors.window_bg,     contents = { lint } },
-            align_cut,
+            { primary = colors.window_accent, contents = { lint } },
+            { primary = colors.window_bg,     contents = { lsp } },
             { primary = colors.window_accent, contents = { diagnostics } },
+            align_cut,
             { primary = colors.window_bg,     contents = { ruler } },
             { primary = colors.window_accent, contents = { date_time } },
         }
