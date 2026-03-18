@@ -43,25 +43,25 @@ return {
         require("mini.diff").setup()
 
         -- Auto-pairs
-        require("mini.pairs").setup({
-            modes = {
-                insert = true,
-                command = false,
-                terminal = false,
-            },
-            mappings = {
-                ['"'] = { action = "open", pair = '""', neigh_pattern = "[^%w\\\".][^\".]", register = { cr = false } },
-                ["'"] = { action = "open", pair = "''", neigh_pattern = "[^%w\\'.][^'.]", register = { cr = false } },
-                ["`"] = { action = "open", pair = "``", neigh_pattern = "[^%w\\`.][^`.]", register = { cr = false } },
-                ["("] = { action = "open", pair = "()", neigh_pattern = "^[^\\]" },
-                [")"] = { action = "close", pair = "()", neigh_pattern = "^[^\\]" },
-                ["["] = { action = "open", pair = "[]", neigh_pattern = "^[^\\]" },
-                ["]"] = { action = "close", pair = "[]", neigh_pattern = "^[^\\]" },
-                ["{"] = { action = "open", pair = "{}", neigh_pattern = "^[^\\]" },
-                ["}"] = { action = "close", pair = "{}", neigh_pattern = "^[^\\]" },
-                ["<"] = { action = "open", pair = "<>", neigh_pattern = "^[^%s\\]" },
-                [">"] = { action = "close", pair = "<>", neigh_pattern = "^[^%s\\]" },
-            },
-        })
+        -- require("mini.pairs").setup({
+        --     modes = {
+        --         insert = true,
+        --         command = false,
+        --         terminal = false,
+        --     },
+        --     mappings = {
+        --         ['"'] = { action = "open", pair = '""', neigh_pattern = "[^%w\\\".][^\".]", register = { cr = false } },
+        --         ["'"] = { action = "open", pair = "''", neigh_pattern = "[^%w\\'.][^'.]", register = { cr = false } },
+        --         ["`"] = { action = "open", pair = "``", neigh_pattern = "[^%w\\`.][^`.]", register = { cr = false } },
+        --         ["("] = { action = "open", pair = "()", neigh_pattern = "^[^\\]" },
+        --         [")"] = { action = "close", pair = "()", neigh_pattern = "^[^\\]" },
+        --         ["["] = { action = "open", pair = "[]", neigh_pattern = "^[^\\]" },
+        --         ["]"] = { action = "close", pair = "[]", neigh_pattern = "^[^\\]" },
+        --         ["{"] = { action = "open", pair = "{}", neigh_pattern = "^[^\\]" },
+        --         ["}"] = { action = "close", pair = "{}", neigh_pattern = "^[^\\]" },
+        --         ["<"] = { action = "open", pair = "<>", neigh_pattern = "^[^%s\\]" },
+        --         [">"] = { action = "close", pair = "<>", neigh_pattern = "^[^%s\\]" },
+        --     },
+        -- })
     end,
 }
