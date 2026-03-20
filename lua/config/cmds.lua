@@ -55,6 +55,21 @@ vim.api.nvim_create_user_command("JsonConvert", function()
             output[i] = line:gsub('%s+$', '')
         end
 
+        if lang.lang == 'csharp' then
+            -- Format for scoped namespace
+            output[1] = output[1] .. ';'
+            output[2] = ''
+            output[#output] = ''
+            for i, line in ipairs(output) do
+                if line:find('^%s') then
+                    output[i] = line:sub(5)
+                else
+                    output[i] = line
+                end
+                output[i] = output[i]:gsub('%s+$', '')
+            end
+        end
+
         local pos = vim.api.nvim_win_get_cursor(0)
         local row = pos[1] - 1
         vim.api.nvim_buf_set_lines(0, row, row, false, output)
