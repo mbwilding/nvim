@@ -94,6 +94,10 @@ k("v", "<leader>ht", function()
     end, 200)
 end, { desc = "HTML" })
 
+k("n", "<leader>jc", function()
+    vim.cmd("JsonConvert")
+end, { desc = "Json Convert" })
+
 -- Debug
 -- k("n", "\\m", "<CMD>messages<CR>", { desc = "Debug: Messages" })
 k("n", "\\i", "<CMD>Inspect<CR>", { desc = "Highlights: Inspect" })
