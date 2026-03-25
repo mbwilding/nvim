@@ -6,6 +6,9 @@ return {
     dev = false,
     priority = 1001,
     config = function()
+        require("gronk").setup({
+            transparent = true,
+        })
         vim.cmd([[colorscheme gronk]])
     end,
 }
