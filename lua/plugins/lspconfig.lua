@@ -10,7 +10,6 @@ return {
         ---@type table<string, vim.lsp.Config>
         local servers = {
             qmlls = {},
-            ada_ls = {},
             clangd = {},
             docker_compose_language_service = {},
             dockerls = {},
