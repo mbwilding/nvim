@@ -21,8 +21,8 @@ return {
                 settings = {
                     ["nil"] = {
                         nix = {
+                            maxMemoryMB = nil,
                             flake = {
-                                maxMemoryMB = 4096, -- null is unbound
                                 autoArchive = true,
                                 autoEvalInputs = true,
                             },
