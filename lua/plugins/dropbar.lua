@@ -15,15 +15,15 @@ return {
                     or not vim.api.nvim_win_is_valid(win)
                     or vim.fn.win_gettype(win) ~= ""
                     or wb ~= ""
+                    or ft == "codediff-explorer"
+                    or ft == "dapui_breakpoints"
+                    or ft == "dapui_console"
+                    or ft == "dapui_scopes"
+                    or ft == "dapui_stacks"
+                    or ft == "dapui_watches"
                     or ft == "help"
                     or ft == "noice"
                     or ft == "snacks_dashboard"
-                    or ft == "codediff-explorer"
-                    or ft == "dapui_console"
-                    or ft == "dapui_watches"
-                    or ft == "dapui_stacks"
-                    or ft == "dapui_breakpoints"
-                    or ft == "dapui_scopes"
                 then
                     return false
                 else
