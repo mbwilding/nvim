@@ -35,7 +35,7 @@
 ; Python
 (block_mapping_pair
   key: (flow_node) @key
-    (#any-of? @key "python" "python" "inlineScript")
+    (#any-of? @key "python" "inlineScript")
   value: (block_node (block_scalar) @injection.content)
   (#set! injection.language "python")
   (#offset! @injection.content 0 1 0 0)
@@ -43,7 +43,7 @@
 
 (block_mapping_pair
   key: (flow_node) @key
-    (#any-of? @key "python" "python" "inlineScript")
+    (#any-of? @key "python" "inlineScript")
   value: (flow_node (plain_scalar) @injection.content)
   (#set! injection.language "python")
 )
