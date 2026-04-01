@@ -114,6 +114,9 @@ k("n", "yd", function()
     vim.api.nvim_win_set_cursor(win, { line_num + 1, col })
 end, { desc = "Duplicate line" })
 
+vim.cmd("packadd nvim.undotree")
+k("n", "<leader>u", require("undotree").open, { desc = "Undotree" })
+
 -- Whitespace
 local whitespace = false
 k("n", "<leader>iW", function()
@@ -138,22 +141,22 @@ k("n", "<leader>k", function()
     vim.diagnostic.open_float(nil, { scope = "line" })
 end, { desc = "Diagnostics: View float" })
 
-vim.keymap.set({ "n", "x" }, "y", function()
+k({ "n", "x" }, "y", function()
     cursorPreAction = vim.api.nvim_win_get_cursor(0)
     return "y"
 end, { expr = true })
 
-vim.keymap.set("n", "Y", function()
+k("n", "Y", function()
     cursorPreAction = vim.api.nvim_win_get_cursor(0)
     return "yg_"
 end, { expr = true })
 
-vim.keymap.set({ "n", "x" }, "<leader>y", function()
+k({ "n", "x" }, "<leader>y", function()
     cursorPreAction = vim.api.nvim_win_get_cursor(0)
     return "\"+y"
 end, { expr = true })
 
-vim.keymap.set("n", "<leader>yy", function()
+k("n", "<leader>yy", function()
     cursorPreAction = vim.api.nvim_win_get_cursor(0)
     return "\"+yy"
 end, { expr = true })
