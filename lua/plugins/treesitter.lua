@@ -13,6 +13,7 @@ return {
                 mdx = "markdown",
                 uproject = "json",
                 wsdl = "xml",
+                xdf = "xml",
             },
         })
 
