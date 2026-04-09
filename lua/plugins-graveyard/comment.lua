@@ -1,4 +1,4 @@
--- Comment allows you to quickly comment out lines or blocks of code in many languages.
+-- Comment allows you to quickly comment out lines or blocks of code in many languages, deprecated in favour of inbuilt neovim 0.10 comments.
 
 return {
     "numToStr/Comment.nvim",
@@ -10,8 +10,5 @@ return {
     },
     config = function(_, opts)
         require("Comment").setup(opts)
-
-        local ft = require("Comment.ft")
-        ft.set("vhs", "# %s")
     end,
 }

@@ -64,6 +64,15 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end,
 })
 
+-- VHS tape files use # comments
+vim.api.nvim_create_autocmd("FileType", {
+    group = augroup("vhs_commentstring"),
+    pattern = "vhs",
+    callback = function()
+        vim.bo.commentstring = "# %s"
+    end,
+})
+
 -- Set fileformat to unix for shell scripts
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     group = augroup("lf"),
