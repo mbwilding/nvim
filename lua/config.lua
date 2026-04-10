@@ -16,6 +16,7 @@ vim.o.linebreak = true
 vim.o.list = true
 vim.o.mouse = "a"
 vim.o.mousemodel = "extend"
+vim.o.nrformats = "unsigned"
 vim.o.scrolloff = 3
 vim.o.shiftwidth = 4
 vim.o.showmode = false
