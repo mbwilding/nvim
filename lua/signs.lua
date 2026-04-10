@@ -5,15 +5,15 @@ local signs = {
     { "DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" } },
     {
         "DapBreakpointCondition",
-        { texthl = "DapBreakpoint", numhl = "DapBreakpoint" },
+        { text = "", texthl = "DapBreakpoint", numhl = "DapBreakpoint" },
     },
     {
         "DapBreakpointRejected",
-        { texthl = "DapBreakpoint", numhl = "DapBreakpoint" },
+        { text = "", texthl = "DapBreakpoint", numhl = "DapBreakpoint" },
     },
-    { "DapLogPoint", { texthl = "DapLogPoint", numhl = "DapLogPoint" } },
-    { "DapStopped", { texthl = "DapStopped", numhl = "DapStopped" } },
-    { "DapBreakpoint", { texthl = "DapBreakpoint", numhl = "DapBreakpoint" } },
+    { "DapLogPoint",   { text = "", texthl = "DapLogPoint", numhl = "DapLogPoint" } },
+    { "DapStopped",    { text = "", texthl = "DapStopped", numhl = "DapStopped" } },
+    { "DapBreakpoint", { text = "", texthl = "DapBreakpoint", numhl = "DapBreakpoint" } },
 }
 
 for _, sign in ipairs(signs) do
