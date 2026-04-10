@@ -93,13 +93,6 @@ return {
             desc = "Grep Open Buffers",
         },
         {
-            "<leader>sg",
-            function()
-                Snacks.picker.grep()
-            end,
-            desc = "Grep",
-        },
-        {
             "<leader>sw",
             function()
                 Snacks.picker.grep_word()
