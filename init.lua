@@ -9,8 +9,8 @@ local function autoload(dir)
                 autoload(dir and (dir .. "/" .. name) or name)
             end
         else
-            local mod = name:match("^[!]?([^_].-)%.lua$")
-            if mod and mod ~= "init" then
+            local mod = name:match("^([^_].+)%.lua$")
+            if mod then
                 local req = dir and (dir:gsub("/", ".") .. "." .. mod) or ("./" .. mod)
                 require(req)
             end
