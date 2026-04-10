@@ -1,58 +1,42 @@
-local g = vim.g
-local o = vim.o
-local opt = vim.opt
-local wo = vim.wo
-
-local leader = " "
-
-g.have_nerd_font = true
-g.mapleader = leader
-g.maplocalleader = leader
-o.autowrite = false
-o.background = "dark"
-o.backspace = "indent,eol,start"
-o.backup = false
-o.breakindent = true
-o.completeopt = "menuone,noselect"
-o.confirm = true
-o.cursorline = false
-o.hlsearch = true
-o.ignorecase = true
-o.inccommand = "split"
-o.laststatus = 3
-o.linebreak = true
-o.list = true
-o.mouse = "a"
-o.mousemodel = "extend"
-o.scrolloff = 3
-o.sidescrolloff = 3
-o.shiftwidth = 4
-o.showmode = false
-o.smartcase = true
-o.smartindent = true
-o.spell = false
-o.spelllang = "en_au"
-o.splitbelow = true
-o.splitright = true
-o.swapfile = false
-o.tabstop = 4
-o.termguicolors = true
-o.timeout = true
-o.timeoutlen = 300
-o.undofile = true
-o.undolevels = 30000
-o.updatetime = 250
-o.updatetime = 50
-o.wrap = false
-opt.fillchars:append({ eob = " " })
-opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
-wo.number = true
-wo.relativenumber = false
-wo.signcolumn = "auto:2"
-
--- Virtual Text
--- vim.diagnostic.config({
---     virtual_lines = {
---         current_line = true,
---     },
--- })
+vim.g.have_nerd_font = true
+vim.g.mapleader = " "
+vim.o.autowrite = false
+vim.o.background = "dark"
+vim.o.backspace = "indent,eol,start"
+vim.o.backup = false
+vim.o.breakindent = true
+vim.o.completeopt = "menuone,noselect"
+vim.o.confirm = true
+vim.o.cursorline = false
+vim.o.hlsearch = true
+vim.o.ignorecase = true
+vim.o.inccommand = "split"
+vim.o.laststatus = 3
+vim.o.linebreak = true
+vim.o.list = true
+vim.o.mouse = "a"
+vim.o.mousemodel = "extend"
+vim.o.scrolloff = 3
+vim.o.shiftwidth = 4
+vim.o.showmode = false
+vim.o.sidescrolloff = 3
+vim.o.smartcase = true
+vim.o.smartindent = true
+vim.o.spell = false
+vim.o.spelllang = "en_au"
+vim.o.splitbelow = true
+vim.o.splitright = true
+vim.o.swapfile = false
+vim.o.tabstop = 4
+vim.o.termguicolors = true
+vim.o.timeout = true
+vim.o.timeoutlen = 300
+vim.o.undofile = true
+vim.o.undolevels = 30000
+vim.o.updatetime = 250
+vim.o.wrap = false
+vim.opt.fillchars:append({ eob = " " })
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+vim.wo.number = true
+vim.wo.relativenumber = false
+vim.wo.signcolumn = "auto:2"
