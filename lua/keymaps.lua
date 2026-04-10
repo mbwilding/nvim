@@ -161,6 +161,10 @@ k("n", "<leader>yy", function()
     return "\"+yy"
 end, { expr = true })
 
+k("n", "<leader>in", function()
+    vim.wo.number = not vim.wo.number
+end, { expr = true })
+
 -- k("n", "<leader>ivt", function()
 --     vim.diagnostic.config({
 --         virtual_text = not vim.diagnostic.config().virtual_text,
