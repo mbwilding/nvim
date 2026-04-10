@@ -3,6 +3,6 @@ return {
     lazy = false,
     opts = {},
     keys = {
-        { "<leader>ib", "<CMD>BlameToggle virtual<CR>", desc = "Git Blame" },
+        { "<leader>ib", "<CMD>BlameToggle window<CR>", desc = "Git Blame" },
     },
 }
