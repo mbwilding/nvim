@@ -1,5 +1,6 @@
+local base = vim.fn.stdpath("config") .. "/lua/"
+
 local function autoload(dir)
-    local base = vim.fn.stdpath("config") .. "/lua/"
     local path = dir and base .. dir or base
     local files = vim.fn.readdir(path)
     for _, name in ipairs(files) do
