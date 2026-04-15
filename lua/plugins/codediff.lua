@@ -1,3 +1,4 @@
+---@type zpack.Spec
 return {
     "esmuellert/vscode-diff.nvim",
     branch = "next",

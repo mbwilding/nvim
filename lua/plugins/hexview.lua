@@ -10,6 +10,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     end,
 })
 
+---@type zpack.Spec
 return {
     "DamianVCechov/hexview.nvim",
     opts = {},

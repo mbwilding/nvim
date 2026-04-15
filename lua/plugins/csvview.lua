@@ -1,3 +1,4 @@
+---@type zpack.Spec
 return {
     "hat0uma/csvview.nvim",
     ft = "csv",

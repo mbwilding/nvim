@@ -1,5 +1,6 @@
 -- Postman
 
+---@type zpack.Spec
 return {
     "mistweaverco/kulala.nvim",
     ft = { "http", "rest" },

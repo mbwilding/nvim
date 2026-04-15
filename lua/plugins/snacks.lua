@@ -7,6 +7,7 @@ vim.api.nvim_create_autocmd("User", {
     end,
 })
 
+---@type zpack.Spec
 return {
     "folke/snacks.nvim",
     lazy = false,

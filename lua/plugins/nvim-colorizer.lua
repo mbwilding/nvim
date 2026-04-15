@@ -1,5 +1,6 @@
 -- Colorizer highlights color codes with the respective color.
 
+---@type zpack.Spec
 return {
     "NvChad/nvim-colorizer.lua",
     opts = {

@@ -1,3 +1,4 @@
+---@type zpack.Spec
 return {
     "nvim-mini/mini.nvim",
     sem_version = "*",

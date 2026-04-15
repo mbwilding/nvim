@@ -1,5 +1,6 @@
 -- Custom theme based on the Rider Dark theme
 
+---@type zpack.Spec
 return {
     "mbwilding/gronk.nvim",
     lazy = false,

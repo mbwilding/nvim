@@ -1,5 +1,6 @@
 -- LuaSnip is a Lua based snippet system
 
+---@type zpack.Spec
 return {
     "L3MON4D3/LuaSnip",
     lazy = true,

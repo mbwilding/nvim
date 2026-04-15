@@ -2,6 +2,7 @@
 
 local is_nixos = vim.uv.fs_stat("/etc/nixos") ~= nil
 
+---@type zpack.Spec
 return {
     "neovim/nvim-lspconfig",
     dev = false,

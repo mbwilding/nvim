@@ -1,5 +1,6 @@
 -- Blink is an completion plugin written in Rust
 
+---@type zpack.Spec
 return {
     "saghen/blink.cmp",
     event = "VeryLazy",

@@ -1,5 +1,6 @@
 -- NPM package info
 
+---@type zpack.Spec
 return {
     "vuki656/package-info.nvim",
     dependencies = {

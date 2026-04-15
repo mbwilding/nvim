@@ -1,3 +1,4 @@
+---@type zpack.Spec
 return {
     "thgrass/tail.nvim",
     lazy = true,

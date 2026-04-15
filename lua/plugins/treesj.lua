@@ -1,3 +1,4 @@
+---@type zpack.Spec
 return {
     "Wansmer/treesj",
     lazy = true,

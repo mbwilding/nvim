@@ -1,3 +1,4 @@
+---@type zpack.Spec
 return {
     "akinsho/nvim-toggleterm.lua",
     lazy = true,

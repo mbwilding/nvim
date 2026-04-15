@@ -1,3 +1,4 @@
+---@type zpack.Spec
 return {
     "folke/lazydev.nvim",
     ft = "lua",

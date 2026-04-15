@@ -1,3 +1,4 @@
+---@type zpack.Spec
 return {
     "MonsieurTib/neonuget",
     lazy = true,

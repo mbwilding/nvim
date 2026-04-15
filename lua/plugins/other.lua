@@ -1,3 +1,4 @@
+---@type zpack.Spec
 return {
     "rgroli/other.nvim",
     keys = {

@@ -1,5 +1,6 @@
 -- Conform is a formatter manager. It can run multiple formatters and respects the .editorconfig files.
 
+---@type zpack.Spec
 return {
     "stevearc/conform.nvim",
     keys = {

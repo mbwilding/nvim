@@ -1,3 +1,4 @@
+---@type zpack.Spec
 return {
     "smjonas/inc-rename.nvim",
     lazy = true,

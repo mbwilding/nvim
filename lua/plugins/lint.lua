@@ -1,3 +1,4 @@
+---@type zpack.Spec
 return {
     "mfussenegger/nvim-lint",
     lazy = true,

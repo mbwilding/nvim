@@ -2,6 +2,7 @@ local opts = {
     custom_dir = vim.fn.stdpath("config") .. "/lua/launcher",
 }
 
+---@type zpack.Spec
 return {
     "mbwilding/launcher.nvim",
     dependiencies = {

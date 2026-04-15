@@ -1,3 +1,4 @@
+---@type zpack.Spec
 return {
     "folke/noice.nvim",
     event = "VeryLazy",

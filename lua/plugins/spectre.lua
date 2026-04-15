@@ -1,3 +1,4 @@
+---@type zpack.Spec
 return {
     "nvim-pack/nvim-spectre",
     lazy = true,

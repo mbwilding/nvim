@@ -1,3 +1,4 @@
+---@type zpack.Spec
 return {
     "3rd/image.nvim",
     -- dependencies = { "luarocks.nvim" },

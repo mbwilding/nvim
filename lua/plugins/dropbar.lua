@@ -1,3 +1,4 @@
+---@type zpack.Spec
 return {
     "Bekaboo/dropbar.nvim",
     dependencies = {

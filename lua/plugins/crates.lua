@@ -1,5 +1,6 @@
 -- Crates is a plugin that provides information about Rust crates in your Cargo.toml file.
 
+---@type zpack.Spec
 return {
     "saecki/crates.nvim",
     lazy = true,

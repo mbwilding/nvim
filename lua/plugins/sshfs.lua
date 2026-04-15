@@ -1,3 +1,4 @@
+---@type zpack.Spec
 return {
     "uhs-robert/sshfs.nvim",
     opts = {

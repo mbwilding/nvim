@@ -1,3 +1,4 @@
+---@type zpack.Spec
 return {
     "alexpasmantier/krust.nvim",
     ft = "rust",

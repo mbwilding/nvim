@@ -25,6 +25,7 @@ local keywords = {
     Test = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
 }
 
+---@type zpack.Spec
 return {
     "folke/todo-comments.nvim",
     dependencies = {

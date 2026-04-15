@@ -7,6 +7,7 @@ local function codecompanion_prompt(command_prefix)
     end)
 end
 
+---@type zpack.Spec
 return {
     "olimorris/codecompanion.nvim",
     event = "VeryLazy",

@@ -1,3 +1,4 @@
+---@type zpack.Spec
 return {
     "FabijanZulj/blame.nvim",
     lazy = false,

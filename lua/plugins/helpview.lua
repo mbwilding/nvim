@@ -1,3 +1,4 @@
+---@type zpack.Spec
 return {
     "OXY2DEV/helpview.nvim",
     lazy = true,

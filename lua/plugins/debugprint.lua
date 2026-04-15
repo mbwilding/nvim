@@ -3,6 +3,7 @@
 -- g/p or g/P
 -- g/v
 
+---@type zpack.Spec
 return {
     "andrewferrier/debugprint.nvim",
     dependencies = {

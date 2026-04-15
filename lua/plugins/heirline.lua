@@ -1,3 +1,4 @@
+---@type zpack.Spec
 return {
     "rebelot/heirline.nvim",
     lazy = true,

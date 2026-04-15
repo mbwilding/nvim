@@ -1,5 +1,6 @@
 -- Discord Presence
 
+---@type zpack.Spec
 return {
     "vyfor/cord.nvim",
     build = ":Cord update",
