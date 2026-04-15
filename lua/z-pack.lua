@@ -9,5 +9,9 @@ require("zpack").setup({
     performance = {
         vim_loader = true,
     },
+    -- profiling = {
+    --     loader = true,
+    --     require = true,
+    -- },
     cmd_prefix = 'Z',
 })
