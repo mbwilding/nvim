@@ -9,7 +9,7 @@ return {
         "L3MON4D3/LuaSnip",
         -- "giuxtaposition/blink-cmp-copilot",
     },
-    version = "*",
+    sem_version = "*",
     ---@type blink.cmp.Config
     opts = {
         sources = {

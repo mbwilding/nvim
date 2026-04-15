@@ -18,7 +18,7 @@ return {
         })
 
         -- Treesitter directory
-        local treesitter_dir = vim.fn.stdpath("data") .. "/lazy/nvim-treesitter/"
+        local treesitter_dir = vim.fn.stdpath("data") .. "/site/pack/core/opt/nvim-treesitter/"
 
         -- Collect all available parsers
         local parsers = {}

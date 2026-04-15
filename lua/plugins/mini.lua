@@ -1,6 +1,6 @@
 return {
     "nvim-mini/mini.nvim",
-    version = false,
+    sem_version = "*",
     lazy = false,
     -- event = "BufEnter",
     config = function()
