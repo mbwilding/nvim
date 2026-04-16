@@ -311,35 +311,36 @@ return {
                 keys = {
                     { icon = " ", key = "e", desc = "New File", action = ":ene | startinsert" },
                     {
-                        icon = " ",
+                        icon = "",
                         key = "<leader><leader>",
                         desc = "Find File",
                         action = ":lua Snacks.dashboard.pick('files')",
                     },
                     {
-                        icon = " ",
+                        icon = "",
                         key = "<leader>/",
                         desc = "Find Text",
                         action = ":lua Snacks.dashboard.pick('grep')",
                     },
                     {
-                        icon = " ",
+                        icon = "",
                         key = "r",
                         desc = "Recent Files",
                         action = ":lua Snacks.dashboard.pick('oldfiles')",
                     },
                     {
-                        icon = " ",
+                        icon = "",
                         key = "c",
                         desc = "Config",
                         action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
                     },
                     -- { icon = " ", key = "s", desc = "Restore Session", section = "session" },
-                    { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+                    { icon = "", key = "q", desc = "Quit", action = ":qa" },
                 },
             },
             sections = {
                 { section = "header" },
+                { section = "keys" },
                 function()
                     local ms = (vim.g.end_time - vim.g.start_time) / 1e6
                     return {
