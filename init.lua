@@ -27,4 +27,4 @@ local function autoload(dir)
     end
 end
 
-autoload(nil)
+autoload()
