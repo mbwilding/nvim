@@ -1,3 +1,12 @@
+vim.g.start_time = vim.uv.hrtime()
+
+vim.api.nvim_create_autocmd("VimEnter", {
+    once = true,
+    callback = function()
+        vim.g.end_time = vim.uv.hrtime()
+    end,
+})
+
 local base = vim.fn.stdpath("config") .. "/lua/"
 
 local function autoload(dir)

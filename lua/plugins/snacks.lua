@@ -340,7 +340,16 @@ return {
             },
             sections = {
                 { section = "header" },
-                -- { section = "startup" },
+                function()
+                    local ms = (vim.g.end_time - vim.g.start_time) / 1e6
+                    return {
+                        align = "center",
+                        text = {
+                            { "started in ", hl = "footer" },
+                            { ("%.2fms"):format(ms), hl = "special" },
+                        },
+                    }
+                end,
             },
         },
         picker = {
