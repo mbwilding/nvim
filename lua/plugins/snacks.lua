@@ -336,12 +336,6 @@ return {
                     },
                     {
                         icon = "",
-                        key = "p",
-                        desc = "Plugins",
-                        action = ":ZShow",
-                    },
-                    {
-                        icon = "󰚩",
                         key = "u",
                         desc = "Update",
                         action = ":ZUpdate",

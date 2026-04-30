@@ -1,3 +1,4 @@
+---@type zpack.Spec
 return {
     "folke/which-key.nvim",
     event = "VeryLazy",

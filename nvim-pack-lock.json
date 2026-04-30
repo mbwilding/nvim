@@ -22,6 +22,10 @@
       "src": "https://github.com/saghen/blink.cmp",
       "version": ">=0.0.0"
     },
+    "cellular-automaton.nvim": {
+      "rev": "1606e9d5d04ff254023c3f3c62842d065708d6d3",
+      "src": "https://github.com/eandrju/cellular-automaton.nvim"
+    },
     "codecompanion.nvim": {
       "rev": "cea5b18c3446ff8d9d44547238bf35b2e5cd2565",
       "src": "https://github.com/olimorris/codecompanion.nvim"
@@ -265,6 +269,10 @@
       "rev": "96845f95bc5539c8e2a0ab88223c5033f302fcd9",
       "src": "https://github.com/esmuellert/vscode-diff.nvim",
       "version": "'next'"
+    },
+    "which-key.nvim": {
+      "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
+      "src": "https://github.com/folke/which-key.nvim"
     },
     "zen-mode.nvim": {
       "rev": "8564ce6d29ec7554eb9df578efa882d33b3c23a7",
