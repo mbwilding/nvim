@@ -19,6 +19,7 @@ return {
             jsonls = {},
             phpactor = {},
             tombi = {},
+            -- taplo = {},
             nil_ls = {
                 settings = {
                     ["nil"] = {
@@ -60,7 +61,6 @@ return {
             gh_actions_ls = {},
             ruff = {},
             sqls = {},
-            taplo = {},
             zls = {},
             tsgo = {},
             marksman = {},
