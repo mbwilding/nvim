@@ -18,6 +18,7 @@ return {
             html = {},
             jsonls = {},
             phpactor = {},
+            tombi = {},
             nil_ls = {
                 settings = {
                     ["nil"] = {
