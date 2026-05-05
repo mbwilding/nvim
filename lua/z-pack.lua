@@ -1,4 +1,5 @@
-vim.pack.add({ "https://github.com/zuqini/zpack.nvim" }, { confirm = false })
+vim.pack.add({ "git@github.com:mbwilding/zpack.nvim" }, { confirm = false })
+-- vim.pack.add({ "https://github.com/zuqini/zpack.nvim" }, { confirm = false })
 
 require("zpack").setup({
     { import = "plugins" },

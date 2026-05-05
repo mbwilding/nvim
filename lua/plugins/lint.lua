@@ -34,7 +34,7 @@ return {
             typescriptreact = { "eslint_d" },
             svelte = { "eslint_d" },
             -- python = { "pylint" }, -- ruff handles this via lsp
-            yaml = { "yamllint" }, -- "cfn_lint", "cfn_nag"
+            yaml = { "yamllint", "cfn-lint" },
         }
 
         vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
