@@ -338,7 +338,7 @@ return {
                         icon = "",
                         key = "u",
                         desc = "Update",
-                        action = ":ZUpdate",
+                        action = ":lua vim.pack.update()",
                     },
                     { icon = "", key = "q", desc = "Quit", action = ":qa" },
                 },
