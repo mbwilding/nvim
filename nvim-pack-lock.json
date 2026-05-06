@@ -62,10 +62,6 @@
       "rev": "6cd7280adead7f586db6fccbd15d2cac7e2188b9",
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
-    "gronk.nvim": {
-      "rev": "aad45233931cd0caea1267d5ada27030bc611179",
-      "src": "https://github.com/mbwilding/gronk.nvim"
-    },
     "heirline.nvim": {
       "rev": "fae936abb5e0345b85c3a03ecf38525b0828b992",
       "src": "https://github.com/rebelot/heirline.nvim"
@@ -117,7 +113,7 @@
       "version": ">=0.0.0"
     },
     "neogit": {
-      "rev": "f8bcc625fe1b9bd55f7853820fddac9b0996f697",
+      "rev": "e74dfb42c04b493031f323aec8fa5f28b0427b9e",
       "src": "https://github.com/NeogitOrg/neogit"
     },
     "neonuget": {

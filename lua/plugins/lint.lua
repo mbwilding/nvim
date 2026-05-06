@@ -32,15 +32,18 @@ return {
             typescript = { "eslint_d" },
             javascriptreact = { "eslint_d" },
             typescriptreact = { "eslint_d" },
-            svelte = { "eslint_d" },
-            -- python = { "pylint" }, -- ruff handles this via lsp
-            yaml = { "yamllint", "cfn_lint" }, -- "cfn_lint", "cfn_nag"
+            yaml = { "yamllint" },
         }
 
         vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
             group = vim.api.nvim_create_augroup("lint", { clear = true }),
             callback = function()
-                lint.try_lint()
+                local filename = vim.fn.expand("%:t")
+                if filename == "template.yml" or filename == "template.yaml" then
+                    lint.try_lint({ "cfn_lint", "cfn_nag" })
+                else
+                    lint.try_lint()
+                end
             end,
         })
 
