@@ -338,6 +338,12 @@ return {
                         icon = "",
                         key = "u",
                         desc = "Update",
+                        action = ":lua vim.pack.update(nil, { force = true })",
+                    },
+                    {
+                        icon = "",
+                        key = "U",
+                        desc = "Update Preview",
                         action = ":lua vim.pack.update()",
                     },
                     { icon = "", key = "q", desc = "Quit", action = ":qa" },
