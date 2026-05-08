@@ -272,6 +272,13 @@ return {
                 vim.notify("Inlay Hints: " .. tostring(enabled))
             end, "Inlay Hints")
 
+            map("<leader>il", function()
+                local filter = { bufnr = 0 }
+                local enabled = not vim.lsp.codelens.is_enabled(filter)
+                vim.lsp.codelens.enable(enabled)
+                vim.notify("Codelens: " .. tostring(enabled))
+            end, "Inlay Hints")
+
             map("<leader>h", vim.lsp.buf.document_highlight, "Highlight")
 
             map("<leader>H", vim.lsp.buf.clear_references, "Unhighlight")
