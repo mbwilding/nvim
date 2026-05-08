@@ -62,6 +62,10 @@
       "rev": "6cd7280adead7f586db6fccbd15d2cac7e2188b9",
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
+    "gronk.nvim": {
+      "rev": "aad45233931cd0caea1267d5ada27030bc611179",
+      "src": "https://github.com/mbwilding/gronk.nvim"
+    },
     "heirline.nvim": {
       "rev": "fae936abb5e0345b85c3a03ecf38525b0828b992",
       "src": "https://github.com/rebelot/heirline.nvim"
@@ -99,7 +103,7 @@
       "src": "https://github.com/folke/lazydev.nvim"
     },
     "log-highlight.nvim": {
-      "rev": "098e0193a45bd4c0dfac8cbe72209fe64f105cd5",
+      "rev": "b2e00cfd41ca94338265a595f3f3f423d9f9322e",
       "src": "https://github.com/fei6409/log-highlight.nvim"
     },
     "mini.hipatterns": {
@@ -113,7 +117,7 @@
       "version": ">=0.0.0"
     },
     "neogit": {
-      "rev": "e74dfb42c04b493031f323aec8fa5f28b0427b9e",
+      "rev": "395ac481e197784e410b59b987fadaf9e7481df1",
       "src": "https://github.com/NeogitOrg/neogit"
     },
     "neonuget": {
@@ -165,7 +169,7 @@
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "31026a13eefb20681124706a79fc1df6bf11ab27",
+      "rev": "451d4ef9abd4f0f08e379ef0d55d1c391b6125a7",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nio": {
@@ -230,7 +234,7 @@
       "src": "https://github.com/folke/snacks.nvim"
     },
     "sshfs.nvim": {
-      "rev": "b948e565c1e2c51e21bb3590c855ea7a416108f8",
+      "rev": "57f586251d788dae38fd12998b9a208f7d54c1ef",
       "src": "https://github.com/uhs-robert/sshfs.nvim"
     },
     "tail.nvim": {
@@ -275,7 +279,7 @@
       "src": "https://github.com/folke/zen-mode.nvim"
     },
     "zpack.nvim": {
-      "rev": "8fffbafdcf24587cad705881ae0900e4df56f95d",
+      "rev": "8d02f50245ec43bd5dc835dc574d460e4c61bcec",
       "src": "git@github.com:mbwilding/zpack.nvim"
     }
   }
