@@ -163,7 +163,7 @@ end, { expr = true })
 
 k("n", "<leader>in", function()
     vim.wo.number = not vim.wo.number
-end, { expr = true })
+end, { expr = true, desc = "Toggle Gutter Numbers" })
 
 -- k("n", "<leader>ivt", function()
 --     vim.diagnostic.config({
