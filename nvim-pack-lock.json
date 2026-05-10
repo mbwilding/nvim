@@ -27,7 +27,7 @@
       "src": "https://github.com/eandrju/cellular-automaton.nvim"
     },
     "codecompanion.nvim": {
-      "rev": "2e33fbdd1ace1e5019ffba8891c5a23711005707",
+      "rev": "f85078a8e0a44159c8653ef507511a38fb9b2a6d",
       "src": "https://github.com/olimorris/codecompanion.nvim"
     },
     "conform.nvim": {
@@ -35,7 +35,7 @@
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "copilot.lua": {
-      "rev": "61784cb7a1a109d72b9cb107ee70d11bc7d095ff",
+      "rev": "b57ee71bc6671aae055ef1911b3f72771219bb2d",
       "src": "https://github.com/zbirenbaum/copilot.lua"
     },
     "cord.nvim": {
@@ -51,7 +51,7 @@
       "src": "https://github.com/hat0uma/csvview.nvim"
     },
     "debugprint.nvim": {
-      "rev": "63fa7f8ea879865791fa21bc0d0032e882ab5586",
+      "rev": "78db7b1a12365865742e199804d322d6170dc2e3",
       "src": "https://github.com/andrewferrier/debugprint.nvim"
     },
     "dropbar.nvim": {
@@ -194,7 +194,7 @@
       "src": "https://github.com/kevinhwang91/nvim-ufo"
     },
     "nvim-web-devicons": {
-      "rev": "4fc505ac7bd7692824a142e96e5f529c133862f8",
+      "rev": "2795c26c916bb3c57dde308b82be51971fa92747",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
     "oil-git-status.nvim": {
