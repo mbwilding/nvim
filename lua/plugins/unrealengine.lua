@@ -56,6 +56,13 @@ return {
             end,
             desc = "UnrealEngine: Link Plugin - Build Engine",
         },
+        {
+            "<leader>up",
+            function()
+                require("unrealengine.commands").build_plugin()
+            end,
+            desc = "UnrealEngine: Build Plugin"
+        },
     },
     build = function()
         require("unrealengine.commands").build_engine({ engine_path = engine_path })
