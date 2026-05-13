@@ -9,6 +9,10 @@
       "src": "https://github.com/L3MON4D3/LuaSnip",
       "version": "2.0.0 - 3.0.0"
     },
+    "UnrealEngine.nvim": {
+      "rev": "f89d7c8588cf7f49cf919674f6d1ea8ec772f864",
+      "src": "https://github.com/mbwilding/UnrealEngine.nvim"
+    },
     "actions-preview.nvim": {
       "rev": "0ac9c2aa3cfc8c885321c0862b50b6b1c3392405",
       "src": "https://github.com/aznhe21/actions-preview.nvim"
@@ -35,7 +39,7 @@
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "copilot.lua": {
-      "rev": "b57ee71bc6671aae055ef1911b3f72771219bb2d",
+      "rev": "18a58c62b20b7c724da808ef6d8fb002673b903f",
       "src": "https://github.com/zbirenbaum/copilot.lua"
     },
     "cord.nvim": {
@@ -79,7 +83,7 @@
       "src": "https://github.com/DamianVCechov/hexview.nvim"
     },
     "image.nvim": {
-      "rev": "da2be65c153ba15a14a342b05591652a6df70d58",
+      "rev": "72e5a916d40968feeb999bf7f18ab4cf9783d85e",
       "src": "https://github.com/3rd/image.nvim"
     },
     "inc-rename.nvim": {
