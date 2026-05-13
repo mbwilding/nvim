@@ -10,8 +10,9 @@
       "version": "2.0.0 - 3.0.0"
     },
     "UnrealEngine.nvim": {
-      "rev": "f89d7c8588cf7f49cf919674f6d1ea8ec772f864",
-      "src": "https://github.com/mbwilding/UnrealEngine.nvim"
+      "rev": "4ed072c5ccaf5efc2387da8d387346c2edc34f9f",
+      "src": "https://github.com/mbwilding/UnrealEngine.nvim",
+      "version": "'dev'"
     },
     "actions-preview.nvim": {
       "rev": "0ac9c2aa3cfc8c885321c0862b50b6b1c3392405",
@@ -31,7 +32,7 @@
       "src": "https://github.com/eandrju/cellular-automaton.nvim"
     },
     "codecompanion.nvim": {
-      "rev": "f85078a8e0a44159c8653ef507511a38fb9b2a6d",
+      "rev": "270e5d713f4d35c31e89d91d46c18aa67b05694f",
       "src": "https://github.com/olimorris/codecompanion.nvim"
     },
     "conform.nvim": {
@@ -39,7 +40,7 @@
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "copilot.lua": {
-      "rev": "18a58c62b20b7c724da808ef6d8fb002673b903f",
+      "rev": "7e9c269bf40dea86b44e64bd746f1808e991e419",
       "src": "https://github.com/zbirenbaum/copilot.lua"
     },
     "cord.nvim": {
@@ -55,7 +56,7 @@
       "src": "https://github.com/hat0uma/csvview.nvim"
     },
     "debugprint.nvim": {
-      "rev": "78db7b1a12365865742e199804d322d6170dc2e3",
+      "rev": "54c74749fb299bafbae818f775243be776663420",
       "src": "https://github.com/andrewferrier/debugprint.nvim"
     },
     "dropbar.nvim": {
@@ -83,7 +84,7 @@
       "src": "https://github.com/DamianVCechov/hexview.nvim"
     },
     "image.nvim": {
-      "rev": "72e5a916d40968feeb999bf7f18ab4cf9783d85e",
+      "rev": "c2417539abbd351505a8cb61785accc3d0054801",
       "src": "https://github.com/3rd/image.nvim"
     },
     "inc-rename.nvim": {
@@ -111,7 +112,7 @@
       "src": "https://github.com/fei6409/log-highlight.nvim"
     },
     "mini.hipatterns": {
-      "rev": "9eff319bbe66adfaf781a0d0e174baa08ba94909",
+      "rev": "35b632f6c138d720f29de87476361af44bed2198",
       "src": "https://github.com/nvim-mini/mini.hipatterns",
       "version": "'main'"
     },
@@ -121,7 +122,7 @@
       "version": ">=0.0.0"
     },
     "neogit": {
-      "rev": "395ac481e197784e410b59b987fadaf9e7481df1",
+      "rev": "99326a1310fb2d616b455d2fd16d01bf00682f06",
       "src": "https://github.com/NeogitOrg/neogit"
     },
     "neonuget": {
@@ -173,7 +174,7 @@
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "451d4ef9abd4f0f08e379ef0d55d1c391b6125a7",
+      "rev": "75e49cfa588a89ca667d767c0afef3ceac205faa",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nio": {

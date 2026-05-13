@@ -5,7 +5,8 @@ local engine_path = uname.sysname == "Windows_NT" and [[D:\unreal-engine]] or vi
 return {
     "mbwilding/UnrealEngine.nvim",
     lazy = false,
-    dev = true,
+    dev = false,
+    branch = "dev",
     keys = {
         {
             "<leader>ug",
