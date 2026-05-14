@@ -10,7 +10,7 @@
       "version": "2.0.0 - 3.0.0"
     },
     "UnrealEngine.nvim": {
-      "rev": "4ed072c5ccaf5efc2387da8d387346c2edc34f9f",
+      "rev": "3318e445b77aacece9a5bd3c83c7c087d34ed720",
       "src": "https://github.com/mbwilding/UnrealEngine.nvim",
       "version": "'dev'"
     },
@@ -84,7 +84,7 @@
       "src": "https://github.com/DamianVCechov/hexview.nvim"
     },
     "image.nvim": {
-      "rev": "c2417539abbd351505a8cb61785accc3d0054801",
+      "rev": "44e07129cd0ea0c60afa7a1991d35b5765b51a6b",
       "src": "https://github.com/3rd/image.nvim"
     },
     "inc-rename.nvim": {
@@ -170,7 +170,7 @@
       "src": "https://github.com/theHamsta/nvim-dap-virtual-text"
     },
     "nvim-lint": {
-      "rev": "eab58b48eb11d7745c11c505e0f3057165902461",
+      "rev": "665525810630701b84181e4d9eefd24b49845b29",
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
@@ -234,6 +234,10 @@
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
+    "precognition.nvim": {
+      "rev": "dc9a6e1d0a891ec6d3e86fff7db460f03caa8ccf",
+      "src": "https://github.com/tris203/precognition.nvim"
+    },
     "promise-async": {
       "rev": "119e8961014c9bfaf1487bf3c2a393d254f337e2",
       "src": "https://github.com/kevinhwang91/promise-async"
@@ -288,7 +292,7 @@
       "src": "https://github.com/folke/zen-mode.nvim"
     },
     "zpack.nvim": {
-      "rev": "8d02f50245ec43bd5dc835dc574d460e4c61bcec",
+      "rev": "552ca4431d450a0f027ca8ee6255d4f6d497c92f",
       "src": "git@github.com:mbwilding/zpack.nvim"
     }
   }
