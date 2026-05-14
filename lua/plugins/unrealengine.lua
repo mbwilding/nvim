@@ -75,6 +75,7 @@ return {
             link_plugin = true,
             environment_variables = {
                 -- SDL_VIDEODRIVER = "",
+                VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.json",
             },
         })
     end,
