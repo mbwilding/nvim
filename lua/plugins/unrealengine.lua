@@ -5,7 +5,6 @@ local engine_path = uname.sysname == "Windows_NT" and [[C:\UE\UE_5.7]] or vim.fn
 return {
     "mbwilding/UnrealEngine.nvim",
     lazy = false,
-    branch = "dev",
     keys = {
         {
             "<leader>ug",
