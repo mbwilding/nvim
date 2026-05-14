@@ -10,7 +10,7 @@
       "version": "2.0.0 - 3.0.0"
     },
     "UnrealEngine.nvim": {
-      "rev": "e7df503f83fdc222cc383bcbc04a248c95312a43",
+      "rev": "6b1c30d2f9f293589441bbe252e1b9a5639f34d1",
       "src": "https://github.com/mbwilding/UnrealEngine.nvim",
       "version": "'dev'"
     },
@@ -294,6 +294,10 @@
     "zpack.nvim": {
       "rev": "552ca4431d450a0f027ca8ee6255d4f6d497c92f",
       "src": "https://github.com/zuqini/zpack.nvim"
+    },
+    "zshow.nvim": {
+      "rev": "4a6790bf41d8521805b5e1be95582b1f57753c70",
+      "src": "https://github.com/sairyy/zshow.nvim"
     }
   }
 }

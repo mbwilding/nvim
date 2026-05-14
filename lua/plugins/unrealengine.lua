@@ -1,6 +1,6 @@
 local uname = vim.loop.os_uname()
 
-local engine_path = uname.sysname == "Windows_NT" and [[D:\unreal-engine]] or vim.fn.expand('~') .. '/UnrealEngine'
+local engine_path = uname.sysname == "Windows_NT" and [[D:\UE\UE_5.7]] or vim.fn.expand('~') .. '/UnrealEngine'
 
 return {
     "mbwilding/UnrealEngine.nvim",
