@@ -5,7 +5,6 @@ return {
         branch = "fix-deprecation",
     },
     lazy = true,
-    dev = false,
     event = "LspAttach",
     keys = {
         {

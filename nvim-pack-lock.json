@@ -11,8 +11,7 @@
     },
     "UnrealEngine.nvim": {
       "rev": "6b1c30d2f9f293589441bbe252e1b9a5639f34d1",
-      "src": "https://github.com/mbwilding/UnrealEngine.nvim",
-      "version": "'dev'"
+      "src": "https://github.com/mbwilding/UnrealEngine.nvim"
     },
     "actions-preview.nvim": {
       "rev": "0ac9c2aa3cfc8c885321c0862b50b6b1c3392405",

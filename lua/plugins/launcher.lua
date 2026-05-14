@@ -9,7 +9,6 @@ return {
         "folke/snacks.nvim",
     },
     lazy = true,
-    dev = false,
     keys = {
         {
             "<leader>lp",

@@ -1,7 +1,6 @@
 return {
     -- "utilyre/barbecue.nvim",
     "mbwilding/barbecue.nvim",
-    -- dev = true,
     name = "barbecue",
     version = "*",
     dependencies = {
