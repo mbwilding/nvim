@@ -10,7 +10,7 @@
       "version": "2.0.0 - 3.0.0"
     },
     "UnrealEngine.nvim": {
-      "rev": "6b1c30d2f9f293589441bbe252e1b9a5639f34d1",
+      "rev": "3c77149dcf57725d46944d2e92e878e79e9ec65f",
       "src": "https://github.com/mbwilding/UnrealEngine.nvim"
     },
     "actions-preview.nvim": {
@@ -31,15 +31,15 @@
       "src": "https://github.com/eandrju/cellular-automaton.nvim"
     },
     "codecompanion.nvim": {
-      "rev": "270e5d713f4d35c31e89d91d46c18aa67b05694f",
+      "rev": "b1cbe52ecd71e7b0ed43ac1dc6eb3aab4099db00",
       "src": "https://github.com/olimorris/codecompanion.nvim"
     },
     "conform.nvim": {
-      "rev": "dca1a190aa85f9065979ef35802fb77131911106",
+      "rev": "18aeab3d63d350dcf44d64c462cc489a3412af40",
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "copilot.lua": {
-      "rev": "7e9c269bf40dea86b44e64bd746f1808e991e419",
+      "rev": "407349117f176789df6ec1c23bca72f34e15b4e8",
       "src": "https://github.com/zbirenbaum/copilot.lua"
     },
     "cord.nvim": {
@@ -75,7 +75,7 @@
       "src": "https://github.com/rebelot/heirline.nvim"
     },
     "helpview.nvim": {
-      "rev": "518789535a0cb146224a428edf93a70f98b795db",
+      "rev": "0057599e169ea6ffd53fef77f279cb13b61e174a",
       "src": "https://github.com/OXY2DEV/helpview.nvim"
     },
     "hexview.nvim": {
@@ -173,7 +173,7 @@
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "75e49cfa588a89ca667d767c0afef3ceac205faa",
+      "rev": "f9349d4d99e7d66403ae8bf4fbd357b154dca7a7",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nio": {
@@ -202,7 +202,7 @@
       "src": "https://github.com/kevinhwang91/nvim-ufo"
     },
     "nvim-web-devicons": {
-      "rev": "2795c26c916bb3c57dde308b82be51971fa92747",
+      "rev": "7d8dad2c837fcdf2e65997e68657c1a21c568074",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
     "oil-git-status.nvim": {
@@ -232,10 +232,6 @@
     "plenary.nvim": {
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
       "src": "https://github.com/nvim-lua/plenary.nvim"
-    },
-    "precognition.nvim": {
-      "rev": "dc9a6e1d0a891ec6d3e86fff7db460f03caa8ccf",
-      "src": "https://github.com/tris203/precognition.nvim"
     },
     "promise-async": {
       "rev": "119e8961014c9bfaf1487bf3c2a393d254f337e2",
@@ -291,12 +287,8 @@
       "src": "https://github.com/folke/zen-mode.nvim"
     },
     "zpack.nvim": {
-      "rev": "552ca4431d450a0f027ca8ee6255d4f6d497c92f",
+      "rev": "4f9b31274dbedf7ac08b9a138e1bf52bf4fe91b4",
       "src": "https://github.com/zuqini/zpack.nvim"
-    },
-    "zshow.nvim": {
-      "rev": "4a6790bf41d8521805b5e1be95582b1f57753c70",
-      "src": "https://github.com/sairyy/zshow.nvim"
     }
   }
 }
