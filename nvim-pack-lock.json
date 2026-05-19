@@ -169,11 +169,11 @@
       "src": "https://github.com/theHamsta/nvim-dap-virtual-text"
     },
     "nvim-lint": {
-      "rev": "665525810630701b84181e4d9eefd24b49845b29",
+      "rev": "8b06eeec3c674744b993caecd73343df108c052d",
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "f9349d4d99e7d66403ae8bf4fbd357b154dca7a7",
+      "rev": "246572944c2a1e2a646c2e7609ff619b0fe74c18",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nio": {
@@ -287,7 +287,7 @@
       "src": "https://github.com/folke/zen-mode.nvim"
     },
     "zpack.nvim": {
-      "rev": "4f9b31274dbedf7ac08b9a138e1bf52bf4fe91b4",
+      "rev": "228f76f686b4d47fab570c0bf4120ce7b6988aaa",
       "src": "https://github.com/zuqini/zpack.nvim"
     }
   }
