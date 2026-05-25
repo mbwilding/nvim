@@ -10,7 +10,7 @@
       "version": "2.0.0 - 3.0.0"
     },
     "UnrealEngine.nvim": {
-      "rev": "8709e5909c40d959831900ee5e6bc4246b8bc527",
+      "rev": "de517971f08d75541172b827096525e53606f879",
       "src": "https://github.com/mbwilding/UnrealEngine.nvim"
     },
     "actions-preview.nvim": {
@@ -35,7 +35,7 @@
       "src": "https://github.com/olimorris/codecompanion.nvim"
     },
     "conform.nvim": {
-      "rev": "18aeab3d63d350dcf44d64c462cc489a3412af40",
+      "rev": "619363c30309d29ffa631e67c8183f2a72caa373",
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "copilot.lua": {
@@ -95,7 +95,7 @@
       "src": "https://github.com/alexpasmantier/krust.nvim"
     },
     "kulala.nvim": {
-      "rev": "aa05c854cc46e235aa24684d0521719570ea489e",
+      "rev": "5809fe0b599bba8a125adf02922b535303f78b01",
       "src": "https://github.com/mistweaverco/kulala.nvim"
     },
     "launcher.nvim": {
@@ -214,7 +214,7 @@
       "src": "https://github.com/JezerM/oil-lsp-diagnostics.nvim"
     },
     "oil.nvim": {
-      "rev": "0fcc83805ad11cf714a949c98c605ed717e0b83e",
+      "rev": "b91ee5a77a6a9605d9c1aaf4fda74b66082c8297",
       "src": "https://github.com/stevearc/oil.nvim"
     },
     "other.nvim": {
@@ -250,7 +250,7 @@
       "src": "https://github.com/thgrass/tail.nvim"
     },
     "tiny-inline-diagnostic.nvim": {
-      "rev": "147af4e49f51dd48f41972de26552872b8ba7b25",
+      "rev": "6bdbc9a2f5a846ff5fc55a998ff97c0e2968b7e5",
       "src": "https://github.com/rachartier/tiny-inline-diagnostic.nvim"
     },
     "todo-comments.nvim": {
@@ -287,7 +287,7 @@
       "src": "https://github.com/folke/zen-mode.nvim"
     },
     "zpack.nvim": {
-      "rev": "228f76f686b4d47fab570c0bf4120ce7b6988aaa",
+      "rev": "9ed473adbf6af59b650ecd716b56bf0ccbf0d7f8",
       "src": "https://github.com/zuqini/zpack.nvim"
     }
   }
