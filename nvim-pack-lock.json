@@ -39,7 +39,7 @@
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "copilot.lua": {
-      "rev": "393fd009c39b24dfc4cb4bf6f632288c64b13258",
+      "rev": "e8b9be2e51c393bedc893cef3bd1c5555a4d45f5",
       "src": "https://github.com/zbirenbaum/copilot.lua"
     },
     "cord.nvim": {
@@ -95,7 +95,7 @@
       "src": "https://github.com/alexpasmantier/krust.nvim"
     },
     "kulala.nvim": {
-      "rev": "ca474b85ef1241da3333f5ea4c774467de0f0b28",
+      "rev": "77e5e949276e0b247f8f67575c42446750d164fa",
       "src": "https://github.com/mistweaverco/kulala.nvim"
     },
     "launcher.nvim": {
@@ -173,7 +173,7 @@
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "a4ed4e761c400849e8c9f8bda33e5083f890268c",
+      "rev": "6f76a3eeadc2ee235d74cd7d5319e95a261084af",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nio": {
@@ -202,7 +202,7 @@
       "src": "https://github.com/kevinhwang91/nvim-ufo"
     },
     "nvim-web-devicons": {
-      "rev": "0d7d35fa946837b8738b17c18d1faa1ac351e7f9",
+      "rev": "dfbfaa967a6f7ec50789bead7ef87e336c1fa63c",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
     "oil-git-status.nvim": {
@@ -287,7 +287,7 @@
       "src": "https://github.com/folke/zen-mode.nvim"
     },
     "zpack.nvim": {
-      "rev": "9ed473adbf6af59b650ecd716b56bf0ccbf0d7f8",
+      "rev": "d52f0ddf85cf8fe74952f7825d3f9ea5f31b2968",
       "src": "https://github.com/zuqini/zpack.nvim"
     }
   }
