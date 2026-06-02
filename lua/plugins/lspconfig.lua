@@ -18,6 +18,7 @@ return {
             jsonls = {},
             phpactor = {},
             tombi = {},
+            jdtls = {},
             -- taplo = {},
             nil_ls = {
                 settings = {
