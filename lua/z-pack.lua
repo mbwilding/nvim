@@ -1,4 +1,3 @@
--- vim.pack.add({ "git@github.com:mbwilding/zpack.nvim" }, { confirm = false })
 vim.pack.add({ "https://github.com/zuqini/zpack.nvim" }, { confirm = false })
 
 require("zpack").setup({
@@ -10,9 +9,9 @@ require("zpack").setup({
     performance = {
         vim_loader = true,
     },
+    cmd_prefix = 'Z',
     -- profiling = {
     --     loader = true,
     --     require = true,
     -- },
-    cmd_prefix = 'Z',
 })
