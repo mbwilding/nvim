@@ -160,13 +160,9 @@
       "rev": "0d41457342a98da1fdf5707aae6573a57a949025",
       "src": "https://github.com/Willem-J-an/nvim-dap-powershell"
     },
-    "nvim-dap-ui": {
-      "rev": "1a66cabaa4a4da0be107d5eda6d57242f0fe7e49",
-      "src": "https://github.com/rcarriga/nvim-dap-ui"
-    },
-    "nvim-dap-virtual-text": {
-      "rev": "fbdb48c2ed45f4a8293d0d483f7730d24467ccb6",
-      "src": "https://github.com/theHamsta/nvim-dap-virtual-text"
+    "nvim-dap-view": {
+      "rev": "ba5c838e731003abefb8bc1c403c59aa5b3aa194",
+      "src": "https://github.com/igorlfs/nvim-dap-view"
     },
     "nvim-lint": {
       "rev": "d48f3a76189d03b2239f6df1b2f7e3fa8353743b",
@@ -287,7 +283,7 @@
       "src": "https://github.com/folke/zen-mode.nvim"
     },
     "zpack.nvim": {
-      "rev": "d52f0ddf85cf8fe74952f7825d3f9ea5f31b2968",
+      "rev": "1a5a7f2f4452d6057c5eb33e53cb8bab4f977430",
       "src": "https://github.com/zuqini/zpack.nvim"
     }
   }
