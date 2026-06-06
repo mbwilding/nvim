@@ -14,8 +14,22 @@ return {
     ---@type dapview.Config
     opts = {
         winbar = {
+            sections = {
+                "console",
+                "watches",
+                "scopes",
+                "exceptions",
+                "breakpoints",
+                "threads",
+                "repl"
+            },
             controls = {
-                enabled = false,
+                enabled = true,
+            },
+        },
+        windows = {
+            terminal = {
+                hide = true,
             },
         },
         virtual_text = {
