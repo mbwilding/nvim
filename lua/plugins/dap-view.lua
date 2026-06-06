@@ -34,6 +34,7 @@ return {
         },
         virtual_text = {
             enabled = true,
+            position = "eol", -- "eol_right_align"
         },
         auto_toggle = true,
     },
