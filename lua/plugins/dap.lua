@@ -70,7 +70,9 @@ return {
                 args = {},
 
                 pathBashdb = vim.fn.exepath("bashdb"),
-                pathBashdbLib = "/usr/share/bashdb",
+                pathBashdbLib = is_nixos
+                    and vim.fn.fnamemodify(vim.fn.exepath("bashdb"), ":h:h") .. "/share/bashdb"
+                    or "/usr/share/bashdb",
                 pathBash = vim.fn.exepath("bash"),
                 pathCat = vim.fn.exepath("cat"),
                 pathMkfifo = vim.fn.exepath("mkfifo"),
