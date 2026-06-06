@@ -1,6 +1,7 @@
 ---@type zpack.Spec
 return {
     "igorlfs/nvim-dap-view",
+    lazy = false,
     dependencies = { "mfussenegger/nvim-dap" },
     keys = {
         {
@@ -14,7 +15,7 @@ return {
     opts = {
         winbar = {
             controls = {
-                enabled = true,
+                enabled = false,
             },
         },
         virtual_text = {
