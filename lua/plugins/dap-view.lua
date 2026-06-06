@@ -26,6 +26,8 @@ return {
             controls = {
                 enabled = true,
             },
+            default_section = "console",
+            show_keymap_hints = false,
         },
         windows = {
             terminal = {
