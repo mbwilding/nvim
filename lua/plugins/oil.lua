@@ -1,6 +1,7 @@
 ---@type zpack.Spec
 return {
-    "stevearc/oil.nvim",
+    -- "stevearc/oil.nvim",
+    "barrettruth/canola.nvim", -- Drop in replacement with additional functionality
     lazy = false,
     dependencies = {
         "nvim-tree/nvim-web-devicons",
@@ -44,6 +45,8 @@ return {
             -- "type",
             "size",
             "permissions",
+            "owner",
+            "group",
             "icon",
         },
         lsp_file_methods = {
