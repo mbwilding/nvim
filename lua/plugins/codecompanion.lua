@@ -14,16 +14,7 @@ return {
     dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-treesitter/nvim-treesitter",
-        {
-            "zbirenbaum/copilot.lua",
-            event = "VeryLazy",
-            opts = {
-                copilot_model = "gpt-41-copilot",
-                panel = { enabled = false },
-                suggestion = { enabled = false },
-                nes = { enabled = false },
-            },
-        },
+        "zbirenbaum/copilot.lua",
     },
     keys = {
         {

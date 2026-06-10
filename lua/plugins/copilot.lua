@@ -1,7 +1,8 @@
 return {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
-    event = "InsertEnter",
+    -- event = "InsertEnter",
+    event = "VeryLazy",
     enabled = true,
     keys = {
         {
@@ -11,9 +12,9 @@ return {
         },
     },
     opts = {
-        copilot_model = "gpt-4o-copilot",
+        copilot_model = "gpt-41-copilot",
         panel = {
-            enabled = true,
+            enabled = false,
             auto_refresh = false,
             keymap = {
                 jump_prev = "[[",
@@ -28,7 +29,7 @@ return {
             },
         },
         suggestion = {
-            enabled = true,
+            enabled = false,
             auto_trigger = true,
             hide_during_completion = true,
             debounce = 75,
@@ -40,6 +41,9 @@ return {
                 prev = "<M-[>",
                 dismiss = "<C-]>",
             },
+        },
+        nes = {
+            enabled = false
         },
         filetypes = {
             yaml = true,
