@@ -39,7 +39,7 @@
       "src": "https://github.com/eandrju/cellular-automaton.nvim"
     },
     "codecompanion.nvim": {
-      "rev": "6e89152e763a298346e7eaee3cd16229cb567ae3",
+      "rev": "ab04cf7955b4f3133983ea402f7f3fc5e7d6154b",
       "src": "https://github.com/olimorris/codecompanion.nvim"
     },
     "conform.nvim": {
@@ -103,7 +103,7 @@
       "src": "https://github.com/alexpasmantier/krust.nvim"
     },
     "kulala.nvim": {
-      "rev": "34189185048988248a6a4b78fc35d83a6ac7f343",
+      "rev": "69250f64e60f75c010feac413576acbd9ffa4ec8",
       "src": "https://github.com/mistweaverco/kulala.nvim"
     },
     "launcher.nvim": {
@@ -249,7 +249,7 @@
       "src": "https://github.com/thgrass/tail.nvim"
     },
     "tiny-inline-diagnostic.nvim": {
-      "rev": "680762989e8b05a72e90769959d0fb9a557e6917",
+      "rev": "e930d0a46031645040d5492595b46cdf6ab3514f",
       "src": "https://github.com/rachartier/tiny-inline-diagnostic.nvim"
     },
     "todo-comments.nvim": {
