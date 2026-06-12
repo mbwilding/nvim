@@ -31,7 +31,7 @@
       "version": ">=0.0.0"
     },
     "canola.nvim": {
-      "rev": "88af183e96724cca98a4602511061662cd5e88f3",
+      "rev": "d8566edbde9a20f77098cf7e142011923ebeb0f8",
       "src": "https://github.com/barrettruth/canola.nvim"
     },
     "cellular-automaton.nvim": {
@@ -39,7 +39,7 @@
       "src": "https://github.com/eandrju/cellular-automaton.nvim"
     },
     "codecompanion.nvim": {
-      "rev": "c33f868c921bc877a3fb8b66673ff31cd98c3936",
+      "rev": "52e44e0f048be51a2892989de0d86e79f70aecad",
       "src": "https://github.com/olimorris/codecompanion.nvim"
     },
     "conform.nvim": {
@@ -47,7 +47,7 @@
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "copilot.lua": {
-      "rev": "0415bd625c3076a6a5ee445be484574d55b4fbfc",
+      "rev": "dada2f90220861d6e9d30eca6a3997cf5d0c9936",
       "src": "https://github.com/zbirenbaum/copilot.lua"
     },
     "cord.nvim": {
@@ -103,7 +103,7 @@
       "src": "https://github.com/alexpasmantier/krust.nvim"
     },
     "kulala.nvim": {
-      "rev": "69250f64e60f75c010feac413576acbd9ffa4ec8",
+      "rev": "e483050a54eb9d70ef733b06e129a8da8b3f1780",
       "src": "https://github.com/mistweaverco/kulala.nvim"
     },
     "launcher.nvim": {
