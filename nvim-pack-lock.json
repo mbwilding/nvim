@@ -39,7 +39,7 @@
       "src": "https://github.com/eandrju/cellular-automaton.nvim"
     },
     "codecompanion.nvim": {
-      "rev": "52e44e0f048be51a2892989de0d86e79f70aecad",
+      "rev": "d8a5d885ae477d80d9f4fdfad4f600cd0db75451",
       "src": "https://github.com/olimorris/codecompanion.nvim"
     },
     "conform.nvim": {
